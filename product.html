@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản Phẩm — Khai Ấn Sử Việt</title>
+  <meta name="description" content="Chi tiết sản phẩm thẻ bài cổ vật lịch sử Việt Nam — Khai Ấn Sử Việt">
+  <meta name="author" content="Khai Ấn Sử Việt">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/product.css">
+
+  <!-- Google Model Viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       PRELOADER
+       ============================================================ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__ring"></div>
+    <p class="preloader__text">Khai Ấn Sử Việt</p>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo" aria-label="Khai Ấn Sử Việt - Trang chủ">
+      <div class="navbar__logo-icon">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2.5" />
+          <rect x="8" y="8" width="32" height="32" rx="1.5" fill="none" stroke="#A62C21" stroke-width="1"
+            opacity="0.6" />
+          <text x="24" y="30" text-anchor="middle" font-family="serif" font-size="18" font-weight="bold"
+            fill="#B8860B">印</text>
+        </svg>
+      </div>
+      <span class="navbar__logo-text">Khai Ấn Sử Việt</span>
+    </a>
+
+    <div class="navbar__links" id="navLinks">
+      <a href="index.html" class="navbar__link">Trang Chủ</a>
+      <a href="index.html#about" class="navbar__link">Về Chúng Tôi</a>
+      <a href="index.html#products" class="navbar__link active">Sản Phẩm</a>
+      <a href="collection.html" class="navbar__link">Bộ Sưu Tập</a>
+      <a href="index.html#ar-guide" class="navbar__link">Hướng Dẫn</a>
+      <a href="index.html#contact" class="navbar__link">Liên Hệ</a>
+    </div>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       BREADCRUMB
+       ============================================================ -->
+  <div class="breadcrumb">
+    <div class="breadcrumb__list">
+      <a href="index.html" class="breadcrumb__link">Trang chủ</a>
+      <span class="breadcrumb__separator">›</span>
+      <a href="index.html#products" class="breadcrumb__link">Sản phẩm</a>
+      <span class="breadcrumb__separator">›</span>
+      <span class="breadcrumb__current" id="breadcrumbName">Sản phẩm</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PRODUCT HERO
+       ============================================================ -->
+  <section class="product-hero" id="productHero">
+    <div class="product-hero__bg">
+      <div class="product-hero__bg-image"></div>
+      <div class="product-hero__bg-overlay"></div>
+    </div>
+
+    <div class="product-hero__content">
+      <!-- Gallery -->
+      <div class="product-hero__gallery">
+        <div class="product-hero__main-image" id="mainProductImage">
+          <!-- Populated by JS -->
+        </div>
+        <div class="product-hero__thumbnails" id="productThumbs">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Info Card -->
+      <div class="product-hero__info">
+        <div class="product-hero__status">
+          <span class="badge badge--in-stock" id="productStatus">Còn hàng</span>
+        </div>
+        <h1 class="product-hero__name" id="productName">Tên Sản Phẩm</h1>
+        <p class="product-hero__dynasty" id="productDynasty">Triều Đại • Niên Đại</p>
+        <p class="product-hero__price" id="productPrice">199.000đ</p>
+
+        <p class="product-hero__shipping">
+          <strong>Phí giao hàng:</strong> Dự kiến giao trong 2-3 ngày làm việc
+        </p>
+
+        <div class="product-hero__actions">
+          <button class="product-hero__add-cart" id="buyNowBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+            </svg>
+            MUA NGAY
+          </button>
+          <!-- <button class="product-hero__360-btn" id="open360Btn" aria-label="Xem 360°">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+            </svg>
+          </button>
+          <button class="product-hero__360-btn" id="openArBtn" aria-label="Xem AR">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+            </svg>
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRODUCT DETAILS (Accordion)
+       ============================================================ -->
+  <section class="product-details section">
+    <div class="product-details__content">
+      <!-- Detail Image -->
+      <div class="product-details__image" id="productDetailsImage">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Accordion -->
+      <div class="product-details__accordion">
+        <h2 class="section__title" style="text-align:left;margin-bottom:var(--space-md);font-size:1.8rem;">CHI TIẾT SẢN
+          PHẨM</h2>
+
+        <div class="accordion-item">
+          <button class="accordion-header" id="accordionHeaderDesc">
+            <span class="accordion-title">THÔNG TIN SẢN PHẨM</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body" id="accordionDesc">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" id="accordionHeaderDims">
+            <span class="accordion-title">KÍCH THƯỚC SẢN PHẨM</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body" id="accordionDims">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" id="accordionHeaderNfc">
+            <span class="accordion-title">TÍNH NĂNG</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body" id="accordionNfc">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" id="accordionHeaderEdition">
+            <span class="accordion-title">HƯỚNG DẪN SỬ DỤNG</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body" id="accordionEdition">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSE UP SECTION
+       ============================================================ -->
+  <section class="closeup">
+    <!-- Marquee Banner -->
+    <div class="closeup__marquee">
+      <div class="closeup__marquee-track">
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+        <span class="closeup__marquee-text">GIẢM GIÁ 10%</span>
+      </div>
+    </div>
+
+    <!-- Close-up Gallery -->
+    <div class="closeup__gallery" id="closeupGallery">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RELATED PRODUCTS
+       ============================================================ -->
+  <section class="related-products">
+    <h2 class="related-products__title">Liên Quan</h2>
+    <div class="related-products__grid" id="relatedGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__brand-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2" />
+              <text x="24" y="30" text-anchor="middle" font-family="serif" font-size="16" font-weight="bold"
+                fill="#B8860B">印</text>
+            </svg>
+          </div>
+          <span class="footer__brand-text">Khai Ấn Sử Việt</span>
+        </div>
+        <div class="footer__security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+          Cam kết bảo mật thông tin khách hàng tuyệt đối
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2024 <a href="index.html">Khai Ấn Sử Việt</a>. Bản quyền thuộc về dự án Khai Ấn Sử Việt.</p>
+        <p>Tân Xã, Hòa Lạc, Hà Nội | khaiansuviet@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       ORDER FORM MODAL
+       ============================================================ -->
+  <div class="order-modal" id="orderModal">
+    <div class="order-modal__card">
+      <button class="order-modal__close" id="closeOrderModal" aria-label="Đóng">✕</button>
+      <p class="order-modal__label">ĐẶT HÀNG</p>
+      <h3 class="order-modal__product-name" id="orderProductName">Tên sản phẩm</h3>
+      <p class="order-modal__product-price" id="orderProductPrice">199.000đ</p>
+
+      <form class="order-modal__form" id="orderForm">
+        <div class="order-modal__row">
+          <div class="order-modal__field">
+            <label class="order-modal__field-label" for="orderName">HỌ TÊN <span>*</span></label>
+            <input type="text" class="order-modal__input" id="orderName" placeholder="Họ tên đầy đủ" required>
+          </div>
+          <div class="order-modal__field">
+            <label class="order-modal__field-label" for="orderPhone">SỐ ĐIỆN THOẠI <span>*</span></label>
+            <input type="tel" class="order-modal__input" id="orderPhone" placeholder="0912 345 678" required>
+          </div>
+        </div>
+
+        <div class="order-modal__field">
+          <label class="order-modal__field-label" for="orderEmail">EMAIL <em>(để nhận xác nhận)</em></label>
+          <input type="email" class="order-modal__input" id="orderEmail" placeholder="email@example.com">
+        </div>
+
+        <div class="order-modal__field order-modal__field--small">
+          <label class="order-modal__field-label" for="orderQty">SỐ LƯỢNG</label>
+          <input type="number" class="order-modal__input" id="orderQty" value="1" min="1" max="10">
+        </div>
+
+        <div class="order-modal__field">
+          <label class="order-modal__field-label" for="orderNote">GHI CHÚ <em>(địa chỉ giao, yêu cầu đặc
+              biệt...)</em></label>
+          <textarea class="order-modal__textarea" id="orderNote" placeholder="Giao tới Hà Nội, gói quà..."></textarea>
+        </div>
+
+        <button type="submit" class="order-modal__submit" id="orderSubmitBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+          </svg>
+          XÁC NHẬN ĐẶT HÀNG
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       3D MODEL MODAL
+       ============================================================ -->
+  <div class="model-modal" id="modelModal">
+    <button class="model-modal__close" id="closeModelModal" aria-label="Đóng">✕</button>
+    <div class="model-modal__viewer" id="modelViewerContainer">
+      <div class="model-modal__placeholder">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z" />
+          <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55" />
+        </svg>
+        <span>MÔ HÌNH 3D</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/product.js"></script>
+  <script src="assets/js/effects.js"></script>
+
+</body>
+
+</html>

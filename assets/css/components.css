@@ -1,0 +1,399 @@
+/* ============================================================
+   KHAI ẤN SỬ VIỆT — Shared Components
+   Preloader, Navbar, Footer, Buttons, Toast
+   ============================================================ */
+
+/* ── Preloader ── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--den-son-mai);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader__ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--vang-thep);
+  border-right-color: var(--do-chu-sa);
+  animation: preloaderSpin 1.2s linear infinite;
+  position: relative;
+}
+
+.preloader__ring::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--vang-thep-light);
+  border-left-color: var(--do-chu-sa-light);
+  animation: preloaderSpin 0.8s linear infinite reverse;
+}
+
+.preloader__ring::after {
+  content: '印';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--vang-thep);
+  text-shadow: 0 0 15px var(--vang-thep-glow);
+}
+
+.preloader__text {
+  margin-top: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--vang-thep);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes preloaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloaderPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ── Navigation Bar ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 var(--space-md);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(166, 44, 33, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+  transition: background var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.navbar.scrolled {
+  background: rgba(26, 17, 8, 0.92);
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
+  border-bottom-color: rgba(184, 134, 11, 0.35);
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.navbar__logo-icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar__logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--vang-thep);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar__link {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--trang-nga);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  padding: 4px 0;
+  transition: color var(--transition-fast);
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--vang-thep), var(--do-chu-sa));
+  transition: width var(--transition-normal);
+}
+
+.navbar__link:hover,
+.navbar__link.active {
+  color: var(--vang-thep);
+}
+
+.navbar__link:hover::after,
+.navbar__link.active::after {
+  width: 100%;
+}
+
+/* Hamburger Menu */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--vang-thep);
+  border-radius: 2px;
+  transition: transform var(--transition-normal), opacity var(--transition-fast);
+}
+
+.navbar__hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar__hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ── CTA Button ── */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--trang-nga);
+  background: linear-gradient(135deg, var(--do-chu-sa), var(--do-chu-sa-dark));
+  border: 2px solid var(--vang-thep);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  box-shadow: var(--glow-gold), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(184, 134, 11, 0.3) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-cta:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-gold-intense);
+  background: linear-gradient(135deg, var(--do-chu-sa-light), var(--do-chu-sa));
+  color: var(--trang-nga);
+}
+
+.btn-cta--secondary {
+  background: transparent;
+  border: 2px solid var(--vang-thep);
+  color: var(--vang-thep);
+}
+
+.btn-cta--secondary:hover {
+  background: rgba(184, 134, 11, 0.15);
+  color: var(--vang-thep-light);
+}
+
+.btn-cta--small {
+  padding: 10px 24px;
+  font-size: 0.8rem;
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--den-son-mai);
+  border-top: 1px solid rgba(184, 134, 11, 0.15);
+  padding: var(--space-lg) 0 var(--space-md);
+}
+
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid rgba(184, 134, 11, 0.1);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer__brand-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.footer__brand-text {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--vang-thep);
+  letter-spacing: 2px;
+}
+
+.footer__security {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: rgba(245, 245, 220, 0.4);
+}
+
+.footer__security svg {
+  width: 16px;
+  height: 16px;
+  color: var(--xanh-men-ngoc);
+}
+
+.footer__bottom {
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(245, 245, 220, 0.3);
+  line-height: 1.6;
+}
+
+.footer__bottom a {
+  color: var(--vang-thep);
+  opacity: 0.6;
+}
+
+.footer__bottom a:hover {
+  opacity: 1;
+}
+
+/* ── Toast Notification ── */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 14px 28px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--den-son-mai);
+  background: linear-gradient(135deg, var(--vang-thep), var(--vang-thep-light));
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 1px;
+  white-space: nowrap;
+  max-width: 90vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    flex-direction: column;
+    background: rgba(26, 17, 8, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 100px var(--space-md) var(--space-md);
+    gap: var(--space-sm);
+    transition: right var(--transition-normal);
+    border-left: 1px solid rgba(184, 134, 11, 0.2);
+    z-index: 999;
+  }
+
+  .navbar__links.open {
+    right: 0;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .btn-cta {
+    padding: 14px 28px;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khai Ấn Sử Việt — Phá La Đồ Thời Gian, Tìm Vàng Di Sản</title>
+  <meta name="description"
+    content="Bộ đồ chơi khảo cổ và khám phá lịch sử Việt Nam qua 14 triều đại độc đáo. Trải nghiệm AR/3D tương tác với cổ vật lịch sử ngay trên điện thoại.">
+  <meta name="keywords" content="Khai Ấn Sử Việt, lịch sử Việt Nam, thẻ bài triều đại, AR, 3D, khảo cổ, di sản văn hóa">
+  <meta name="author" content="Khai Ấn Sử Việt">
+  <meta property="og:title" content="Khai Ấn Sử Việt — Phá La Đồ Thời Gian, Tìm Vàng Di Sản">
+  <meta property="og:description"
+    content="Bộ đồ chơi khảo cổ và khám phá lịch sử Việt Nam qua 14 triều đại. Trải nghiệm 3D/AR tương tác.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/collection.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       PRELOADER
+       ============================================================ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__ring"></div>
+    <p class="preloader__text">Khai Ấn Sử Việt</p>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo" aria-label="Khai Ấn Sử Việt - Trang chủ">
+      <div class="navbar__logo-icon">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2.5" />
+          <rect x="8" y="8" width="32" height="32" rx="1.5" fill="none" stroke="#A62C21" stroke-width="1"
+            opacity="0.6" />
+          <text x="24" y="30" text-anchor="middle" font-family="serif" font-size="18" font-weight="bold"
+            fill="#B8860B">印</text>
+        </svg>
+      </div>
+      <span class="navbar__logo-text">Khai Ấn Sử Việt</span>
+    </a>
+
+    <div class="navbar__links" id="navLinks">
+      <a href="#home" class="navbar__link active" data-section="home">Trang Chủ</a>
+      <a href="#about" class="navbar__link" data-section="about">Về Chúng Tôi</a>
+      <a href="#products" class="navbar__link" data-section="products">Sản Phẩm</a>
+      <a href="collection.html" class="navbar__link">Bộ Sưu Tập</a>
+      <a href="#ar-guide" class="navbar__link" data-section="ar-guide">Hướng Dẫn</a>
+      <a href="#contact" class="navbar__link" data-section="contact">Liên Hệ</a>
+    </div>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 1: HERO / HOME
+       ============================================================ -->
+  <section class="hero section" id="home">
+    <!-- Background layers -->
+    <div class="hero__bg">
+      <div class="hero__bg-base"></div>
+      <div class="hero__bg-pattern"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <div class="hero__particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- Corner decorations -->
+    <div class="hero__corner hero__corner--tl">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L80 0 L80 10 L10 10 L10 80 L0 80 Z" fill="none" stroke="#B8860B" stroke-width="1" />
+        <path d="M0 0 L30 0 M0 0 L0 30" stroke="#B8860B" stroke-width="2" />
+        <circle cx="5" cy="5" r="2" fill="#B8860B" />
+      </svg>
+    </div>
+    <div class="hero__corner hero__corner--tr">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L80 0 L80 10 L10 10 L10 80 L0 80 Z" fill="none" stroke="#B8860B" stroke-width="1" />
+        <path d="M0 0 L30 0 M0 0 L0 30" stroke="#B8860B" stroke-width="2" />
+        <circle cx="5" cy="5" r="2" fill="#B8860B" />
+      </svg>
+    </div>
+    <div class="hero__corner hero__corner--bl">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L80 0 L80 10 L10 10 L10 80 L0 80 Z" fill="none" stroke="#B8860B" stroke-width="1" />
+        <path d="M0 0 L30 0 M0 0 L0 30" stroke="#B8860B" stroke-width="2" />
+        <circle cx="5" cy="5" r="2" fill="#B8860B" />
+      </svg>
+    </div>
+    <div class="hero__corner hero__corner--br">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L80 0 L80 10 L10 10 L10 80 L0 80 Z" fill="none" stroke="#B8860B" stroke-width="1" />
+        <path d="M0 0 L30 0 M0 0 L0 30" stroke="#B8860B" stroke-width="2" />
+        <circle cx="5" cy="5" r="2" fill="#B8860B" />
+      </svg>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero__content">
+      <div class="hero__text">
+        <div class="hero__badge">✦ Bộ Sưu Tập Giới Hạn ✦</div>
+        <h1 class="hero__title">
+          KHAI ẤN SỬ VIỆT
+          <span class="highlight">Phá La Đồ Thời Gian, Tìm Vàng Di Sản</span>
+        </h1>
+        <p class="hero__desc">
+          Bộ đồ chơi khảo cổ và khám phá lịch sử Việt Nam qua <strong style="color: var(--vang-thep);">14 triều
+            đại</strong> độc đáo.
+          Kết hợp công nghệ <strong style="color: var(--vang-thep);">AR/3D</strong> tiên tiến để đưa cổ vật ngàn năm
+          hiện hình ngay trước mắt bạn.
+        </p>
+        <div class="hero__actions">
+          <a href="#products" class="btn-cta" id="ctaStart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            Khám Phá Sản Phẩm
+          </a>
+          <a href="#about" class="btn-cta btn-cta--secondary">
+            Tìm Hiểu Thêm
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__model-area">
+        <div class="hero__model-frame">
+          <div class="hero__model-glow"></div>
+          <div class="hero__model-border"></div>
+          <div class="hero__model-placeholder" id="heroModelArea">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+
+              <!-- Outer rings -->
+              <circle cx="100" cy="100" r="90" fill="none" stroke="#B8860B" stroke-width="1.2" opacity="0.45" />
+              <circle cx="100" cy="100" r="62" fill="none" stroke="#B8860B" stroke-width="1.5" opacity="0.6" />
+              <circle cx="100" cy="100" r="55" fill="none" stroke="#B8860B" stroke-width="0.8" opacity="0.35" />
+              <circle cx="100" cy="100" r="48" fill="none" stroke="#B8860B" stroke-width="0.6" opacity="0.25" />
+
+              <!-- Perfect Star -->
+              <path d="M100 38
+                    L114.7 79.8
+                    L159 79.8
+                    L123.2 105.8
+                    L137 148
+                    L100 122
+                    L63 148
+                    L76.8 105.8
+                    L41 79.8
+                    L85.3 79.8
+                    Z" fill="none" stroke="#B8860B" stroke-width="1.4" opacity="0.75" />
+
+              <!-- Center -->
+              <circle cx="100" cy="100" r="15" fill="none" stroke="#B8860B" stroke-width="1" opacity="0.45" />
+              <circle cx="100" cy="100" r="3" fill="#B8860B" opacity="0.5" />
+
+              <!-- Decorative leaves -->
+              <g fill="#B8860B" opacity="0.35">
+                <path d="M98 52 Q108 42 118 52 Q108 58 98 52" />
+                <path d="M148 98 Q158 108 148 118 Q142 108 148 98" />
+                <path d="M102 148 Q92 158 82 148 Q92 142 102 148" />
+                <path d="M52 102 Q42 92 52 82 Q58 92 52 102" />
+              </g>
+
+              <!-- Corner diamonds -->
+              <g opacity="0.22" stroke="#B8860B" fill="none" stroke-width="0.8">
+                <rect x="45" y="45" width="5" height="5" transform="rotate(45 47.5 47.5)" />
+                <rect x="150" y="45" width="5" height="5" transform="rotate(45 152.5 47.5)" />
+                <rect x="45" y="150" width="5" height="5" transform="rotate(45 47.5 152.5)" />
+                <rect x="150" y="150" width="5" height="5" transform="rotate(45 152.5 152.5)" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll">
+      <span class="hero__scroll-text">Cuộn xuống</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Ornament divider -->
+  <div class="ornament-divider">
+    <div class="ornament-divider__line"></div>
+    <span class="ornament-divider__symbol">☬</span>
+    <div class="ornament-divider__line"></div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2: ABOUT US
+       ============================================================ -->
+  <section class="about section" id="about">
+    <div class="container">
+      <p class="section__label reveal">Về Chúng Tôi</p>
+      <h2 class="section__title reveal">Hành Trình Đánh Thức Di Sản</h2>
+      <div class="section__divider reveal"></div>
+
+      <div class="about__wrapper">
+        <!-- Tab Navigation -->
+        <div class="about__tabs reveal-left">
+          <button class="about__tab active" data-tab="story">
+            <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Brand Story
+          </button>
+          <button class="about__tab" data-tab="meaning">
+            <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              <path
+                d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+            </svg>
+            Ý Nghĩa Tên Gọi
+          </button>
+          <button class="about__tab" data-tab="mission">
+            <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            </svg>
+            Sứ Mệnh
+          </button>
+          <button class="about__tab" data-tab="vision">
+            <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+              <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Tầm Nhìn
+          </button>
+          <button class="about__tab" data-tab="values">
+            <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+            </svg>
+            Giá Trị Cốt Lõi
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="about__content reveal-right">
+          <div class="about__panel active" id="panel-story">
+            <p class="about__panel-subtitle">Câu Chuyện Thương Hiệu</p>
+            <h3 class="about__panel-title">Đánh Thức Giá Trị Ngủ Quên Trong Lòng Đất Cổ</h3>
+            <p class="about__panel-text">
+              Từ những mảnh gạch vỡ nơi hố khảo cổ Hoàng thành Thăng Long, từ vết rỉ đồng xanh trên cổ vật ngàn năm,
+              chúng tôi nhìn thấy không chỉ là di tích — mà là <em>hơi thở của tổ tiên</em> vẫn đang thì thầm qua dòng
+              chảy thời gian.
+            </p>
+            <p class="about__panel-text">
+              <strong>Khai Ấn Sử Việt</strong> ra đời từ khát vọng biến những trang sử tưởng chừng xa vời thành
+              trải nghiệm sống động, nơi mỗi người — đặc biệt là thế hệ trẻ — có thể <em>chạm tay vào lịch sử</em>,
+              cảm nhận hào khí cha ông bằng chính đôi mắt và bàn tay mình thông qua công nghệ AR/3D tiên tiến.
+            </p>
+            <div class="about__panel-quote">
+              <p>"Lịch sử không nằm im trong sách vở. Lịch sử đang chờ được đánh thức."</p>
+            </div>
+          </div>
+
+          <div class="about__panel" id="panel-meaning">
+            <p class="about__panel-subtitle">Ý Nghĩa Tên Gọi</p>
+            <h3 class="about__panel-title">"Khai Ấn" — Mở Ra Chương Sử Mới</h3>
+            <p class="about__panel-text">
+              Trong truyền thống phong kiến Việt Nam, <em>"Khai Ấn"</em> là nghi lễ mở ấn vào đầu năm mới,
+              đánh dấu sự bắt đầu của mọi hoạt động triều chính quan trọng.
+            </p>
+            <p class="about__panel-text">
+              Chúng tôi mượn hình ảnh đầy biểu tượng ấy để đặt tên cho dự án: <strong>Khai Ấn Sử Việt</strong> —
+              Mở ra dấu ấn lịch sử, chạm tay vào dòng chảy văn hóa ngàn năm.
+            </p>
+            <div class="about__panel-quote">
+              <p>"Mỗi thẻ bài là một dấu ấn. Mỗi lần mở khóa là một lần chạm vào ngàn năm."</p>
+            </div>
+          </div>
+
+          <div class="about__panel" id="panel-mission">
+            <p class="about__panel-subtitle">Sứ Mệnh</p>
+            <h3 class="about__panel-title">Biến Lịch Sử Khô Khan Thành Trải Nghiệm Sống Động</h3>
+            <p class="about__panel-text">
+              Chúng tôi tin rằng lịch sử không nên là những dòng chữ cần thuộc lòng một cách máy móc.
+              Lịch sử phải được <em>nhìn thấy, chạm vào, và trải nghiệm</em>.
+            </p>
+            <p class="about__panel-text">
+              Sứ mệnh của Khai Ấn Sử Việt là tạo ra một cầu nối giữa quá khứ và hiện tại,
+              nơi công nghệ AR/3D trở thành công cụ để thế hệ trẻ Việt Nam hiểu và yêu lịch sử dân tộc
+              theo cách hoàn toàn mới.
+            </p>
+            <div class="about__panel-quote">
+              <p>"Không phải là việc thuộc lòng máy móc — mà là hiểu, cảm nhận và tự hào."</p>
+            </div>
+          </div>
+
+          <div class="about__panel" id="panel-vision">
+            <p class="about__panel-subtitle">Tầm Nhìn</p>
+            <h3 class="about__panel-title">Đưa Di Sản Việt Vươn Tầm Quốc Tế</h3>
+            <p class="about__panel-text">
+              Chúng tôi hướng tới việc trở thành nền tảng giáo dục lịch sử tương tác hàng đầu tại Việt Nam,
+              nơi mà bất kỳ ai trên thế giới cũng có thể khám phá và chiêm ngưỡng di sản văn hóa Việt Nam.
+            </p>
+            <p class="about__panel-text">
+              Tầm nhìn của chúng tôi là biến mỗi cổ vật, mỗi triều đại thành một câu chuyện sống
+              — không bị giới hạn bởi viện bảo tàng hay sách giáo khoa — mà <em>hiện hữu ngay trong không gian sống</em>
+              của bạn.
+            </p>
+            <div class="about__panel-quote">
+              <p>"Di sản Việt Nam xứng đáng được thế giới biết đến — bằng cách hiện đại nhất."</p>
+            </div>
+          </div>
+
+          <div class="about__panel" id="panel-values">
+            <p class="about__panel-subtitle">Giá Trị Cốt Lõi</p>
+            <h3 class="about__panel-title">Ba Trụ Cột Định Hình Mọi Sản Phẩm</h3>
+            <p class="about__panel-text">
+              Mỗi thẻ bài, mỗi mô hình 3D, mỗi trải nghiệm AR đều được xây dựng trên nền tảng
+              ba giá trị cốt lõi không thể lay chuyển:
+            </p>
+            <div class="about__values-grid">
+              <div class="about__value-card">
+                <div class="about__value-icon">🔥</div>
+                <h4 class="about__value-name">Tâm Huyết</h4>
+                <p class="about__value-desc">Đặt cả trái tim vào từng chi tiết, từ nét vẽ trên thẻ bài đến mô hình cổ
+                  vật 3D.</p>
+              </div>
+              <div class="about__value-card">
+                <div class="about__value-icon">📜</div>
+                <h4 class="about__value-name">Chính Xác Lịch Sử</h4>
+                <p class="about__value-desc">Mọi thông tin đều được nghiên cứu, đối chiếu với sử liệu và tư liệu khảo cổ
+                  uy tín.</p>
+              </div>
+              <div class="about__value-card">
+                <div class="about__value-icon">💡</div>
+                <h4 class="about__value-name">Sáng Tạo Đột Phá</h4>
+                <p class="about__value-desc">Ứng dụng AR/3D tiên tiến nhất để biến lịch sử thành trải nghiệm chưa từng
+                  có.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ornament divider -->
+  <div class="ornament-divider">
+    <div class="ornament-divider__line"></div>
+    <span class="ornament-divider__symbol">⟡</span>
+    <div class="ornament-divider__line"></div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 3: PRODUCTS (replaces old Collection on homepage)
+       ============================================================ -->
+  <section class="products section" id="products">
+    <div class="container">
+      <p class="section__label reveal">Sản Phẩm</p>
+      <h2 class="section__title reveal">Blind Box Khai Ấn Sử Việt</h2>
+      <div class="section__divider reveal"></div>
+
+      <!-- 3 Blind Box Cards -->
+      <div class="blind-box__grid reveal" id="blindBoxGrid"></div>
+
+      <!-- Mystery Artifacts Section -->
+      <div class="mystery-section reveal">
+        <div class="mystery-section__header">
+          <h3 class="mystery-section__title">Có Thể Nhận Được</h3>
+          <p class="mystery-section__desc">Mở hộp để nhận ngẫu nhiên 1 trong 14 cổ vật tích hợp chip NFC.<br>Quét NFC
+            trên cổ vật thật để mở khóa cổ vật trong <a href="collection.html">Bộ Sưu Tập</a>!</p>
+        </div>
+        <section class="collection-main" style="background: transparent; padding: 0;">
+          <div class="collection__grid" id="cardsGrid">
+            <!-- Cards rendered by collection.js -->
+          </div>
+        </section>
+      </div>
+
+      <div class="products__cta reveal">
+        <a href="collection.html" class="btn-cta btn-cta--secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Xem Bộ Sưu Tập Collection
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ornament divider -->
+  <div class="ornament-divider">
+    <div class="ornament-divider__line"></div>
+    <span class="ornament-divider__symbol">✦</span>
+    <div class="ornament-divider__line"></div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 4: AR GUIDE TIMELINE
+       ============================================================ -->
+  <section class="ar-guide section" id="ar-guide">
+    <div class="container">
+      <p class="section__label reveal">Hướng Dẫn Trải Nghiệm</p>
+      <h2 class="section__title reveal">Hành Trình Khảo Cổ Của Bạn</h2>
+      <div class="section__divider reveal"></div>
+
+      <div class="ar-guide__timeline">
+        <!-- Step 1 -->
+        <div class="ar-guide__step reveal">
+          <div class="ar-guide__step-number">1</div>
+          <div class="ar-guide__step-content">
+            <h3 class="ar-guide__step-title">Chọn Mua Thẻ Bài Yêu Thích</h3>
+            <p class="ar-guide__step-desc">
+              Khám phá 14 thẻ bài đại diện cho 14 triều đại lịch sử Việt Nam.
+              Mỗi thẻ bài tích hợp chip NFC đặc biệt — chìa khóa mở ra thế giới di sản số.
+            </p>
+            <div class="ar-guide__step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+              Bộ sưu tập giới hạn
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="ar-guide__step reveal">
+          <div class="ar-guide__step-number">2</div>
+          <div class="ar-guide__step-content">
+            <h3 class="ar-guide__step-title">Quét NFC Mở Khóa Triều Đại</h3>
+            <p class="ar-guide__step-desc">
+              Chạm điện thoại vào thẻ bài thật — chip NFC sẽ tự động mở khóa triều đại tương ứng
+              trong bộ sưu tập số của bạn với hiệu ứng rực rỡ.
+            </p>
+            <div class="ar-guide__step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2" />
+              </svg>
+              Quét và khám phá
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="ar-guide__step reveal">
+          <div class="ar-guide__step-number">3</div>
+          <div class="ar-guide__step-content">
+            <h3 class="ar-guide__step-title ">Chiêm Ngưỡng Cổ Vật 3D & AR</h3>
+            <p class="ar-guide__step-desc">
+              Cổ vật hiện hình ngay trước mắt bạn! Xoay 360°, phóng to chi tiết, và kích hoạt AR
+              để đặt cổ vật lên bàn, sàn nhà — ngay trong không gian thực của bạn.
+            </p>
+            <div class="ar-guide__step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+              </svg>
+              Trải nghiệm 3D & AR
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="ar-guide__step reveal">
+          <div class="ar-guide__step-number">4</div>
+          <div class="ar-guide__step-content">
+            <h3 class="ar-guide__step-title">Hoàn Thành Bộ Sưu Tập</h3>
+            <p class="ar-guide__step-desc">
+              Thu thập đủ 14 triều đại để hoàn thiện bộ sưu tập. Chia sẻ thành tích với bạn bè
+              và trở thành nhà sử học số thế hệ mới!
+            </p>
+            <div class="ar-guide__step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+              Thành tích & Chia sẻ
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ornament divider -->
+  <div class="ornament-divider">
+    <div class="ornament-divider__line"></div>
+    <span class="ornament-divider__symbol">❖</span>
+    <div class="ornament-divider__line"></div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 5: CONTACT
+       ============================================================ -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <p class="section__label reveal">Liên Hệ</p>
+      <h2 class="section__title reveal">Kết Nối Với Chúng Tôi</h2>
+      <div class="section__divider reveal"></div>
+
+      <div class="contact__wrapper">
+        <!-- Contact Info -->
+        <div class="contact__info reveal-left">
+          <div class="contact__info-list">
+            <div class="contact__info-item">
+              <div class="contact__info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact__info-label">Hotline</p>
+                <p class="contact__info-value">1900-xxxx-xx</p>
+              </div>
+            </div>
+
+            <div class="contact__info-item">
+              <div class="contact__info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact__info-label">Email</p>
+                <p class="contact__info-value">khaiansuviet@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="contact__info-item">
+              <div class="contact__info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact__info-label">Địa chỉ</p>
+                <p class="contact__info-value">Tân Xã, Hòa Lạc, Hà Nội</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="contact__social">
+            <a href="https://facebook.com/khaiansuviet" target="_blank" rel="noopener noreferrer"
+              class="contact__social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="https://tiktok.com/@khaiansuviet" target="_blank" rel="noopener noreferrer"
+              class="contact__social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form class="contact__form reveal-right" id="contactForm">
+          <div class="contact__form-group">
+            <label class="contact__form-label" for="contactName">Họ và Tên</label>
+            <input type="text" class="contact__form-input" id="contactName" placeholder="Nhập họ và tên..." required>
+          </div>
+          <div class="contact__form-group">
+            <label class="contact__form-label" for="contactEmail">Email</label>
+            <input type="email" class="contact__form-input" id="contactEmail" placeholder="Nhập email..." required>
+          </div>
+          <div class="contact__form-group">
+            <label class="contact__form-label" for="contactPhone">Số Điện Thoại</label>
+            <input type="tel" class="contact__form-input" id="contactPhone" placeholder="Nhập số điện thoại...">
+          </div>
+          <div class="contact__form-group">
+            <label class="contact__form-label" for="contactMessage">Lời Nhắn</label>
+            <textarea class="contact__form-textarea" id="contactMessage" placeholder="Nhập lời nhắn..."
+              required></textarea>
+          </div>
+          <button type="submit" class="contact__form-submit">
+            Gửi Liên Hệ
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__brand-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2" />
+              <text x="24" y="30" text-anchor="middle" font-family="serif" font-size="16" font-weight="bold"
+                fill="#B8860B">印</text>
+            </svg>
+          </div>
+          <span class="footer__brand-text">Khai Ấn Sử Việt</span>
+        </div>
+        <div class="footer__security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+          Cam kết bảo mật thông tin khách hàng tuyệt đối
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 <a href="index.html">Khai Ấn Sử Việt</a>. Bản quyền thuộc về dự án Khai Ấn Sử Việt.</p>
+        <p>Tân Xã, Hòa Lạc, Hà Nội | khaiansuviet@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/home.js"></script>
+  <script src="assets/js/collection.js"></script>
+  <script src="assets/js/effects.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+/* ============================================================
+   KHAI ẤN SỬ VIỆT — Base Styles
+   Reset, Design Tokens, Typography, Utilities
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap');
+
+/* ── CSS Custom Properties (Design Tokens) ── */
+:root {
+  /* --- Hệ Màu Lịch Sử --- */
+  --do-chu-sa: #A62C21;
+  --do-chu-sa-dark: #7a1f17;
+  --do-chu-sa-light: #c9443a;
+  --vang-thep: #B8860B;
+  --vang-thep-light: #d4a017;
+  --vang-thep-glow: rgba(184, 134, 11, 0.6);
+  --xam-gach-nung: #5E5E5E;
+  --nau-dat-do: #8B4513;
+  --nau-dat-do-dark: #6b3410;
+  --xanh-men-ngoc: #ACE1AF;
+  --xanh-men-ngoc-dark: #7bc47f;
+  --trang-nga: #F5F5DC;
+  --trang-nga-dark: #e8e4c9;
+  --den-son-mai: #1a1108;
+  --den-mo: #2b1d0e;
+
+  /* --- Typography --- */
+  --font-display: 'Cinzel', 'Playfair Display', 'Times New Roman', serif;
+  --font-heading: 'Playfair Display', 'Georgia', serif;
+  --font-body: 'Merriweather', 'Times New Roman', serif;
+
+  /* --- Spacing --- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-2xl: 8rem;
+
+  /* --- Shadows & Glows --- */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-deep: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --glow-gold: 0 0 20px var(--vang-thep-glow), 0 0 40px rgba(184, 134, 11, 0.3);
+  --glow-gold-intense: 0 0 30px var(--vang-thep-glow), 0 0 60px rgba(184, 134, 11, 0.4), 0 0 100px rgba(184, 134, 11, 0.2);
+
+  /* --- Border Radius --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* --- Transitions --- */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s ease;
+  --transition-slow: 0.8s ease;
+}
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--trang-nga);
+  background-color: var(--den-son-mai);
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--vang-thep);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--vang-thep-light);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ── Decorative SVG Background Patterns ── */
+.pattern-dongson {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30 Z' fill='none' stroke='%23B8860B' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%23B8860B' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+.pattern-clouds {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='50' viewBox='0 0 100 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 40 Q30 20 50 25 Q70 30 80 15 Q90 5 100 20' fill='none' stroke='%23B8860B' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--den-son-mai);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--do-chu-sa);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--do-chu-sa-light);
+}
+
+/* ── Utility Classes ── */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-2xl) 0;
+  position: relative;
+}
+
+.section__label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--do-chu-sa);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--space-xs);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--vang-thep);
+  text-align: center;
+  margin-bottom: var(--space-md);
+  line-height: 1.3;
+  text-shadow: 0 2px 10px rgba(184, 134, 11, 0.2);
+}
+
+.section__divider {
+  width: 120px;
+  height: 2px;
+  margin: 0 auto var(--space-lg);
+  background: linear-gradient(90deg, transparent, var(--vang-thep), transparent);
+  position: relative;
+}
+
+.section__divider::before {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--vang-thep);
+  font-size: 0.7rem;
+  background: var(--den-son-mai);
+  padding: 0 8px;
+}
+
+/* ── Scroll Reveal Animations ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Special Effects & Decorations ── */
+
+/* Section separator ornament */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: var(--space-lg) 0;
+  opacity: 0.3;
+}
+
+.ornament-divider__line {
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--vang-thep));
+}
+
+.ornament-divider__line:last-child {
+  background: linear-gradient(90deg, var(--vang-thep), transparent);
+}
+
+.ornament-divider__symbol {
+  font-size: 1rem;
+  color: var(--vang-thep);
+}
+
+/* Gold text gradient */
+.text-gold {
+  background: linear-gradient(135deg, var(--vang-thep), var(--vang-thep-light), var(--vang-thep));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Vietnamese seal stamp effect */
+.seal-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--do-chu-sa);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--do-chu-sa);
+  transform: rotate(-5deg);
+  position: relative;
+}
+
+.seal-stamp::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--do-chu-sa);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+/* Hover glow */
+.glow-hover {
+  transition: box-shadow var(--transition-normal);
+}
+
+.glow-hover:hover {
+  box-shadow: var(--glow-gold);
+}
+
+/* ── Status Badge ── */
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  line-height: 1.4;
+}
+
+.badge--in-stock {
+  background: rgba(172, 225, 175, 0.15);
+  color: var(--xanh-men-ngoc);
+  border: 1px solid rgba(172, 225, 175, 0.3);
+}
+
+.badge--sold-out {
+  background: rgba(166, 44, 33, 0.15);
+  color: var(--do-chu-sa-light);
+  border: 1px solid rgba(166, 44, 33, 0.3);
+}
+
+.badge--pre-order {
+  background: rgba(184, 134, 11, 0.15);
+  color: var(--vang-thep-light);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .section {
+    padding: var(--space-xl) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 var(--space-sm);
+  }
+}
