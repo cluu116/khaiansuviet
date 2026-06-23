@@ -74,13 +74,12 @@
             <!-- BACK -->
             <div class="dynasty-card__back">
               <div class="dynasty-card__back-art">
-                <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-                  ${product.backSvg}
-                </svg>
+                <img src="${product.image}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 10px rgba(184,134,11,0.4));" />
               </div>
               <div class="dynasty-card__back-info">
                 <h3 class="dynasty-card__back-name">${product.dynasty}</h3>
-                <p class="dynasty-card__back-era">${product.era}</p>
+                <p class="dynasty-card__back-era" style="margin-bottom: 4px;">${product.era}</p>
+                <p style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; color: var(--vang-thep); opacity: 0.85; letter-spacing: 1px; text-transform: uppercase; margin: 0;">${product.artifact}</p>
               </div>
               <div class="dynasty-card__overlay">
                 <button class="dynasty-card__action" data-dynasty="${product.id}">
@@ -116,7 +115,7 @@
           return;
         }
 
-        openModal(card);
+        window.location.href = 'artifact.html?id=' + dynasty;
       });
 
       // Keyboard accessibility
@@ -127,7 +126,7 @@
           if (!unlockedCards.has(dynasty)) {
             showToast('📱 Vui lòng chạm điện thoại vào thẻ bài thật để mở khóa!');
           } else {
-            openModal(card);
+            window.location.href = 'artifact.html?id=' + dynasty;
           }
         }
       });
@@ -271,7 +270,7 @@
         modelViewer.innerHTML = `
           <model-viewer
             id="arModelViewer"
-            src="${product.model}"
+            src="${encodeURI(product.model)}"
             alt="Mô hình 3D ${artifact}"
             auto-rotate
             camera-controls
@@ -282,9 +281,9 @@
             environment-image="neutral"
             style="width:100%;height:100%;background:transparent;"
           >
-            <button slot="ar-button" style="
+            <button type="button" slot="ar-button" style="
               position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
-              padding:10px 24px;font-family:'Cinzel',serif;font-size:0.75rem;font-weight:700;
+              padding:10px 24px;font-family:'Cormorant Garamond',serif;font-size:0.75rem;font-weight:700;
               letter-spacing:2px;text-transform:uppercase;
               color:#1A1108;background:linear-gradient(135deg,#B8860B,#DAA520);
               border:none;border-radius:6px;cursor:pointer;
@@ -341,20 +340,63 @@
   });
 
   if (modalArBtn) {
-    modalArBtn.addEventListener('click', () => {
-      // Try to activate AR from model-viewer
+    modalArBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const dynasty = document.querySelector('.dynasty-card.unlocked.active') 
+                        ? document.querySelector('.dynasty-card.unlocked.active').getAttribute('data-dynasty')
+                        : new URLSearchParams(window.location.search).get('unlock');
+      
+      // Fallback lấy id từ text nếu cần, nhưng an toàn nhất là lấy thẻ model-viewer's src
       const arViewer = document.getElementById('arModelViewer');
-      if (arViewer && arViewer.canActivateAR) {
-        arViewer.activateAR();
-      } else {
-        // Check if on mobile
-        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (isMobile) {
-          showToast('📱 Đang kích hoạt AR... Vui lòng đảm bảo đã có file mô hình 3D (.glb) trong thư mục assets/models/');
-        } else {
-          showToast('💡 Mở trang này trên điện thoại di động để trải nghiệm AR trong không gian thực!');
-        }
+      let modelUrl = arViewer ? arViewer.getAttribute('src') : null;
+
+      if (!modelUrl) {
+         if (typeof showToast === 'function') showToast('⚠️ Không tìm thấy file mô hình 3D.');
+         return;
       }
+
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (isAndroid) {
+        if (typeof showToast === 'function') showToast('Đang mở AR qua Google Scene Viewer...');
+        const absoluteModelUrl = new URL(modelUrl, window.location.href).toString();
+        // Giả sử artifact name lấy từ modalArtifactName
+        const artifactName = modalArtifactName ? modalArtifactName.textContent : 'Mô hình 3D';
+        const intentUrl = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(absoluteModelUrl)}&title=${encodeURIComponent(artifactName)}&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
+        
+        const a = document.createElement('a');
+        a.href = intentUrl;
+        a.click();
+        return;
+      }
+
+      if (isIOS) {
+        // Find the product to check if it has a .usdz file
+        const productId = new URLSearchParams(window.location.search).get('id') || document.querySelector('.dynasty-card.unlocked.active')?.getAttribute('data-id');
+        // Let's extract ID from modelUrl if possible, or use the global PRODUCTS array
+        let usdzUrl = null;
+        if (typeof PRODUCTS !== 'undefined') {
+           const prod = PRODUCTS.find(p => p.model && decodeURI(p.model).includes(decodeURI(modelUrl).split('/').pop()));
+           if (prod && prod.usdz) usdzUrl = prod.usdz;
+        }
+
+        if (usdzUrl) {
+          if (typeof showToast === 'function') showToast('Đang mở AR qua iOS Quick Look...');
+          const absoluteUsdzUrl = new URL(usdzUrl, window.location.href).toString();
+          const a = document.createElement('a');
+          a.href = absoluteUsdzUrl;
+          a.rel = "ar";
+          a.appendChild(document.createElement('img'));
+          a.click();
+        } else {
+          if (typeof showToast === 'function') showToast('⚠️ Tính năng AR cho cổ vật này trên iPhone/iPad yêu cầu file .usdz.');
+        }
+        return;
+      }
+
+      if (typeof showToast === 'function') showToast('💡 Vui lòng mở trang này trên điện thoại di động để trải nghiệm AR!');
     });
   }
 

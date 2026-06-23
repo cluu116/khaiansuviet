@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông Tin Cổ Vật — Khai Ấn Sử Việt</title>
+  <meta name="description" content="Khám phá chi tiết cổ vật lịch sử Việt Nam — Khai Ấn Sử Việt">
+  <meta name="author" content="Khai Ấn Sử Việt">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/artifact.css">
+
+  <!-- Google Model Viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__ring"></div>
+    <p class="preloader__text">Khai Ấn Sử Việt</p>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo" aria-label="Khai Ấn Sử Việt - Trang chủ">
+      <div class="navbar__logo-icon">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2.5" />
+          <rect x="8" y="8" width="32" height="32" rx="1.5" fill="none" stroke="#A62C21" stroke-width="1"
+            opacity="0.6" />
+          <text x="24" y="30" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="18"
+            font-weight="bold" fill="#B8860B">印</text>
+        </svg>
+      </div>
+      <span class="navbar__logo-text">Khai Ấn Sử Việt</span>
+    </a>
+
+    <div class="navbar__links" id="navLinks">
+      <a href="index.html" class="navbar__link">Trang Chủ</a>
+      <a href="index.html#about" class="navbar__link">Về Chúng Tôi</a>
+      <a href="index.html#products" class="navbar__link">Sản Phẩm</a>
+      <a href="collection.html" class="navbar__link active">Bộ Sưu Tập</a>
+      <a href="index.html#ar-guide" class="navbar__link">Hướng Dẫn</a>
+      <a href="index.html#contact" class="navbar__link">Liên Hệ</a>
+    </div>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ARTIFACT DETAIL MAIN -->
+  <main class="artifact-page">
+    <div class="artifact__back-nav">
+      <a href="collection.html" class="artifact__back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Quay lại Bộ Sưu Tập
+      </a>
+    </div>
+
+    <div class="artifact__grid">
+      <!-- 3D Hero Visual (7fr) -->
+      <section class="artifact__visual">
+        <div class="artifact__noise-overlay"></div>
+        <div class="artifact__model-viewer" id="artifactModelViewer">
+          <div class="artifact__model-placeholder">
+            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z" />
+              <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55" />
+            </svg>
+            <span>ĐANG TẢI MÔ HÌNH 3D</span>
+          </div>
+        </div>
+
+        <!-- Image Gallery List -->
+        <div class="artifact__gallery" id="artifactGallery"></div>
+
+        <!-- 3D & AR Action Buttons -->
+        <div class="artifact__actions" id="artifactActions"></div>
+      </section>
+
+      <!-- Info Meta Typography (5fr) -->
+      <section class="artifact__info">
+        <div class="artifact__content-wrapper">
+          <div class="artifact__meta-tags">
+            <span class="artifact__meta-tag">TRIỀU ĐẠI: <strong id="artifactDynasty">...</strong></span>
+            <span class="artifact__meta-tag">NIÊN ĐẠI: <strong id="artifactEra">...</strong></span>
+          </div>
+
+          <h1 class="artifact__hero-heading" id="artifactName">Tên Cổ Vật</h1>
+
+          <div class="artifact__lore">
+            <p id="artifactDesc" class="artifact__lore-artifact">Mô tả hiện vật...</p>
+            <div class="artifact__lore-divider">
+              <div class="artifact__lore-divider-icon"></div>
+            </div>
+            <p id="dynastyDesc" class="artifact__lore-dynasty">Mô tả triều đại...</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── EXTENDED LORE & DETAILS ── -->
+    <section class="artifact__details-section">
+      <div class="artifact__details-container">
+        <div class="artifact__details-header">
+          <h2 class="artifact__details-title">GIAI THOẠI LỊCH SỬ</h2>
+          <div class="artifact__details-line"></div>
+        </div>
+
+        <div class="artifact__details-grid">
+          <!-- Left: Story -->
+          <div class="artifact__story" id="artifactStory">
+            <p>
+              (Nội dung chi tiết đang được cập nhật...) <br><br>
+              Bạn có thể cập nhật thêm trường dữ liệu <strong>story</strong> vào file <code>data.js</code> để phần này
+              hiển thị câu chuyện lịch sử dài kỳ, giúp trang web thêm chiều sâu và cung cấp nhiều kiến thức hơn cho
+              người xem.
+            </p>
+          </div>
+
+          <!-- Right: Specs -->
+          <div class="artifact__specs">
+            <h3>Thông Số Chi Tiết</h3>
+            <ul id="artifactSpecsList">
+              <!-- Render by JS -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__brand-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2" />
+              <text x="24" y="30" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="16"
+                font-weight="bold" fill="#B8860B">印</text>
+            </svg>
+          </div>
+          <span class="footer__brand-text">Khai Ấn Sử Việt</span>
+        </div>
+        <div class="footer__security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+          Cam kết bảo mật thông tin khách hàng tuyệt đối
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 <a href="index.html">Khai Ấn Sử Việt</a>. Bản quyền thuộc về dự án Khai Ấn Sử Việt.</p>
+        <p>Tân Xã, Hòa Lạc, Hà Nội | khaiansuviet@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- SCRIPTS -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/artifact.js"></script>
+  <script src="assets/js/effects.js"></script>
+
+</body>
+
+</html>

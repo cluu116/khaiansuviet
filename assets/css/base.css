@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ── Google Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 /* ── CSS Custom Properties (Design Tokens) ── */
 :root {
@@ -26,9 +26,9 @@
   --den-mo: #2b1d0e;
 
   /* --- Typography --- */
-  --font-display: 'Cinzel', 'Playfair Display', 'Times New Roman', serif;
+  --font-display: 'Cormorant Garamond', 'Playfair Display', serif;
   --font-heading: 'Playfair Display', 'Georgia', serif;
-  --font-body: 'Merriweather', 'Times New Roman', serif;
+  --font-body: 'Lora', 'Merriweather', 'Times New Roman', serif;
 
   /* --- Spacing --- */
   --space-xs: 0.5rem;

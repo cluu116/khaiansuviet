@@ -50,9 +50,7 @@
   const mainImage = document.getElementById('mainProductImage');
   if (mainImage) {
     mainImage.innerHTML = `
-      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-        ${product.backSvg}
-      </svg>
+      <img src="${product.image}" alt="${product.artifact}" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
     `;
   }
 
@@ -82,15 +80,8 @@
   if (thumbContainer) {
     thumbContainer.innerHTML = `
       <div class="product-hero__thumb active">
-        <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">${product.backSvg}</svg>
+        <img src="${product.image}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:contain;" />
       </div>
-      <div class="product-hero__thumb">
-        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">${product.silhouetteSvg}</svg>
-      </div>
-      <div class="product-hero__thumb">
-        <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">${product.backSvg}</svg>
-      </div>
-      <div class="product-hero__thumb-more">+${product.gallery.length}</div>
     `;
   }
 
@@ -114,7 +105,7 @@
   const detailsImage = document.getElementById('productDetailsImage');
   if (detailsImage) {
     detailsImage.innerHTML = `
-      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">${product.backSvg}</svg>
+      <img src="${product.image}" alt="${product.artifact}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;" />
     `;
   }
 
@@ -281,7 +272,7 @@
           >
             <button slot="ar-button" style="
               position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
-              padding:10px 24px;font-family:'Cinzel',serif;font-size:0.75rem;font-weight:700;
+              padding:10px 24px;font-family:'Cormorant Garamond',serif;font-size:0.75rem;font-weight:700;
               letter-spacing:2px;text-transform:uppercase;
               color:#1A1108;background:linear-gradient(135deg,#B8860B,#DAA520);
               border:none;border-radius:6px;cursor:pointer;
