@@ -593,11 +593,99 @@
   font-family: var(--font-body);
 }
 
-/* Responsive adjustments */
+/* ── Responsive adjustments ── */
 @media (max-width: 1023px) {
+  .artifact__grid {
+    min-height: auto;
+  }
+
   .artifact__info {
     border-left: none;
     border-top: 1px solid rgba(184, 134, 11, 0.1);
+    padding: 3rem 2rem;
   }
 }
 
+@media (max-width: 768px) {
+  .artifact-page {
+    padding-top: 60px;
+  }
+
+  .artifact__visual {
+    padding: 2rem 1rem;
+    min-height: 45vh;
+  }
+
+  .artifact__model-viewer {
+    min-height: 350px;
+  }
+
+  .artifact__info {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .artifact__hero-heading {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .artifact__lore-artifact {
+    font-size: 1.05rem;
+  }
+
+  .artifact__gallery {
+    max-width: 100%;
+    width: 100%;
+    padding: 12px;
+    gap: 12px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .artifact__gallery-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .artifact__actions {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .artifact__btn-action {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .artifact__details-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .artifact__details-header {
+    margin-bottom: 3rem;
+  }
+
+  .artifact__details-title {
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+  }
+
+  .artifact__details-grid {
+    gap: 3rem;
+  }
+
+  .artifact__story p::first-letter {
+    font-size: 2.8rem;
+    margin-top: 4px;
+    margin-right: 8px;
+  }
+
+  .artifact__specs {
+    padding: 1.5rem;
+  }
+
+  .artifact__back-nav {
+    padding: 1rem 1.5rem 0;
+  }
+}
