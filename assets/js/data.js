@@ -14,7 +14,7 @@ const PRODUCTS = [
     image: 'assets/images/trống đồng.png',
     gallery: ['assets/images/trống đồng.png', 'assets/images/trống đồng.png', 'assets/images/trống đồng.png'],
     model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trong%20dong.glb',
-    usdz: 'assets/models/trong dong.usdz',
+    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trong%20dong.usdz',
     details: {
       dimensions: '88 × 63mm',
       material: 'Giấy mỹ thuật cao cấp 350gsm, phủ UV chọn lọc',
