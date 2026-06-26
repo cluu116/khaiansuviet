@@ -296,17 +296,19 @@ const PRODUCTS = [
     artifact: 'Gói Trải Nghiệm (1 Blind Box)',
     price: 199000,
     status: 'in-stock',
-    description: 'Hộp mù (Blind Box) chứa ngẫu nhiên 1 trong 14 thẻ bài cổ vật. Cơ hội khám phá lịch sử qua từng hộp và sưu tầm trọn bộ 14 triều đại.',
+    description: 'Hộp mù (Blind Box) chứa ngẫu nhiên 1 trong 14 cổ vật. Cơ hội khám phá lịch sử qua từng hộp và sưu tầm trọn bộ 14 triều đại.',
     artifactDesc: 'Bao gồm 1 hộp Blind Box bí ẩn.',
-    image: 'assets/images/product-01.png',
-    gallery: ['assets/images/product-01.png'],
+    image: 'assets/images/blind_box_1.png',
+    gallery: ['assets/images/blind_box_1.png', 'assets/images/blind_box_1_alt1.png', 'assets/images/blind_box_1_alt2.png', 'assets/images/blind_box_1_alt3.png'],
     model: null,
     details: {
       dimensions: '100 × 75 × 20mm',
-      material: 'Hộp giấy cao cấp, ép nhũ kim',
+      material: 'Hộp giấy mỹ thuật cao cấp, cán mờ, ép kim nhũ vàng',
       weight: '50g',
-      nfc: 'Tích hợp chip NFC',
-      edition: 'Không giới hạn'
+      nfc: 'Tích hợp chip NFC (Quét để kích hoạt AR)',
+      edition: 'Không giới hạn',
+      feature: 'Gói trải nghiệm cơ bản chứa ngẫu nhiên 1 trong 14 cổ vật thuộc các triều đại lịch sử Việt Nam. Cổ vật được làm từ chất liệu PVC cao cấp, có viền mạ vàng tinh xảo và tích hợp công nghệ NFC ẩn bên trong.',
+      guide: '1. Xé lớp seal bảo vệ và mở hộp từ phía trên.<br>2. Nhận cổ vật bí ẩn và khám phá triều đại bạn vừa bốc được.<br>3. Bật NFC trên điện thoại và chạm vào mặt sau của cổ vật.<br>4. Trải nghiệm mô hình cổ vật 3D chân thực và công nghệ AR ngay trên màn hình.'
     },
     silhouetteSvg: '<rect x="25" y="30" width="30" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 40 L55 40 M40 30 L40 60" stroke="currentColor" stroke-width="1.5"/><path d="M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30" fill="none" stroke="currentColor" stroke-width="1.5"/>',
     backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
@@ -318,17 +320,19 @@ const PRODUCTS = [
     artifact: 'Gói Sưu Tầm (3 Blind Box)',
     price: 549000,
     status: 'in-stock',
-    description: 'Combo 3 hộp mù (Blind Box) giúp bạn nhanh chóng hoàn thành bộ sưu tập. Tỷ lệ xuất hiện phiên bản thẻ đặc biệt cao hơn.',
+    description: 'Combo 3 hộp mù (Blind Box) giúp bạn nhanh chóng hoàn thành bộ sưu tập. Tỷ lệ xuất hiện phiên bản đặc biệt cao hơn.',
     artifactDesc: 'Bao gồm 3 hộp Blind Box bí ẩn.',
-    image: 'assets/images/product-01.png',
-    gallery: ['assets/images/product-01.png'],
+    image: 'assets/images/blind_box_3.png',
+    gallery: ['assets/images/blind_box_3.png', 'assets/images/blind_box_3_alt1.png', 'assets/images/blind_box_3_alt2.png', 'assets/images/blind_box_3_alt3.png'],
     model: null,
     details: {
       dimensions: '100 × 225 × 20mm',
-      material: 'Hộp giấy cao cấp, ép nhũ kim',
+      material: 'Hộp giấy mỹ thuật cao cấp, cán mờ, ép kim nhũ vàng',
       weight: '150g',
-      nfc: 'Tích hợp chip NFC',
-      edition: 'Không giới hạn'
+      nfc: 'Tích hợp chip NFC trên mỗi thẻ',
+      edition: 'Không giới hạn',
+      feature: 'Combo 3 hộp mù giúp tăng tỷ lệ sưu tầm các cổ vật Hiếm (Rare) và Siêu Hiếm (Super Rare). Đặc biệt cam kết không có cổ vật trùng lặp trong cùng một set 3 hộp. Khám phá 3 câu chuyện lịch sử khác nhau cùng lúc.',
+      guide: '1. Xé dải băng niêm phong trên vỏ hộp lớn để lấy 3 hộp nhỏ.<br>2. Mở từng hộp để tận hưởng cảm giác hồi hộp qua mỗi lần bốc.<br>3. Quét NFC trên từng cổ vật bằng điện thoại để xem mô hình 3D/AR.<br>4. Thu thập cổ vật để hoàn thành toàn bộ 14 triều đại.'
     },
     silhouetteSvg: '<rect x="25" y="30" width="30" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 40 L55 40 M40 30 L40 60" stroke="currentColor" stroke-width="1.5"/><path d="M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30" fill="none" stroke="currentColor" stroke-width="1.5"/>',
     backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
@@ -340,17 +344,19 @@ const PRODUCTS = [
     artifact: 'Gói Hoàng Gia (6 Blind Box)',
     price: 990000,
     status: 'in-stock',
-    description: 'Combo 6 hộp mù (Blind Box) cao cấp nhất. Chắc chắn nhận được ít nhất 1 phiên bản thẻ đặc biệt có hiệu ứng AR độc quyền.',
+    description: 'Combo 6 hộp mù (Blind Box) cao cấp nhất. Chắc chắn nhận được ít nhất 1 phiên bản đặc biệt có hiệu ứng AR độc quyền.',
     artifactDesc: 'Bao gồm 6 hộp Blind Box bí ẩn.',
-    image: 'assets/images/product-01.png',
-    gallery: ['assets/images/product-01.png'],
+    image: 'assets/images/blind_box_6.png',
+    gallery: ['assets/images/blind_box_6.png', 'assets/images/blind_box_6_alt1.png', 'assets/images/blind_box_6_alt2.png', 'assets/images/blind_box_6_alt3.png'],
     model: null,
     details: {
       dimensions: '200 × 225 × 20mm',
-      material: 'Hộp cứng cao cấp, in nhũ vàng hoàng gia',
+      material: 'Hộp bìa cứng cao cấp, lót nhung, in nhũ vàng hoàng gia',
       weight: '350g',
-      nfc: 'Tích hợp chip NFC',
-      edition: 'Không giới hạn'
+      nfc: 'Tích hợp chip NFC trên mỗi thẻ',
+      edition: 'Không giới hạn',
+      feature: 'Set 6 hộp mù cao cấp nhất dành cho nhà sưu tầm thực thụ. Đảm bảo 100% mở ra ít nhất 1 cổ vật Siêu Hiếm (Super Rare) với hiệu ứng AR độc quyền. Hộp thiết kế sang trọng, có khay lót nhung mềm, vô cùng thích hợp để trưng bày hoặc làm quà tặng.',
+      guide: '1. Mở khóa nắp hộp hoàng gia để lộ diện 6 hộp mù bên trong.<br>2. Trải nghiệm bốc từng hộp hoặc dùng làm phần thưởng, quà tặng ý nghĩa.<br>3. Chạm điện thoại vào cổ vật để kích hoạt công nghệ AR tương tác không gian thực.<br>4. Sử dụng mã code đi kèm thẻ Siêu Hiếm để nhận thêm quyền lợi tại các triển lãm.'
     },
     silhouetteSvg: '<rect x="25" y="30" width="30" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 40 L55 40 M40 30 L40 60" stroke="currentColor" stroke-width="1.5"/><path d="M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30" fill="none" stroke="currentColor" stroke-width="1.5"/>',
     backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'

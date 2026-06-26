@@ -40,7 +40,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-xl);
-  align-items: center;
+  align-items: start;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
@@ -73,7 +73,8 @@
 .product-hero__main-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
 }
 
@@ -245,13 +246,15 @@
 /* Buy Button */
 .product-hero__actions {
   display: flex;
+  flex-direction: column;
   gap: var(--space-sm);
-  align-items: center;
+  align-items: stretch;
 }
 
 .product-hero__add-cart {
-  flex: 1;
-  padding: 16px 32px;
+  width: 100%;
+  height: 56px;
+  padding: 0 32px;
   font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 700;
@@ -281,6 +284,17 @@
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+.product-hero__shopee-btn {
+  background: linear-gradient(135deg, #EE4D2D, #FF7337);
+  color: #FFFFFF;
+}
+
+.product-hero__shopee-btn:hover {
+  background: linear-gradient(135deg, #FF7337, #EE4D2D);
+  color: #FFFFFF;
+  box-shadow: 0 8px 30px rgba(238, 77, 45, 0.4);
 }
 
 .product-hero__360-btn {
@@ -368,7 +382,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-md);
   transition: all var(--transition-normal);
   cursor: pointer;
 }
@@ -417,7 +430,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-lg);
   position: sticky;
   top: 90px;
 }
@@ -431,7 +443,7 @@
 .product-details__image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 /* Accordion */

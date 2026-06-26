@@ -50,7 +50,7 @@
   const mainImage = document.getElementById('mainProductImage');
   if (mainImage) {
     mainImage.innerHTML = `
-      <img src="${product.image}" alt="${product.artifact}" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
+      <img id="mainImageElement" src="${product.image}" alt="${product.artifact}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
     `;
   }
 
@@ -78,34 +78,63 @@
   // Thumbnails
   const thumbContainer = document.getElementById('productThumbs');
   if (thumbContainer) {
-    thumbContainer.innerHTML = `
-      <div class="product-hero__thumb active">
-        <img src="${product.image}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:contain;" />
-      </div>
-    `;
+    if (product.gallery && product.gallery.length > 0) {
+      thumbContainer.innerHTML = product.gallery.map((imgSrc, index) => `
+        <div class="product-hero__thumb ${index === 0 ? 'active' : ''}" data-src="${imgSrc}">
+          <img src="${imgSrc}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
+        </div>
+      `).join('');
+
+      const thumbs = thumbContainer.querySelectorAll('.product-hero__thumb');
+      const mainImgEl = document.getElementById('mainImageElement');
+
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', function () {
+          thumbs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          if (mainImgEl) {
+            mainImgEl.src = this.getAttribute('data-src');
+          }
+        });
+      });
+    } else {
+      thumbContainer.innerHTML = `
+        <div class="product-hero__thumb active" data-src="${product.image}">
+          <img src="${product.image}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
+        </div>
+      `;
+    }
   }
 
   // Close-up gallery
   const closeupGallery = document.getElementById('closeupGallery');
   if (closeupGallery) {
-    const views = [
-      { svg: product.backSvg, viewBox: '0 0 120 100' },
-      { svg: product.silhouetteSvg, viewBox: '0 0 80 80' },
-      { svg: product.backSvg, viewBox: '0 0 120 100' },
-      { svg: product.silhouetteSvg, viewBox: '0 0 80 80' }
-    ];
-    closeupGallery.innerHTML = views.map(v =>
-      `<div class="closeup__item">
-        <svg viewBox="${v.viewBox}" xmlns="http://www.w3.org/2000/svg">${v.svg}</svg>
-      </div>`
-    ).join('');
+    if (product.gallery && product.gallery.length > 0) {
+      closeupGallery.innerHTML = product.gallery.map(imgSrc =>
+        `<div class="closeup__item">
+          <img src="${imgSrc}" alt="Close up" />
+        </div>`
+      ).join('');
+    } else {
+      const views = [
+        { svg: product.backSvg, viewBox: '0 0 120 100' },
+        { svg: product.silhouetteSvg, viewBox: '0 0 80 80' },
+        { svg: product.backSvg, viewBox: '0 0 120 100' },
+        { svg: product.silhouetteSvg, viewBox: '0 0 80 80' }
+      ];
+      closeupGallery.innerHTML = views.map(v =>
+        `<div class="closeup__item">
+          <svg viewBox="${v.viewBox}" xmlns="http://www.w3.org/2000/svg">${v.svg}</svg>
+        </div>`
+      ).join('');
+    }
   }
 
   // Product details image
   const detailsImage = document.getElementById('productDetailsImage');
   if (detailsImage) {
     detailsImage.innerHTML = `
-      <img src="${product.image}" alt="${product.artifact}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;" />
+      <img src="${product.image}" alt="${product.artifact}" />
     `;
   }
 
@@ -131,18 +160,18 @@
     `;
   }
   if (nfcContent) {
+    const featureText = product.details.feature || `Mỗi cổ vật tích hợp chip NFC đặc biệt. Sau khi mua, bạn chỉ cần chạm điện thoại vào cổ vật để mở khóa triều đại <strong>${product.dynasty}</strong> trong bộ sưu tập số của mình. Trải nghiệm mô hình 3D và AR của cổ vật <strong>${product.artifact}</strong> ngay trên điện thoại!`;
     nfcContent.innerHTML = `
       <div class="accordion-body__content">
         <strong>Chip NFC tích hợp:</strong> ${product.details.nfc}<br><br>
-        Mỗi thẻ bài tích hợp chip NFC đặc biệt. Sau khi mua, bạn chỉ cần chạm điện thoại vào thẻ bài để mở khóa
-        triều đại <strong>${product.dynasty}</strong> trong bộ sưu tập số của mình. Trải nghiệm mô hình 3D và AR
-        của cổ vật <strong>${product.artifact}</strong> ngay trên điện thoại!
+        ${featureText}
       </div>
     `;
   }
   if (editionContent) {
+    const guideText = product.details.guide || product.details.edition;
     editionContent.innerHTML = `
-      <div class="accordion-body__content">${product.details.edition}</div>
+      <div class="accordion-body__content">${guideText}</div>
     `;
   }
 
@@ -375,13 +404,8 @@
 
       return `
         <a href="product.html?id=${p.id}" class="blind-box__card" id="related-${p.id}">
-          <div class="blind-box__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <span class="blind-box__question">?</span>
+          <div class="blind-box__image">
+            <img src="${p.image}" alt="${name}">
           </div>
           <span class="blind-box__qty">${qty}</span>
           <h3 class="blind-box__name">${name}</h3>
