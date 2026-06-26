@@ -37,7 +37,32 @@
 
     const collectionProducts = PRODUCTS.filter(p => p.id <= 14);
 
-    cardsGrid.innerHTML = collectionProducts.map(product => {
+    const ERAS = [
+      {
+        title: "Kỷ Nguyên Lập Quốc & Bắc Thuộc",
+        desc: "Những bước đi đầu tiên của dân tộc và ngàn năm đấu tranh bảo vệ nòi giống",
+        ids: [1, 2, 3, 14]
+      },
+      {
+        title: "Buổi Đầu Độc Lập",
+        desc: "Giành lại non sông, xưng đế định đô, khẳng định chủ quyền",
+        ids: [4, 5, 6]
+      },
+      {
+        title: "Đại Việt Tỏa Sáng",
+        desc: "Thời kỳ phát triển rực rỡ nhất về văn hóa, quân sự và chính trị",
+        ids: [7, 8, 9]
+      },
+      {
+        title: "Nam Bắc Triều & Cận Đại",
+        desc: "Sự phân tranh quyền lực, những cuộc khởi nghĩa lớn và đế nghiệp cuối cùng",
+        ids: [10, 11, 12, 13]
+      }
+    ];
+
+    const isFlatLayout = cardsGrid.getAttribute('data-layout') === 'flat';
+
+    const renderCard = (product) => {
       const isUnlocked = unlockedCards.has(String(product.id));
       const cardNum = String(product.id).padStart(2, '0');
 
@@ -94,7 +119,36 @@
           </div>
         </div>
       `;
-    }).join('');
+    };
+
+    if (isFlatLayout) {
+      cardsGrid.innerHTML = collectionProducts.map(renderCard).join('');
+    } else {
+      let html = '';
+
+      ERAS.forEach(era => {
+        const eraProducts = era.ids.map(id => collectionProducts.find(p => p.id === id)).filter(Boolean);
+        if (eraProducts.length === 0) return;
+
+        html += `
+          <div class="collection__era-section">
+            <div class="collection__era-header">
+              <h2 class="collection__era-title">${era.title}</h2>
+              <p class="collection__era-desc">${era.desc}</p>
+            </div>
+            <div class="collection__grid">
+        `;
+
+        html += eraProducts.map(renderCard).join('');
+
+        html += `
+            </div>
+          </div>
+        `;
+      });
+
+      cardsGrid.innerHTML = html;
+    }
 
     // Rebind events after render
     bindCardEvents();

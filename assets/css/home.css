@@ -280,9 +280,9 @@
 }
 
 .hero__model-placeholder svg {
-  width: 60%;
-  height: 60%;
-  opacity: 0.7;
+  width: 90%;
+  height: 90%;
+  opacity: 0.85;
 }
 
 /* Hero Corners */
@@ -374,10 +374,12 @@
 }
 
 .blind-box__card {
-  background: linear-gradient(145deg, rgba(43, 29, 14, 0.8), rgba(26, 17, 8, 0.9));
-  border: 1px solid rgba(184, 134, 11, 0.2);
-  border-radius: var(--radius-lg);
-  padding: 30px;
+  background: 
+    linear-gradient(145deg, rgba(43, 29, 14, 0.85), rgba(26, 17, 8, 0.95)),
+    repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(184, 134, 11, 0.03) 5px, rgba(184, 134, 11, 0.03) 10px);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  border-radius: 8px;
+  padding: 35px 30px;
   text-align: center;
   transition: all var(--transition-normal);
   text-decoration: none;
@@ -386,6 +388,29 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.blind-box__card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(184, 134, 11, 0.15);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blind-box__card::after {
+  content: '✦';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--vang-thep);
+  font-size: 14px;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .blind-box__card:hover {
@@ -453,22 +478,44 @@
 }
 
 .blind-box__btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background: linear-gradient(135deg, var(--do-chu-sa-light), var(--do-chu-sa));
-  color: var(--trang-nga);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 35px;
+  background: linear-gradient(180deg, rgba(166, 44, 33, 0.9), rgba(110, 20, 15, 1));
+  color: var(--vang-thep);
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 1px solid var(--vang-thep);
+  border-radius: 4px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all var(--transition-fast);
+  letter-spacing: 2px;
+  transition: all var(--transition-normal);
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(184, 134, 11, 0.2);
+  z-index: 1;
+}
+
+.blind-box__btn::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(184, 134, 11, 0.4);
+  border-radius: 2px;
+  pointer-events: none;
 }
 
 .blind-box__card:hover .blind-box__btn {
-  box-shadow: 0 5px 15px rgba(166, 44, 33, 0.4);
-  transform: scale(1.05);
+  background: linear-gradient(180deg, rgba(184, 134, 11, 0.9), rgba(138, 99, 0, 1));
+  color: var(--trang-nga);
+  box-shadow: 0 5px 20px rgba(184, 134, 11, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  border-color: var(--trang-nga);
+}
+
+.blind-box__card:hover .blind-box__btn::before {
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .mystery-section {
