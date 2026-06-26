@@ -790,85 +790,142 @@
   background: linear-gradient(180deg, var(--den-son-mai) 0%, rgba(166, 44, 33, 0.05) 50%, var(--den-son-mai) 100%);
 }
 
-.ar-guide__timeline {
-  max-width: 800px;
-  margin: 0 auto;
+.ar-guide__s-shape {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: 60px 0;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.ar-guide__timeline::before {
-  content: '';
+.ar-guide__s-path {
   position: absolute;
-  left: 30px;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--vang-thep), rgba(184, 134, 11, 0.2));
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.ar-guide__step {
-  display: flex;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+.ar-guide__s-shape .ar-guide__card {
+  width: 45%;
+  z-index: 1;
   position: relative;
+  background: rgba(26, 17, 8, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-.ar-guide__step-number {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
+.ar-guide__s-shape .step-1 { align-self: flex-end; transform: translateX(-15%); }
+.ar-guide__s-shape .step-2 { align-self: flex-start; transform: translateX(10%); }
+.ar-guide__s-shape .step-3 { align-self: flex-end; transform: translateX(5%); }
+.ar-guide__s-shape .step-4 { align-self: flex-start; transform: translateX(20%); }
+
+.ar-guide__card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(184, 134, 11, 0.6);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(184, 134, 11, 0.3);
+}
+
+/* For hover specifically avoiding overriding translate X, we use relative top/left or translateY */
+.ar-guide__s-shape .step-1:hover { transform: translateX(-15%) translateY(-8px) scale(1.02); }
+.ar-guide__s-shape .step-2:hover { transform: translateX(10%) translateY(-8px) scale(1.02); }
+.ar-guide__s-shape .step-3:hover { transform: translateX(5%) translateY(-8px) scale(1.02); }
+.ar-guide__s-shape .step-4:hover { transform: translateX(20%) translateY(-8px) scale(1.02); }
+
+.ar-guide__card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(184, 134, 11, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.ar-guide__card:hover .ar-guide__card-bg {
+  opacity: 1;
+}
+
+.ar-guide__card-number {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(184, 134, 11, 0.08);
+  line-height: 1;
+  pointer-events: none;
+  transition: color var(--transition-normal);
+  z-index: 1;
+}
+
+.ar-guide__card:hover .ar-guide__card-number {
+  color: rgba(184, 134, 11, 0.2);
+}
+
+.ar-guide__card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ar-guide__card-icon {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--do-chu-sa), var(--do-chu-sa-dark));
-  border: 2px solid var(--vang-thep);
+  background: rgba(184, 134, 11, 0.15);
+  border: 1px solid rgba(184, 134, 11, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 900;
   color: var(--vang-thep);
+  margin-bottom: var(--space-sm);
+  transition: all var(--transition-normal);
+}
+
+.ar-guide__card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ar-guide__card:hover .ar-guide__card-icon {
+  background: rgba(184, 134, 11, 0.3);
+  transform: scale(1.1);
   box-shadow: var(--glow-gold);
-  z-index: 2;
 }
 
-.ar-guide__step-content {
-  flex: 1;
-  padding: 8px 0;
-  max-width: 650px;
-}
-
-.ar-guide__step-title {
+.ar-guide__card-title {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--vang-thep);
   margin-bottom: 8px;
+  line-height: 1.3;
 }
 
-.ar-guide__step-desc {
-  font-size: 0.95rem;
+.ar-guide__card-desc {
+  font-size: 0.9rem;
   color: rgba(245, 245, 220, 0.7);
-  line-height: 1.8;
-  margin-bottom: 12px;
-}
-
-.ar-guide__step-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(184, 134, 11, 0.08);
-  border: 1px solid rgba(184, 134, 11, 0.2);
-  border-radius: var(--radius-sm);
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  color: var(--vang-thep);
-  letter-spacing: 1px;
-}
-
-.ar-guide__step-icon svg {
-  width: 18px;
-  height: 18px;
+  line-height: 1.6;
+  flex-grow: 1;
 }
 
 /* ============================================================
@@ -953,7 +1010,7 @@
 .contact__social {
   display: flex;
   gap: 12px;
-  margin-top: var(--space-sm);
+  margin-top: var(--space-md);
 }
 
 .contact__social-link {
@@ -1112,6 +1169,10 @@
     padding: var(--space-md);
   }
 
+  .contact__form {
+    order: -1;
+  }
+
   .contact__info-list {
     padding-right: 0;
     border-right: none;
@@ -1119,24 +1180,14 @@
     padding-bottom: var(--space-md);
   }
 
-  .ar-guide__timeline::before {
-    left: 25px;
-  }
-
-  .ar-guide__step {
-    flex-direction: row !important;
-    text-align: left !important;
-  }
-
-  .ar-guide__step-content {
-    max-width: 100%;
-  }
-
-  .ar-guide__step-number {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-  }
+  .ar-guide__s-shape .ar-guide__card {
+      width: 80%;
+      align-self: center !important;
+      transform: none !important;
+    }
+    .ar-guide__s-path {
+      opacity: 0.3;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1144,7 +1195,11 @@
     min-height: auto;
     padding-top: 100px;
     padding-bottom: var(--space-lg);
-  }
+  
+  .ar-guide__s-shape .ar-guide__card {
+      width: 100%;
+    }
+}
 
   .hero__model-frame {
     max-width: 260px;

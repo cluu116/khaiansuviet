@@ -852,6 +852,11 @@
     border-radius: 20px;
   }
 
+  .collection__progress-track {
+    width: 100%;
+    flex: none;
+  }
+
   .collection__progress-bar::before {
     border-radius: 16px;
   }
