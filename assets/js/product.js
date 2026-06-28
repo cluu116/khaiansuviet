@@ -219,7 +219,7 @@
 
   // Submit order
   if (orderForm) {
-    orderForm.addEventListener('submit', (e) => {
+    orderForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById('orderName').value.trim();
@@ -233,23 +233,49 @@
         return;
       }
 
-      // Here you would normally send data to backend/API
-      // For now, show success and log order
-      console.log('=== ĐƠN HÀNG MỚI ===', {
+      const submitBtn = orderForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = "ĐANG XỬ LÝ...";
+      submitBtn.disabled = true;
+
+      const orderData = {
+        type: "order",
+        name: name,
+        email: email || "Không có",
+        phone: phone,
+        address: note || "Không có",
         product: product.artifact,
-        dynasty: product.dynasty,
-        price: product.price,
         quantity: qty,
-        customer: { name, phone, email },
-        note: note,
-        timestamp: new Date().toISOString()
-      });
+        total: product.price * parseInt(qty)
+      };
 
-      closeOrderModal();
-      orderForm.reset();
-      document.getElementById('orderQty').value = '1';
+      try {
+        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbw8jXHBxPG-Hgs-gKyY239_LnZx0-n54-Iiy8OiM1VAsCjZCuz08BeQth_JUV43rkvV/exec";
+        const response = await fetch(GAS_API_URL, {
+          method: "POST",
+          redirect: "follow",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body: JSON.stringify(orderData)
+        });
 
-      showToast(`✅ Đặt hàng thành công! Cảm ơn ${name}, chúng tôi sẽ liên hệ bạn sớm nhất.`);
+        const result = await response.json();
+        if (result.status === "success") {
+          closeOrderModal();
+          orderForm.reset();
+          document.getElementById('orderQty').value = '1';
+          showToast(`✅ Đặt hàng thành công! Cảm ơn ${name}, chúng tôi sẽ liên hệ bạn sớm nhất.`);
+        } else {
+          showToast("Có lỗi xảy ra: " + result.message);
+        }
+      } catch (error) {
+        console.error("Lỗi gửi form đặt hàng:", error);
+        showToast("Đã xảy ra lỗi mạng. Vui lòng thử lại!");
+      } finally {
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
+      }
     });
   }
 

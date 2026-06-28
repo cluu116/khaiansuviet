@@ -86,11 +86,52 @@
      ============================================================ */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = "Đang gửi...";
+      submitBtn.disabled = true;
+
       const name = document.getElementById('contactName').value;
-      showToast(`Cảm ơn ${name}! Chúng tôi sẽ liên hệ lại sớm nhất.`);
-      contactForm.reset();
+      const email = document.getElementById('contactEmail').value;
+      const phone = document.getElementById('contactPhone').value;
+      const message = document.getElementById('contactMessage').value;
+
+      const contactData = {
+        type: "contact",
+        name: name,
+        email: email,
+        phone: phone,
+        message: message
+      };
+
+      try {
+        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbw8jXHBxPG-Hgs-gKyY239_LnZx0-n54-Iiy8OiM1VAsCjZCuz08BeQth_JUV43rkvV/exec";
+        const response = await fetch(GAS_API_URL, {
+          method: "POST",
+          redirect: "follow",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body: JSON.stringify(contactData)
+        });
+
+        const result = await response.json();
+        if (result.status === "success") {
+          showToast(`Cảm ơn ${name}! Chúng tôi đã nhận được liên hệ.`);
+          contactForm.reset();
+        } else {
+          showToast("Có lỗi xảy ra từ server: " + result.message);
+        }
+      } catch (error) {
+        console.error("Lỗi gửi form liên hệ:", error);
+        showToast("Đã xảy ra lỗi mạng. Vui lòng thử lại!");
+      } finally {
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
+      }
     });
   }
 
