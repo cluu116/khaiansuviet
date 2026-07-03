@@ -1,128 +1,107 @@
-# 🏛️ Khai Ấn Sử Việt — Landing Page 3D/AR
+# 📜 Khai Ấn Sử Việt — Hành trình đánh thức di sản
 
 > **Phá La Đồ Thời Gian, Tìm Vàng Di Sản**
 
-Website Landing Page giới thiệu bộ sản phẩm thẻ bài bí ẩn 14 triều đại lịch sử Việt Nam, tích hợp hiển thị mô hình 3D tương tác và trải nghiệm AR (Thực tế tăng cường).
+Khai Ấn Sử Việt là một dự án công nghệ kết hợp văn hóa, nhằm phục dựng và lưu giữ các hiện vật lịch sử Việt Nam qua lăng kính công nghệ 3D và AR (Thực tế tăng cường). Website mang đến trải nghiệm tương tác với 14 cổ vật đại diện cho 14 triều đại lịch sử hào hùng, kết hợp cơ chế mở khóa (Blind Box) thông qua cổ vật vật lý tích hợp NFC.
 
 ---
 
-## 📁 Cấu Trúc Dự Án
+## 🌟 Key Features
 
-```
+- **Trải nghiệm 3D Tương Tác**: Xoay, thu phóng và khám phá chi tiết các cổ vật lịch sử ngay trên trình duyệt nhờ sức mạnh của WebGL.
+- **Thực Tế Tăng Cường (AR)**: Đặt các mô hình cổ vật kích thước thật vào không gian thực của bạn thông qua WebXR (Android) và Quick Look (iOS).
+- **Bộ Sưu Tập 14 Triều Đại**: Hành trình xuyên suốt lịch sử Việt Nam, từ thời Văn Lang đến nhà Nguyễn, với dữ liệu lịch sử chân thực và sâu sắc.
+- **Cơ chế Thẻ Bài NFC**: Kết nối thế giới thực và ảo. Người dùng có thể quét thẻ bài vật lý để mở khóa và xem cổ vật tương ứng trên website.
+- **Thiết Kế UI/UX Đậm Chất Văn Hóa**: Giao diện Glassmorphism kết hợp hệ màu sắc cổ điển (Đỏ Chu Sa, Vàng Thếp), hiệu ứng Parallax mượt mà và hạt bụi vàng rơi (Particle Effects).
+
+## 🛠️ Tech Stack
+
+Dự án được xây dựng hoàn toàn bằng các công nghệ web thuần túy (Vanilla) để tối ưu hiệu năng và khả năng tương thích:
+
+- **Frontend**: HTML5, CSS3 (Custom Properties, Grid, Flexbox), Vanilla JavaScript (ES6+).
+- **3D & AR Rendering**: `<model-viewer>` (do Google phát triển).
+- **Phông Chữ**: Google Fonts (Cinzel, Playfair Display, Merriweather).
+- **Backend/Data Collection**: Google Apps Script (GAS) tích hợp Google Sheets làm database lưu trữ thông tin đăng ký nhận tin.
+
+## 🚀 Getting Started
+
+Làm theo các bước sau để chạy dự án trên máy tính cá nhân của bạn.
+
+### Yêu cầu hệ thống
+- Bất kỳ trình duyệt web hiện đại nào (Chrome, Edge, Firefox, Safari).
+- Để trải nghiệm tính năng AR, cần thiết bị di động hỗ trợ WebXR (Android) hoặc ARKit (iOS) và **trang web phải được phục vụ qua HTTPS**.
+
+### Cài đặt và Chạy cục bộ
+
+1. **Clone repository này:**
+   ```bash
+   git clone https://github.com/cluu116/khaiansuviet.git
+   cd khaiansuviet
+   ```
+
+2. **Khởi chạy Local Server:**
+   Vì dự án sử dụng các file module và tải mô hình 3D, bạn cần chạy qua một local server (không mở trực tiếp file `file://` để tránh lỗi CORS).
+
+   *Cách 1: Sử dụng Extension "Live Server" trong VS Code.* (Khuyến nghị)
+   - Mở thư mục dự án trong VS Code.
+   - Nhấp vào nút "Go Live" ở thanh trạng thái dưới cùng.
+
+   *Cách 2: Sử dụng `http-server` (Node.js).*
+   ```bash
+   npx http-server -p 8080
+   ```
+   Sau đó truy cập `http://localhost:8080` trên trình duyệt.
+
+## 📁 Project Structure
+
+```text
 khaiansuviet/
-├── index.html                  # Trang Landing Page chính
-├── README.md                   # Tài liệu này
+├── index.html                  # Landing Page (Giới thiệu, Hero 3D, Mystery Grid, About, Contact)
+├── artifact.html               # Trang hiển thị chi tiết 1 Cổ vật (3D/AR, Thông tin lịch sử)
+├── collection.html             # Trang Bộ Sưu Tập (Quản lý mở khóa bằng thẻ NFC)
+├── product.html                # Trang chi tiết sản phẩm Blind Box
+├── README.md                   # Tài liệu dự án
 └── assets/
     ├── css/
-    │   └── style.css           # Toàn bộ CSS: design system, animations, responsive
+    │   ├── style.css           # Global design system (màu sắc, typography, utilities)
+    │   ├── home.css            # Style riêng cho Landing Page
+    │   ├── artifact.css        # Style riêng cho trang Artifact Detail
+    │   └── collection.css      # Style riêng cho trang Collection
     ├── js/
-    │   └── script.js           # Logic: scroll, modal, card interaction, 3D/AR
-    ├── images/                 # (Tạo khi có hình ảnh thực tế)
-    │   ├── ui-elements/        # Icons, viền trang trí
-    │   └── cards/              # Ảnh 14 thẻ bài triều đại
-    ├── models/                 # (Tạo khi có mô hình 3D)
-    │   ├── *.glb               # Mô hình 3D cổ vật (Trống đồng, Ấn vàng, ...)
-    │   └── poster.webp         # Ảnh poster trước khi load 3D
-    └── fonts/                  # (Tạo khi có font custom)
+    │   ├── data.js             # Dữ liệu trung tâm (14 cổ vật, cấu hình API)
+    │   ├── common.js           # Chức năng dùng chung (Navigation, Reveal Animation)
+    │   ├── effects.js          # Particle Engine (Hiệu ứng hạt bụi vàng)
+    │   ├── home.js             # Logic Landing Page (Parallax, Scroll, Form Submit)
+    │   ├── artifact.js         # Logic 3D/AR Loader, Exponential Backoff retry
+    │   ├── collection.js       # Logic render Grid, xử lý NFC Mockup
+    │   └── product.js          # Logic trang sản phẩm Blind Box
+    ├── images/                 # Ảnh UI, Texture, Mockup sản phẩm
+    └── models/                 # Chứa các file .glb và .usdz (Được lưu trữ trên CDN/R2)
 ```
 
-## 🚀 Khởi Chạy
+## 📋 14 Cổ Vật Triều Đại
 
-### Cách 1: Mở trực tiếp
-Mở file `index.html` trong trình duyệt (Chrome, Firefox, Edge, Safari).
+Hệ thống dữ liệu bao phủ 4 kỷ nguyên lịch sử lớn:
 
-### Cách 2: Live Server (khuyến nghị)
-```bash
-# Nếu dùng VS Code, cài extension "Live Server" và nhấn "Go Live"
-# Hoặc dùng http-server:
-npx http-server -p 8080
-```
-
-Truy cập: `http://localhost:8080`
-
-## 🎨 Hệ Màu Sắc
-
-| Tên | Mã Màu | Ý Nghĩa |
-|-----|--------|----------|
-| Đỏ Chu Sa | `#A62C21` | Sớ tấu, dấu triện hoàng đế |
-| Vàng Thếp | `#B8860B` | Hoành phi, câu đối cổ |
-| Xám Gạch Nung | `#5E5E5E` | Gạch cổ Hoàng thành |
-| Nâu Đất Đỏ | `#8B4513` | Ngói mũi sen, khảo cổ |
-| Xanh Men Ngọc | `#ACE1AF` | Gốm sứ Lý-Trần |
-| Trắng Ngà | `#F5F5DC` | Trang sách da cổ |
-
-## 🎭 Tính Năng
-
-- **Preloader** — Màn hình chờ vàng kim với biểu tượng triện ấn xoay
-- **Navigation Glassmorphism** — Thanh điều hướng mờ đục cổ kính
-- **Hero 3D** — Vùng hiển thị mô hình 3D tương tác (model-viewer)
-- **14 Thẻ Bài Bí Ẩn** — Grid thẻ bài silhouette, click để mở khóa với hiệu ứng vàng kim
-- **Modal 3D/AR** — Chi tiết triều đại + model-viewer với nút kích hoạt AR
-- **Tab About Us** — 5 tab thông tin thương hiệu
-- **Timeline Hướng Dẫn** — 3 bước trải nghiệm AR
-- **Contact Form** — Form liên hệ tối giản
-- **Scroll Animations** — Hiệu ứng fade-in khi cuộn trang
-- **Parallax** — Nền chuyển động nhẹ khi cuộn
-- **Card Tilt Effect** — Thẻ bài nghiêng theo chuột (desktop)
-- **Responsive** — Desktop, Tablet, Mobile
-
-## 📱 Tích Hợp 3D/AR
-
-Website sử dụng [Google Model Viewer](https://modelviewer.dev/) (CDN) để hiển thị mô hình 3D và kích hoạt AR.
-
-### Thêm mô hình 3D:
-
-1. Chuẩn bị file `.glb` / `.gltf` (nén, dung lượng nhỏ)
-2. Đặt vào thư mục `assets/models/`
-3. Trong `index.html`, thay thế placeholder bằng:
-
-```html
-<model-viewer
-  src="assets/models/ten-mo-hinh.glb"
-  poster="assets/models/poster.webp"
-  camera-controls
-  auto-rotate
-  ar
-  ar-modes="webxr scene-viewer quick-look"
-  alt="Mô tả cổ vật"
-  style="width: 100%; height: 100%;"
->
-  <button slot="ar-button" class="modal__ar-btn">
-    Xem AR Trong Không Gian Thực
-  </button>
-</model-viewer>
-```
-
-### Yêu cầu AR:
-- **Android**: Chrome 79+ (WebXR / Scene Viewer)
-- **iOS**: Safari 12+ (Quick Look với file `.usdz`)
-- Cần truy cập qua **HTTPS** để kích hoạt camera
-
-## 🛠️ Công Nghệ
-
-- **HTML5** — Cấu trúc ngữ nghĩa
-- **CSS3** — Custom Properties, Grid, Flexbox, Animations, Glassmorphism
-- **JavaScript ES6+** — Intersection Observer, Event Delegation
-- **Google Model Viewer 3.5** — 3D rendering + WebXR AR
-- **Google Fonts** — Cinzel, Playfair Display, Merriweather
-
-## 📋 14 Triều Đại
-
-1. Văn Lang (2879-258 TCN) — Trống Đồng Đông Sơn
-2. Âu Lạc (257-207 TCN) — Nỏ Thần Liên Châu
-3. Nhà Triệu (207-111 TCN) — Ấn Vàng Văn Đế
-4. Nhà Ngô (939-965) — Cọc Gỗ Bạch Đằng
-5. Nhà Đinh (968-980) — Kiếm Lệnh Đinh Tiên Hoàng
-6. Nhà Tiền Lê (980-1009) — Giáp Trụ Thời Lê
-7. Nhà Lý (1009-1225) — Rồng Thời Lý
-8. Nhà Trần (1226-1400) — Hịch Tướng Sĩ
-9. Nhà Hồ (1400-1407) — Thành Nhà Hồ
-10. Nhà Hậu Lê (1428-1789) — Gươm Thuận Thiên
-11. Nhà Mạc (1527-1677) — Gốm Sứ Thời Mạc
-12. Nhà Tây Sơn (1778-1802) — Trống Trận Tây Sơn
-13. Nhà Nguyễn (1802-1945) — Cửu Đỉnh Nhà Nguyễn
-14. Bắc Thuộc & Khởi Nghĩa (111 TCN-938) — Voi Chiến Hai Bà Trưng
+| Kỷ Nguyên | Triều Đại | Cổ Vật Tiêu Biểu |
+| :--- | :--- | :--- |
+| **Kỷ Nguyên Lập Quốc & Bắc Thuộc** | Văn Lang | Trống Đồng Đông Sơn |
+| | Âu Lạc | Nỏ Thần Liên Châu |
+| | Nhà Triệu | Ấn Vàng Văn Đế |
+| | Bắc Thuộc | Voi Chiến Hai Bà Trưng |
+| **Kỷ Nguyên Độc Lập Sơ Kỳ** | Nhà Ngô | Cọc Gỗ Bạch Đằng |
+| | Nhà Đinh | Kiếm Lệnh Đinh Tiên Hoàng |
+| | Nhà Tiền Lê | Giáp Trụ Thời Lê |
+| **Kỷ Nguyên Đại Việt Hoàng Kim** | Nhà Lý | Rồng Thời Lý |
+| | Nhà Trần | Hịch Tướng Sĩ |
+| | Nhà Hồ | Thành Nhà Hồ |
+| | Nhà Hậu Lê | Gươm Thuận Thiên |
+| **Kỷ Nguyên Nam-Bắc Triều & Thống Nhất**| Nhà Mạc | Gốm Sứ Thời Mạc |
+| | Nhà Tây Sơn | Trống Trận Tây Sơn |
+| | Nhà Nguyễn | Cửu Đỉnh Nhà Nguyễn |
 
 ---
 
-© 2024 Khai Ấn Sử Việt. Tân Xã, Hòa Lạc, Hà Nội.
+<p align="center">
+  <i>© 2026 Khai Ấn Sử Việt. Tân Xã, Hòa Lạc, Hà Nội. Phục dựng lịch sử bằng công nghệ của tương lai.</i>
+</p>

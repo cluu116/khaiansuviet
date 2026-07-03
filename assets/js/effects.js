@@ -24,12 +24,18 @@
   const ctx = canvas.getContext('2d');
   let width, height;
   let particles = [];
+  let bgGradient = null; // Cache gradient — chỉ tạo lại khi resize
 
   function resize() {
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
+
+    // Tạo lại gradient khi kích thước thay đổi
+    bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width / 2);
+    bgGradient.addColorStop(0, 'rgba(184, 134, 11, 0.03)');
+    bgGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
   }
 
   window.addEventListener('resize', resize);
@@ -48,7 +54,6 @@
       this.speedY = -(Math.random() * 0.5 + 0.2); // float up slowly
       this.speedX = (Math.random() - 0.5) * 0.4; // drift horizontally
       this.opacity = Math.random() * 0.5 + 0.2;
-      this.life = Math.random() * 0.02 + 0.005;
       // Gold and Ember colors
       this.color = Math.random() > 0.5 ? '218, 165, 32' : '255, 140, 0'; 
     }
@@ -74,6 +79,7 @@
       ctx.shadowBlur = this.size * 3;
       ctx.shadowColor = `rgba(${this.color}, ${this.opacity})`;
       ctx.fill();
+      ctx.shadowBlur = 0; // Reset để tránh shadow tích lũy giữa các particle
     }
   }
 
@@ -90,12 +96,9 @@
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
-    
-    // Add a very subtle radial gradient matching the theme
-    const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width/2);
-    gradient.addColorStop(0, 'rgba(184, 134, 11, 0.03)');
-    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    ctx.fillStyle = gradient;
+
+    // Sử dụng gradient đã cache (tạo lại khi resize)
+    ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
     particles.forEach(p => {

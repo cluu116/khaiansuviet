@@ -250,7 +250,6 @@
       };
 
       try {
-        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbw8jXHBxPG-Hgs-gKyY239_LnZx0-n54-Iiy8OiM1VAsCjZCuz08BeQth_JUV43rkvV/exec";
         const response = await fetch(GAS_API_URL, {
           method: "POST",
           redirect: "follow",

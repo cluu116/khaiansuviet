@@ -1,6 +1,6 @@
 /* ============================================================
    KHAI ẤN SỬ VIỆT — Collection Page JavaScript
-   NFC Unlock, Card Interaction, Modal, localStorage Persistence
+   NFC Unlock, Card Interaction, localStorage Persistence
    ============================================================ */
 
 (function () {
@@ -16,18 +16,7 @@
   const scanBtn = document.getElementById('scanBtn');
   const unlockCountEl = document.getElementById('unlockCount');
   const progressFill = document.getElementById('progressFill');
-  const modalOverlay = document.getElementById('modalOverlay');
-  const modalClose = document.getElementById('modalClose');
-  const modalArBtn = document.getElementById('modalArBtn');
   const nfcOverlay = document.getElementById('nfcOverlay');
-
-  // Modal content
-  const modalLabel = document.getElementById('modalLabel');
-  const modalName = document.getElementById('modalName');
-  const modalEra = document.getElementById('modalEra');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalArtifactName = document.getElementById('modalArtifactName');
-  const modalArtifactDesc = document.getElementById('modalArtifactDesc');
 
   /* ============================================================
      1. RENDER CARDS GRID
@@ -37,6 +26,8 @@
 
     const collectionProducts = PRODUCTS.filter(p => p.id <= 14);
 
+    // Phân nhóm 14 triều đại thành 4 kỷ nguyên lịch sử theo trình tự thời gian
+    // Mỗi nhóm có tiêu đề và mô tả riêng, tạo hệ thống phân cấp trực quan
     const ERAS = [
       {
         title: "Kỷ Nguyên Lập Quốc & Bắc Thuộc",
@@ -299,163 +290,7 @@
   }
 
   /* ============================================================
-     7. MODAL — Open / Close
-     ============================================================ */
-  function openModal(card) {
-    const dynasty = card.getAttribute('data-dynasty');
-    const name = card.getAttribute('data-name');
-    const era = card.getAttribute('data-era');
-    const desc = card.getAttribute('data-desc');
-    const artifact = card.getAttribute('data-artifact');
-    const artifactDesc = card.getAttribute('data-artifact-desc');
-
-    if (modalLabel) modalLabel.textContent = `Triều đại ${dynasty.padStart(2, '0')}`;
-    if (modalName) modalName.textContent = name;
-    if (modalEra) modalEra.textContent = era;
-    if (modalDesc) modalDesc.textContent = desc;
-    if (modalArtifactName) modalArtifactName.textContent = `Hiện vật: ${artifact}`;
-    if (modalArtifactDesc) modalArtifactDesc.textContent = artifactDesc;
-
-    // Load 3D model with AR support
-    const modelViewer = document.getElementById('modalModelViewer');
-    if (modelViewer) {
-      const product = getProductById(dynasty);
-      if (product && product.model) {
-        modelViewer.innerHTML = `
-          <model-viewer
-            id="arModelViewer"
-            src="${encodeURI(product.model)}"
-            alt="Mô hình 3D ${artifact}"
-            auto-rotate
-            camera-controls
-            ar
-            ar-modes="webxr scene-viewer quick-look"
-            ar-scale="auto"
-            shadow-intensity="1"
-            environment-image="neutral"
-            style="width:100%;height:100%;background:transparent;"
-          >
-            <button type="button" slot="ar-button" style="
-              position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
-              padding:10px 24px;font-family:'Cormorant Garamond',serif;font-size:0.75rem;font-weight:700;
-              letter-spacing:2px;text-transform:uppercase;
-              color:#1A1108;background:linear-gradient(135deg,#B8860B,#DAA520);
-              border:none;border-radius:6px;cursor:pointer;
-              box-shadow:0 4px 15px rgba(184,134,11,0.3);
-            ">📱 XEM AR</button>
-            <div slot="poster" class="modal__model-placeholder">
-              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
-                <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
-                <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
-              </svg>
-              <span>Đang tải mô hình...</span>
-            </div>
-          </model-viewer>
-        `;
-      } else {
-        modelViewer.innerHTML = `
-          <div class="modal__model-placeholder">
-            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
-              <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
-              <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
-            </svg>
-            <span>MÔ HÌNH 3D</span>
-            <span style="font-size:0.65rem;opacity:0.5;">Chưa có file .glb cho triều đại này</span>
-          </div>
-        `;
-      }
-    }
-
-    if (modalOverlay) {
-      modalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-  }
-
-  function closeModal() {
-    if (modalOverlay) {
-      modalOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-
-  if (modalClose) modalClose.addEventListener('click', closeModal);
-
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeModal();
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
-      closeModal();
-    }
-  });
-
-  if (modalArBtn) {
-    modalArBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      const dynasty = document.querySelector('.dynasty-card.unlocked.active') 
-                        ? document.querySelector('.dynasty-card.unlocked.active').getAttribute('data-dynasty')
-                        : new URLSearchParams(window.location.search).get('unlock');
-      
-      // Fallback lấy id từ text nếu cần, nhưng an toàn nhất là lấy thẻ model-viewer's src
-      const arViewer = document.getElementById('arModelViewer');
-      let modelUrl = arViewer ? arViewer.getAttribute('src') : null;
-
-      if (!modelUrl) {
-         if (typeof showToast === 'function') showToast('⚠️ Không tìm thấy file mô hình 3D.');
-         return;
-      }
-
-      const isAndroid = /Android/i.test(navigator.userAgent);
-      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-      if (isAndroid) {
-        if (typeof showToast === 'function') showToast('Đang mở AR qua Google Scene Viewer...');
-        const absoluteModelUrl = new URL(modelUrl, window.location.href).toString();
-        // Giả sử artifact name lấy từ modalArtifactName
-        const artifactName = modalArtifactName ? modalArtifactName.textContent : 'Mô hình 3D';
-        const intentUrl = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(absoluteModelUrl)}&title=${encodeURIComponent(artifactName)}&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
-        
-        const a = document.createElement('a');
-        a.href = intentUrl;
-        a.click();
-        return;
-      }
-
-      if (isIOS) {
-        // Find the product to check if it has a .usdz file
-        const productId = new URLSearchParams(window.location.search).get('id') || document.querySelector('.dynasty-card.unlocked.active')?.getAttribute('data-id');
-        // Let's extract ID from modelUrl if possible, or use the global PRODUCTS array
-        let usdzUrl = null;
-        if (typeof PRODUCTS !== 'undefined') {
-           const prod = PRODUCTS.find(p => p.model && decodeURI(p.model).includes(decodeURI(modelUrl).split('/').pop()));
-           if (prod && prod.usdz) usdzUrl = prod.usdz;
-        }
-
-        if (usdzUrl) {
-          if (typeof showToast === 'function') showToast('Đang mở AR qua iOS Quick Look...');
-          const absoluteUsdzUrl = new URL(usdzUrl, window.location.href).toString();
-          const a = document.createElement('a');
-          a.href = absoluteUsdzUrl;
-          a.rel = "ar";
-          a.appendChild(document.createElement('img'));
-          a.click();
-        } else {
-          if (typeof showToast === 'function') showToast('⚠️ Tính năng AR cho cổ vật này trên iPhone/iPad yêu cầu file .usdz.');
-        }
-        return;
-      }
-
-      if (typeof showToast === 'function') showToast('💡 Vui lòng mở trang này trên điện thoại di động để trải nghiệm AR!');
-    });
-  }
-
-  /* ============================================================
-     8. INIT
+     7. INIT
      ============================================================ */
   renderCardsGrid();
   updateProgress();

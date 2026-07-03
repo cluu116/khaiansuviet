@@ -18,8 +18,6 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/collection.css">
 
-  <!-- Google Model Viewer -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -201,47 +199,7 @@
     <p class="nfc-unlock__name" id="nfcDynastyName"></p>
   </div>
 
-  <!-- ============================================================
-       MODAL OVERLAY (Dynasty Detail + 3D/AR)
-       ============================================================ -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="dynastyModal">
-      <div class="modal__ornament"></div>
-      <button class="modal__close" id="modalClose" aria-label="Đóng">✕</button>
-      <div class="modal__body">
-        <!-- 3D Model Area -->
-        <div class="modal__3d-area">
-          <div class="modal__model-viewer" id="modalModelViewer">
-            <div class="modal__model-placeholder" id="modalModelPlaceholder">
-              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
-                <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z" />
-                <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55" />
-              </svg>
-              <span>MÔ HÌNH 3D</span>
-              <span style="font-size: 0.65rem; opacity: 0.5;">Thay thế bằng file .glb</span>
-            </div>
-          </div>
-          <button type="button" class="modal__ar-btn" id="modalArBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path
-                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-            </svg>
-            Xem AR Trong Không Gian Thực
-          </button>
-        </div>
 
-        <!-- Info Area -->
-        <div class="modal__info">
-          <p class="modal__dynasty-label" id="modalLabel">Triều đại 01</p>
-          <h2 class="modal__dynasty-name" id="modalName">Văn Lang</h2>
-          <p class="modal__dynasty-era" id="modalEra">2879 - 258 TCN</p>
-          <p class="modal__dynasty-desc" id="modalDesc">Mô tả triều đại...</p>
-          <p class="modal__artifact-name" id="modalArtifactName">Hiện vật tiêu biểu</p>
-          <p class="modal__artifact-desc" id="modalArtifactDesc">Mô tả hiện vật...</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Toast notification -->
   <div class="toast" id="toast"></div>

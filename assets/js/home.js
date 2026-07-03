@@ -56,10 +56,6 @@
     `).join('');
   }
 
-  /* ============================================================
-     2. RENDER MYSTERY ARTIFACTS GRID (14 items, all locked)
-     ============================================================ */
-  // The mystery grid is now rendered by collection.js using cardsGrid
 
   /* ============================================================
      3. ABOUT US — Tab Switching
@@ -108,7 +104,6 @@
       };
 
       try {
-        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbw8jXHBxPG-Hgs-gKyY239_LnZx0-n54-Iiy8OiM1VAsCjZCuz08BeQth_JUV43rkvV/exec";
         const response = await fetch(GAS_API_URL, {
           method: "POST",
           redirect: "follow",
@@ -136,34 +131,29 @@
   }
 
   /* ============================================================
-     5. PARALLAX EFFECT
+     5. PARALLAX + ACTIVE NAV — Gộp chung 1 scroll handler để tối ưu
      ============================================================ */
   const heroPattern = document.querySelector('.hero__bg-pattern');
   const heroModelGlow = document.querySelector('.hero__model-glow');
-
-  function handleParallax() {
-    const scrollY = window.scrollY;
-    const homeSection = document.getElementById('home');
-    if (!homeSection) return;
-    const heroHeight = homeSection.offsetHeight;
-
-    if (scrollY < heroHeight) {
-      const speed = scrollY * 0.3;
-      if (heroPattern) heroPattern.style.transform = `translateY(${speed}px)`;
-      if (heroModelGlow) heroModelGlow.style.transform = `scale(${1 + scrollY * 0.0003})`;
-    }
-  }
-
-  window.addEventListener('scroll', () => requestAnimationFrame(handleParallax));
-
-  /* ============================================================
-     6. ACTIVE NAV LINK ON SCROLL
-     ============================================================ */
   const sections = document.querySelectorAll('.section[id]');
   const navLinkItems = document.querySelectorAll('.navbar__link');
 
-  function updateActiveNavLink() {
-    const scrollPos = window.scrollY + 120;
+  function handleScrollEffects() {
+    const scrollY = window.scrollY;
+
+    // Parallax
+    const homeSection = document.getElementById('home');
+    if (homeSection) {
+      const heroHeight = homeSection.offsetHeight;
+      if (scrollY < heroHeight) {
+        const speed = scrollY * 0.3;
+        if (heroPattern) heroPattern.style.transform = `translateY(${speed}px)`;
+        if (heroModelGlow) heroModelGlow.style.transform = `scale(${1 + scrollY * 0.0003})`;
+      }
+    }
+
+    // Active nav link highlight
+    const scrollPos = scrollY + 120;
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
@@ -180,7 +170,17 @@
     });
   }
 
-  window.addEventListener('scroll', () => requestAnimationFrame(updateActiveNavLink));
+  let scrollEffectsTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollEffectsTicking) {
+      requestAnimationFrame(() => {
+        handleScrollEffects();
+        scrollEffectsTicking = false;
+      });
+      scrollEffectsTicking = true;
+    }
+  });
+
 
   /* ============================================================
      INIT
