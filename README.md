@@ -20,6 +20,7 @@ Dự án được xây dựng hoàn toàn bằng các công nghệ web thuần t
 
 - **Frontend**: HTML5, CSS3 (Custom Properties, Grid, Flexbox), Vanilla JavaScript (ES6+).
 - **3D & AR Rendering**: `<model-viewer>` (do Google phát triển).
+- **Performance Monitoring**: Vercel Speed Insights for real-time web performance tracking.
 - **Phông Chữ**: Google Fonts (Cinzel, Playfair Display, Merriweather).
 - **Backend/Data Collection**: Google Apps Script (GAS) tích hợp Google Sheets làm database lưu trữ thông tin đăng ký nhận tin.
 
@@ -39,7 +40,12 @@ Làm theo các bước sau để chạy dự án trên máy tính cá nhân củ
    cd khaiansuviet
    ```
 
-2. **Khởi chạy Local Server:**
+2. **Cài đặt dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Khởi chạy Local Server:**
    Vì dự án sử dụng các file module và tải mô hình 3D, bạn cần chạy qua một local server (không mở trực tiếp file `file://` để tránh lỗi CORS).
 
    *Cách 1: Sử dụng Extension "Live Server" trong VS Code.* (Khuyến nghị)
@@ -99,6 +105,24 @@ Hệ thống dữ liệu bao phủ 4 kỷ nguyên lịch sử lớn:
 | **Kỷ Nguyên Nam-Bắc Triều & Thống Nhất**| Nhà Mạc | Gốm Sứ Thời Mạc |
 | | Nhà Tây Sơn | Trống Trận Tây Sơn |
 | | Nhà Nguyễn | Cửu Đỉnh Nhà Nguyễn |
+
+## 📊 Performance Monitoring
+
+Dự án được tích hợp **Vercel Speed Insights** để theo dõi hiệu suất web trong thời gian thực. Speed Insights giúp:
+
+- Đo lường các chỉ số Web Vitals (LCP, FID, CLS, FCP, TTFB)
+- Phát hiện vấn đề hiệu suất trong môi trường production
+- Cung cấp insights để tối ưu hóa trải nghiệm người dùng
+
+### Cấu hình Speed Insights
+
+Speed Insights được khởi tạo tự động qua file `assets/js/speed-insights.js` trên tất cả các trang:
+- `index.html` - Landing page
+- `product.html` - Product detail page
+- `collection.html` - Collection page
+- `artifact.html` - Artifact detail page
+
+Để xem dữ liệu hiệu suất, truy cập [Vercel Dashboard](https://vercel.com) sau khi deploy dự án.
 
 ---
 

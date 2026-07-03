@@ -1,0 +1,22 @@
+{
+  "name": "khaiansuviet",
+  "version": "1.0.0",
+  "description": "Khai Ấn Sử Việt — Phá La Đồ Thời Gian, Tìm Vàng Di Sản",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "npx http-server -p 8080",
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": [
+    "vietnamese-history",
+    "ar",
+    "3d",
+    "cultural-heritage"
+  ],
+  "author": "Khai Ấn Sử Việt",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
