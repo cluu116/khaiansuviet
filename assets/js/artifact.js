@@ -308,9 +308,51 @@
       window.location.href = 'collection.html';
       return;
     }
+
+    const STORAGE_KEY = 'khaiansuviet_unlocked';
+    const rawStorage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    state.isUnlocked = rawStorage.includes(String(id));
   }
 
   function populateProductInfo() {
+    if (!state.isUnlocked) {
+      if (DOM.dynasty) DOM.dynasty.textContent = state.product.dynasty;
+      if (DOM.era) DOM.era.textContent = state.product.era;
+      if (DOM.name) DOM.name.textContent = 'Cổ Vật Bí Ẩn';
+
+      if (DOM.desc) {
+        DOM.desc.innerHTML = 'Dữ liệu lịch sử đang bị phong ấn.<br>Hãy thu thập thẻ bài vật lý hoặc mở hộp mù để giải mã!';
+        DOM.desc.style.color = '#A62C21';
+        DOM.desc.style.fontWeight = '700';
+      }
+
+      if (DOM.dynastyDesc) {
+        DOM.dynastyDesc.textContent = state.product.description;
+        DOM.dynastyDesc.style.filter = 'blur(4px)';
+        DOM.dynastyDesc.style.userSelect = 'none';
+        DOM.dynastyDesc.style.opacity = '0.5';
+      }
+
+      document.title = `Cổ Vật Bí Ẩn — Khai Ấn Sử Việt`;
+
+      const galleryContainer = document.getElementById('artifactGallery');
+      const actionsContainer = document.getElementById('artifactActions');
+      if (galleryContainer) galleryContainer.style.display = 'none';
+      if (actionsContainer) actionsContainer.style.display = 'none';
+
+      const specsList = document.getElementById('artifactSpecsList');
+      if (specsList) specsList.innerHTML = '<li><span class="artifact__specs-label">TRẠNG THÁI</span><span class="artifact__specs-value" style="color:#A62C21; font-weight: bold;">Chưa giải mã</span></li>';
+
+      const artifactStory = document.getElementById('artifactStory');
+      if (artifactStory) {
+        artifactStory.innerHTML = '<p>Lịch sử đang chờ bạn khám phá...</p>';
+        artifactStory.style.filter = 'blur(6px)';
+        artifactStory.style.userSelect = 'none';
+      }
+
+      return;
+    }
+
     if (DOM.dynasty) DOM.dynasty.textContent = state.product.dynasty;
     if (DOM.era) DOM.era.textContent = state.product.era;
     if (DOM.name) DOM.name.textContent = state.product.artifact;
@@ -433,6 +475,20 @@
 
   function renderPlaceholder() {
     if (!DOM.viewerContainer) return;
+
+    if (!state.isUnlocked) {
+      DOM.viewerContainer.innerHTML = `
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; animation: a3dFadeIn 0.5s ease; background: radial-gradient(circle, rgba(15,10,5,0.7) 0%, rgba(5,3,1,0.9) 100%);">
+          <svg viewBox="0 0 80 80" style="width: 120px; height: 120px; color: rgba(218,165,32,0.3); margin-bottom: 1.5rem; filter: drop-shadow(0 0 10px rgba(218,165,32,0.2));">
+            ${state.product.silhouetteSvg}
+          </svg>
+          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #DAA520; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; text-shadow: 0 0 10px rgba(218,165,32,0.5);">Chưa giải mã</p>
+          <a href="index.html#products" style="margin-top: 1.5rem; padding: 12px 30px; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 700; color: #1A1108; background: linear-gradient(135deg, #B8860B, #DAA520); border-radius: 6px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 4px 15px rgba(184,134,11,0.3); transition: all 0.3s ease;">Sưu tầm cổ vật ngay</a>
+        </div>
+      `;
+      return;
+    }
+
     // Mặc định hiển thị ảnh đầu tiên trong gallery
     changeVisualToImage(0);
   }

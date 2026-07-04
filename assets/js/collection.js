@@ -9,7 +9,7 @@
   /* ── State ── */
   const STORAGE_KEY = 'khaiansuviet_unlocked';
   let rawStorage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  
+
   // Lọc bỏ các ID cũ/không hợp lệ để đảm bảo thanh tiến độ đếm chính xác
   if (typeof PRODUCTS !== 'undefined') {
     const validArtifactIds = new Set(PRODUCTS.filter(p => p.type === 'artifact').map(p => String(p.id)));
@@ -17,14 +17,14 @@
   }
 
   let unlockedCards = new Set(rawStorage);
-  
+
   // --- TEST MODE: Tự động mở khóa toàn bộ 14 cổ vật ---
   if (typeof PRODUCTS !== 'undefined') {
     PRODUCTS.filter(p => p.type === 'artifact').forEach(p => unlockedCards.add(String(p.id)));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(unlockedCards)));
   }
   // ----------------------------------------------------
-  
+
   let unlockCount = unlockedCards.size;
 
   /* ── DOM ── */
