@@ -183,6 +183,58 @@
 
 
   /* ============================================================
+     6. AR GUIDE ANIMATION SYNC
+     ============================================================ */
+  const arGuideCards = document.querySelectorAll('.ar-guide__card');
+  const guidePath = document.getElementById('guidePath');
+  const guideTraveler = document.getElementById('guideTraveler');
+
+  if (arGuideCards.length > 0 && guidePath && guideTraveler) {
+    const totalDuration = 16000; // 16s cycle
+    const pathLength = guidePath.getTotalLength();
+    
+    function updateArGuideHighlight(timestamp) {
+      if (!timestamp) timestamp = performance.now();
+      
+      const currentCycleTime = timestamp % totalDuration;
+      const progress = currentCycleTime / totalDuration;
+      
+      // Get exact point on SVG path
+      const point = guidePath.getPointAtLength(progress * pathLength);
+      
+      // Update HTML Traveler position (using % allows it to perfectly track the stretched SVG)
+      guideTraveler.style.left = `${point.x}%`;
+      guideTraveler.style.top = `${point.y}%`;
+      
+      // Find the card whose center is closest to or just passed by the traveler
+      // We do this by checking the traveler's vertical position relative to the cards
+      const travelerRect = guideTraveler.getBoundingClientRect();
+      const travelerCenterY = travelerRect.top + travelerRect.height / 2;
+      
+      let activeIndex = 0;
+      arGuideCards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        // If traveler is within or past the top of the card (with a 50px threshold for early activation)
+        if (travelerCenterY >= cardRect.top - 50) {
+          activeIndex = index;
+        }
+      });
+      
+      arGuideCards.forEach((card, index) => {
+        if (index === activeIndex) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+      
+      requestAnimationFrame(updateArGuideHighlight);
+    }
+    
+    requestAnimationFrame(updateArGuideHighlight);
+  }
+
+  /* ============================================================
      INIT
      ============================================================ */
   renderBlindBoxes();

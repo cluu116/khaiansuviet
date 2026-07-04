@@ -45,7 +45,7 @@
           <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2.5" />
           <rect x="8" y="8" width="32" height="32" rx="1.5" fill="none" stroke="#A62C21" stroke-width="1"
             opacity="0.6" />
-          <text x="24" y="30" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="18"
+          <text x="24" y="30" text-anchor="middle" font-family="'Noto Serif', serif" font-size="18"
             font-weight="bold" fill="#B8860B">印</text>
         </svg>
       </div>
@@ -1152,25 +1152,37 @@
       <h2 class="section__title reveal">Hành Trình Khảo Cổ Của Bạn</h2>
       <div class="section__divider reveal"></div>
 
-      <div class="ar-guide__s-shape">
+      <div class="ar-guide__s-shape" id="arGuideTimeline">
         <!-- SVG S-Curve Background -->
         <svg class="ar-guide__s-path" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <!-- Background Vietnam map outline (stylized) -->
-          <path class="s-path-line" d="M 70 5 C 120 30, -10 40, 30 50 C 70 60, 110 75, 40 95"
-            stroke="rgba(184, 134, 11, 0.5)" stroke-width="3" fill="none" vector-effect="non-scaling-stroke"
-            stroke-dasharray="10 10" />
-
-          <!-- Animated glowing dot traveling along the path -->
-          <circle r="1" fill="#B8860B">
-            <animateMotion dur="6s" repeatCount="indefinite"
-              path="M 70 5 C 120 30, -10 40, 30 50 C 70 60, 110 75, 40 95" />
-          </circle>
+          <!-- Background path (yellow dashed) -->
+          <path id="guidePath" class="s-path-line s-path-bg" d="M 70 5 C 120 30, -10 40, 30 50 C 70 60, 110 75, 40 95"
+            stroke="#FFD700" stroke-width="2.5" fill="none" vector-effect="non-scaling-stroke"
+            stroke-dasharray="6 6" opacity="0.6" />
         </svg>
 
-        <!-- Step 1 (North) -->
-        <div class="ar-guide__card step-1 reveal">
+        <!-- HTML Traveler (Perfect circle, no distortion) -->
+        <div id="guideTraveler" class="ar-guide__traveler">
+          <div class="ar-guide__traveler-logo">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="40" height="40" rx="20" fill="#A62C21" stroke="#FFD700" stroke-width="2.5" />
+              <rect x="8" y="8" width="32" height="32" rx="16" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.6" />
+              <text x="24" y="30" text-anchor="middle" font-family="'Noto Serif', serif" font-size="18" font-weight="bold" fill="#FFD700">印</text>
+            </svg>
+          </div>
+          <div class="ar-guide__traveler-ripple"></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="ar-guide__card step-1 reveal" data-step="1">
           <div class="ar-guide__card-bg"></div>
-          <div class="ar-guide__card-number">1</div>
+          <div class="ar-guide__card-number" data-step-num="1">
+            <span class="ar-guide__card-number-text">1</span>
+            <svg class="ar-guide__card-number-seal" viewBox="0 0 60 60">
+              <rect x="2" y="2" width="56" height="56" rx="6" fill="none" stroke="rgba(184,134,11,0.15)" stroke-width="2" />
+              <rect x="6" y="6" width="48" height="48" rx="4" fill="none" stroke="rgba(184,134,11,0.1)" stroke-width="1" />
+            </svg>
+          </div>
           <div class="ar-guide__card-content">
             <div class="ar-guide__card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1185,10 +1197,16 @@
           </div>
         </div>
 
-        <!-- Step 2 (Central) -->
-        <div class="ar-guide__card step-2 reveal">
+        <!-- Step 2 -->
+        <div class="ar-guide__card step-2 reveal" data-step="2">
           <div class="ar-guide__card-bg"></div>
-          <div class="ar-guide__card-number">2</div>
+          <div class="ar-guide__card-number" data-step-num="2">
+            <span class="ar-guide__card-number-text">2</span>
+            <svg class="ar-guide__card-number-seal" viewBox="0 0 60 60">
+              <rect x="2" y="2" width="56" height="56" rx="6" fill="none" stroke="rgba(184,134,11,0.15)" stroke-width="2" />
+              <rect x="6" y="6" width="48" height="48" rx="4" fill="none" stroke="rgba(184,134,11,0.1)" stroke-width="1" />
+            </svg>
+          </div>
           <div class="ar-guide__card-content">
             <div class="ar-guide__card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1202,27 +1220,39 @@
           </div>
         </div>
 
-        <!-- Step 3 (South/HCM) -->
-        <div class="ar-guide__card step-3 reveal">
+        <!-- Step 3 -->
+        <div class="ar-guide__card step-3 reveal" data-step="3">
           <div class="ar-guide__card-bg"></div>
-          <div class="ar-guide__card-number">3</div>
+          <div class="ar-guide__card-number" data-step-num="3">
+            <span class="ar-guide__card-number-text">3</span>
+            <svg class="ar-guide__card-number-seal" viewBox="0 0 60 60">
+              <rect x="2" y="2" width="56" height="56" rx="6" fill="none" stroke="rgba(184,134,11,0.15)" stroke-width="2" />
+              <rect x="6" y="6" width="48" height="48" rx="4" fill="none" stroke="rgba(184,134,11,0.1)" stroke-width="1" />
+            </svg>
+          </div>
           <div class="ar-guide__card-content">
             <div class="ar-guide__card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
               </svg>
             </div>
-            <h3 class="ar-guide__card-title">Chiêm Ngưỡng Cổ Vật 3D & AR</h3>
+            <h3 class="ar-guide__card-title">Chiêm Ngưỡng Cổ Vật 3D &amp; AR</h3>
             <p class="ar-guide__card-desc">
               Cổ vật hiện hình ngay trước mắt bạn! Xoay 360°, phóng to chi tiết, và kích hoạt không gian AR.
             </p>
           </div>
         </div>
 
-        <!-- Step 4 (Mekong Delta) -->
-        <div class="ar-guide__card step-4 reveal">
+        <!-- Step 4 -->
+        <div class="ar-guide__card step-4 reveal" data-step="4">
           <div class="ar-guide__card-bg"></div>
-          <div class="ar-guide__card-number">4</div>
+          <div class="ar-guide__card-number" data-step-num="4">
+            <span class="ar-guide__card-number-text">4</span>
+            <svg class="ar-guide__card-number-seal" viewBox="0 0 60 60">
+              <rect x="2" y="2" width="56" height="56" rx="6" fill="none" stroke="rgba(184,134,11,0.15)" stroke-width="2" />
+              <rect x="6" y="6" width="48" height="48" rx="4" fill="none" stroke="rgba(184,134,11,0.1)" stroke-width="1" />
+            </svg>
+          </div>
           <div class="ar-guide__card-content">
             <div class="ar-guide__card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1235,6 +1265,7 @@
               Thu thập đủ 14 triều đại để hoàn thiện bộ sưu tập và trở thành nhà sử học số thế hệ mới!
             </p>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -1359,7 +1390,7 @@
             <div class="footer__brand-icon">
               <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="4" width="40" height="40" rx="3" fill="none" stroke="#A62C21" stroke-width="2" />
-                <text x="24" y="30" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="16"
+                <text x="24" y="30" text-anchor="middle" font-family="'Noto Serif', serif" font-size="16"
                   font-weight="bold" fill="#B8860B">印</text>
               </svg>
             </div>

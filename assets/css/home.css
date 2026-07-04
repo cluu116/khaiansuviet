@@ -812,6 +812,63 @@
   z-index: 0;
 }
 
+.ar-guide__traveler {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ar-guide__traveler-logo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--den-nham, #1c1a17);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ar-guide__traveler-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ar-guide__traveler-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid #FFD700;
+  animation: travelerRipple 1.5s linear infinite;
+  z-index: 1;
+}
+
+@keyframes travelerRipple {
+  0% {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+  100% {
+    width: 250%;
+    height: 250%;
+    opacity: 0;
+  }
+}
+
 .ar-guide__s-shape .ar-guide__card {
   width: 45%;
   z-index: 1;
@@ -857,26 +914,64 @@
   border-radius: inherit;
 }
 
-.ar-guide__card:hover .ar-guide__card-bg {
+.ar-guide__card:hover .ar-guide__card-bg,
+.ar-guide__card.active .ar-guide__card-bg {
   opacity: 1;
+}
+
+.ar-guide__card.active {
+  border-color: rgba(218, 165, 32, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(218, 165, 32, 0.2);
 }
 
 .ar-guide__card-number {
   position: absolute;
-  top: -10px;
+  top: -20px;
   right: 15px;
-  font-family: var(--font-display);
-  font-size: 6rem;
-  font-weight: 900;
-  color: rgba(184, 134, 11, 0.08);
-  line-height: 1;
-  pointer-events: none;
-  transition: color var(--transition-normal);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
+  pointer-events: none;
 }
 
-.ar-guide__card:hover .ar-guide__card-number {
-  color: rgba(184, 134, 11, 0.2);
+.ar-guide__card-number-seal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all var(--transition-normal);
+}
+
+.ar-guide__card-number-text {
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(184, 134, 11, 0.3);
+  transition: all var(--transition-normal);
+  z-index: 2;
+}
+
+.ar-guide__card:hover .ar-guide__card-number-text {
+  color: rgba(184, 134, 11, 0.7);
+}
+
+.ar-guide__card.active .ar-guide__card-number-text {
+  color: var(--vang-thep);
+  text-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+}
+
+.ar-guide__card.active .ar-guide__card-number-seal rect {
+  stroke: rgba(218, 165, 32, 0.6);
+}
+
+.ar-guide__card.active .ar-guide__card-icon {
+  background: rgba(184, 134, 11, 0.3);
+  color: #FFD700;
+  box-shadow: var(--glow-gold);
 }
 
 .ar-guide__card-content {
