@@ -14,7 +14,7 @@
       qty: '1 Blind Box',
       desc: 'Mở ra 1 cổ vật bí ẩn từ 14 triều đại lịch sử Việt Nam.',
       price: 199000,
-      image: 'assets/images/blind_box_1.png'
+      image: 'assets/images/blindbox/blind_box_1.png'
     },
     {
       id: 102,
@@ -22,7 +22,7 @@
       qty: '3 Blind Box',
       desc: 'Combo 3 hộp — tỷ lệ nhận phiên bản đặc biệt cao hơn.',
       price: 549000,
-      image: 'assets/images/blind_box_3.png'
+      image: 'assets/images/blindbox/blind_box_3.png'
     },
     {
       id: 103,
@@ -30,7 +30,7 @@
       qty: '6 Blind Box',
       desc: 'Combo 6 hộp — chắc chắn có ít nhất 1 phiên bản đặc biệt.',
       price: 990000,
-      image: 'assets/images/blind_box_6.png'
+      image: 'assets/images/blindbox/blind_box_6.png'
     }
   ];
 

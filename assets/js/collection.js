@@ -30,24 +30,24 @@
     // Mỗi nhóm có tiêu đề và mô tả riêng, tạo hệ thống phân cấp trực quan
     const ERAS = [
       {
-        title: "Kỷ Nguyên Lập Quốc & Bắc Thuộc",
-        desc: "Những bước đi đầu tiên của dân tộc và ngàn năm đấu tranh bảo vệ nòi giống",
-        ids: [1, 2, 3, 14]
+        title: "Kỷ Nguyên Lập Quốc",
+        desc: "Những bước đi đầu tiên của dân tộc — từ huyền thoại Vua Hùng đến thành Cổ Loa",
+        ids: [1, 2]
       },
       {
         title: "Buổi Đầu Độc Lập",
         desc: "Giành lại non sông, xưng đế định đô, khẳng định chủ quyền",
-        ids: [4, 5, 6]
+        ids: [3, 4, 5]
       },
       {
         title: "Đại Việt Tỏa Sáng",
         desc: "Thời kỳ phát triển rực rỡ nhất về văn hóa, quân sự và chính trị",
-        ids: [7, 8, 9]
+        ids: [6, 7, 8, 9]
       },
       {
-        title: "Nam Bắc Triều & Cận Đại",
+        title: "Nam Bắc Phân Tranh & Cận Đại",
         desc: "Sự phân tranh quyền lực, những cuộc khởi nghĩa lớn và đế nghiệp cuối cùng",
-        ids: [10, 11, 12, 13]
+        ids: [10, 11, 12, 13, 14]
       }
     ];
 
