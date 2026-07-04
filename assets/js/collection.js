@@ -8,7 +8,23 @@
 
   /* ── State ── */
   const STORAGE_KEY = 'khaiansuviet_unlocked';
-  let unlockedCards = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+  let rawStorage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  
+  // Lọc bỏ các ID cũ/không hợp lệ để đảm bảo thanh tiến độ đếm chính xác
+  if (typeof PRODUCTS !== 'undefined') {
+    const validArtifactIds = new Set(PRODUCTS.filter(p => p.type === 'artifact').map(p => String(p.id)));
+    rawStorage = rawStorage.filter(id => validArtifactIds.has(String(id)));
+  }
+
+  let unlockedCards = new Set(rawStorage);
+  
+  // --- TEST MODE: Tự động mở khóa toàn bộ 14 cổ vật ---
+  if (typeof PRODUCTS !== 'undefined') {
+    PRODUCTS.filter(p => p.type === 'artifact').forEach(p => unlockedCards.add(String(p.id)));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(unlockedCards)));
+  }
+  // ----------------------------------------------------
+  
   let unlockCount = unlockedCards.size;
 
   /* ── DOM ── */
@@ -24,7 +40,7 @@
   function renderCardsGrid() {
     if (!cardsGrid || typeof PRODUCTS === 'undefined') return;
 
-    const collectionProducts = PRODUCTS.filter(p => p.id <= 14);
+    const collectionProducts = PRODUCTS.filter(p => p.type === 'artifact');
 
     // Phân nhóm 14 triều đại thành 4 kỷ nguyên lịch sử theo trình tự thời gian
     // Mỗi nhóm có tiêu đề và mô tả riêng, tạo hệ thống phân cấp trực quan
@@ -32,22 +48,22 @@
       {
         title: "Kỷ Nguyên Lập Quốc",
         desc: "Những bước đi đầu tiên của dân tộc — từ huyền thoại Vua Hùng đến thành Cổ Loa",
-        ids: [1, 2]
+        ids: ["kasv_335f5f38", "kasv_8caaa67e"]
       },
       {
         title: "Buổi Đầu Độc Lập",
         desc: "Giành lại non sông, xưng đế định đô, khẳng định chủ quyền",
-        ids: [3, 4, 5]
+        ids: ["kasv_9104dbd9", "kasv_7a7f947d", "kasv_2db5bf83"]
       },
       {
         title: "Đại Việt Tỏa Sáng",
         desc: "Thời kỳ phát triển rực rỡ nhất về văn hóa, quân sự và chính trị",
-        ids: [6, 7, 8, 9]
+        ids: ["kasv_6b8c2b5f", "kasv_f2c8ede5", "kasv_62ba131f", "kasv_3b6696e6"]
       },
       {
         title: "Nam Bắc Phân Tranh & Cận Đại",
         desc: "Sự phân tranh quyền lực, những cuộc khởi nghĩa lớn và đế nghiệp cuối cùng",
-        ids: [10, 11, 12, 13, 14]
+        ids: ["kasv_1990acd8", "kasv_09b93159", "kasv_5dcebea7", "kasv_b2ddf02e", "kasv_92e2d582"]
       }
     ];
 

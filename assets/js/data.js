@@ -22,7 +22,8 @@ const PRODUCTS = [
      Trống Đồng Đông Sơn
      ──────────────────────────────────────────────────────────── */
   {
-    id: 1,
+    id: "kasv_335f5f38",
+    type: 'artifact',
     dynasty: 'Văn Lang',
     era: '~2879 – 258 TCN',
     artifact: 'Trống Đồng Đông Sơn',
@@ -52,7 +53,8 @@ const PRODUCTS = [
      Nỏ Thần An Dương Vương
      ──────────────────────────────────────────────────────────── */
   {
-    id: 2,
+    id: "kasv_8caaa67e",
+    type: 'artifact',
     dynasty: 'Âu Lạc',
     era: '257 – 179 TCN',
     artifact: 'Nỏ Thần An Dương Vương',
@@ -81,7 +83,8 @@ const PRODUCTS = [
      Sa Hình Cọc Gỗ Bạch Đằng
      ──────────────────────────────────────────────────────────── */
   {
-    id: 3,
+    id: "kasv_9104dbd9",
+    type: 'artifact',
     dynasty: 'Nhà Ngô',
     era: '939 – 965',
     artifact: 'Sa Hình Cọc Gỗ Bạch Đằng',
@@ -110,7 +113,8 @@ const PRODUCTS = [
      Tiền Thái Bình Hưng Bảo
      ──────────────────────────────────────────────────────────── */
   {
-    id: 4,
+    id: "kasv_7a7f947d",
+    type: 'artifact',
     dynasty: 'Nhà Đinh',
     era: '968 – 980',
     artifact: 'Tiền Thái Bình Hưng Bảo',
@@ -139,7 +143,8 @@ const PRODUCTS = [
      Gạch Đại Việt Quốc Quân Thành Chuyên
      ──────────────────────────────────────────────────────────── */
   {
-    id: 5,
+    id: "kasv_2db5bf83",
+    type: 'artifact',
     dynasty: 'Tiền Lê',
     era: '980 – 1009',
     artifact: 'Gạch Đại Việt Quốc Quân Thành Chuyên',
@@ -168,7 +173,8 @@ const PRODUCTS = [
      Đầu Rồng Thời Lý
      ──────────────────────────────────────────────────────────── */
   {
-    id: 6,
+    id: "kasv_6b8c2b5f",
+    type: 'artifact',
     dynasty: 'Nhà Lý',
     era: '1009 – 1225',
     artifact: 'Đầu Rồng Thời Lý',
@@ -197,7 +203,8 @@ const PRODUCTS = [
      Ấn Tín Nhà Trần
      ──────────────────────────────────────────────────────────── */
   {
-    id: 7,
+    id: "kasv_f2c8ede5",
+    type: 'artifact',
     dynasty: 'Nhà Trần',
     era: '1225 – 1400',
     artifact: 'Ấn Tín Nhà Trần',
@@ -226,7 +233,8 @@ const PRODUCTS = [
      Đá Thành Nhà Hồ
      ──────────────────────────────────────────────────────────── */
   {
-    id: 8,
+    id: "kasv_62ba131f",
+    type: 'artifact',
     dynasty: 'Nhà Hồ',
     era: '1400 – 1407',
     artifact: 'Đá Thành Nhà Hồ',
@@ -255,7 +263,8 @@ const PRODUCTS = [
      Rồng Đá Điện Kính Thiên
      ──────────────────────────────────────────────────────────── */
   {
-    id: 9,
+    id: "kasv_3b6696e6",
+    type: 'artifact',
     dynasty: 'Lê Sơ',
     era: '1428 – 1527',
     artifact: 'Rồng Đá Điện Kính Thiên',
@@ -285,7 +294,8 @@ const PRODUCTS = [
      Lư Hương Gốm Men Nâu
      ──────────────────────────────────────────────────────────── */
   {
-    id: 10,
+    id: "kasv_1990acd8",
+    type: 'artifact',
     dynasty: 'Nhà Mạc',
     era: '1527 – 1592',
     artifact: 'Lư Hương Gốm Men Nâu',
@@ -314,7 +324,8 @@ const PRODUCTS = [
      Súng Thần Công
      ──────────────────────────────────────────────────────────── */
   {
-    id: 11,
+    id: "kasv_09b93159",
+    type: 'artifact',
     dynasty: 'Lê Trung Hưng – Trịnh',
     era: '1533 – 1789',
     artifact: 'Súng Thần Công',
@@ -343,7 +354,8 @@ const PRODUCTS = [
      Thuyền Chiến Đàng Trong
      ──────────────────────────────────────────────────────────── */
   {
-    id: 12,
+    id: "kasv_5dcebea7",
+    type: 'artifact',
     dynasty: 'Chúa Nguyễn (Đàng Trong)',
     era: '1558 – 1777',
     artifact: 'Thuyền Chiến Đàng Trong',
@@ -372,7 +384,8 @@ const PRODUCTS = [
      Ấm Hình Voi Bằng Đồng
      ──────────────────────────────────────────────────────────── */
   {
-    id: 13,
+    id: "kasv_b2ddf02e",
+    type: 'artifact',
     dynasty: 'Tây Sơn',
     era: '1771 – 1802',
     artifact: 'Ấm Hình Voi Bằng Đồng',
@@ -401,7 +414,8 @@ const PRODUCTS = [
      Ấn Vàng Hoàng Đế Chi Bảo
      ──────────────────────────────────────────────────────────── */
   {
-    id: 14,
+    id: "kasv_92e2d582",
+    type: 'artifact',
     dynasty: 'Nhà Nguyễn',
     era: '1802 – 1945',
     artifact: 'Ấn Vàng Hoàng Đế Chi Bảo',
@@ -429,7 +443,8 @@ const PRODUCTS = [
      BLIND BOX PRODUCTS (id 101+)
      ════════════════════════════════════════════════════════════ */
   {
-    id: 101,
+    id: "kasv_c9163e7c",
+    type: 'blindbox',
     dynasty: 'Khai Ấn Sử Việt',
     era: 'Bộ Sưu Tập 14 Triều Đại',
     artifact: 'Gói Trải Nghiệm (1 Blind Box)',
@@ -453,7 +468,8 @@ const PRODUCTS = [
     backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
   },
   {
-    id: 102,
+    id: "kasv_a78d2eec",
+    type: 'blindbox',
     dynasty: 'Khai Ấn Sử Việt',
     era: 'Bộ Sưu Tập 14 Triều Đại',
     artifact: 'Gói Sưu Tầm (3 Blind Box)',
@@ -477,7 +493,8 @@ const PRODUCTS = [
     backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
   },
   {
-    id: 103,
+    id: "kasv_be952029",
+    type: 'blindbox',
     dynasty: 'Khai Ấn Sử Việt',
     era: 'Bộ Sưu Tập 14 Triều Đại',
     artifact: 'Gói Hoàng Gia (6 Blind Box)',
@@ -505,12 +522,12 @@ const PRODUCTS = [
 /* ── Helper Functions ── */
 
 function getProductById(id) {
-  return PRODUCTS.find(p => p.id === parseInt(id));
+  return PRODUCTS.find(p => p.id === id);
 }
 
 function getRelatedProducts(currentId, count = 3) {
   return PRODUCTS
-    .filter(p => p.id >= 101 && p.id !== parseInt(currentId))
+    .filter(p => p.type === 'blindbox' && p.id !== currentId)
     .sort(() => Math.random() - 0.5)
     .slice(0, count);
 }

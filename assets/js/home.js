@@ -9,7 +9,7 @@
   /* ── Blind Box Data (homepage only) ── */
   const BLIND_BOXES = [
     {
-      id: 101,
+      id: "kasv_c9163e7c",
       name: 'Gói Trải Nghiệm',
       qty: '1 Blind Box',
       desc: 'Mở ra 1 cổ vật bí ẩn từ 14 triều đại lịch sử Việt Nam.',
@@ -17,7 +17,7 @@
       image: 'assets/images/blindbox/blind_box_1.png'
     },
     {
-      id: 102,
+      id: "kasv_a78d2eec",
       name: 'Gói Sưu Tầm',
       qty: '3 Blind Box',
       desc: 'Combo 3 hộp — tỷ lệ nhận phiên bản đặc biệt cao hơn.',
@@ -25,7 +25,7 @@
       image: 'assets/images/blindbox/blind_box_3.png'
     },
     {
-      id: 103,
+      id: "kasv_be952029",
       name: 'Gói Hoàng Gia',
       qty: '6 Blind Box',
       desc: 'Combo 6 hộp — chắc chắn có ít nhất 1 phiên bản đặc biệt.',

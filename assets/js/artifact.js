@@ -48,58 +48,132 @@
         position: absolute; inset: 0;
         display: flex; flex-direction: column;
         align-items: center; justify-content: center;
-        gap: 1.2rem;
-        background: radial-gradient(ellipse at center, rgba(26,17,8,0.95) 0%, rgba(15,10,5,0.98) 100%);
+        gap: 1.5rem;
+        background: transparent;
         z-index: 5;
-        animation: a3dFadeIn 0.4s ease;
+        animation: a3dFadeIn 0.5s ease;
       }
 
-      /* ── Shimmer cube icon ── */
-      .artifact3d-loading__icon {
-        width: 48px; height: 48px;
-        opacity: 0.7;
-        animation: a3dPulse 2s ease-in-out infinite;
+      /* ── Time Compass (La Đồ Thời Gian) ── */
+      .time-compass {
+        position: relative;
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        filter: drop-shadow(0 0 15px rgba(184,134,11,0.5));
       }
-      .artifact3d-loading__icon svg {
-        width: 100%; height: 100%;
-        stroke: #B8860B; fill: none; stroke-width: 1.5;
+      .time-compass__ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid transparent;
+      }
+      .time-compass__ring--outer {
+        width: 100%;
+        height: 100%;
+        border-top-color: #B8860B;
+        border-bottom-color: #DAA520;
+        border-right-color: rgba(184,134,11,0.2);
+        border-left-color: rgba(184,134,11,0.2);
+        animation: spinRight 3s linear infinite;
+      }
+      .time-compass__ring--middle {
+        width: 75%;
+        height: 75%;
+        border-width: 1px;
+        border-style: dashed;
+        border-color: #DAA520;
+        animation: spinLeft 4s linear infinite;
+        opacity: 0.8;
+      }
+      .time-compass__ring--inner {
+        width: 55%;
+        height: 55%;
+        border-left-color: #F8D568;
+        border-right-color: #8B6914;
+        animation: spinRight 2s linear infinite;
+      }
+      .time-compass__center {
+        position: relative;
+        width: 35px;
+        height: 35px;
+        background: linear-gradient(135deg, #2A1F0D, #1A1108);
+        border: 1px solid #B8860B;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        box-shadow: inset 0 0 10px rgba(184,134,11,0.6);
+      }
+      .time-compass__glow {
+        position: absolute;
+        inset: -5px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(184,134,11,0.6) 0%, transparent 70%);
+        animation: pulseGlow 2s ease-in-out infinite;
+      }
+      .time-compass__rune {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #F8D568;
+        text-shadow: 0 0 8px #F8D568;
+        animation: pulseText 2s ease-in-out infinite;
+        z-index: 3;
       }
 
       /* ── Progress bar container ── */
       .artifact3d-progress {
-        width: 200px; max-width: 60%;
-        height: 4px;
+        width: 240px; max-width: 75%;
+        height: 3px;
         background: rgba(184,134,11,0.15);
         border-radius: 4px;
-        overflow: hidden;
         position: relative;
+        overflow: visible;
       }
       .artifact3d-progress__fill {
-        height: 100%;
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
         width: 0%;
-        background: linear-gradient(90deg, #8B6914, #B8860B, #DAA520, #B8860B);
-        background-size: 300% 100%;
+        background: linear-gradient(90deg, #8B6914, #DAA520, #F8D568);
         border-radius: 4px;
-        transition: width 0.3s ease;
-        animation: a3dShimmer 2s linear infinite;
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 12px rgba(218,165,32,0.5);
+      }
+      .artifact3d-progress__glow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        background: #FFF;
+        border-radius: 50%;
+        box-shadow: 0 0 15px 4px rgba(248,213,104,0.9);
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        left: 0%;
+        margin-left: -4px;
       }
 
       /* ── Text info ── */
       .artifact3d-loading__text {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 0.8rem;
-        font-weight: 600;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: #B8860B;
-        opacity: 0.9;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 4px;
+        color: #F8D568;
+        text-shadow: 0 0 8px rgba(218,165,32,0.5);
+        margin-top: 0.5rem;
       }
       .artifact3d-loading__detail {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 0.7rem;
-        color: rgba(184,134,11,0.55);
+        font-size: 0.8rem;
+        font-style: italic;
+        color: rgba(218,165,32,0.8);
         text-align: center;
-        line-height: 1.4;
+        letter-spacing: 1px;
+        animation: floatText 3s ease-in-out infinite;
       }
 
       /* ── Error state ── */
@@ -108,23 +182,29 @@
         display: flex; flex-direction: column;
         align-items: center; justify-content: center;
         gap: 0.8rem;
-        background: radial-gradient(ellipse at center, rgba(26,17,8,0.95) 0%, rgba(15,10,5,0.98) 100%);
+        background: transparent;
         z-index: 5;
         animation: a3dFadeIn 0.4s ease;
       }
+      .artifact3d-error__icon {
+        width: 48px; height: 48px;
+        opacity: 0.8;
+        animation: pulseGlow 2s infinite;
+      }
       .artifact3d-error__title {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         font-weight: 700;
         letter-spacing: 2px;
         color: #A62C21;
+        text-shadow: 0 0 10px rgba(166,44,33,0.4);
       }
       .artifact3d-error__msg {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 0.7rem;
-        color: rgba(184,134,11,0.6);
+        font-size: 0.75rem;
+        color: rgba(184,134,11,0.7);
         text-align: center;
-        max-width: 260px;
+        max-width: 280px;
         line-height: 1.5;
       }
       .artifact3d-error__btn {
@@ -144,12 +224,12 @@
       }
       .artifact3d-error__btn:hover {
         transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(184,134,11,0.4);
+        box-shadow: 0 6px 20px rgba(184,134,11,0.5);
       }
 
       /* ── Model viewer fade-in ── */
       .artifact3d-viewer-ready {
-        animation: a3dFadeIn 0.6s ease forwards;
+        animation: a3dFadeIn 0.8s ease forwards;
       }
 
       /* ── Keyframes ── */
@@ -157,13 +237,25 @@
         from { opacity: 0; }
         to   { opacity: 1; }
       }
-      @keyframes a3dPulse {
-        0%, 100% { opacity: 0.5; transform: scale(1); }
-        50%      { opacity: 1;   transform: scale(1.08); }
+      @keyframes spinRight {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
-      @keyframes a3dShimmer {
-        0%   { background-position: 100% 0; }
-        100% { background-position: -100% 0; }
+      @keyframes spinLeft {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(-360deg); }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.1); opacity: 1; }
+      }
+      @keyframes pulseText {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; text-shadow: 0 0 12px #F8D568; }
+      }
+      @keyframes floatText {
+        0%, 100% { opacity: 0.7; transform: translateY(0); }
+        50% { opacity: 1; transform: translateY(-3px); }
       }
     `;
     document.head.appendChild(style);
@@ -366,17 +458,21 @@
   function renderLoadingUI() {
     return `
       <div class="artifact3d-loading" id="model3dLoading">
-        <div class="artifact3d-loading__icon">
-          <svg viewBox="0 0 80 80">
-            <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
-            <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
-          </svg>
+        <div class="time-compass">
+          <div class="time-compass__ring time-compass__ring--outer"></div>
+          <div class="time-compass__ring time-compass__ring--middle"></div>
+          <div class="time-compass__ring time-compass__ring--inner"></div>
+          <div class="time-compass__center">
+            <div class="time-compass__glow"></div>
+            <span class="time-compass__rune">印</span>
+          </div>
         </div>
         <div class="artifact3d-progress">
           <div class="artifact3d-progress__fill" id="model3dProgressFill"></div>
+          <div class="artifact3d-progress__glow" id="model3dProgressGlow"></div>
         </div>
         <span class="artifact3d-loading__text" id="model3dPercent">ĐANG TẢI 0%</span>
-        <span class="artifact3d-loading__detail" id="model3dDetail">Vui lòng đợi trong giây lát...</span>
+        <span class="artifact3d-loading__detail" id="model3dDetail">Khởi tạo La Đồ Thời Gian...</span>
       </div>
     `;
   }
@@ -386,6 +482,7 @@
    */
   function updateProgress(progressEvent) {
     const fill = document.getElementById('model3dProgressFill');
+    const glow = document.getElementById('model3dProgressGlow');
     const percentEl = document.getElementById('model3dPercent');
     const detailEl = document.getElementById('model3dDetail');
 
@@ -396,17 +493,20 @@
     const percent = Math.round(ratio * 100);
 
     fill.style.width = `${percent}%`;
+    if (glow) glow.style.left = `${percent}%`;
     percentEl.textContent = `ĐANG TẢI ${percent}%`;
 
     if (detailEl) {
       if (percent < 10) {
-        detailEl.textContent = 'Đang kết nối tới máy chủ...';
-      } else if (percent < 50) {
-        detailEl.textContent = 'Đang tải dữ liệu mô hình 3D...';
+        detailEl.textContent = 'Khởi tạo La Đồ Thời Gian...';
+      } else if (percent < 40) {
+        detailEl.textContent = 'Đang giải mã không gian & thời gian...';
+      } else if (percent < 70) {
+        detailEl.textContent = 'Đang phục dựng hình ảnh cổ vật...';
       } else if (percent < 90) {
-        detailEl.textContent = 'Đang xử lý — sắp hoàn tất...';
+        detailEl.textContent = 'Đang đồng bộ hạt ánh sáng...';
       } else {
-        detailEl.textContent = 'Đang khởi tạo bộ dựng hình 3D...';
+        detailEl.textContent = 'Hoàn tất — Chuẩn bị hiển thị...';
       }
     }
   }
@@ -421,13 +521,13 @@
 
     DOM.viewerContainer.innerHTML = `
       <div class="artifact3d-error">
-        <div class="artifact3d-loading__icon">
-          <svg viewBox="0 0 80 80">
-            <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
-            <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
+        <div class="artifact3d-error__icon">
+          <svg viewBox="0 0 80 80" stroke="#A62C21" fill="none" stroke-width="3">
+            <circle cx="40" cy="40" r="30" stroke-dasharray="4 4"/>
+            <path d="M40 25 L40 45 M40 55 L40 60" stroke-linecap="round"/>
           </svg>
         </div>
-        <span class="artifact3d-error__title">LỖI TẢI MÔ HÌNH</span>
+        <span class="artifact3d-error__title">LỖI LA ĐỒ THỜI GIAN</span>
         <span class="artifact3d-error__msg">${errorMsg}</span>
         ${retryBtnHtml}
       </div>
