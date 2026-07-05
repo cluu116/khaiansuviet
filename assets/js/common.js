@@ -23,7 +23,7 @@
         preloader.classList.add('hidden');
         document.body.style.overflow = '';
       }
-    }, 1200);
+    }, 250);
   }
 
   window.addEventListener('load', hidePreloader);
@@ -152,12 +152,13 @@
   window.showToast = function (message) {
     if (!toast) return;
     clearTimeout(toastTimeout);
-    toast.textContent = message;
+
+    toast.innerHTML = `<div class="toast__text">${message}</div>`;
     toast.classList.add('show');
 
     toastTimeout = setTimeout(() => {
       toast.classList.remove('show');
-    }, 3500);
+    }, 4000);
   };
 
 })();

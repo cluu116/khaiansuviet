@@ -22,7 +22,7 @@ const PRODUCTS = [
      Trống Đồng Đông Sơn
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_335f5f38",
+    id: "1",
     type: 'artifact',
     dynasty: 'Văn Lang',
     era: '~2879 – 258 TCN',
@@ -526,10 +526,15 @@ function getProductById(id) {
 }
 
 function getRelatedProducts(currentId, count = 3) {
-  return PRODUCTS
-    .filter(p => p.type === 'blindbox' && p.id !== currentId)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, count);
+  let related = PRODUCTS.filter(p => p.type === 'blindbox' && p.id !== currentId);
+
+  // Fisher-Yates shuffle
+  for (let i = related.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [related[i], related[j]] = [related[j], related[i]];
+  }
+
+  return related.slice(0, count);
 }
 
 function formatPrice(price) {

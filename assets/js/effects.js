@@ -6,6 +6,9 @@
 (function () {
   'use strict';
 
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reducedMotion.matches) return;
+
   // Create canvas for atmospheric effect
   const canvas = document.createElement('canvas');
   canvas.id = 'ambient-canvas';
@@ -99,15 +102,12 @@
   function initParticles() {
     particles = [];
     // Reduce particle count on mobile for performance
-    const divisor = width < 768 ? 35 : 25;
-    const particleCount = Math.min(Math.floor(width / divisor), 80);
+    const divisor = width < 768 ? 55 : 32;
+    const particleCount = Math.min(Math.floor(width / divisor), width < 768 ? 28 : 60);
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
   }
-
-  // Initial setup — must be after Particle class definition
-  resize();
 
   function animate() {
     if (!isPageVisible) {
@@ -117,9 +117,16 @@
 
     ctx.clearRect(0, 0, width, height);
 
+    // Initialize bgGradient if it hasn't been created yet
+    if (!bgGradient) {
+      resize();
+    }
+
     // Sử dụng gradient đã cache (tạo lại khi resize)
-    ctx.fillStyle = bgGradient;
-    ctx.fillRect(0, 0, width, height);
+    if (bgGradient) {
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, width, height);
+    }
 
     for (let i = 0; i < particles.length; i++) {
       particles[i].update();
@@ -131,11 +138,20 @@
 
   // Page Visibility API — pause animation when tab is hidden
   document.addEventListener('visibilitychange', () => {
-    isPageVisible = !document.hidden;
-    if (isPageVisible && !animationId) {
-      animationId = requestAnimationFrame(animate);
-    }
-  });
+      isPageVisible = !document.hidden;
+      if (isPageVisible && !animationId) {
+        animationId = requestAnimationFrame(animate);
+      }
+    });
 
-  animationId = requestAnimationFrame(animate);
+  function start() {
+    resize();
+    animationId = requestAnimationFrame(animate);
+  }
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(start, { timeout: 1200 });
+  } else {
+    setTimeout(start, 300);
+  }
 })();

@@ -19,10 +19,10 @@
   let unlockedCards = new Set(rawStorage);
 
   // --- TEST MODE: Tự động mở khóa toàn bộ 14 cổ vật ---
-  if (typeof PRODUCTS !== 'undefined') {
-    PRODUCTS.filter(p => p.type === 'artifact').forEach(p => unlockedCards.add(String(p.id)));
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(unlockedCards)));
-  }
+  // if (typeof PRODUCTS !== 'undefined') {
+  //   PRODUCTS.filter(p => p.type === 'artifact').forEach(p => unlockedCards.add(String(p.id)));
+  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(unlockedCards)));
+  // }
   // ----------------------------------------------------
 
   let unlockCount = unlockedCards.size;
@@ -71,7 +71,8 @@
 
     const renderCard = (product) => {
       const isUnlocked = unlockedCards.has(String(product.id));
-      const cardNum = String(product.id).padStart(2, '0');
+      const index = collectionProducts.findIndex(p => p.id === product.id);
+      const cardNum = String(index + 1).padStart(2, '0');
 
       return `
         <div class="dynasty-card ${isUnlocked ? 'unlocked' : ''}"
@@ -87,10 +88,8 @@
           <div class="dynasty-card__inner" ${isUnlocked ? 'style="transform:rotateY(180deg)"' : ''}>
             <!-- FRONT -->
             <div class="dynasty-card__front">
-              <div class="dynasty-card__silhouette">
-                <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                  ${product.silhouetteSvg}
-                </svg>
+              <div class="dynasty-card__silhouette" style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                <img src="${product.image}" alt="Phác thảo cổ vật" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0.15) contrast(1.5) drop-shadow(0 0 12px rgba(184,134,11,0.8)); opacity: 0.85;" />
               </div>
               <p class="dynasty-card__number">Triều đại ${cardNum}</p>
               <h3 class="dynasty-card__front-name">???</h3>
@@ -172,7 +171,7 @@
         const dynasty = card.getAttribute('data-dynasty');
 
         if (!unlockedCards.has(dynasty)) {
-          showToast('📱 Vui lòng chạm điện thoại vào thẻ bài thật để mở khóa!');
+          showToast('📱 Vui lòng chạm điện thoại vào NFC để mở khóa!');
           return;
         }
 
@@ -185,7 +184,7 @@
           e.preventDefault();
           const dynasty = card.getAttribute('data-dynasty');
           if (!unlockedCards.has(dynasty)) {
-            showToast('📱 Vui lòng chạm điện thoại vào thẻ bài thật để mở khóa!');
+            showToast('📱 Vui lòng chạm điện thoại vào NFC để mở khóa!');
           } else {
             window.location.href = 'artifact.html?id=' + dynasty;
           }
@@ -194,17 +193,24 @@
 
       // Tilt effect (desktop only)
       if (window.matchMedia('(hover: hover)').matches) {
+        let ticking = false;
         card.addEventListener('mousemove', (e) => {
           if (card.classList.contains('unlocked')) return;
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = (y - centerY) / centerY * -8;
-          const rotateY = (x - centerX) / centerX * 8;
-          card.querySelector('.dynasty-card__inner').style.transform =
-            `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = (y - centerY) / centerY * -8;
+              const rotateY = (x - centerX) / centerX * 8;
+              card.querySelector('.dynasty-card__inner').style.transform =
+                `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+              ticking = false;
+            });
+            ticking = true;
+          }
         });
 
         card.addEventListener('mouseleave', () => {
@@ -260,7 +266,7 @@
      ============================================================ */
   if (scanBtn) {
     scanBtn.addEventListener('click', () => {
-      showToast('📱 Vui lòng chạm điện thoại vào thẻ bài thật để quét NFC!');
+      showToast('📱 Vui lòng chạm điện thoại vào cổ vật để quét NFC!');
     });
   }
 
@@ -274,7 +280,11 @@
     if (!unlockId) return;
 
     const product = getProductById(unlockId);
-    if (!product) return;
+    if (!product) {
+      showToast('❌ Thẻ NFC không hợp lệ hoặc không có trong hệ thống!');
+      window.history.replaceState({}, '', 'collection.html');
+      return;
+    }
 
     // Show NFC unlock animation
     if (nfcOverlay) {
@@ -312,6 +322,6 @@
   updateProgress();
 
   // Check NFC after a short delay to allow DOM to settle
-  setTimeout(checkNfcUnlock, 1500);
+  setTimeout(checkNfcUnlock, 800);
 
 })();

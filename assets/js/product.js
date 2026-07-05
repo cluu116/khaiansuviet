@@ -1,6 +1,6 @@
 /* ============================================================
    KHAI ẤN SỬ VIỆT — Product Detail Page JavaScript
-   Gallery, Order Form, Accordion, 3D Modal, AR, Related Products
+   Gallery, Order Form, Accordion, Related Products
    ============================================================ */
 
 (function () {
@@ -24,6 +24,37 @@
       </div>
     `;
     return;
+  }
+
+  const MODEL_VIEWER_SRC = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+  let modelViewerPromise = null;
+
+  function ensureModelViewerLoaded() {
+    if (customElements.get('model-viewer')) return Promise.resolve();
+    if (modelViewerPromise) return modelViewerPromise;
+
+    modelViewerPromise = new Promise((resolve, reject) => {
+      const existingScript = document.querySelector(`script[src="${MODEL_VIEWER_SRC}"]`);
+      if (existingScript) {
+        // If the script is already fully loaded or the custom element is defined, resolve immediately
+        if (customElements.get('model-viewer') || existingScript.readyState === 'complete' || existingScript.readyState === 'loaded') {
+          resolve();
+        } else {
+          existingScript.addEventListener('load', resolve, { once: true });
+          existingScript.addEventListener('error', reject, { once: true });
+        }
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = MODEL_VIEWER_SRC;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+
+    return modelViewerPromise;
   }
 
   /* ============================================================
@@ -50,7 +81,7 @@
   const mainImage = document.getElementById('mainProductImage');
   if (mainImage) {
     mainImage.innerHTML = `
-      <img id="mainImageElement" src="${product.image}" alt="${product.artifact}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
+      <img id="mainImageElement" src="${product.image}" alt="${product.artifact}" width="1024" height="1024" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
     `;
   }
 
@@ -81,7 +112,7 @@
     if (product.gallery && product.gallery.length > 0) {
       thumbContainer.innerHTML = product.gallery.map((imgSrc, index) => `
         <div class="product-hero__thumb ${index === 0 ? 'active' : ''}" data-src="${imgSrc}">
-          <img src="${imgSrc}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
+          <img src="${imgSrc}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
         </div>
       `).join('');
 
@@ -100,7 +131,7 @@
     } else {
       thumbContainer.innerHTML = `
         <div class="product-hero__thumb active" data-src="${product.image}">
-          <img src="${product.image}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
+          <img src="${product.image}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
         </div>
       `;
     }
@@ -112,7 +143,7 @@
     if (product.gallery && product.gallery.length > 0) {
       closeupGallery.innerHTML = product.gallery.map(imgSrc =>
         `<div class="closeup__item">
-          <img src="${imgSrc}" alt="Close up" />
+          <img src="${imgSrc}" alt="Close up" width="1024" height="1024" loading="lazy" decoding="async" />
         </div>`
       ).join('');
     } else {
@@ -134,7 +165,7 @@
   const detailsImage = document.getElementById('productDetailsImage');
   if (detailsImage) {
     detailsImage.innerHTML = `
-      <img src="${product.image}" alt="${product.artifact}" />
+      <img src="${product.image}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" />
     `;
   }
 
@@ -297,112 +328,7 @@
   });
 
   /* ============================================================
-     4. 3D MODEL MODAL
-     ============================================================ */
-  const modelModal = document.getElementById('modelModal');
-  const openModelBtn = document.getElementById('open360Btn');
-  const closeModelBtn = document.getElementById('closeModelModal');
-
-  if (openModelBtn && modelModal) {
-    openModelBtn.addEventListener('click', () => {
-      modelModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-
-      // Load model-viewer with AR support
-      const viewerContainer = document.getElementById('modelViewerContainer');
-      if (viewerContainer && product.model) {
-        viewerContainer.innerHTML = `
-          <model-viewer
-            src="${product.model}"
-            alt="Mô hình 3D ${product.artifact}"
-            auto-rotate
-            camera-controls
-            ar
-            ar-modes="webxr scene-viewer quick-look"
-            ar-scale="auto"
-            shadow-intensity="1"
-            environment-image="neutral"
-            style="width:100%;height:100%;background:transparent;"
-          >
-            <button slot="ar-button" style="
-              position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
-              padding:10px 24px;font-family:'Cormorant Garamond',serif;font-size:0.75rem;font-weight:700;
-              letter-spacing:2px;text-transform:uppercase;
-              color:#1A1108;background:linear-gradient(135deg,#B8860B,#DAA520);
-              border:none;border-radius:6px;cursor:pointer;
-              box-shadow:0 4px 15px rgba(184,134,11,0.3);
-            ">📱 XEM AR</button>
-            <div slot="poster" class="model-modal__placeholder">
-              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
-                <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
-                <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
-              </svg>
-              <span>Đang tải mô hình 3D...</span>
-            </div>
-          </model-viewer>
-        `;
-      } else if (viewerContainer && !product.model) {
-        viewerContainer.innerHTML = `
-          <div class="model-modal__placeholder">
-            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
-              <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
-              <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
-            </svg>
-            <span>MÔ HÌNH 3D</span>
-            <span style="font-size:0.7rem;opacity:0.5;">Chưa có file .glb cho sản phẩm này</span>
-          </div>
-        `;
-      }
-    });
-  }
-
-  if (closeModelBtn && modelModal) {
-    closeModelBtn.addEventListener('click', () => {
-      modelModal.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-
-    modelModal.addEventListener('click', (e) => {
-      if (e.target === modelModal) {
-        modelModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  /* ============================================================
-     5. AR DIRECT BUTTON (opens AR directly on mobile)
-     ============================================================ */
-  const openArBtn = document.getElementById('openArBtn');
-
-  if (openArBtn) {
-    openArBtn.addEventListener('click', () => {
-      if (!product.model) {
-        showToast('📱 Chưa có mô hình 3D (.glb) cho sản phẩm này. Vui lòng thêm file vào assets/models/');
-        return;
-      }
-
-      // Check if on mobile with AR support
-      const isAndroid = /android/i.test(navigator.userAgent);
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-
-      if (isAndroid) {
-        // Use Scene Viewer (Android)
-        const intentUrl = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(window.location.origin + '/' + product.model)}&mode=ar_preferred#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(window.location.href)};end;`;
-        window.location = intentUrl;
-      } else if (isIOS) {
-        // Use Quick Look (iOS) - needs .usdz file
-        showToast('📱 AR trên iOS yêu cầu file .usdz. Sử dụng nút "Xem 360°" để xem mô hình 3D.');
-      } else {
-        // Desktop fallback - open 3D modal instead
-        if (openModelBtn) openModelBtn.click();
-        showToast('💡 Mở trang này trên điện thoại di động để trải nghiệm AR!');
-      }
-    });
-  }
-
-  /* ============================================================
-     6. ESCAPE KEY HANDLER (for all modals)
+     4. ESCAPE KEY HANDLER (for all modals)
      ============================================================ */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -416,7 +342,7 @@
   });
 
   /* ============================================================
-     7. RELATED PRODUCTS
+     5. RELATED PRODUCTS
      ============================================================ */
   const relatedGrid = document.getElementById('relatedGrid');
 
@@ -430,7 +356,7 @@
       return `
         <a href="product.html?id=${p.id}" class="blind-box__card" id="related-${p.id}">
           <div class="blind-box__image">
-            <img src="${p.image}" alt="${name}">
+            <img src="${p.image}" alt="${name}" width="1024" height="1024" loading="lazy" decoding="async">
           </div>
           <span class="blind-box__qty">${qty}</span>
           <h3 class="blind-box__name">${name}</h3>

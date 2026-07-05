@@ -48,7 +48,7 @@
     blindBoxGrid.innerHTML = BLIND_BOXES.map(box => `
       <a href="product.html?id=${box.id}" class="blind-box__card">
         <div class="blind-box__image">
-          <img src="${box.image}" alt="${box.name}" loading="lazy">
+          <img src="${box.image}" alt="${box.name}" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
         <span class="blind-box__qty">${box.qty}</span>
         <h3 class="blind-box__name">${box.name}</h3>
@@ -141,6 +141,28 @@
   const heroModelGlow = document.querySelector('.hero__model-glow');
   const sections = document.querySelectorAll('.section[id]');
   const navLinkItems = document.querySelectorAll('.navbar__link');
+  
+  // Cache layout values
+  let homeHeight = 0;
+  let sectionLayouts = [];
+
+  function cacheLayout() {
+    const homeSection = document.getElementById('home');
+    homeHeight = homeSection ? homeSection.offsetHeight : 0;
+    
+    sectionLayouts = Array.from(sections).map(section => ({
+      id: section.getAttribute('id'),
+      top: section.offsetTop,
+      height: section.offsetHeight
+    }));
+  }
+
+  // Initial cache and update on resize
+  setTimeout(cacheLayout, 100);
+  window.addEventListener('resize', () => {
+    // debounce optional, simplified here
+    setTimeout(cacheLayout, 150);
+  });
 
   function handleScrollEffects() {
     const scrollY = window.scrollY;
@@ -151,27 +173,19 @@
     }
 
     // Parallax
-    const homeSection = document.getElementById('home');
-    if (homeSection) {
-      const heroHeight = homeSection.offsetHeight;
-      if (scrollY < heroHeight) {
-        const speed = scrollY * 0.3;
-        if (heroPattern) heroPattern.style.transform = `translateY(${speed}px)`;
-        if (heroModelGlow) heroModelGlow.style.transform = `scale(${1 + scrollY * 0.0003})`;
-      }
+    if (homeHeight > 0 && scrollY < homeHeight) {
+      const speed = scrollY * 0.3;
+      if (heroPattern) heroPattern.style.transform = `translateY(${speed}px)`;
+      if (heroModelGlow) heroModelGlow.style.transform = `scale(${1 + scrollY * 0.0003})`;
     }
 
     // Active nav link highlight
     const scrollPos = scrollY + 120;
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+    sectionLayouts.forEach((layout) => {
+      if (scrollPos >= layout.top && scrollPos < layout.top + layout.height) {
         navLinkItems.forEach((link) => {
           link.classList.remove('active');
-          if (link.getAttribute('data-section') === sectionId) {
+          if (link.getAttribute('data-section') === layout.id) {
             link.classList.add('active');
           }
         });

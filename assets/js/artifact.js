@@ -11,6 +11,8 @@
      ============================================================ */
   const MAX_RETRIES = 3;
   const RETRY_BASE_DELAY = 2000; // ms, exponential backoff base
+  const MODEL_VIEWER_SRC = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+  let modelViewerPromise = null;
 
   /* ============================================================
      STATE MANAGEMENT
@@ -34,6 +36,34 @@
     dynastyDesc: document.getElementById('dynastyDesc'),
     viewerContainer: document.getElementById('artifactModelViewer'),
   };
+
+  function ensureModelViewerLoaded() {
+    if (customElements.get('model-viewer')) return Promise.resolve();
+    if (modelViewerPromise) return modelViewerPromise;
+
+    modelViewerPromise = new Promise((resolve, reject) => {
+      const existingScript = document.querySelector(`script[src="${MODEL_VIEWER_SRC}"]`);
+      if (existingScript) {
+        // If the script is already fully loaded or the custom element is defined, resolve immediately
+        if (customElements.get('model-viewer') || existingScript.readyState === 'complete' || existingScript.readyState === 'loaded') {
+            resolve();
+        } else {
+            existingScript.addEventListener('load', resolve, { once: true });
+            existingScript.addEventListener('error', reject, { once: true });
+        }
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = MODEL_VIEWER_SRC;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+
+    return modelViewerPromise;
+  }
 
   /* ============================================================
      INJECT LOADING STYLES (scoped to this module)
@@ -382,6 +412,10 @@
         img.className = 'artifact__gallery-img';
         img.title = 'Xem ảnh';
         img.dataset.index = index;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.width = 1122;
+        img.height = 1448;
         img.addEventListener('click', () => changeVisualToImage(index));
         galleryContainer.appendChild(img);
       });
@@ -475,7 +509,7 @@
 
     DOM.viewerContainer.innerHTML = `
       <div style="position:absolute; inset:0; padding:2rem; display:flex; align-items:center; justify-content:center; animation: a3dFadeIn 0.5s ease;">
-        <img src="${imgSrc}" alt="${state.product.artifact}" style="max-width:100%; max-height:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
+        <img src="${imgSrc}" alt="${state.product.artifact}" width="1122" height="1448" decoding="async" style="max-width:100%; max-height:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
       </div>
     `;
   }
@@ -623,7 +657,7 @@
   /**
    * Load 3D model with full progress tracking
    */
-  function load3DModel() {
+  async function load3DModel() {
     if (!DOM.viewerContainer || !state.product.model || state.isLoading || state.isModelLoaded) return;
 
     state.isLoading = true;
@@ -644,6 +678,15 @@
 
     // Render loading UI
     DOM.viewerContainer.innerHTML = renderLoadingUI();
+
+    try {
+      await ensureModelViewerLoaded();
+    } catch (error) {
+      state.isLoading = false;
+      console.error('Không thể tải model-viewer:', error);
+      renderErrorUI('Không thể tải trình xem 3D. Vui lòng kiểm tra kết nối mạng và thử lại.', true);
+      return;
+    }
 
     // Create model-viewer element
     const modelViewer = document.createElement('model-viewer');
