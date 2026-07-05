@@ -312,6 +312,9 @@
   margin-bottom: var(--space-sm);
   opacity: 0.4;
   color: var(--vang-thep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dynasty-card__silhouette svg {
@@ -981,12 +984,29 @@
     padding: 0 10px;
   }
 
+  .dynasty-card__front {
+    padding: var(--space-sm);
+  }
+
   .dynasty-card__silhouette {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .dynasty-card__number {
+    font-size: 0.55rem;
   }
 
   .dynasty-card__front-name {
     font-size: 0.7rem;
+  }
+
+  .dynasty-card__era-text {
+    font-size: 0.6rem;
+  }
+
+  .dynasty-card__lock {
+    bottom: 8px;
+    font-size: 0.5rem;
   }
 }

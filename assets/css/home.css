@@ -409,7 +409,6 @@
 }
 
 .blind-box__card::after {
-  content: '✦';
   position: absolute;
   top: 12px;
   left: 50%;

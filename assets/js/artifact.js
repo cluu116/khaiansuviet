@@ -508,7 +508,7 @@
     const imgSrc = gallery[index];
 
     DOM.viewerContainer.innerHTML = `
-      <div style="position:absolute; inset:0; padding:2rem; display:flex; align-items:center; justify-content:center; animation: a3dFadeIn 0.5s ease;">
+      <div style="position:absolute; inset:0; padding:1rem; display:flex; align-items:center; justify-content:center; animation: a3dFadeIn 0.5s ease;">
         <img src="${imgSrc}" alt="${state.product.artifact}" width="1122" height="1448" decoding="async" style="max-width:100%; max-height:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
       </div>
     `;

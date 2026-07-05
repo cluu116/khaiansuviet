@@ -3,7 +3,8 @@
    ============================================================ */
 
 .artifact-page {
-  padding-top: 70px; /* offset navbar */
+  padding-top: 70px;
+  /* offset navbar */
   min-height: 100vh;
   background: var(--den-son-mai);
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30 Z' fill='none' stroke='%23B8860B' stroke-width='0.5' opacity='0.03'/%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%23B8860B' stroke-width='0.3' opacity='0.02'/%3E%3C/svg%3E");
@@ -107,8 +108,15 @@
 }
 
 @keyframes visualFadeIn {
-  0% { opacity: 0; transform: scale(0.95) translateY(20px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .artifact__noise-overlay {
@@ -152,8 +160,16 @@
 }
 
 @keyframes pulsePlaceholder {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; text-shadow: var(--glow-gold); }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.7;
+    text-shadow: var(--glow-gold);
+  }
 }
 
 .artifact__model-placeholder svg {
@@ -253,7 +269,8 @@
   box-shadow: 0 4px 15px rgba(184, 134, 11, 0.1);
 }
 
-.btn-3d:hover, .btn-3d.active {
+.btn-3d:hover,
+.btn-3d.active {
   background: linear-gradient(135deg, var(--vang-thep), var(--vang-thep-light));
   color: var(--den-son-mai);
   box-shadow: var(--glow-gold);
@@ -397,6 +414,7 @@
 .artifact__lore-divider::before {
   background: linear-gradient(90deg, transparent, var(--vang-thep));
 }
+
 .artifact__lore-divider::after {
   background: linear-gradient(90deg, var(--vang-thep), transparent);
 }
@@ -408,6 +426,7 @@
   transform: rotate(45deg);
   position: relative;
 }
+
 .artifact__lore-divider-icon::after {
   content: '';
   position: absolute;
@@ -427,8 +446,15 @@
 }
 
 @keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── EXTENDED DETAILS SECTION ── */
@@ -482,6 +508,7 @@
   background: var(--do-chu-sa);
   position: relative;
 }
+
 .artifact__details-line::before {
   content: '';
   position: absolute;
@@ -554,6 +581,7 @@
   padding-bottom: 1rem;
   position: relative;
 }
+
 .artifact__specs h3::after {
   content: '';
   position: absolute;

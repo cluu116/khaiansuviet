@@ -22,7 +22,7 @@ const PRODUCTS = [
      Trống Đồng Đông Sơn
      ──────────────────────────────────────────────────────────── */
   {
-    id: "1",
+    id: "kasv_335f5f38",
     type: 'artifact',
     dynasty: 'Văn Lang',
     era: '~2879 – 258 TCN',

@@ -88,7 +88,7 @@
           <div class="dynasty-card__inner" ${isUnlocked ? 'style="transform:rotateY(180deg)"' : ''}>
             <!-- FRONT -->
             <div class="dynasty-card__front">
-              <div class="dynasty-card__silhouette" style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+              <div class="dynasty-card__silhouette">
                 <img src="${product.image}" alt="Phác thảo cổ vật" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0.15) contrast(1.5) drop-shadow(0 0 12px rgba(184,134,11,0.8)); opacity: 0.85;" />
               </div>
               <p class="dynasty-card__number">Triều đại ${cardNum}</p>
