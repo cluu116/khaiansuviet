@@ -75,6 +75,7 @@
 }
 
 @keyframes preloaderPulse {
+
   0%,
   100% {
     opacity: 0.4;
