@@ -53,14 +53,22 @@
     }
   }
 
-  let scrollTicking = false;
-  window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-      requestAnimationFrame(() => {
-        handleNavbarScroll();
-        scrollTicking = false;
+  // Export for home.js to call from merged scroll handler (avoids duplicate rAF)
+  window._handleNavbarScroll = handleNavbarScroll;
+
+  // Standalone scroll listener only if home.js is NOT loaded (non-homepage pages)
+  window.addEventListener('load', () => {
+    if (!window._homeScrollActive) {
+      let scrollTicking = false;
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          requestAnimationFrame(() => {
+            handleNavbarScroll();
+            scrollTicking = false;
+          });
+          scrollTicking = true;
+        }
       });
-      scrollTicking = true;
     }
   });
 

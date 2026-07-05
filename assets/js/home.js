@@ -6,6 +6,9 @@
 (function () {
   'use strict';
 
+  // Signal to common.js that this page has its own merged scroll handler
+  window._homeScrollActive = true;
+
   /* ── Blind Box Data (homepage only) ── */
   const BLIND_BOXES = [
     {
@@ -45,7 +48,7 @@
     blindBoxGrid.innerHTML = BLIND_BOXES.map(box => `
       <a href="product.html?id=${box.id}" class="blind-box__card">
         <div class="blind-box__image">
-          <img src="${box.image}" alt="${box.name}">
+          <img src="${box.image}" alt="${box.name}" loading="lazy">
         </div>
         <span class="blind-box__qty">${box.qty}</span>
         <h3 class="blind-box__name">${box.name}</h3>
@@ -131,7 +134,8 @@
   }
 
   /* ============================================================
-     5. PARALLAX + ACTIVE NAV — Gộp chung 1 scroll handler để tối ưu
+     5. MERGED SCROLL HANDLER — Navbar + Parallax + Active Nav
+     Single rAF loop for all scroll-dependent effects
      ============================================================ */
   const heroPattern = document.querySelector('.hero__bg-pattern');
   const heroModelGlow = document.querySelector('.hero__model-glow');
@@ -140,6 +144,11 @@
 
   function handleScrollEffects() {
     const scrollY = window.scrollY;
+
+    // Navbar scroll behavior (merged from common.js)
+    if (window._handleNavbarScroll) {
+      window._handleNavbarScroll();
+    }
 
     // Parallax
     const homeSection = document.getElementById('home');
@@ -183,7 +192,8 @@
 
 
   /* ============================================================
-     6. AR GUIDE ANIMATION SYNC
+     6. AR GUIDE ANIMATION — IntersectionObserver controlled
+     Only runs rAF when section is visible in viewport
      ============================================================ */
   const arGuideCards = document.querySelectorAll('.ar-guide__card');
   const guidePath = document.getElementById('guidePath');
@@ -194,6 +204,8 @@
     const pathLength = guidePath.getTotalLength();
     let cardThresholds = [0, 0, 0, 0];
     let containerHeight = 0;
+    let arAnimationId = null;
+    let isArSectionVisible = false;
     
     function cachePositions() {
       const pathRect = guidePath.getBoundingClientRect();
@@ -203,11 +215,21 @@
       });
     }
     
-    window.addEventListener('resize', cachePositions);
+    // Debounce resize for position caching
+    let arResizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(arResizeTimeout);
+      arResizeTimeout = setTimeout(cachePositions, 150);
+    });
     // Initial cache after a short delay to ensure layout is settled
     setTimeout(cachePositions, 100);
     
     function updateArGuideHighlight(timestamp) {
+      if (!isArSectionVisible) {
+        arAnimationId = null;
+        return;
+      }
+
       if (!timestamp) timestamp = performance.now();
       
       const currentCycleTime = timestamp % totalDuration;
@@ -239,10 +261,26 @@
         }
       });
       
+      arAnimationId = requestAnimationFrame(updateArGuideHighlight);
+    }
+
+    // IntersectionObserver: only animate when AR section is visible
+    const arGuideSection = document.getElementById('ar-guide');
+    if (arGuideSection) {
+      const arObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isArSectionVisible = entry.isIntersecting;
+          if (isArSectionVisible && !arAnimationId) {
+            cachePositions();
+            arAnimationId = requestAnimationFrame(updateArGuideHighlight);
+          }
+        });
+      }, { rootMargin: '100px 0px', threshold: 0 });
+      arObserver.observe(arGuideSection);
+    } else {
+      // Fallback if section not found — start immediately
       requestAnimationFrame(updateArGuideHighlight);
     }
-    
-    requestAnimationFrame(updateArGuideHighlight);
   }
 
   /* ============================================================

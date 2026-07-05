@@ -25,6 +25,8 @@
   let width, height;
   let particles = [];
   let bgGradient = null; // Cache gradient — chỉ tạo lại khi resize
+  let animationId = null;
+  let isPageVisible = true;
 
   function resize() {
     width = window.innerWidth;
@@ -36,10 +38,17 @@
     bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width / 2);
     bgGradient.addColorStop(0, 'rgba(184, 134, 11, 0.03)');
     bgGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+    // Re-init particles on resize (handles orientation change)
+    initParticles();
   }
 
-  window.addEventListener('resize', resize);
-  resize();
+  // Debounce resize to avoid excessive re-init
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resize, 200);
+  });
 
   class Particle {
     constructor() {
@@ -73,41 +82,60 @@
     }
 
     draw() {
+      // Draw glow (larger, transparent circle) — replaces expensive shadowBlur
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color}, ${this.opacity * 0.15})`;
+      ctx.fill();
+
+      // Draw core particle
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
-      ctx.shadowBlur = this.size * 3;
-      ctx.shadowColor = `rgba(${this.color}, ${this.opacity})`;
       ctx.fill();
-      ctx.shadowBlur = 0; // Reset để tránh shadow tích lũy giữa các particle
     }
   }
 
   function initParticles() {
     particles = [];
-    // Adjust number of particles based on screen width for performance
-    const particleCount = Math.floor(width / 20);
+    // Reduce particle count on mobile for performance
+    const divisor = width < 768 ? 35 : 25;
+    const particleCount = Math.min(Math.floor(width / divisor), 80);
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
   }
-  
-  initParticles();
+
+  // Initial setup — must be after Particle class definition
+  resize();
 
   function animate() {
+    if (!isPageVisible) {
+      animationId = null;
+      return;
+    }
+
     ctx.clearRect(0, 0, width, height);
 
     // Sử dụng gradient đã cache (tạo lại khi resize)
     ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
 
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
   }
 
-  animate();
+  // Page Visibility API — pause animation when tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    isPageVisible = !document.hidden;
+    if (isPageVisible && !animationId) {
+      animationId = requestAnimationFrame(animate);
+    }
+  });
+
+  animationId = requestAnimationFrame(animate);
 })();
