@@ -77,6 +77,7 @@
         border-right-color: rgba(184,134,11,0.2);
         border-left-color: rgba(184,134,11,0.2);
         animation: spinRight 3s linear infinite;
+        will-change: transform;
       }
       .time-compass__ring--middle {
         width: 75%;
@@ -86,6 +87,7 @@
         border-color: #DAA520;
         animation: spinLeft 4s linear infinite;
         opacity: 0.8;
+        will-change: transform;
       }
       .time-compass__ring--inner {
         width: 55%;
@@ -93,6 +95,7 @@
         border-left-color: #F8D568;
         border-right-color: #8B6914;
         animation: spinRight 2s linear infinite;
+        will-change: transform;
       }
       .time-compass__center {
         position: relative;
@@ -136,24 +139,28 @@
       .artifact3d-progress__fill {
         position: absolute;
         left: 0; top: 0; bottom: 0;
-        width: 0%;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
         background: linear-gradient(90deg, #8B6914, #DAA520, #F8D568);
         border-radius: 4px;
-        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
         box-shadow: 0 0 12px rgba(218,165,32,0.5);
       }
       .artifact3d-progress__glow {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translate3d(0, -50%, 0);
         width: 8px;
         height: 8px;
         background: #FFF;
         border-radius: 50%;
         box-shadow: 0 0 15px 4px rgba(248,213,104,0.9);
-        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        left: 0%;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        left: 0;
         margin-left: -4px;
+        will-change: transform;
       }
 
       /* ── Text info ── */
@@ -238,12 +245,12 @@
         to   { opacity: 1; }
       }
       @keyframes spinRight {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% { transform: rotate(0deg) translateZ(0); }
+        100% { transform: rotate(360deg) translateZ(0); }
       }
       @keyframes spinLeft {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(-360deg); }
+        0% { transform: rotate(0deg) translateZ(0); }
+        100% { transform: rotate(-360deg) translateZ(0); }
       }
       @keyframes pulseGlow {
         0%, 100% { transform: scale(1); opacity: 0.5; }
@@ -251,7 +258,7 @@
       }
       @keyframes pulseText {
         0%, 100% { opacity: 0.8; }
-        50% { opacity: 1; text-shadow: 0 0 12px #F8D568; }
+        50% { opacity: 1; }
       }
       @keyframes floatText {
         0%, 100% { opacity: 0.7; transform: translateY(0); }
@@ -533,6 +540,8 @@
     `;
   }
 
+  let progressContainerWidth = 0;
+
   /**
    * Update progress UI
    */
@@ -544,12 +553,22 @@
 
     if (!fill || !percentEl) return;
 
+    if (glow && progressContainerWidth === 0) {
+      const container = fill.parentElement;
+      if (container) {
+        progressContainerWidth = container.offsetWidth;
+      }
+    }
+
     // model-viewer progress event: detail.totalProgress is 0-1
     const ratio = progressEvent.detail ? progressEvent.detail.totalProgress : 0;
     const percent = Math.round(ratio * 100);
 
-    fill.style.width = `${percent}%`;
-    if (glow) glow.style.left = `${percent}%`;
+    fill.style.transform = `scaleX(${ratio})`;
+    if (glow) {
+      const x = ratio * progressContainerWidth;
+      glow.style.transform = `translate3d(${x}px, -50%, 0)`;
+    }
     percentEl.textContent = `ĐANG TẢI ${percent}%`;
 
     if (detailEl) {
