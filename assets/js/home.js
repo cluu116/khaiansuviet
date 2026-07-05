@@ -192,6 +192,20 @@
   if (arGuideCards.length > 0 && guidePath && guideTraveler) {
     const totalDuration = 16000; // 16s cycle
     const pathLength = guidePath.getTotalLength();
+    let cardThresholds = [0, 0, 0, 0];
+    let containerHeight = 0;
+    
+    function cachePositions() {
+      const pathRect = guidePath.getBoundingClientRect();
+      containerHeight = pathRect.height;
+      cardThresholds = Array.from(arGuideCards).map(card => {
+        return card.getBoundingClientRect().top - pathRect.top - 50;
+      });
+    }
+    
+    window.addEventListener('resize', cachePositions);
+    // Initial cache after a short delay to ensure layout is settled
+    setTimeout(cachePositions, 100);
     
     function updateArGuideHighlight(timestamp) {
       if (!timestamp) timestamp = performance.now();
@@ -206,16 +220,13 @@
       guideTraveler.style.left = `${point.x}%`;
       guideTraveler.style.top = `${point.y}%`;
       
-      // Find the card whose center is closest to or just passed by the traveler
-      // We do this by checking the traveler's vertical position relative to the cards
-      const travelerRect = guideTraveler.getBoundingClientRect();
-      const travelerCenterY = travelerRect.top + travelerRect.height / 2;
+      // Calculate traveler Y position relative to container
+      const travelerCenterY = (point.y / 100) * containerHeight;
       
       let activeIndex = 0;
       arGuideCards.forEach((card, index) => {
-        const cardRect = card.getBoundingClientRect();
-        // If traveler is within or past the top of the card (with a 50px threshold for early activation)
-        if (travelerCenterY >= cardRect.top - 50) {
+        // If traveler is within or past the top of the card
+        if (travelerCenterY >= cardThresholds[index]) {
           activeIndex = index;
         }
       });
