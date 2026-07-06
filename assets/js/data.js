@@ -31,8 +31,8 @@ const PRODUCTS = [
     artifactDesc: 'Hiện vật bằng đồng tiêu biểu nhất của nền văn minh Đông Sơn, với hoa văn tinh xảo mô tả đời sống, lễ hội và tín ngưỡng thờ Mặt Trời.',
     image: 'assets/images/artifacts/Trống đồng Đông Sơn.png',
     gallery: ['assets/images/artifacts/Trống đồng Đông Sơn.png', 'assets/images/artifacts/Trống đồng Đông Sơn.png', 'assets/images/artifacts/Trống đồng Đông Sơn.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong.glb',
-    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong.usdz',
+    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.glb',
+    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.usdz',
     details: {
       dimensions: '88 × 63mm',
       material: 'Giấy mỹ thuật cao cấp 350gsm, phủ UV chọn lọc',
@@ -62,7 +62,8 @@ const PRODUCTS = [
     artifactDesc: 'Vũ khí huyền thoại được thần Kim Quy trao cho An Dương Vương, có khả năng bắn hàng ngàn mũi tên cùng lúc, bảo vệ thành Cổ Loa.',
     image: 'assets/images/artifacts/Nỏ thần An Dương Vương.png',
     gallery: ['assets/images/artifacts/Nỏ thần An Dương Vương.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/n%E1%BB%8F%20th%E1%BA%A7n.glb',
+    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/nothan-v1.glb',
+    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/nothan-v1.usdz',
     details: {
       dimensions: '88 × 63mm',
       material: 'Giấy mỹ thuật cao cấp 350gsm, phủ UV chọn lọc',
@@ -272,8 +273,8 @@ const PRODUCTS = [
     artifactDesc: 'Đôi rồng đá chạm khắc tinh xảo tại thềm điện Kính Thiên — biểu tượng vương quyền và kiệt tác điêu khắc thời Lê Sơ.',
     image: 'assets/images/artifacts/Rồng đá điện kính thiên.png',
     gallery: ['assets/images/artifacts/Rồng đá điện kính thiên.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda.glb',
-    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda-v2.usdz',
+    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda-v1.glb',
+    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda-v1.usdz',
     details: {
       dimensions: '88 × 63mm',
       material: 'Giấy mỹ thuật cao cấp 350gsm, phủ UV chọn lọc, dập nổi vàng 24K',
@@ -423,7 +424,8 @@ const PRODUCTS = [
     artifactDesc: 'Ấn vàng ròng "Hoàng đế chi bảo" nặng 10,78 kg — bảo vật quốc gia quý giá nhất, biểu tượng quyền lực tối cao của triều Nguyễn.',
     image: 'assets/images/artifacts/Ấn vàng Hoàng đế chi bảo.png',
     gallery: ['assets/images/artifacts/Ấn vàng Hoàng đế chi bảo.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/HO%C3%80NG%20%C4%90%E1%BA%BE%20CHI%20B%E1%BA%A2O.glb',
+    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/hoangdechibao-v1.glb',
+    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/hoangdechibao-v1.usdz',
     details: {
       dimensions: '88 × 63mm',
       material: 'Giấy mỹ thuật cao cấp 350gsm, phủ UV chọn lọc, dập nổi vàng',

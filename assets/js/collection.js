@@ -19,10 +19,10 @@
   let unlockedCards = new Set(rawStorage);
 
   // --- TEST MODE: Tự động mở khóa toàn bộ 14 cổ vật ---
-  // if (typeof PRODUCTS !== 'undefined') {
-  //   PRODUCTS.filter(p => p.type === 'artifact').forEach(p => unlockedCards.add(String(p.id)));
-  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(unlockedCards)));
-  // }
+  if (typeof PRODUCTS !== 'undefined') {
+    PRODUCTS.filter(p => p.type === 'artifact').forEach(p => unlockedCards.add(String(p.id)));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(unlockedCards)));
+  }
   // ----------------------------------------------------
 
   let unlockCount = unlockedCards.size;
