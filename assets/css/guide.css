@@ -1,0 +1,624 @@
+/* ============================================================
+   KHAI ẤN SỬ VIỆT — Guide Page Styles
+   Journey Grid & AR Guide Timeline
+   ============================================================ */
+
+
+
+/* ── JOURNEY GRID (STAGGERED & TIMELINE) ── */
+.guide-journey__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+  align-items: center;
+  /* Allows staggered vertical alignment */
+  padding-bottom: 40px;
+  position: relative;
+  /* For the SVG timeline path */
+}
+
+/* Timeline Path */
+.journey-timeline-path {
+  position: absolute;
+  top: 150px;
+  /* Lowered to pass behind the stele properly */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.journey-path-line {
+  fill: none;
+  stroke: var(--vang-thep);
+  stroke-width: 2;
+  stroke-dasharray: 6 10;
+  stroke-linecap: round;
+}
+
+.journey-path-dot {
+  fill: var(--vang-thep);
+  stroke: var(--den-son-mai);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 5px rgba(218, 165, 32, 0.8));
+  animation: dotPulse 2s infinite alternate;
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* ── CHIẾU CHỈ CUNG ĐÌNH (PREMIUM SCROLL WITH UNROLL) ── */
+.guide-journey__grid.vertical-scroll {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 80px auto 60px;
+  /* Bo Lụa (Silk Border): Vải gấm hoàng gia đỏ viền lụa */
+  background: linear-gradient(135deg, #611406, #3b0a02, #611406), url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 10l10-10H0l10 10z' fill='%238f1f0a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-blend-mode: overlay;
+  border-left: 12px solid #290802;
+  border-right: 12px solid #290802;
+  padding: 40px 30px 60px 30px;
+  position: relative;
+  box-shadow:
+    inset 0 40px 40px -20px rgba(0, 0, 0, 0.95),
+    /* Bóng cuộn gấm bên trên */
+    inset 0 -40px 40px -20px rgba(0, 0, 0, 0.95),
+    /* Bóng cuộn gấm bên dưới */
+    0 40px 70px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+
+  /* Scroll Unroll Effect - clip path strictly cuts off at the bottom of the roller */
+  --unroll-progress: 1;
+  clip-path: polygon(-20% -20%,
+      120% -20%,
+      120% calc(var(--unroll-progress) * 100% + 28px),
+      /* 28px matches the bottom of the 56px roller */
+      -20% calc(var(--unroll-progress) * 100% + 28px));
+}
+
+/* Lõi Giấy (Inner Paper) */
+.scroll-inner-paper {
+  position: relative;
+  /* Giấy dó vàng hoàng gia chân thực hơn */
+  background: linear-gradient(135deg, #fff7db, #f2db99, #e6c273), url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  padding: 60px 70px;
+  box-shadow:
+    inset 0 20px 30px -10px rgba(74, 21, 0, 0.3),
+    /* top curl shadow */
+    inset 0 -20px 30px -10px rgba(74, 21, 0, 0.3),
+    /* bottom curl shadow */
+    0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(139, 37, 0, 0.2);
+}
+
+/* Ấn Tín Đỏ (Royal Seal) */
+.royal-seal {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
+  border: 4px solid #b81d00;
+  border-radius: 4px;
+  color: #b81d00;
+  font-family: 'Noto Serif', serif;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transform: rotate(-3deg);
+  box-shadow: inset 0 0 6px rgba(184, 29, 0, 0.5), 0 0 6px rgba(184, 29, 0, 0.3);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 4px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Wooden rollers for the scroll */
+.guide-journey__grid.vertical-scroll::before,
+.guide-journey__grid.vertical-scroll::after {
+  content: '';
+  position: absolute;
+  left: -50px;
+  right: -50px;
+  height: 56px;
+  /* Dày dặn, bề thế hơn */
+  /* Trục cuộn: 2 đầu là núm vàng, ở giữa là lõi gấm cuộn vòng */
+  background:
+    /* Rãnh phân tách (shadow) núm Trái và cuộn gấm */
+    linear-gradient(90deg, transparent 40px, rgba(0, 0, 0, 0.9) 42px, rgba(0, 0, 0, 0.6) 44px, transparent 46px),
+    /* Rãnh phân tách núm Phải và cuộn gấm */
+    linear-gradient(270deg, transparent 40px, rgba(0, 0, 0, 0.9) 42px, rgba(0, 0, 0, 0.6) 44px, transparent 46px),
+
+    /* Đầu núm bên Trái (Golden & Dark Wood Cap) */
+    linear-gradient(90deg,
+      #8b6508 0px,
+      #ffd700 8px,
+      #daaa00 16px,
+      #3a1c0d 20px,
+      #1a0b05 32px,
+      #daaa00 36px,
+      #ffd700 40px,
+      transparent 40px),
+    /* Đầu núm bên Phải */
+    linear-gradient(270deg,
+      #8b6508 0px,
+      #ffd700 8px,
+      #daaa00 16px,
+      #3a1c0d 20px,
+      #1a0b05 32px,
+      #daaa00 36px,
+      #ffd700 40px,
+      transparent 40px),
+
+    /* Lớp gấm đỏ cuộn ở giữa (Rolled Silk with realistic cylindrical shading) */
+    linear-gradient(to bottom,
+      #1a0401 0%,
+      #3b0a02 15%,
+      #8f1f0a 35%,
+      #b3280c 55%,
+      #611406 80%,
+      #0d0200 100%);
+  border-radius: 12px;
+  /* Núm bo tròn góc thay vì hình viên thuốc */
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.95),
+    inset 0 8px 12px rgba(255, 255, 255, 0.15),
+    inset 0 -8px 15px rgba(0, 0, 0, 0.9);
+  z-index: 5;
+  border: 1px solid #140803;
+}
+
+.guide-journey__grid.vertical-scroll::before {
+  top: -28px;
+  /* 56px / 2 */
+}
+
+.guide-journey__grid.vertical-scroll::after {
+  /* Animate bottom roller with unroll progress */
+  top: calc(var(--unroll-progress) * 100% - 28px);
+  bottom: auto;
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.95),
+    inset 0 6px 10px rgba(255, 255, 255, 0.25),
+    inset 0 -6px 10px rgba(0, 0, 0, 0.8);
+}
+
+.guide-journey__card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  text-align: left;
+  padding: 40px 20px;
+  border-bottom: 2px dashed rgba(184, 134, 11, 0.4);
+  position: relative;
+  min-height: auto;
+  transition: all 0.4s ease;
+  border-radius: 8px;
+}
+
+.guide-journey__card:last-child {
+  border-bottom: none;
+}
+
+.guide-journey__card:hover {
+  transform: translateX(15px);
+  background: linear-gradient(90deg, rgba(184, 134, 11, 0.08) 0%, transparent 100%);
+}
+
+/* ── WATERMARK NUMBER ── */
+.guide-journey__watermark {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-family: 'Noto Serif', serif;
+  font-size: 110px;
+  font-weight: 700;
+  line-height: 1;
+  color: #c82800;
+  /* Mực son mờ */
+  opacity: 0.04;
+  z-index: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  font-style: italic;
+}
+
+.guide-journey__card:hover .guide-journey__watermark {
+  opacity: 0.08;
+  transform: translateY(-50%) scale(1.1) translateX(10px);
+  color: #b8860b;
+}
+
+/* ── CONTENT (Mực Tàu & Mực Son) ── */
+.guide-journey__icon {
+  flex: 0 0 70px;
+  width: 70px;
+  height: 70px;
+  color: #8b2500;
+  /* Mực son */
+  background: transparent;
+  border: 1px dashed #c2a77d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.guide-journey__card:hover .guide-journey__icon {
+  border-color: #8b2500;
+  transform: scale(1.1);
+}
+
+.guide-journey__icon svg {
+  width: 32px;
+  height: 32px;
+  filter: none;
+}
+
+.guide-journey__content {
+  flex: 1;
+  z-index: 2;
+  position: relative;
+}
+
+.guide-journey__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: #8b2500;
+  /* Tiêu đề màu mực son */
+  margin-bottom: 12px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.guide-journey__desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #3a2a18;
+  /* Nội dung màu mực tàu/nâu đen */
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .guide-journey__grid.vertical-scroll {
+    padding: 20px;
+  }
+
+  .guide-journey__card {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .guide-journey__icon {
+    margin: 0 auto;
+  }
+}
+
+
+
+/* ============================================================
+   AR GUIDE SECTION
+   ============================================================ */
+.ar-guide {
+  background: linear-gradient(180deg, var(--den-son-mai) 0%, rgba(166, 44, 33, 0.05) 50%, var(--den-son-mai) 100%);
+}
+
+.ar-guide__s-shape {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: 60px 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ar-guide__s-path {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ar-guide__traveler {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%) translateZ(0);
+  will-change: left, top, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ar-guide__traveler-logo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--den-nham, #1c1a17);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ar-guide__traveler-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ar-guide__traveler-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) translateZ(0);
+  border-radius: 50%;
+  border: 2px solid #FFD700;
+  animation: travelerRipple 1.5s linear infinite;
+  z-index: 1;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@keyframes travelerRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(1) translateZ(0);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(2.5) translateZ(0);
+    opacity: 0;
+  }
+}
+
+.ar-guide__s-shape .ar-guide__card {
+  width: 45%;
+  z-index: 1;
+  position: relative;
+  background: rgba(26, 17, 8, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.ar-guide__s-shape .step-1 {
+  align-self: flex-end;
+  transform: translateX(-15%);
+}
+
+.ar-guide__s-shape .step-2 {
+  align-self: flex-start;
+  transform: translateX(10%);
+}
+
+.ar-guide__s-shape .step-3 {
+  align-self: flex-end;
+  transform: translateX(5%);
+}
+
+.ar-guide__s-shape .step-4 {
+  align-self: flex-start;
+  transform: translateX(20%);
+}
+
+.ar-guide__card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(184, 134, 11, 0.6);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(184, 134, 11, 0.3);
+}
+
+.ar-guide__s-shape .step-1:hover {
+  transform: translateX(-15%) translateY(-8px) scale(1.02);
+}
+
+.ar-guide__s-shape .step-2:hover {
+  transform: translateX(10%) translateY(-8px) scale(1.02);
+}
+
+.ar-guide__s-shape .step-3:hover {
+  transform: translateX(5%) translateY(-8px) scale(1.02);
+}
+
+.ar-guide__s-shape .step-4:hover {
+  transform: translateX(20%) translateY(-8px) scale(1.02);
+}
+
+.ar-guide__card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(184, 134, 11, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.ar-guide__card:hover .ar-guide__card-bg,
+.ar-guide__card.active .ar-guide__card-bg {
+  opacity: 1;
+}
+
+.ar-guide__card.active {
+  border-color: rgba(218, 165, 32, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(218, 165, 32, 0.2);
+}
+
+.ar-guide__card-number {
+  position: absolute;
+  top: -20px;
+  right: 15px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ar-guide__card-number-seal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all var(--transition-normal);
+}
+
+.ar-guide__card-number-text {
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(184, 134, 11, 0.3);
+  transition: all var(--transition-normal);
+  z-index: 2;
+}
+
+.ar-guide__card:hover .ar-guide__card-number-text {
+  color: rgba(184, 134, 11, 0.7);
+}
+
+.ar-guide__card.active .ar-guide__card-number-text {
+  color: var(--vang-thep);
+  text-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+}
+
+.ar-guide__card.active .ar-guide__card-number-seal rect {
+  stroke: rgba(218, 165, 32, 0.6);
+}
+
+.ar-guide__card.active .ar-guide__card-icon {
+  background: rgba(184, 134, 11, 0.3);
+  color: #FFD700;
+  box-shadow: var(--glow-gold);
+}
+
+.ar-guide__card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ar-guide__card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(184, 134, 11, 0.15);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vang-thep);
+  margin-bottom: var(--space-sm);
+  transition: all var(--transition-normal);
+}
+
+.ar-guide__card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ar-guide__card:hover .ar-guide__card-icon {
+  background: rgba(184, 134, 11, 0.3);
+  transform: scale(1.1);
+  box-shadow: var(--glow-gold);
+}
+
+.ar-guide__card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--vang-thep);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.ar-guide__card-desc {
+  font-size: 0.9rem;
+  color: rgba(245, 245, 220, 0.7);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .ar-guide__s-shape .ar-guide__card {
+    width: 80%;
+    align-self: center !important;
+    transform: none !important;
+  }
+
+  .ar-guide__s-path {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 768px) {
+  .ar-guide__s-shape .ar-guide__card {
+    width: 100%;
+  }
+
+  .ar-guide__step {
+    gap: var(--space-sm);
+  }
+
+  .ar-guide__step-number {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+}

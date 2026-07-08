@@ -46,24 +46,19 @@
     // Mỗi nhóm có tiêu đề và mô tả riêng, tạo hệ thống phân cấp trực quan
     const ERAS = [
       {
-        title: "Kỷ Nguyên Lập Quốc",
-        desc: "Những bước đi đầu tiên của dân tộc — từ huyền thoại Vua Hùng đến thành Cổ Loa",
-        ids: ["kasv_335f5f38", "kasv_8caaa67e"]
+        title: "CHƯƠNG I: DẤU XƯA KHAI MỞ",
+        desc: "Dấu tích nhỏ bé mở ra cánh cửa đầu tiên dẫn lối về dòng chảy Việt sử.",
+        ids: ["kasv_7a7f947d", "kasv_8caaa67e", "kasv_2db5bf83"]
       },
       {
-        title: "Buổi Đầu Độc Lập",
-        desc: "Giành lại non sông, xưng đế định đô, khẳng định chủ quyền",
-        ids: ["kasv_9104dbd9", "kasv_7a7f947d", "kasv_2db5bf83"]
+        title: "CHƯƠNG II: HÀO KHÍ GIANG SƠN",
+        desc: "Khí phách dựng nước, giữ nước qua những tháng năm hào hùng",
+        ids: ["kasv_09b93159", "kasv_5dcebea7", "kasv_62ba131f"]
       },
       {
-        title: "Đại Việt Tỏa Sáng",
-        desc: "Thời kỳ phát triển rực rỡ nhất về văn hóa, quân sự và chính trị",
-        ids: ["kasv_6b8c2b5f", "kasv_f2c8ede5", "kasv_62ba131f", "kasv_3b6696e6"]
-      },
-      {
-        title: "Nam Bắc Phân Tranh & Cận Đại",
-        desc: "Sự phân tranh quyền lực, những cuộc khởi nghĩa lớn và đế nghiệp cuối cùng",
-        ids: ["kasv_1990acd8", "kasv_09b93159", "kasv_5dcebea7", "kasv_b2ddf02e", "kasv_92e2d582"]
+        title: "CHƯƠNG III: TINH HOA VƯƠNG TRIỀU",
+        desc: "Tôn vinh vẻ đẹp, quyền uy và chiều sâu văn hóa của các vương triều Việt Nam.",
+        ids: ["kasv_3b6696e6", "kasv_9104dbd9", "kasv_335f5f38", "kasv_b2ddf02e", "kasv_f2c8ede5", "kasv_92e2d582", "kasv_1990acd8", "kasv_6b8c2b5f"]
       }
     ];
 

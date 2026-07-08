@@ -280,7 +280,7 @@
 
 .footer__main {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  grid-template-columns: 2fr 1fr 1.5fr;
   gap: var(--space-lg);
   padding-bottom: var(--space-md);
   border-bottom: 1px solid rgba(184, 134, 11, 0.1);

@@ -141,7 +141,7 @@
   const heroModelGlow = document.querySelector('.hero__model-glow');
   const sections = document.querySelectorAll('.section[id]');
   const navLinkItems = document.querySelectorAll('.navbar__link');
-  
+
   // Cache layout values
   let homeHeight = 0;
   let sectionLayouts = [];
@@ -149,7 +149,7 @@
   function cacheLayout() {
     const homeSection = document.getElementById('home');
     homeHeight = homeSection ? homeSection.offsetHeight : 0;
-    
+
     sectionLayouts = Array.from(sections).map(section => ({
       id: section.getAttribute('id'),
       top: section.offsetTop,
@@ -206,97 +206,6 @@
 
 
   /* ============================================================
-     6. AR GUIDE ANIMATION — IntersectionObserver controlled
-     Only runs rAF when section is visible in viewport
-     ============================================================ */
-  const arGuideCards = document.querySelectorAll('.ar-guide__card');
-  const guidePath = document.getElementById('guidePath');
-  const guideTraveler = document.getElementById('guideTraveler');
-
-  if (arGuideCards.length > 0 && guidePath && guideTraveler) {
-    const totalDuration = 16000; // 16s cycle
-    const pathLength = guidePath.getTotalLength();
-    let cardThresholds = [0, 0, 0, 0];
-    let containerHeight = 0;
-    let arAnimationId = null;
-    let isArSectionVisible = false;
-    
-    function cachePositions() {
-      const pathRect = guidePath.getBoundingClientRect();
-      containerHeight = pathRect.height;
-      cardThresholds = Array.from(arGuideCards).map(card => {
-        return card.getBoundingClientRect().top - pathRect.top - 50;
-      });
-    }
-    
-    // Debounce resize for position caching
-    let arResizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(arResizeTimeout);
-      arResizeTimeout = setTimeout(cachePositions, 150);
-    });
-    // Initial cache after a short delay to ensure layout is settled
-    setTimeout(cachePositions, 100);
-    
-    function updateArGuideHighlight(timestamp) {
-      if (!isArSectionVisible) {
-        arAnimationId = null;
-        return;
-      }
-
-      if (!timestamp) timestamp = performance.now();
-      
-      const currentCycleTime = timestamp % totalDuration;
-      const progress = currentCycleTime / totalDuration;
-      
-      // Get exact point on SVG path
-      const point = guidePath.getPointAtLength(progress * pathLength);
-      
-      // Update HTML Traveler position (using % allows it to perfectly track the stretched SVG)
-      guideTraveler.style.left = `${point.x}%`;
-      guideTraveler.style.top = `${point.y}%`;
-      
-      // Calculate traveler Y position relative to container
-      const travelerCenterY = (point.y / 100) * containerHeight;
-      
-      let activeIndex = 0;
-      arGuideCards.forEach((card, index) => {
-        // If traveler is within or past the top of the card
-        if (travelerCenterY >= cardThresholds[index]) {
-          activeIndex = index;
-        }
-      });
-      
-      arGuideCards.forEach((card, index) => {
-        if (index === activeIndex) {
-          card.classList.add('active');
-        } else {
-          card.classList.remove('active');
-        }
-      });
-      
-      arAnimationId = requestAnimationFrame(updateArGuideHighlight);
-    }
-
-    // IntersectionObserver: only animate when AR section is visible
-    const arGuideSection = document.getElementById('ar-guide');
-    if (arGuideSection) {
-      const arObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          isArSectionVisible = entry.isIntersecting;
-          if (isArSectionVisible && !arAnimationId) {
-            cachePositions();
-            arAnimationId = requestAnimationFrame(updateArGuideHighlight);
-          }
-        });
-      }, { rootMargin: '100px 0px', threshold: 0 });
-      arObserver.observe(arGuideSection);
-    } else {
-      // Fallback if section not found — start immediately
-      requestAnimationFrame(updateArGuideHighlight);
-    }
-  }
-
   /* ============================================================
      INIT
      ============================================================ */

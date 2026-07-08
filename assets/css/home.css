@@ -618,7 +618,7 @@
    ABOUT US SECTION
    ============================================================ */
 .about {
-  background: linear-gradient(180deg, var(--den-son-mai) 0%, var(--den-mo) 50%, var(--den-son-mai) 100%);
+  /* background managed by themes */
 }
 
 .about__wrapper {
@@ -654,10 +654,19 @@
   text-align: left;
 }
 
+.theme-light .about__tab {
+  color: #63371d;
+}
+
 .about__tab:hover {
   color: var(--trang-nga);
   background: rgba(184, 134, 11, 0.05);
-  border-color: rgba(184, 134, 11, 0.1);
+  border-color: rgba(128, 9, 11, 0.2);
+}
+
+.theme-light .about__tab:hover {
+  color: var(--do-chu-sa);
+  background: rgba(128, 9, 11, 0.05);
 }
 
 .about__tab.active {
@@ -665,6 +674,13 @@
   background: rgba(184, 134, 11, 0.1);
   border-color: rgba(184, 134, 11, 0.3);
   box-shadow: 0 0 15px rgba(184, 134, 11, 0.1);
+}
+
+.theme-light .about__tab.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--do-chu-sa), var(--do-chu-sa-light));
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(166, 44, 33, 0.2);
 }
 
 .about__tab-icon {
@@ -702,7 +718,7 @@
   font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--vang-thep);
+  color: var(--do-chu-sa);
   margin-bottom: var(--space-sm);
   line-height: 1.3;
 }
@@ -710,7 +726,7 @@
 .about__panel-subtitle {
   font-family: var(--font-display);
   font-size: 0.7rem;
-  color: var(--do-chu-sa);
+  color: var(--vang-thep);
   letter-spacing: 5px;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -723,12 +739,21 @@
   margin-bottom: var(--space-sm);
 }
 
+.theme-light .about__panel-text {
+  color: #5f3821;
+}
+
 .about__panel-quote {
   padding: 20px 24px;
-  border-left: 3px solid var(--vang-thep);
+  border-left: 3px solid var(--do-chu-sa);
   background: rgba(184, 134, 11, 0.05);
   margin-top: var(--space-md);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.theme-light .about__panel-quote {
+  background: #fff6dc;
+  color: var(--do-chu-sa);
 }
 
 .about__panel-quote p {
@@ -739,12 +764,20 @@
   line-height: 1.7;
 }
 
+.theme-light .about__panel-quote p {
+  color: var(--do-chu-sa);
+}
+
 .about__panel-quote cite {
   display: block;
   margin-top: 8px;
   font-size: 0.8rem;
   color: rgba(245, 245, 220, 0.4);
   font-style: normal;
+}
+
+.theme-light .about__panel-quote cite {
+  color: #72442b;
 }
 
 .about__values-grid {
@@ -763,10 +796,20 @@
   transition: all var(--transition-normal);
 }
 
+.theme-light .about__value-card {
+  background: #fff6dc;
+  border-color: rgba(128, 9, 11, 0.1);
+}
+
 .about__value-card:hover {
   border-color: rgba(184, 134, 11, 0.35);
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.theme-light .about__value-card:hover {
+  border-color: rgba(128, 9, 11, 0.3);
+  box-shadow: 0 8px 25px rgba(93, 44, 16, 0.1);
 }
 
 .about__value-icon {
@@ -778,7 +821,7 @@
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--vang-thep);
+  color: var(--do-chu-sa);
   margin-bottom: 8px;
   letter-spacing: 1px;
 }
@@ -789,283 +832,15 @@
   line-height: 1.6;
 }
 
-/* ============================================================
-   AR GUIDE SECTION
-   ============================================================ */
-.ar-guide {
-  background: linear-gradient(180deg, var(--den-son-mai) 0%, rgba(166, 44, 33, 0.05) 50%, var(--den-son-mai) 100%);
-}
-
-.ar-guide__s-shape {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
-  padding: 60px 0;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.ar-guide__s-path {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.ar-guide__traveler {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  transform: translate(-50%, -50%) translateZ(0);
-  will-change: left, top, transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  pointer-events: none;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ar-guide__traveler-logo {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--den-nham, #1c1a17);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-  z-index: 2;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ar-guide__traveler-logo svg {
-  width: 100%;
-  height: 100%;
-}
-
-.ar-guide__traveler-ripple {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%) translateZ(0);
-  border-radius: 50%;
-  border: 2px solid #FFD700;
-  animation: travelerRipple 1.5s linear infinite;
-  z-index: 1;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-@keyframes travelerRipple {
-  0% {
-    transform: translate(-50%, -50%) scale(1) translateZ(0);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(2.5) translateZ(0);
-    opacity: 0;
-  }
-}
-
-.ar-guide__s-shape .ar-guide__card {
-  width: 45%;
-  z-index: 1;
-  position: relative;
-  background: rgba(26, 17, 8, 0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 134, 11, 0.3);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  display: flex;
-  flex-direction: column;
-  transition: all var(--transition-normal);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.ar-guide__s-shape .step-1 {
-  align-self: flex-end;
-  transform: translateX(-15%);
-}
-
-.ar-guide__s-shape .step-2 {
-  align-self: flex-start;
-  transform: translateX(10%);
-}
-
-.ar-guide__s-shape .step-3 {
-  align-self: flex-end;
-  transform: translateX(5%);
-}
-
-.ar-guide__s-shape .step-4 {
-  align-self: flex-start;
-  transform: translateX(20%);
-}
-
-.ar-guide__card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: rgba(184, 134, 11, 0.6);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(184, 134, 11, 0.3);
-}
-
-/* For hover specifically avoiding overriding translate X, we use relative top/left or translateY */
-.ar-guide__s-shape .step-1:hover {
-  transform: translateX(-15%) translateY(-8px) scale(1.02);
-}
-
-.ar-guide__s-shape .step-2:hover {
-  transform: translateX(10%) translateY(-8px) scale(1.02);
-}
-
-.ar-guide__s-shape .step-3:hover {
-  transform: translateX(5%) translateY(-8px) scale(1.02);
-}
-
-.ar-guide__s-shape .step-4:hover {
-  transform: translateX(20%) translateY(-8px) scale(1.02);
-}
-
-.ar-guide__card-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 0%, rgba(184, 134, 11, 0.15), transparent 70%);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-.ar-guide__card:hover .ar-guide__card-bg,
-.ar-guide__card.active .ar-guide__card-bg {
-  opacity: 1;
-}
-
-.ar-guide__card.active {
-  border-color: rgba(218, 165, 32, 0.5);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(218, 165, 32, 0.2);
-}
-
-.ar-guide__card-number {
-  position: absolute;
-  top: -20px;
-  right: 15px;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.ar-guide__card-number-seal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: all var(--transition-normal);
-}
-
-.ar-guide__card-number-text {
-  font-family: 'Noto Serif', serif;
-  font-size: 2rem;
-  font-weight: bold;
-  color: rgba(184, 134, 11, 0.3);
-  transition: all var(--transition-normal);
-  z-index: 2;
-}
-
-.ar-guide__card:hover .ar-guide__card-number-text {
-  color: rgba(184, 134, 11, 0.7);
-}
-
-.ar-guide__card.active .ar-guide__card-number-text {
-  color: var(--vang-thep);
-  text-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
-}
-
-.ar-guide__card.active .ar-guide__card-number-seal rect {
-  stroke: rgba(218, 165, 32, 0.6);
-}
-
-.ar-guide__card.active .ar-guide__card-icon {
-  background: rgba(184, 134, 11, 0.3);
-  color: #FFD700;
-  box-shadow: var(--glow-gold);
-}
-
-.ar-guide__card-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.ar-guide__card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(184, 134, 11, 0.15);
-  border: 1px solid rgba(184, 134, 11, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--vang-thep);
-  margin-bottom: var(--space-sm);
-  transition: all var(--transition-normal);
-}
-
-.ar-guide__card-icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.ar-guide__card:hover .ar-guide__card-icon {
-  background: rgba(184, 134, 11, 0.3);
-  transform: scale(1.1);
-  box-shadow: var(--glow-gold);
-}
-
-.ar-guide__card-title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--vang-thep);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.ar-guide__card-desc {
-  font-size: 0.9rem;
-  color: rgba(245, 245, 220, 0.7);
-  line-height: 1.6;
-  flex-grow: 1;
+.theme-light .about__value-desc {
+  color: #72442b;
 }
 
 /* ============================================================
    CONTACT SECTION
    ============================================================ */
 .contact {
-  background: linear-gradient(180deg, var(--den-mo) 0%, rgba(43, 29, 14, 0.8) 50%, var(--den-son-mai) 100%), var(--pattern-clouds);
-  background-blend-mode: overlay;
+  /* background managed by themes */
   position: relative;
   overflow: hidden;
 }
@@ -1218,7 +993,7 @@
 }
 
 .contact__form-submit {
-  align-self: flex-start;
+  width: 100%;
   padding: 14px 40px;
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -1238,6 +1013,74 @@
   transform: translateY(-2px);
   box-shadow: var(--glow-gold);
   background: linear-gradient(135deg, var(--do-chu-sa-light), var(--do-chu-sa));
+}
+
+/* --- THEME LIGHT OVERRIDES FOR CONTACT --- */
+.theme-light .contact__wrapper {
+  background: #fffdf6;
+  border-color: rgba(128, 9, 11, 0.12);
+}
+
+.theme-light .contact__info-list {
+  border-color: rgba(128, 9, 11, 0.15);
+}
+
+.theme-light .contact__info-icon {
+  background: rgba(128, 9, 11, 0.05);
+  border-color: rgba(128, 9, 11, 0.15);
+}
+
+.theme-light .contact__info-icon svg {
+  color: var(--do-chu-sa);
+}
+
+.theme-light .contact__info-label {
+  color: #72442b;
+}
+
+.theme-light .contact__info-value {
+  color: #5f3821;
+  font-weight: 700;
+}
+
+.theme-light .contact__social-link {
+  background: rgba(128, 9, 11, 0.05);
+  border-color: rgba(128, 9, 11, 0.15);
+  color: var(--do-chu-sa);
+}
+
+.theme-light .contact__social-link:hover {
+  background: var(--do-chu-sa);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(166, 44, 33, 0.2);
+}
+
+.theme-light .contact__form-label {
+  color: #72442b;
+}
+
+.theme-light .contact__form-input,
+.theme-light .contact__form-textarea {
+  color: #5f3821;
+  background: #fff;
+  border-color: rgba(128, 9, 11, 0.2);
+}
+
+.theme-light .contact__form-input::placeholder,
+.theme-light .contact__form-textarea::placeholder {
+  color: rgba(114, 68, 43, 0.5);
+}
+
+.theme-light .contact__form-input:focus,
+.theme-light .contact__form-textarea:focus {
+  border-color: var(--do-chu-sa);
+  background: #fffdf6;
+  box-shadow: 0 0 15px rgba(166, 44, 33, 0.15);
+}
+
+.theme-light .contact__form-submit {
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(166, 44, 33, 0.2);
 }
 
 /* ============================================================
@@ -1313,15 +1156,6 @@
     padding-bottom: var(--space-md);
   }
 
-  .ar-guide__s-shape .ar-guide__card {
-    width: 80%;
-    align-self: center !important;
-    transform: none !important;
-  }
-
-  .ar-guide__s-path {
-    opacity: 0.3;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1329,10 +1163,6 @@
     min-height: auto;
     padding-top: 100px;
     padding-bottom: var(--space-lg);
-  }
-
-  .ar-guide__s-shape .ar-guide__card {
-    width: 100%;
   }
 
   .hero__model-frame {
@@ -1373,16 +1203,6 @@
 
   .about__values-grid {
     grid-template-columns: 1fr;
-  }
-
-  .ar-guide__step {
-    gap: var(--space-sm);
-  }
-
-  .ar-guide__step-number {
-    width: 44px;
-    height: 44px;
-    font-size: 1rem;
   }
 
   .contact__form-submit {

@@ -112,7 +112,7 @@
       if (targetEl) {
         e.preventDefault();
         const navHeight = navbar ? navbar.offsetHeight : 70;
-        const targetPos = targetEl.offsetTop - navHeight;
+        const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - navHeight;
 
         window.scrollTo({
           top: targetPos,
