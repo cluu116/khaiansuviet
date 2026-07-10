@@ -323,7 +323,7 @@
 }
 
 .dynasty-card__number {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.65rem;
   font-weight: 600;
   color: var(--do-chu-sa);
@@ -333,7 +333,7 @@
 }
 
 .dynasty-card__front-name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -343,7 +343,8 @@
 
 .dynasty-card__era-text {
   font-size: 0.7rem;
-  color: rgba(245, 245, 220, 0.4);
+  color: rgba(245, 245, 220, 0.6);
+  /* Improved contrast from 0.4 */
   font-style: italic;
 }
 
@@ -353,9 +354,10 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.6rem;
-  color: rgba(245, 245, 220, 0.3);
+  color: rgba(245, 245, 220, 0.5);
+  /* Improved contrast from 0.3 */
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -423,7 +425,7 @@
 }
 
 .dynasty-card__back-name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -463,7 +465,7 @@
   justify-content: center;
   gap: 6px;
   padding: 10px 20px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -591,7 +593,7 @@
 .nfc-unlock__text {
   position: relative;
   z-index: 2;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -620,7 +622,7 @@
 .nfc-unlock__subtext {
   position: relative;
   z-index: 2;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.9rem;
   color: rgba(245, 245, 220, 0.6);
   letter-spacing: 2px;
@@ -796,7 +798,7 @@
 }
 
 .modal__model-placeholder span {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   letter-spacing: 2px;
 }
@@ -806,7 +808,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--trang-nga);
@@ -838,7 +840,7 @@
 }
 
 .modal__dynasty-label {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   color: var(--do-chu-sa);
   letter-spacing: 4px;
@@ -847,7 +849,7 @@
 }
 
 .modal__dynasty-name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 900;
   color: var(--vang-thep);
@@ -872,7 +874,7 @@
 }
 
 .modal__artifact-name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--vang-thep);

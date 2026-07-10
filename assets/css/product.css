@@ -125,7 +125,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -153,7 +153,7 @@
 }
 
 .product-hero__name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: clamp(1.6rem, 3vw, 2.5rem);
   font-weight: 900;
   color: var(--trang-nga);
@@ -172,7 +172,7 @@
 }
 
 .product-hero__price {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -219,7 +219,7 @@
 .product-hero__qty-value {
   width: 50px;
   text-align: center;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 700;
   color: var(--trang-nga);
@@ -255,7 +255,7 @@
   width: 100%;
   height: 56px;
   padding: 0 32px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -348,7 +348,7 @@
 }
 
 .closeup__marquee-text {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 900;
   color: var(--trang-nga);
@@ -482,7 +482,7 @@
 }
 
 .accordion-title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--trang-nga);
@@ -495,7 +495,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 300;
   color: var(--vang-thep);
@@ -508,13 +508,18 @@
 }
 
 .accordion-body {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-bottom: 0;
+}
+
+.accordion-body > div {
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
 }
 
 .accordion-item.open .accordion-body {
-  max-height: 500px;
+  grid-template-rows: 1fr;
   padding-bottom: 24px;
 }
 
@@ -533,7 +538,7 @@
 
 .accordion-body__spec-label {
   color: rgba(245, 245, 220, 0.4);
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -552,7 +557,7 @@
 }
 
 .related-products__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 900;
   color: var(--trang-nga);
@@ -575,7 +580,7 @@
   padding: 0 var(--space-md);
 }
 
-.related-products__grid > * {
+.related-products__grid>* {
   flex: 1 1 300px;
   max-width: 350px;
 }
@@ -595,7 +600,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -683,7 +688,7 @@
 }
 
 .order-modal__label {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   color: var(--do-chu-sa);
   letter-spacing: 4px;
@@ -692,7 +697,7 @@
 }
 
 .order-modal__product-name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 900;
   color: var(--trang-nga);
@@ -701,7 +706,7 @@
 }
 
 .order-modal__product-price {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -731,7 +736,7 @@
 }
 
 .order-modal__field-label {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.65rem;
   font-weight: 600;
   color: rgba(245, 245, 220, 0.45);
@@ -756,7 +761,8 @@
   width: 100%;
   padding: 12px 16px;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 16px;
+  /* Prevents iOS auto-zoom stutter */
   color: var(--trang-nga);
   background: rgba(245, 245, 220, 0.04);
   border: 1px solid rgba(184, 134, 11, 0.15);
@@ -791,11 +797,18 @@ select.order-modal__input {
   background-size: 16px;
   cursor: pointer;
   padding-right: 40px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+select.order-modal__input:focus {
+  background-color: rgba(30, 22, 12, 0.98);
+  /* Match form background */
 }
 
 select.order-modal__input option {
-  background-color: var(--den-son-mai);
-  color: var(--vang-thep);
+  background-color: #1e160c;
+  /* Match form background precisely */
+  color: var(--trang-nga);
   font-family: var(--font-body);
 }
 
@@ -813,7 +826,7 @@ select.order-modal__input option {
 .order-modal__submit {
   margin-top: 8px;
   padding: 16px 32px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 2.5px;

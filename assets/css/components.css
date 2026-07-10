@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.8rem;
   color: var(--vang-thep);
   text-shadow: 0 0 15px var(--vang-thep-glow);
@@ -59,13 +59,52 @@
 
 .preloader__text {
   margin-top: var(--space-sm);
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.85rem;
   color: var(--vang-thep);
   letter-spacing: 4px;
   text-transform: uppercase;
   opacity: 0.8;
   animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+.preloader__progress {
+  width: 120px;
+  height: 2px;
+  background: rgba(184, 134, 11, 0.15);
+  border-radius: 1px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.preloader__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--do-chu-sa), var(--vang-thep));
+  border-radius: 1px;
+  animation: preloaderProgress 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes preloaderProgress {
+  0% {
+    width: 0%;
+  }
+
+  20% {
+    width: 30%;
+  }
+
+  60% {
+    width: 75%;
+  }
+
+  90% {
+    width: 92%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 @keyframes preloaderSpin {
@@ -132,7 +171,7 @@
 }
 
 .navbar__logo-text {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -148,7 +187,7 @@
 }
 
 .navbar__link {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--trang-nga);
@@ -212,6 +251,24 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Mobile menu backdrop overlay */
+.navbar__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 997;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.navbar__overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* ── CTA Button: Kim Bài / Ngọc Bài (Royal Plaques) ── */
 .btn-cta {
   display: inline-flex;
@@ -224,7 +281,7 @@
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: #3D0E08;
+  color: #FFEA99;
   background: linear-gradient(135deg, #FFF0B3 0%, #FFD700 45%, #D4A017 75%, #8A6300 100%);
   border: none;
   position: relative;
@@ -235,14 +292,14 @@
   clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px),
       calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
   filter: drop-shadow(0 6px 15px rgba(255, 215, 0, 0.5));
-  text-shadow: none;
+  text-shadow: 0 0 10px rgba(255, 234, 153, 0.5), 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .btn-cta::before {
   content: '';
   position: absolute;
   inset: 3px;
-  background: linear-gradient(135deg, #FFF5CC 0%, #FFD700 50%, #D4A017 100%);
+  background: linear-gradient(135deg, var(--do-chu-sa-dark, #8a1c14) 0%, #3D0E08 100%);
   clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px),
       calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
   z-index: -1;
@@ -251,13 +308,13 @@
 
 .btn-cta:hover {
   transform: translateY(-4px) scale(1.02);
-  color: #FFEA99;
+  color: #3D0E08;
   filter: drop-shadow(0 10px 25px rgba(255, 215, 0, 0.8));
-  text-shadow: 0 0 10px rgba(255, 234, 153, 0.5), 0 2px 4px rgba(0,0,0,0.8);
+  text-shadow: none;
 }
 
 .btn-cta:hover::before {
-  background: linear-gradient(135deg, var(--do-chu-sa-dark) 0%, #3D0E08 100%);
+  background: linear-gradient(135deg, #FFF5CC 0%, #FFD700 50%, #D4A017 100%);
 }
 
 /* Secondary CTA: Ngọc Bài (Jade Plaque) */
@@ -285,6 +342,7 @@
   font-size: 0.8rem;
 }
 
+
 /* ── Footer ── */
 .footer {
   background: var(--den-son-mai);
@@ -302,7 +360,7 @@
 }
 
 .footer__col-title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1rem;
   color: var(--vang-thep);
   margin-bottom: var(--space-sm);
@@ -387,7 +445,7 @@
 }
 
 .footer__brand-text {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--vang-thep);
@@ -431,7 +489,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(100px);
   padding: 16px 24px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.95rem;
   color: var(--trang-nga);
   background: rgba(26, 17, 8, 0.95);
@@ -471,6 +529,13 @@
 
 
 /* ── Responsive ── */
+/* ⚠️ Order matters: larger breakpoints first to avoid cascade conflicts */
+@media (max-width: 992px) {
+  .footer__main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar__links {
     position: fixed;
@@ -481,6 +546,7 @@
     flex-direction: column;
     background: rgba(26, 17, 8, 0.98);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: 100px var(--space-md) var(--space-md);
     gap: var(--space-sm);
     transition: right var(--transition-normal);
@@ -499,12 +565,6 @@
   .btn-cta {
     padding: 14px 28px;
     font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .footer__main {
-    grid-template-columns: 1fr 1fr;
   }
 }
 

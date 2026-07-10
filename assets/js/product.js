@@ -229,10 +229,10 @@
 
   // Populate order form with product info
   if (orderProductName) orderProductName.textContent = product.artifact;
-  
+
   const orderVariantField = document.getElementById('orderVariantField');
   const orderVariant = document.getElementById('orderVariant');
-  
+
   if (product.type === 'blindbox' && product.priceBox) {
     if (orderVariantField) orderVariantField.style.display = 'block';
     if (orderVariant) {
@@ -290,8 +290,8 @@
       const qty = document.getElementById('orderQty').value;
       const note = document.getElementById('orderNote').value.trim();
 
-      if (!name || !phone) {
-        showToast('⚠️ Vui lòng điền đầy đủ Họ tên và Số điện thoại.');
+      if (!name || !phone || !email) {
+        showToast('⚠️ Vui lòng điền đầy đủ Họ tên, Số điện thoại và Email.');
         return;
       }
 
@@ -356,15 +356,9 @@
   document.querySelectorAll('.accordion-header').forEach((header) => {
     header.addEventListener('click', () => {
       const item = header.closest('.accordion-item');
-      const isOpen = item.classList.contains('open');
-
-      // Close all
-      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
-
+      
       // Toggle clicked
-      if (!isOpen) {
-        item.classList.add('open');
-      }
+      item.classList.toggle('open');
     });
   });
 
@@ -392,12 +386,12 @@
     relatedGrid.innerHTML = related.map(p => {
       let qty = "";
       let priceHtml = "";
-      
+
       if (p.type === 'blindbox' && p.priceBox) {
         if (p.artifact.includes('Basic')) qty = 'Dòng Cơ Bản';
         else if (p.artifact.includes('Standard')) qty = 'Dòng Tiêu Chuẩn';
         else if (p.artifact.includes('Premium')) qty = 'Dòng Cao Cấp';
-        
+
         priceHtml = `
           <div class="blind-box__prices">
             <div class="price-row">
@@ -416,7 +410,7 @@
         `;
       } else {
         qty = p.era || p.dynasty || '';
-        priceHtml = `<p class="blind-box__price" style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--trang-nga); margin-bottom: 20px;">${formatPrice(p.price)}</p>`;
+        priceHtml = `<p class="blind-box__price" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--trang-nga); margin-bottom: 20px;">${formatPrice(p.price)}</p>`;
       }
 
       return `

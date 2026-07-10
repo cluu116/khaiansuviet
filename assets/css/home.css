@@ -152,7 +152,7 @@
 
 .hero__badge {
   display: inline-block;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--vang-thep);
@@ -339,7 +339,7 @@
 }
 
 .hero__scroll-text {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.65rem;
   color: var(--vang-thep);
   letter-spacing: 3px;
@@ -432,7 +432,7 @@
 }
 
 .blind-box__qty {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.9rem;
   color: var(--do-chu-sa);
   letter-spacing: 2px;
@@ -441,7 +441,7 @@
 }
 
 .blind-box__name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   color: var(--vang-thep);
   margin-bottom: 15px;
@@ -486,9 +486,9 @@
   justify-content: center;
   width: 80%;
   padding: 12px 0;
-  background: rgba(138, 28, 20, 0.95); /* Màu đỏ sẫm */
+  background: rgba(138, 28, 20, 0.95);
   color: var(--vang-thep);
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: normal;
   border: none;
@@ -498,13 +498,10 @@
   transition: all var(--transition-normal);
   position: relative;
   z-index: 1;
-  /* Vát 4 góc */
-  clip-path: polygon(
-    12px 0, calc(100% - 12px) 0,
-    100% 12px, 100% calc(100% - 12px),
-    calc(100% - 12px) 100%, 12px 100%,
-    0 calc(100% - 12px), 0 12px
-  );
+  clip-path: polygon(12px 0, calc(100% - 12px) 0,
+      100% 12px, 100% calc(100% - 12px),
+      calc(100% - 12px) 100%, 12px 100%,
+      0 calc(100% - 12px), 0 12px);
 }
 
 .blind-box__btn::before {
@@ -513,13 +510,10 @@
   inset: 3px;
   border: 1px dashed rgba(184, 134, 11, 0.6);
   pointer-events: none;
-  /* Vát 4 góc cho viền bên trong */
-  clip-path: polygon(
-    9px 0, calc(100% - 9px) 0,
-    100% 9px, 100% calc(100% - 9px),
-    calc(100% - 9px) 100%, 9px 100%,
-    0 calc(100% - 9px), 0 9px
-  );
+  clip-path: polygon(9px 0, calc(100% - 9px) 0,
+      100% 9px, 100% calc(100% - 9px),
+      calc(100% - 9px) 100%, 9px 100%,
+      0 calc(100% - 9px), 0 9px);
 }
 
 .blind-box__card:hover .blind-box__btn {
@@ -529,6 +523,33 @@
 
 .blind-box__card:hover .blind-box__btn::before {
   border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Premium Blind Box Badge */
+.blind-box__card--premium {
+  border-color: rgba(184, 134, 11, 0.7);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(184, 134, 11, 0.12);
+  position: relative;
+}
+
+.blind-box__card--premium::after {
+  content: '★ Phổ Biến Nhất';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 4px 12px;
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--den-son-mai);
+  background: linear-gradient(135deg, var(--vang-thep), var(--vang-thep-light));
+  border-radius: 20px;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 2px 10px rgba(184, 134, 11, 0.3);
 }
 
 .mystery-section {
@@ -606,7 +627,7 @@
 }
 
 .mystery-card__dynasty {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.6rem;
   color: rgba(245, 245, 220, 0.4);
   text-transform: uppercase;
@@ -614,7 +635,7 @@
 }
 
 .mystery-card__name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.8rem;
   color: var(--vang-thep);
   letter-spacing: 2px;
@@ -653,7 +674,7 @@
   align-items: center;
   gap: 12px;
   padding: 16px 20px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.8rem;
   font-weight: 600;
   color: rgba(245, 245, 220, 0.5);
@@ -706,18 +727,25 @@
 }
 
 .about__panel {
-  display: none;
-  animation: fadeInPanel 0.4s ease;
+  display: block;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.45s ease, max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
 .about__panel.active {
-  display: block;
+  opacity: 1;
+  max-height: 2000px;
+  pointer-events: auto;
+  animation: fadeInPanel 0.45s ease both;
 }
 
 @keyframes fadeInPanel {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(12px);
   }
 
   to {
@@ -736,7 +764,7 @@
 }
 
 .about__panel-subtitle {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   color: var(--vang-thep);
   letter-spacing: 5px;
@@ -830,7 +858,7 @@
 }
 
 .about__value-name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--do-chu-sa);
@@ -913,9 +941,10 @@
 }
 
 .contact__info-label {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
-  color: rgba(245, 245, 220, 0.4);
+  color: rgba(245, 245, 220, 0.6);
+  /* Improved from 0.4 for WCAG contrast */
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 2px;
@@ -970,10 +999,11 @@
 }
 
 .contact__form-label {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
   font-weight: 600;
-  color: rgba(245, 245, 220, 0.5);
+  color: rgba(245, 245, 220, 0.7);
+  /* Improved from 0.5 for WCAG contrast */
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -999,6 +1029,8 @@
   background: rgba(26, 17, 8, 0.8);
 }
 
+
+
 .contact__form-textarea {
   resize: vertical;
   min-height: 130px;
@@ -1007,7 +1039,7 @@
 .contact__form-submit {
   width: 100%;
   padding: 14px 40px;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -1134,10 +1166,28 @@
 
   .about__tabs {
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     position: static;
     gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .about__tabs::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .about__tabs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+
+  .about__tabs::-webkit-scrollbar-thumb {
+    background: var(--vang-thep);
+    border-radius: 4px;
   }
 
   .about__tab {
@@ -1199,18 +1249,14 @@
   }
 
   .about__tabs {
-    flex-direction: row;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     gap: 6px;
-    padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
   }
 
   .about__tab {
     white-space: nowrap;
     flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 
   .about__values-grid {

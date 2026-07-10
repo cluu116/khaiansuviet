@@ -52,7 +52,7 @@
     if (!blindBoxGrid) return;
 
     blindBoxGrid.innerHTML = BLIND_BOXES.map(box => `
-      <a href="product.html?id=${box.id}" class="blind-box__card">
+      <a href="product.html?id=${box.id}" class="blind-box__card${box.id === 'kasv_be952029' ? ' blind-box__card--premium' : ''}">
         <div class="blind-box__image">
           <img src="${box.image}" alt="${box.name}" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
@@ -189,6 +189,16 @@
     // Navbar scroll behavior (merged from common.js)
     if (window._handleNavbarScroll) {
       window._handleNavbarScroll();
+    }
+
+    // Scroll-to-top button visibility
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+      if (scrollY > 400) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
     }
 
     // Parallax

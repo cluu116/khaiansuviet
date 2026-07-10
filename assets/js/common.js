@@ -1,6 +1,6 @@
 /* ============================================================
    KHAI ẤN SỬ VIỆT — Common JavaScript
-   Shared logic: Preloader, Navbar, Scroll, Toast
+   Shared logic: Preloader, Navbar, Scroll, Toast, Scroll-to-Top
    Used across all pages
    ============================================================ */
 
@@ -64,6 +64,7 @@
         if (!scrollTicking) {
           requestAnimationFrame(() => {
             handleNavbarScroll();
+            handleScrollTopVisibility();
             scrollTicking = false;
           });
           scrollTicking = true;
@@ -73,31 +74,66 @@
   });
 
   /* ============================================================
-     3. HAMBURGER MENU
+     3. HAMBURGER MENU + OVERLAY BACKDROP
      ============================================================ */
+
+  // Create overlay element dynamically
+  let navOverlay = document.getElementById('navOverlay');
+  if (!navOverlay && hamburger) {
+    navOverlay = document.createElement('div');
+    navOverlay.id = 'navOverlay';
+    navOverlay.className = 'navbar__overlay';
+    navOverlay.setAttribute('aria-hidden', 'true');
+    document.body.insertBefore(navOverlay, document.body.firstChild);
+  }
+
+  function openMenu() {
+    if (!hamburger || !navLinks) return;
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    navLinks.classList.add('open');
+    if (navOverlay) navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    if (!hamburger || !navLinks) return;
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    navLinks.classList.remove('open');
+    if (navOverlay) navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   if (hamburger && navLinks) {
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-controls', 'navLinks');
+
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      navLinks.classList.toggle('open');
+      if (navLinks.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-      if (!navbar.contains(e.target) && navLinks.classList.contains('open')) {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
+    // Close when overlay is clicked
+    if (navOverlay) {
+      navOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
+        hamburger.focus();
       }
     });
   }
 
   // Close menu on nav link click
   document.querySelectorAll('.navbar__link').forEach((link) => {
-    link.addEventListener('click', () => {
-      if (hamburger && navLinks) {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
-      }
-    });
+    link.addEventListener('click', closeMenu);
   });
 
   /* ============================================================
@@ -145,7 +181,7 @@
   });
 
   /* ============================================================
-     6. TOAST NOTIFICATION (Global)
+     6. TOAST NOTIFICATION (Global) — XSS Safe
      ============================================================ */
   let toastTimeout;
 
@@ -153,11 +189,52 @@
     if (!toast) return;
     clearTimeout(toastTimeout);
 
-    toast.innerHTML = `<div class="toast__text">${message}</div>`;
+    // XSS-safe: use textContent instead of innerHTML
+    toast.textContent = '';
+    const textDiv = document.createElement('div');
+    textDiv.className = 'toast__text';
+    textDiv.textContent = message;
+    toast.appendChild(textDiv);
+
     toast.classList.add('show');
 
     toastTimeout = setTimeout(() => {
       toast.classList.remove('show');
     }, 4000);
   };
+
+  /* ============================================================
+     7. SCROLL-TO-TOP BUTTON
+     ============================================================ */
+  let scrollTopBtn = document.getElementById('scrollTopBtn');
+
+  // Create button if it doesn't exist in HTML
+  if (!scrollTopBtn) {
+    scrollTopBtn = document.createElement('button');
+    scrollTopBtn.id = 'scrollTopBtn';
+    scrollTopBtn.className = 'scroll-top';
+    scrollTopBtn.setAttribute('aria-label', 'Về đầu trang');
+    scrollTopBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    `;
+    document.body.appendChild(scrollTopBtn);
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  function handleScrollTopVisibility() {
+    if (!scrollTopBtn) return;
+    if (window.scrollY > 400) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  }
+
+
+
 })();

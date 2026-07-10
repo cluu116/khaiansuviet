@@ -13,6 +13,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 /* ── CSS Custom Properties (Design Tokens) ── */
 :root {
   /* --- Hệ Màu Lịch Sử --- */
@@ -33,9 +34,9 @@
   --den-mo: #2b1d0e;
 
   /* --- Typography --- */
-  --font-display: 'SVN-Romaji Mincho', 'Noto Serif', 'Libre Baskerville', serif;
-  --font-heading: 'SVN-Romaji Mincho', 'Libre Baskerville', 'Noto Serif', serif;
-  --font-body: 'Montserrat', 'Source Serif 4', 'Noto Serif', 'Times New Roman', sans-serif;
+  --font-display: 'SVN-Romaji Mincho', serif;
+  --font-heading: 'Philosopher', 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
 
   /* --- Spacing --- */
   --space-xs: 0.5rem;
@@ -69,6 +70,33 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* ── Skip Navigation Link (Accessibility) ── */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 28px;
+  background: var(--vang-thep);
+  color: var(--den-son-mai);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 99999;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  transition: top 0.3s ease;
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--den-son-mai);
+  outline-offset: 2px;
 }
 
 html {
@@ -113,6 +141,41 @@ button {
   border: none;
   background: none;
   font-family: inherit;
+}
+
+/* ── Focus Styles (WCAG 2.1 Level AA) ── */
+:focus-visible {
+  outline: 2px solid var(--vang-thep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.navbar__link:focus-visible,
+.navbar__logo:focus-visible,
+.btn-cta:focus-visible,
+.footer__links a:focus-visible,
+.footer__social-icon:focus-visible {
+  outline: 2px solid var(--vang-thep);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.dynasty-card:focus-visible {
+  outline: 2px solid var(--vang-thep);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(184, 134, 11, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.theme-light a:focus-visible,
+.theme-light button:focus-visible {
+  outline-color: var(--do-chu-sa);
+  box-shadow: 0 0 0 4px rgba(166, 44, 33, 0.2);
 }
 
 /* ── Decorative SVG Background Patterns ── */
@@ -164,7 +227,7 @@ button {
   padding: var(--space-2xl) 0;
 }
 
-.theme-light > .container {
+.theme-light>.container {
   padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1.5rem, 5vw, var(--space-xl));
   position: relative;
 }
@@ -183,10 +246,7 @@ button {
   color: var(--do-chu-sa);
 }
 
-.theme-light .section__label {
-  color: var(--do-chu-sa-light);
-  border-color: rgba(166, 44, 33, 0.2);
-}
+/* Duplicate removed — rule already declared at L173-176 */
 
 .section__label {
   font-family: var(--font-display);
@@ -261,6 +321,66 @@ button {
 .reveal-right.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* ── Utility Classes ── */
+.text-accent {
+  color: var(--vang-thep);
+}
+
+.text-accent-lg {
+  color: var(--vang-thep);
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+.text-accent-red {
+  color: var(--do-chu-sa);
+}
+
+/* ── Scroll-to-Top Button ── */
+.scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(26, 17, 8, 0.92);
+  border: 1px solid rgba(184, 134, 11, 0.35);
+  color: var(--vang-thep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all var(--transition-normal);
+  z-index: 500;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.scroll-top svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  background: var(--vang-thep);
+  color: var(--den-son-mai);
+  border-color: var(--vang-thep);
+  box-shadow: var(--glow-gold);
+  transform: translateY(-3px);
 }
 
 /* ── Special Effects & Decorations ── */
@@ -372,6 +492,18 @@ button {
 
   .section {
     padding: var(--space-xl) 0;
+  }
+
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-top svg {
+    width: 18px;
+    height: 18px;
   }
 }
 

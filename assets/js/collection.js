@@ -105,7 +105,7 @@
               <div class="dynasty-card__back-info">
                 <h3 class="dynasty-card__back-name">${product.dynasty}</h3>
                 <p class="dynasty-card__back-era" style="margin-bottom: 4px;">${product.era}</p>
-                <p style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; color: var(--vang-thep); opacity: 0.85; letter-spacing: 1px; text-transform: uppercase; margin: 0;">${product.artifact}</p>
+                <p style="font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; color: var(--vang-thep); opacity: 0.85; letter-spacing: 1px; text-transform: uppercase; margin: 0;">${product.artifact}</p>
               </div>
               <div class="dynasty-card__overlay">
                 <button class="dynasty-card__action" data-dynasty="${product.id}">
@@ -315,6 +315,8 @@
      ============================================================ */
   renderCardsGrid();
   updateProgress();
+
+
 
   // Check NFC after a short delay to allow DOM to settle
   setTimeout(checkNfcUnlock, 800);
