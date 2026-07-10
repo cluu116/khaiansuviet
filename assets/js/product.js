@@ -93,7 +93,19 @@
 
   if (elName) elName.textContent = product.artifact;
   if (elDynasty) elDynasty.textContent = `${product.dynasty} • ${product.era}`;
-  if (elPrice) elPrice.textContent = formatPrice(product.price);
+  if (elPrice) {
+    if (product.type === 'blindbox' && product.priceBox) {
+      elPrice.innerHTML = `
+        <div style="font-size: 1.2rem; display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+          <div>Không hộp: <strong>${formatPrice(product.price)}</strong></div>
+          <div>Có hộp: <strong>${formatPrice(product.priceBox)}</strong></div>
+          <div>Hộp gỗ: <strong style="color: var(--vang-thep);">${formatPrice(product.priceWood)}</strong></div>
+        </div>
+      `;
+    } else {
+      elPrice.textContent = formatPrice(product.price);
+    }
+  }
   if (elStatus) {
     elStatus.className = `badge ${getStatusClass(product.status)}`;
     elStatus.textContent = getStatusLabel(product.status);
@@ -217,7 +229,26 @@
 
   // Populate order form with product info
   if (orderProductName) orderProductName.textContent = product.artifact;
-  if (orderProductPrice) orderProductPrice.textContent = formatPrice(product.price);
+  
+  const orderVariantField = document.getElementById('orderVariantField');
+  const orderVariant = document.getElementById('orderVariant');
+  
+  if (product.type === 'blindbox' && product.priceBox) {
+    if (orderVariantField) orderVariantField.style.display = 'block';
+    if (orderVariant) {
+      orderVariant.innerHTML = `
+        <option value="${product.price}" data-name="Không hộp">Không hộp (${formatPrice(product.price)})</option>
+        <option value="${product.priceBox}" data-name="Có hộp">Có hộp (${formatPrice(product.priceBox)})</option>
+        <option value="${product.priceWood}" data-name="Hộp gỗ">Hộp gỗ (${formatPrice(product.priceWood)})</option>
+      `;
+      if (orderProductPrice) orderProductPrice.textContent = formatPrice(product.price);
+      orderVariant.addEventListener('change', (e) => {
+        if (orderProductPrice) orderProductPrice.textContent = formatPrice(parseInt(e.target.value));
+      });
+    }
+  } else {
+    if (orderProductPrice) orderProductPrice.textContent = formatPrice(product.price);
+  }
 
   // Open order modal
   if (buyNowBtn && orderModal && product.status !== 'sold-out') {
@@ -269,15 +300,25 @@
       submitBtn.innerText = "ĐANG XỬ LÝ...";
       submitBtn.disabled = true;
 
+      let finalPrice = product.price;
+      let variantName = "";
+      if (product.type === 'blindbox' && product.priceBox) {
+        const orderVariant = document.getElementById('orderVariant');
+        if (orderVariant) {
+          finalPrice = parseInt(orderVariant.value);
+          variantName = " - " + orderVariant.options[orderVariant.selectedIndex].getAttribute('data-name');
+        }
+      }
+
       const orderData = {
         type: "order",
         name: name,
         email: email || "Không có",
         phone: phone,
         address: note || "Không có",
-        product: product.artifact,
+        product: product.artifact + variantName,
         quantity: qty,
-        total: product.price * parseInt(qty)
+        total: finalPrice * parseInt(qty)
       };
 
       try {
@@ -349,19 +390,44 @@
   if (relatedGrid) {
     const related = getRelatedProducts(productId, 4);
     relatedGrid.innerHTML = related.map(p => {
-      const parts = p.artifact.split('(');
-      const name = parts[0].trim();
-      const qty = parts.length > 1 ? parts[1].replace(')', '').trim() : '';
+      let qty = "";
+      let priceHtml = "";
+      
+      if (p.type === 'blindbox' && p.priceBox) {
+        if (p.artifact.includes('Basic')) qty = 'Dòng Cơ Bản';
+        else if (p.artifact.includes('Standard')) qty = 'Dòng Tiêu Chuẩn';
+        else if (p.artifact.includes('Premium')) qty = 'Dòng Cao Cấp';
+        
+        priceHtml = `
+          <div class="blind-box__prices">
+            <div class="price-row">
+              <span class="price-label">Không hộp:</span>
+              <span class="price-val">${formatPrice(p.price)}</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Có hộp:</span>
+              <span class="price-val">${formatPrice(p.priceBox)}</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Hộp gỗ:</span>
+              <span class="price-val highlight">${formatPrice(p.priceWood)}</span>
+            </div>
+          </div>
+        `;
+      } else {
+        qty = p.era || p.dynasty || '';
+        priceHtml = `<p class="blind-box__price" style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--trang-nga); margin-bottom: 20px;">${formatPrice(p.price)}</p>`;
+      }
 
       return `
         <a href="product.html?id=${p.id}" class="blind-box__card" id="related-${p.id}">
           <div class="blind-box__image">
-            <img src="${p.image}" alt="${name}" width="1024" height="1024" loading="lazy" decoding="async">
+            <img src="${p.image}" alt="${p.artifact}" width="1024" height="1024" loading="lazy" decoding="async">
           </div>
-          <span class="blind-box__qty">${qty}</span>
-          <h3 class="blind-box__name">${name}</h3>
+          <div class="blind-box__qty">${qty}</div>
+          <h3 class="blind-box__name">${p.artifact}</h3>
           <p class="blind-box__desc">${p.description}</p>
-          <p class="blind-box__price">${formatPrice(p.price)}</p>
+          ${priceHtml}
           <span class="blind-box__btn">MUA NGAY</span>
         </a>
       `;

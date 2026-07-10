@@ -10,7 +10,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 70px;
+  padding-top: 140px;
 }
 
 .hero__bg {
@@ -381,12 +381,10 @@
 }
 
 .blind-box__card {
-  background:
-    linear-gradient(145deg, rgba(43, 29, 14, 0.85), rgba(26, 17, 8, 0.95)),
-    repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(184, 134, 11, 0.03) 5px, rgba(184, 134, 11, 0.03) 10px);
-  border: 1px solid rgba(184, 134, 11, 0.3);
-  border-radius: 8px;
-  padding: 35px 30px;
+  background: var(--den-son-mai);
+  border: 1px solid rgba(184, 134, 11, 0.4);
+  border-radius: 4px;
+  padding: 30px;
   text-align: center;
   transition: all var(--transition-normal);
   text-decoration: none;
@@ -395,44 +393,31 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .blind-box__card::before {
   content: '';
   position: absolute;
-  inset: 8px;
+  inset: 5px;
   border: 1px solid rgba(184, 134, 11, 0.15);
-  border-radius: 4px;
+  border-radius: 2px;
   pointer-events: none;
   z-index: 0;
 }
 
-.blind-box__card::after {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--vang-thep);
-  font-size: 14px;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .blind-box__card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
   border-color: var(--vang-thep);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(184, 134, 11, 0.1);
 }
 
 .blind-box__image {
   width: 100%;
   aspect-ratio: 1/1;
-  margin-bottom: 20px;
-  border-radius: 8px;
+  margin-bottom: 25px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .blind-box__image img {
@@ -443,80 +428,107 @@
 }
 
 .blind-box__card:hover .blind-box__image img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .blind-box__qty {
   font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--do-chu-sa);
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .blind-box__name {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--vang-thep);
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
 .blind-box__desc {
   font-size: 0.9rem;
   color: rgba(245, 245, 220, 0.6);
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   line-height: 1.6;
   flex-grow: 1;
 }
 
-.blind-box__price {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
+.blind-box__prices {
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto 25px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
   color: var(--trang-nga);
-  margin-bottom: 20px;
+}
+
+.price-row .price-val {
+  font-weight: 700;
+}
+
+.price-row .price-val.highlight {
+  color: var(--vang-thep);
 }
 
 .blind-box__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 35px;
-  background: linear-gradient(180deg, rgba(166, 44, 33, 0.9), rgba(110, 20, 15, 1));
+  width: 80%;
+  padding: 12px 0;
+  background: rgba(138, 28, 20, 0.95); /* Màu đỏ sẫm */
   color: var(--vang-thep);
   font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  border: 1px solid var(--vang-thep);
-  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: normal;
+  border: none;
+  border-radius: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all var(--transition-normal);
   position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(184, 134, 11, 0.2);
   z-index: 1;
+  /* Vát 4 góc */
+  clip-path: polygon(
+    12px 0, calc(100% - 12px) 0,
+    100% 12px, 100% calc(100% - 12px),
+    calc(100% - 12px) 100%, 12px 100%,
+    0 calc(100% - 12px), 0 12px
+  );
 }
 
 .blind-box__btn::before {
   content: '';
   position: absolute;
   inset: 3px;
-  border: 1px dashed rgba(184, 134, 11, 0.4);
-  border-radius: 2px;
+  border: 1px dashed rgba(184, 134, 11, 0.6);
   pointer-events: none;
+  /* Vát 4 góc cho viền bên trong */
+  clip-path: polygon(
+    9px 0, calc(100% - 9px) 0,
+    100% 9px, 100% calc(100% - 9px),
+    calc(100% - 9px) 100%, 9px 100%,
+    0 calc(100% - 9px), 0 9px
+  );
 }
 
 .blind-box__card:hover .blind-box__btn {
-  background: linear-gradient(180deg, rgba(184, 134, 11, 0.9), rgba(138, 99, 0, 1));
+  background: var(--vang-thep);
   color: var(--trang-nga);
-  box-shadow: 0 5px 20px rgba(184, 134, 11, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  border-color: var(--trang-nga);
 }
 
 .blind-box__card:hover .blind-box__btn::before {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .mystery-section {
@@ -1161,7 +1173,7 @@
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
-    padding-top: 100px;
+    padding-top: 120px;
     padding-bottom: var(--space-lg);
   }
 

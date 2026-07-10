@@ -160,5 +160,4 @@
       toast.classList.remove('show');
     }, 4000);
   };
-
 })();

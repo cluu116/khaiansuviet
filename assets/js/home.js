@@ -13,26 +13,32 @@
   const BLIND_BOXES = [
     {
       id: "kasv_c9163e7c",
-      name: 'Gói Trải Nghiệm',
-      qty: '1 Blind Box',
-      desc: 'Mở ra 1 cổ vật bí ẩn từ 14 triều đại lịch sử Việt Nam.',
-      price: 199000,
+      name: 'ẤN TÍCH VIỆT SỬ - Basic',
+      qty: 'Dòng Cơ Bản',
+      desc: 'Bao gồm: Tiền Thái Bình Hưng Bảo, Nỏ thần An Dương Vương, Gạch Đại Việt quốc quân thành chuyên.',
+      priceBase: 239000,
+      priceBox: 299000,
+      priceWood: 499000,
       image: 'assets/images/blindbox/blind_box_1.png'
     },
     {
       id: "kasv_a78d2eec",
-      name: 'Gói Sưu Tầm',
-      qty: '3 Blind Box',
-      desc: 'Combo 3 hộp — tỷ lệ nhận phiên bản đặc biệt cao hơn.',
-      price: 549000,
+      name: 'ẤN TÍCH VIỆT SỬ - Standard',
+      qty: 'Dòng Tiêu Chuẩn',
+      desc: 'Bao gồm: Súng thần công, Thuyền chiến Đàng Trong, Đá Thành Nhà Hồ.',
+      priceBase: 269000,
+      priceBox: 329000,
+      priceWood: 529000,
       image: 'assets/images/blindbox/blind_box_3.png'
     },
     {
       id: "kasv_be952029",
-      name: 'Gói Hoàng Gia',
-      qty: '6 Blind Box',
-      desc: 'Combo 6 hộp — chắc chắn có ít nhất 1 phiên bản đặc biệt.',
-      price: 990000,
+      name: 'ẤN TÍCH VIỆT SỬ - Premium',
+      qty: 'Dòng Cao Cấp',
+      desc: 'Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý.',
+      priceBase: 299000,
+      priceBox: 359000,
+      priceWood: 559000,
       image: 'assets/images/blindbox/blind_box_6.png'
     }
   ];
@@ -50,10 +56,23 @@
         <div class="blind-box__image">
           <img src="${box.image}" alt="${box.name}" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
-        <span class="blind-box__qty">${box.qty}</span>
+        <div class="blind-box__qty">${box.qty}</div>
         <h3 class="blind-box__name">${box.name}</h3>
         <p class="blind-box__desc">${box.desc}</p>
-        <p class="blind-box__price">${formatPrice(box.price)}</p>
+        <div class="blind-box__prices">
+          <div class="price-row">
+            <span class="price-label">Không hộp:</span>
+            <span class="price-val">${formatPrice(box.priceBase)}</span>
+          </div>
+          <div class="price-row">
+            <span class="price-label">Có hộp:</span>
+            <span class="price-val">${formatPrice(box.priceBox)}</span>
+          </div>
+          <div class="price-row">
+            <span class="price-label">Hộp gỗ:</span>
+            <span class="price-val highlight">${formatPrice(box.priceWood)}</span>
+          </div>
+        </div>
         <span class="blind-box__btn">MUA NGAY</span>
       </a>
     `).join('');

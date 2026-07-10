@@ -11,8 +11,8 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Stylesheets -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/home.css">
@@ -106,7 +106,7 @@
         <p class="product-hero__price" id="productPrice">199.000đ</p>
 
         <p class="product-hero__shipping">
-          <strong>Phí giao hàng:</strong> Dự kiến giao trong 2-3 ngày làm việc
+          <strong>Nhận hàng:</strong> Dự kiến giao trong 2-3 ngày làm việc
         </p>
 
         <div class="product-hero__actions">
@@ -216,7 +216,7 @@
        RELATED PRODUCTS
        ============================================================ -->
   <section class="related-products">
-    <h2 class="related-products__title">Liên Quan</h2>
+    <h2 class="related-products__title">Sản Phẩm Khác</h2>
     <div class="related-products__grid" id="relatedGrid">
       <!-- Populated by JS -->
     </div>
@@ -279,7 +279,7 @@
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
                 </path>
               </svg>
-              <span>0123 456 789</span>
+              <span>0866 994 438</span>
             </div>
             <div class="footer__contact-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -340,6 +340,12 @@
         <div class="order-modal__field">
           <label class="order-modal__field-label" for="orderEmail">EMAIL <em>(để nhận xác nhận)</em></label>
           <input type="email" class="order-modal__input" id="orderEmail" placeholder="email@example.com">
+        </div>
+
+        <div class="order-modal__field" id="orderVariantField" style="display: none;">
+          <label class="order-modal__field-label" for="orderVariant">PHÂN LOẠI</label>
+          <select class="order-modal__input" id="orderVariant">
+          </select>
         </div>
 
         <div class="order-modal__field order-modal__field--small">

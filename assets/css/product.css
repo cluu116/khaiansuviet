@@ -566,12 +566,18 @@
 }
 
 .related-products__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-lg);
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--space-md);
+}
+
+.related-products__grid > * {
+  flex: 1 1 300px;
+  max-width: 350px;
 }
 
 /* ============================================================
@@ -775,6 +781,24 @@
   -moz-appearance: textfield;
 }
 
+select.order-modal__input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23B8860B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  cursor: pointer;
+  padding-right: 40px;
+}
+
+select.order-modal__input option {
+  background-color: var(--den-son-mai);
+  color: var(--vang-thep);
+  font-family: var(--font-body);
+}
+
 .order-modal__input[type="number"]::-webkit-outer-spin-button,
 .order-modal__input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -852,9 +876,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .related-products__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  /* Flexbox handles responsiveness automatically */
 }
 
 @media (max-width: 768px) {
@@ -924,7 +946,5 @@
     font-size: 1.1rem;
   }
 
-  .related-products__grid {
-    grid-template-columns: 1fr;
-  }
+  /* Flexbox handles responsiveness automatically */
 }

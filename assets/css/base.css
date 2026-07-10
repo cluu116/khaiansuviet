@@ -6,6 +6,13 @@
 /* ── Google Fonts ── */
 /* Fonts loaded via <link> tags in HTML head for non-blocking render */
 
+@font-face {
+  font-family: 'SVN-Romaji Mincho';
+  src: url('../fonts/SVN-Romaji Mincho.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 /* ── CSS Custom Properties (Design Tokens) ── */
 :root {
   /* --- Hệ Màu Lịch Sử --- */
@@ -26,9 +33,9 @@
   --den-mo: #2b1d0e;
 
   /* --- Typography --- */
-  --font-display: 'Noto Serif', 'Libre Baskerville', serif;
-  --font-heading: 'Libre Baskerville', 'Noto Serif', serif;
-  --font-body: 'Source Serif 4', 'Noto Serif', 'Times New Roman', serif;
+  --font-display: 'SVN-Romaji Mincho', 'Noto Serif', 'Libre Baskerville', serif;
+  --font-heading: 'SVN-Romaji Mincho', 'Libre Baskerville', 'Noto Serif', serif;
+  --font-body: 'Montserrat', 'Source Serif 4', 'Noto Serif', 'Times New Roman', sans-serif;
 
   /* --- Spacing --- */
   --space-xs: 0.5rem;
@@ -150,7 +157,7 @@ button {
 
 /* ── Themes ── */
 .theme-light {
-  background: transparent;
+  background: linear-gradient(180deg, #fff7dc 0%, #f7e6c5 42%, #fff9e8 100%);
   color: #573019;
   position: relative;
   z-index: 10;
@@ -158,10 +165,7 @@ button {
 }
 
 .theme-light > .container {
-  background: linear-gradient(180deg, #fff7dc 0%, #f7e6c5 42%, #fff9e8 100%);
-  border-radius: clamp(20px, 4vw, 40px);
   padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1.5rem, 5vw, var(--space-xl));
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(246, 198, 80, 0.3) inset;
   position: relative;
 }
 
