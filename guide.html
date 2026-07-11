@@ -19,19 +19,18 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/guide.css">
-  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="preload" href="assets/fonts/SVN-Romaji Mincho.ttf" as="font" type="font/ttf" crossorigin>
 </head>
 
 <body>
-  <a href="#main-content" class="skip-link">Bỏ qua menu, đến nội dung chính</a>
 
 
   <!-- ============================================================
        PRELOADER
        ============================================================ -->
   <div class="preloader" id="preloader">
-    <div class="preloader__ring"></div>
+    <div class="preloader__spinner"><div class="preloader__ring"></div><div class="preloader__logo"></div></div>
     <p class="preloader__text">Khai Ấn Sử Việt</p>
   </div>
 
@@ -41,7 +40,7 @@
   <nav class="navbar" id="navbar">
     <a href="index.html" class="navbar__logo" aria-label="Khai Ấn Sử Việt - Trang chủ">
       <div class="navbar__logo-icon">
-        <img src="assets/images/logo.jpg" alt="Khai Ấn Sử Việt Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
+        <img src="assets/images/logo.jpg" alt="Khai Ấn Sử Việt Logo" class="navbar__logo-img">
       </div>
       <span class="navbar__logo-text">Khai Ấn Sử Việt</span>
     </a>
@@ -397,9 +396,9 @@
   <!-- ============================================================
        SCRIPTS
        ============================================================ -->
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/common.js"></script>
-  <script src="assets/js/guide.js"></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/common.js" defer></script>
+  <script src="assets/js/guide.js" defer></script>
 
 </body>
 

@@ -7,10 +7,7 @@
   'use strict';
 
   /* ============================================================
-
-
-  /* ============================================================
-     2. AR TIMELINE PROGRESS & ACTIVATION
+     AR TIMELINE PROGRESS & ACTIVATION
      ============================================================ */
   const arContainer = document.querySelector('.ar-timeline-container');
   const arProgress = document.getElementById('arProgress');

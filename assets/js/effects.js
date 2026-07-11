@@ -1,6 +1,7 @@
 /* ============================================================
    KHAI ẤN SỬ VIỆT — Atmosphere Effects
    Gold Dust / Embers floating in the air
+   Optimized: viewport-aware, 30fps on mobile, paused when hidden
    ============================================================ */
 
 (function () {
@@ -30,12 +31,20 @@
   let bgGradient = null; // Cache gradient — chỉ tạo lại khi resize
   let animationId = null;
   let isPageVisible = true;
+  let isInViewport = true; // Track viewport visibility
+  let isMobile = false;
+  let lastFrameTime = 0;
+  let frameInterval = 1000 / 60; // Default 60fps
 
   function resize() {
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
+
+    // Detect mobile and set target FPS
+    isMobile = width < 768;
+    frameInterval = isMobile ? 1000 / 30 : 1000 / 60; // 30fps mobile, 60fps desktop
 
     // Tạo lại gradient khi kích thước thay đổi
     bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width / 2);
@@ -102,18 +111,46 @@
   function initParticles() {
     particles = [];
     // Reduce particle count on mobile for performance
-    const divisor = width < 768 ? 55 : 32;
-    const particleCount = Math.min(Math.floor(width / divisor), width < 768 ? 28 : 60);
+    const divisor = isMobile ? 55 : 32;
+    const particleCount = Math.min(Math.floor(width / divisor), isMobile ? 28 : 60);
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
   }
 
-  function animate() {
-    if (!isPageVisible) {
+  function shouldAnimate() {
+    return isPageVisible && isInViewport;
+  }
+
+  function startAnimation() {
+    if (!animationId && shouldAnimate()) {
+      lastFrameTime = 0;
+      animationId = requestAnimationFrame(animate);
+    }
+  }
+
+  function stopAnimation() {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  }
+
+  function animate(timestamp) {
+    if (!shouldAnimate()) {
       animationId = null;
       return;
     }
+
+    // Throttle framerate: 30fps on mobile, 60fps on desktop
+    if (lastFrameTime > 0) {
+      const elapsed = timestamp - lastFrameTime;
+      if (elapsed < frameInterval) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
+    }
+    lastFrameTime = timestamp;
 
     ctx.clearRect(0, 0, width, height);
 
@@ -138,15 +175,49 @@
 
   // Page Visibility API — pause animation when tab is hidden
   document.addEventListener('visibilitychange', () => {
-      isPageVisible = !document.hidden;
-      if (isPageVisible && !animationId) {
-        animationId = requestAnimationFrame(animate);
+    isPageVisible = !document.hidden;
+    if (isPageVisible) {
+      startAnimation();
+    } else {
+      stopAnimation();
+    }
+  });
+
+  // IntersectionObserver — pause when canvas is scrolled out of viewport
+  // Canvas is fixed-position, so we observe a sentinel element or use scroll position
+  // Since canvas is position:fixed and always covers viewport, we check if user
+  // has scrolled far enough that the dark background sections are no longer visible
+  // For simplicity, we observe the body's scroll position relative to hero/dark sections
+  function setupViewportObserver() {
+    // The canvas effect is most visible on dark backgrounds
+    // Pause it when user scrolls into light-themed sections entirely
+    const darkSections = document.querySelectorAll('.section:not(.theme-light), .hero, .products, .footer');
+    
+    if (darkSections.length === 0) {
+      // No dark sections found, keep running
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      // If ANY dark section is visible, keep animating
+      const anyDarkVisible = entries.some(entry => entry.isIntersecting);
+      
+      if (anyDarkVisible && !isInViewport) {
+        isInViewport = true;
+        startAnimation();
+      } else if (!anyDarkVisible && isInViewport) {
+        isInViewport = false;
+        stopAnimation();
       }
-    });
+    }, { threshold: 0 });
+
+    darkSections.forEach(section => observer.observe(section));
+  }
 
   function start() {
     resize();
-    animationId = requestAnimationFrame(animate);
+    setupViewportObserver();
+    startAnimation();
   }
 
   if ('requestIdleCallback' in window) {

@@ -72,32 +72,7 @@
   box-sizing: border-box;
 }
 
-/* ── Skip Navigation Link (Accessibility) ── */
-.skip-link {
-  position: fixed;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 28px;
-  background: var(--vang-thep);
-  color: var(--den-son-mai);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  z-index: 99999;
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
-  transition: top 0.3s ease;
-  white-space: nowrap;
-}
 
-.skip-link:focus {
-  top: 0;
-  outline: 3px solid var(--den-son-mai);
-  outline-offset: 2px;
-}
 
 html {
   scroll-behavior: smooth;

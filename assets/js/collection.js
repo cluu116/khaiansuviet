@@ -63,7 +63,7 @@
             <!-- FRONT -->
             <div class="dynasty-card__front">
               <div class="dynasty-card__silhouette">
-                <img src="${product.image}" alt="Phác thảo cổ vật" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0.15) contrast(1.5) drop-shadow(0 0 12px rgba(184,134,11,0.8)); opacity: 0.85;" />
+                <img src="${product.image}" alt="Phác thảo cổ vật" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0.15) contrast(1.5) drop-shadow(0 0 12px rgba(184,134,11,0.8)); opacity: 0.85; pointer-events: none; user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none;" />
               </div>
               <p class="dynasty-card__number">Triều đại ${cardNum}</p>
               <h3 class="dynasty-card__front-name">???</h3>
@@ -79,7 +79,7 @@
             <!-- BACK -->
             <div class="dynasty-card__back">
               <div class="dynasty-card__back-art">
-                <img src="${product.image}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 10px rgba(184,134,11,0.4));" />
+                <img src="${product.image}" alt="${product.artifact}" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 10px rgba(184,134,11,0.4)); pointer-events: none; user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none;" />
               </div>
               <div class="dynasty-card__back-info">
                 <h3 class="dynasty-card__back-name">${product.dynasty}</h3>

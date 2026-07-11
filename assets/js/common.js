@@ -235,6 +235,87 @@
     }
   }
 
+  /* ============================================================
+     8. SHARED UTILITIES
+     ============================================================ */
+  window.formatPrice = function(price) {
+    if (!price) return 'Liên hệ';
+    return price.toLocaleString('vi-VN') + '₫';
+  };
 
+  window.getProductById = function(id) {
+    if (typeof PRODUCTS === 'undefined') return null;
+    return PRODUCTS.find(p => p.id === id);
+  };
+
+  window.getStatusClass = function(status) {
+    if (status === 'in-stock') return 'badge--instock';
+    if (status === 'pre-order') return 'badge--preorder';
+    if (status === 'sold-out') return 'badge--soldout';
+    return '';
+  };
+
+  window.getStatusLabel = function(status) {
+    if (status === 'in-stock') return 'Còn hàng';
+    if (status === 'pre-order') return 'Đặt trước';
+    if (status === 'sold-out') return 'Hết hàng';
+    return '';
+  };
+
+  window.getRelatedProducts = function(currentId, limit = 4) {
+    if (typeof PRODUCTS === 'undefined') return [];
+    const current = getProductById(currentId);
+    if (!current) return [];
+    
+    let related = PRODUCTS.filter(p => p.id !== currentId && p.type === current.type);
+    if (related.length === 0) {
+      related = PRODUCTS.filter(p => p.id !== currentId);
+    }
+    return related.slice(0, limit);
+  };
+
+  let modelViewerPromise = null;
+  window.ensureModelViewerLoaded = function () {
+    if (customElements.get('model-viewer')) return Promise.resolve();
+    if (modelViewerPromise) return modelViewerPromise;
+
+    modelViewerPromise = new Promise((resolve, reject) => {
+      const existingScript = document.querySelector('script[src*="model-viewer.min.js"]');
+      if (existingScript) {
+        if (customElements.get('model-viewer') || existingScript.readyState === 'complete' || existingScript.readyState === 'loaded') {
+          resolve();
+        } else {
+          existingScript.addEventListener('load', resolve, { once: true });
+          existingScript.addEventListener('error', reject, { once: true });
+        }
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+      console.log('Lazy loaded model-viewer script');
+    });
+
+    return modelViewerPromise;
+  };
+
+  /* ============================================================
+     9. SERVICE WORKER REGISTRATION
+     ============================================================ */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('ServiceWorker registered with scope:', registration.scope);
+        })
+        .catch(err => {
+          console.error('ServiceWorker registration failed:', err);
+        });
+    });
+  }
 
 })();

@@ -20,19 +20,18 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/collection.css">
 
-  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="preload" href="assets/fonts/SVN-Romaji Mincho.ttf" as="font" type="font/ttf" crossorigin>
 </head>
 
 <body>
-  <a href="#main-content" class="skip-link">Bỏ qua menu, đến nội dung chính</a>
 
 
   <!-- ============================================================
        PRELOADER
        ============================================================ -->
   <div class="preloader" id="preloader">
-    <div class="preloader__ring"></div>
+    <div class="preloader__spinner"><div class="preloader__ring"></div><div class="preloader__logo"></div></div>
     <p class="preloader__text">Khai Ấn Sử Việt</p>
   </div>
 
@@ -42,7 +41,7 @@
   <nav class="navbar" id="navbar">
     <a href="index.html" class="navbar__logo" aria-label="Khai Ấn Sử Việt - Trang chủ">
       <div class="navbar__logo-icon">
-        <img src="assets/images/logo.jpg" alt="Khai Ấn Sử Việt Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
+        <img src="assets/images/logo.jpg" alt="Khai Ấn Sử Việt Logo" class="navbar__logo-img">
       </div>
       <span class="navbar__logo-text">Khai Ấn Sử Việt</span>
     </a>
@@ -66,7 +65,7 @@
   <!-- ============================================================
        COLLECTION HERO
        ============================================================ -->
-  <section class="collection-hero">
+  <section class="collection-hero" id="main-content">
     <div class="collection-hero__content">
       <p class="section__label">Bộ Sưu Tập</p>
       <h1 class="section__title">ẤN TÍCH VIỆT SỬ</h1>
@@ -197,23 +196,22 @@
        ============================================================ -->
   <div class="nfc-unlock-overlay" id="nfcOverlay">
     <div class="nfc-unlock__rays"></div>
-    <div class="nfc-unlock__circles">
-      <div class="nfc-unlock__circle nfc-unlock__circle--1"></div>
-      <div class="nfc-unlock__circle nfc-unlock__circle--2"></div>
+    <div class="nfc-unlock__visuals">
+      <div class="nfc-unlock__magic-array">
+        <div class="nfc-unlock__ring nfc-unlock__ring--outer"></div>
+        <div class="nfc-unlock__ring nfc-unlock__ring--middle"></div>
+        <div class="nfc-unlock__ring nfc-unlock__ring--inner"></div>
+      </div>
+      <div class="nfc-unlock__seal">
+        <div class="nfc-unlock__glow-pulse"></div>
+        <img src="assets/images/logo.jpg" alt="Khai Ấn Sử Việt" class="nfc-unlock__logo" />
+      </div>
     </div>
-    <div class="nfc-unlock__seal">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <rect x="4" y="4" width="40" height="40" rx="4" fill="rgba(166, 44, 33, 0.9)" stroke="#B8860B"
-          stroke-width="2" />
-        <rect x="8" y="8" width="32" height="32" rx="2" fill="none" stroke="#B8860B" stroke-width="1"
-          stroke-dasharray="2 2" />
-        <text x="24" y="34" text-anchor="middle" font-family="'Noto Serif', serif" font-size="22" font-weight="bold"
-          fill="#F5F5DC">印</text>
-      </svg>
+    <div class="nfc-unlock__content">
+      <p class="nfc-unlock__text">ĐANG KHAI MỞ</p>
+      <p class="nfc-unlock__name" id="nfcDynastyName"></p>
+      <p class="nfc-unlock__subtext">Kết nối không gian và thời gian...</p>
     </div>
-    <p class="nfc-unlock__text">ĐANG KHAI MỞ</p>
-    <p class="nfc-unlock__name" id="nfcDynastyName"></p>
-    <p class="nfc-unlock__subtext">Chạm thẻ bài để kết nối ngàn năm...</p>
   </div>
 
 
@@ -224,10 +222,10 @@
   <!-- ============================================================
        SCRIPTS
        ============================================================ -->
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/common.js"></script>
-  <script src="assets/js/collection.js"></script>
-  <script src="assets/js/effects.js"></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/common.js" defer></script>
+  <script src="assets/js/collection.js" defer></script>
+  <script src="assets/js/effects.js" defer></script>
 
 </body>
 

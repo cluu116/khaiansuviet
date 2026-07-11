@@ -1,638 +1,176 @@
 /* ============================================================
-   KHAI ẤN SỬ VIỆT — Product & Dynasty Data
+   KHAI ẤN SỬ VIỆT — Core Product Data
    Shared data layer used across all pages
-
-   Schema (id 1-14: Cổ vật triều đại):
-     id, dynasty, era, artifact, description, artifactDesc,
-     image, gallery[], model, usdz?, details{}, story[],
-     silhouetteSvg, backSvg
-
-   Schema (id 101+: Blind Box sản phẩm):
-     id, dynasty, era, artifact, price, status, description,
-     artifactDesc, image, gallery[], model, details{},
-     silhouetteSvg, backSvg
+   (Details like story, SVG, 3D models are lazy loaded from products-detail.json)
    ============================================================ */
 
 /* ── Shared Constants ── */
 const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyzMrIuKg5TEjod8WYQ9FqOC48dL6xkMhkslC59h6LmtqARGDAp4DLFHKIRfSTAwcd5/exec';
 
 const PRODUCTS = [
-  /* ────────────────────────────────────────────────────────────
-     1 — VĂN LANG (~2879 – 258 TCN)
-     Trống Đồng Đông Sơn
-     ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_4be3b45e347a46169a6fa592bcdfe00d",
-    type: 'artifact',
-    dynasty: 'Văn Lang',
-    era: 'Khoảng thế kỷ VII trước Công nguyên (2524TCN - 258TCN)',
-    artifact: 'Trống Đồng Đông Sơn',
-    description: 'Thời kỳ dựng nước đầu tiên của dân tộc Việt Nam, gắn liền với huyền thoại Vua Hùng, Lạc Long Quân và Âu Cơ. Nền văn minh rực rỡ với Trống đồng Đông Sơn — biểu tượng văn hóa trường tồn.',
-    artifactDesc: 'Mặt trống có hình ngôi sao nhiều cánh ở trung tâm, bao quanh là các vành hoa văn khắc hình chim, người, thuyền, nhà sàn cùng nhiều họa tiết tinh xảo.',
-    image: 'assets/images/artifacts/Trống đồng Đông Sơn.png',
-    gallery: ['assets/images/artifacts/Trống đồng Đông Sơn.png', 'assets/images/artifacts/Trống đồng Đông Sơn.png', 'assets/images/artifacts/Trống đồng Đông Sơn.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.glb',
-    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.usdz',
-    details: {
-      'TÊN MÔ HÌNH': 'Trống đồng Đông Sơn',
-      'ĐẠI DIỆN CHO': 'Thời đại Văn Lang',
-      'NIÊN ĐẠI': 'Khoảng thế kỷ VII trước Công nguyên (2524TCN - 258TCN)',
-      'ĐỊA ĐIỂM CHẾ TÁC': 'Phân bố chủ yếu ở khu vực Bắc Bộ và Bắc Trung Bộ Việt Nam, thuộc không gian văn hóa Đông Sơn.',
-      'CHẤT LIỆU': 'Đồng',
-      'CÔNG DỤNG': 'Theo các nghiên cứu khảo cổ, trống đồng được sử dụng trong các nghi lễ, lễ hội và những sự kiện quan trọng của cộng đồng.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Mặt trống có hình ngôi sao nhiều cánh ở trung tâm, bao quanh là các vành hoa văn khắc hình chim, người, thuyền, nhà sàn cùng nhiều họa tiết tinh xảo. Đây là một trong những hiện vật tiêu biểu phản ánh trình độ đúc đồng phát triển của cư dân văn hóa Đông Sơn.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Ở rất xa trong dòng thời gian, những câu chuyện từ hàng nghìn năm trước vẫn đang khẽ vọng lại. Chúng không chỉ nằm trong sách vở, mà còn được lưu giữ trong những cổ vật xưa.<br>Hôm nay, người bạn đồng hành của chúng mình là trống đồng Đông Sơn.<br>Chiếc trống ấy sẽ đưa chúng mình quay về thời Văn Lang - giai đoạn gắn với các Vua Hùng trong truyền thống lịch sử dân tộc.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>Quay về thời Văn Lang...</strong><br><br>Chúng mình cùng đến một vùng đất rộng lớn ven những con sông như sông Hồng, sông Mã và sông Cả. Khi ấy người Việt cổ đã biết trồng lúa nước, đánh bắt cá, chăn nuôi và chế tác nhiều công cụ bằng đồng. Cuộc sống ngày càng ổn định, các cộng đồng cư dân dần gắn kết với nhau để cùng lao động và bảo vệ nơi mình sinh sống. Theo truyền thống lịch sử của dân tộc, các Vua Hùng đã lập nên nước Văn Lang, nhà nước đầu tiên của người Việt. Cùng với sự phát triển ấy, nghề luyện kim và đúc đồng cũng đạt đến trình độ cao. Những người thợ khéo léo đã tạo nên những chiếc trống đồng với hoa văn tinh xảo, thể hiện tài năng chế tác và phản ánh đời sống của cư dân thời bấy giờ.<br>Theo nhiều nghiên cứu khảo cổ, trống đồng có thể được sử dụng trong các nghi lễ, lễ hội và những sự kiện quan trọng của cộng đồng. Tiếng trống có thể vang lên trong những nghi lễ cầu mong mưa thuận gió hòa, mùa màng bội thu, cũng có thể trở thành lời hiệu triệu gắn kết cộng đồng trong những thời khắc quan trọng.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ có bao giờ tưởng tượng rằng… một chiếc trống cũng có thể kể chuyện không?<br>Chiếc trống đồng trước mắt chúng mình không mang theo một dòng chữ nào để kể lại quá khứ. Nhưng lạ thay, chính sự im lặng ấy lại khiến từng hoa văn trên mặt trống trở thành một ngôn ngữ đặc biệt của người xưa.<br>Bạn nhỏ hãy nhìn thật kỹ nhé.<br>Ở giữa mặt trống là một ngôi sao nhiều cánh, như đang lan tỏa ra mọi hướng. Xung quanh là những vòng hoa văn nối tiếp nhau: những cánh chim đang bay, những con người trong điệu múa, những ngôi nhà sàn bên sông, những chiếc thuyền đang lướt qua mặt nước… tất cả đan vào nhau như một bức tranh sống động.<br>Từ những hình ảnh ấy, các nhà khảo cổ hiểu thêm về cuộc sống của người Việt cổ: họ biết lao động, chế tác đồ đồng, cùng nhau tổ chức lễ hội và sống trong những cộng đồng gắn bó.<br>Mỗi hoa văn nhỏ giống như một mảnh ký ức đang thì thầm kể chuyện.',
-      '<strong>Trạm khám phá khảo cổ</strong><br><br>Bây giờ, bạn nhỏ hãy xoay chiếc trống thật chậm nhé!<br>🔎 Bạn có tìm thấy ngôi sao ở giữa mặt trống không?<br>🕊️ Bạn có nhìn thấy những cánh chim đang bay không?<br>🚣 Bạn có phát hiện thuyền, nhà sàn hoặc hình người trên các vành hoa văn không?<br><br>Mỗi chi tiết bạn khám phá được đều là một mảnh ghép nhỏ, giúp chúng ta hiểu thêm về cuộc sống của tổ tiên cách đây hơn hai nghìn năm.',
-      '<strong>Một điều để nhớ...</strong><br><br>Có những điều thời gian đã mang đi.<br>Nhưng cũng có những điều được thời gian gìn giữ trong những cổ vật, để hôm nay chúng mình vẫn có thể nhìn thấy và lắng nghe.<br>Chiếc trống đồng Đông Sơn là một trong những món quà quý giá như thế. Qua từng hoa văn còn lưu lại, chiếc trống giúp chúng ta hiểu hơn về cuộc sống, trí tuệ và đời sống tinh thần của cư dân Văn Lang, những con người đã góp phần đặt những nền móng đầu tiên trong truyền thống lịch sử dựng nước của dân tộc.<br>Và ở đâu đó, vẫn còn nhiều cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<circle cx="40" cy="35" r="25" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="40,15 47,30 60,30 50,40 54,55 40,47 26,55 30,40 20,30 33,30" fill="none" stroke="currentColor" stroke-width="0.8"/><rect x="25" y="55" width="30" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<circle cx="60" cy="45" r="35" fill="none" stroke="#B8860B" stroke-width="1.5"/><polygon points="60,15 67,32 85,32 71,43 76,60 60,50 44,60 49,43 35,32 53,32" fill="none" stroke="#B8860B" stroke-width="1.2"/><circle cx="60" cy="45" r="12" fill="none" stroke="#B8860B" stroke-width="0.8"/><circle cx="60" cy="45" r="4" fill="#B8860B" opacity="0.6"/><rect x="35" y="78" width="50" height="10" rx="3" fill="none" stroke="#B8860B" stroke-width="1"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">TRỐNG ĐỒNG</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     2 — ÂU LẠC (257 – 179 TCN)
-     Nỏ Thần An Dương Vương
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_b7c018a1616c42ac9073368b9e001470",
-    type: 'artifact',
-    dynasty: 'Âu Lạc',
-    era: 'Khoảng thế kỷ III trước Công nguyên (258TCN-208TCN)',
-    artifact: 'Nỏ Liên Châu - nỏ thần Cổ Loa',
-    description: 'An Dương Vương thống nhất Âu Việt và Lạc Việt, xây thành Cổ Loa — tòa thành ốc xoắn huyền thoại. Câu chuyện nỏ thần, Mỵ Châu - Trọng Thủy là bài học muôn đời về cảnh giác.',
-    artifactDesc: 'Cơ chế nỏ có khả năng phóng nhiều mũi tên cùng lúc, cấu tạo gồm thân nỏ, bộ phận lẫy và cơ chế phóng lực. Các chi tiết hiện nay được phục dựng từ tư liệu khảo cổ và ghi chép lịch sử còn lại.',
-    image: 'assets/images/artifacts/Nỏ thần An Dương Vương.png',
-    gallery: ['assets/images/artifacts/Nỏ thần An Dương Vương.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/nothan-v1.glb',
-    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/nothan-v1.usdz',
-    details: {
-      'TÊN MÔ HÌNH': 'Nỏ Liên Châu - nỏ thần Cổ Loa',
-      'ĐẠI DIỆN CHO': 'Thời đại Âu Lạc',
-      'NIÊN ĐẠI': 'Khoảng thế kỷ III trước Công nguyên (258TCN-208TCN)',
-      'ĐỊA ĐIỂM LIÊN QUAN': 'Khu vực Cổ Loa (nay thuộc Đông Anh, Hà Nội) - trung tâm chính trị của nhà nước Âu Lạc',
-      'CHẤT LIỆU': 'Gỗ và kim loại (phục dựng dựa trên tư liệu khảo cổ và lịch sử)',
-      'CÔNG DỤNG': 'Vũ khí dùng trong chiến đấu, đặc biệt trong nhiệm vụ phòng thủ thành lũy',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Cơ chế nỏ có khả năng phóng nhiều mũi tên cùng lúc, cấu tạo gồm thân nỏ, bộ phận lẫy và cơ chế phóng lực. Các chi tiết hiện nay được phục dựng từ tư liệu khảo cổ và ghi chép lịch sử còn lại.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Ở rất xa trong dòng chảy lịch sử, có một thời đại mà con người vừa chăm chỉ xây dựng cuộc sống, vừa tìm cách bảo vệ quê hương của mình.<br>Hôm nay, người bạn đồng hành của chúng mình là nỏ Liên Châu - mô hình gắn với truyền thuyết nỏ thần Cổ Loa.<br>Chiếc nỏ này sẽ đưa chúng mình quay về thời Âu Lạc vào hơn hai nghìn năm trước.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI ÂU LẠC...</strong><br><br>Chúng mình đang đến Cổ Loa, thuộc Hà Nội ngày nay.<br>Ngày xưa, đây là một vùng đất quan trọng, nơi nhiều người cùng sinh sống, lao động và xây dựng một tòa thành rất lớn.<br>Theo những câu chuyện lịch sử được truyền lại, An Dương Vương đã chọn Cổ Loa làm kinh đô của nước Âu Lạc. Thành Cổ Loa được đắp bằng đất với ba vòng thành rộng lớn. Bên ngoài thành còn có những hào nước nối với nhau, tạo thành một hệ thống phòng thủ đặc biệt.<br>Nhìn từ trên cao, những vòng thành uốn cong trông giống như vỏ ốc khổng lồ. Vì thế, nơi này được gọi là Cổ Loa.<br>Người dân thời ấy trồng lúa, đánh cá, đúc đồng và làm nhiều công cụ phục vụ cuộc sống. Để bảo vệ thành, họ cũng chế tạo những loại vũ khí ngày càng tinh xảo hơn.<br>Tại Cổ Loa, các nhà khảo cổ đã tìm thấy rất nhiều mũi tên đồng, khuôn đúc và lẫy nỏ. Những dấu tích ấy cho thấy người Việt cổ đã có kỹ thuật chế tác khá phát triển.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ biết không…<br>Nỏ Liên Châu không chỉ kể câu chuyện về chiến đấu. Mà còn kể về sự thông minh, khéo léo và mong muốn bảo vệ quê hương của người xưa.<br>Nỏ có thân nỏ, dây nỏ và lẫy nỏ. Khi bóp lẫy, dây nỏ bật mạnh để phóng mũi tên đi xa.<br>Trong truyền thuyết, nỏ Liên Châu được kể là một chiếc nỏ đặc biệt, có thể bắn nhiều mũi tên cùng lúc. Đó là phần kỳ diệu của câu chuyện nỏ thần Cổ Loa.<br>Truyền thuyết giúp chúng mình tưởng tượng về khát vọng bảo vệ đất nước của người xưa. Còn những mũi tên đồng, khuôn đúc và lẫy nỏ là các dấu tích thật, giúp các nhà khảo cổ hiểu thêm về cuộc sống thời Âu Lạc',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy xoay mô hình nỏ thật chậm nhé!<br>🏹 Bạn nhỏ hãy chỉ cho ba mẹ biết đâu là thân nỏ, dây nỏ và lẫy nỏ không?<br>🔎 Bạn thử đoán xem: Khi bóp lẫy, bộ phận nào sẽ giúp dây nỏ bật ra?<br>🌟 Bạn có nhận ra không? Mỗi chi tiết nhỏ trên mô hình đều là một mảnh ghép đưa chúng mình gần hơn với lịch sử.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những câu chuyện được kể bằng truyền thuyết.<br>Cũng có những câu chuyện được kể bằng những dấu tích khảo cổ.<br>Khi ghép hai mảnh ghép ấy lại với nhau, chúng mình hiểu hơn về thời Âu Lạc - một thời đại mà người Việt cổ đã biết xây thành, đúc đồng và cùng nhau bảo vệ cộng đồng của mình.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<path d="M20 60 L40 15 L60 60" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 50 L55 50" stroke="currentColor" stroke-width="1"/><circle cx="40" cy="35" r="5" fill="none" stroke="currentColor" stroke-width="1"/><path d="M40 20 L40 10 M35 14 L45 14" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<path d="M30 80 L60 20 L90 80" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M38 65 L82 65" stroke="#B8860B" stroke-width="1"/><path d="M60 25 L60 10" stroke="#B8860B" stroke-width="1.2"/><polygon points="55,12 60,2 65,12" fill="#B8860B" opacity="0.6"/><circle cx="60" cy="45" r="8" fill="none" stroke="#B8860B" stroke-width="1"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">NỎ THẦN</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     3 — NHÀ NGÔ (939 – 965)
-     Sa Hình Cọc Gỗ Bạch Đằng
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_fdd63a242a4d43bd846f1c09eb5b0f6f",
-    type: 'artifact',
-    dynasty: 'Nhà Ngô',
-    era: '939-965',
-    artifact: 'Sa hình thế trận cọc gỗ Bạch Đằng',
-    description: 'Ngô Quyền đại phá quân Nam Hán trên sông Bạch Đằng năm 938, chấm dứt hơn 1000 năm Bắc thuộc. Chiến thắng lẫy lừng đặt nền móng cho kỷ nguyên độc lập dân tộc.',
-    artifactDesc: 'Sa hình tái hiện dòng sông, thuyền chiến và các hàng cọc gỗ nhọn cắm dưới mặt nước. Những chiếc cọc được bố trí để ẩn đi khi triều dâng và dần hiện ra khi nước rút, thể hiện chiến thuật tận dụng thủy triều nổi bật trong trận Bạch Đằng năm 938.',
-    image: 'assets/images/artifacts/Sa hình Cọc gỗ Bạch Đằng.png',
-    gallery: ['assets/images/artifacts/Sa hình Cọc gỗ Bạch Đằng.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/tr%E1%BA%ADn%20b%E1%BA%A1ch%20%C4%91%E1%BA%B1ng.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Sa hình thế trận cọc gỗ Bạch Đằng',
-      'ĐẠI DIỆN CHO': 'Nhà Ngô',
-      'NIÊN ĐẠI': '939-965',
-      'ĐỊA ĐIỂM LIÊN QUAN': 'Sông Bạch Đằng, khu vực cửa sông thuộc vùng giáp ranh Quảng Ninh và Hải Phòng ngày nay.',
-      'CHẤT LIỆU': 'Cọc gỗ lớn được vót nhọn, theo sử liệu, phần đầu cọc được bịt sắt để tăng sức phá hủy thuyền chiến.',
-      'CÔNG DỤNG': 'Tạo trận địa ngầm dưới lòng sông, khiến thuyền lớn của quân Nam Hán bị mắc hoặc va thủng khi nước triều rút, hỗ trợ quân của Ngô Quyền phản công.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Sa hình tái hiện dòng sông, thuyền chiến và các hàng cọc gỗ nhọn cắm dưới mặt nước. Những chiếc cọc được bố trí để ẩn đi khi triều dâng và dần hiện ra khi nước rút, thể hiện chiến thuật tận dụng thủy triều nổi bật trong trận Bạch Đằng năm 938.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Ở đâu đó giữa dòng sông rộng lớn, tiếng sóng đang kể lại một câu chuyện rất đặc biệt. Đó là câu chuyện về những con người đã dùng sự thông minh và lòng dũng cảm để bảo vệ quê hương.<br>Hôm nay, người bạn đồng hành của chúng mình là sa hình thế trận cọc gỗ Bạch Đằng.<br>Sa hình thế trận này sẽ đưa chúng mình quay về hơn một nghìn năm trước, trong một trận đánh đã mở ra một chặng đường mới cho đất nước.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI NHÀ NGÔ...</strong><br><br>Chúng mình cùng quay ngược thời gian đến với sông Bạch Đằng vào năm 938.<br>Khi ấy, quân Nam Hán đi thuyền lớn tiến vào nước ta. Ngô Quyền đã chọn dòng sông này làm nơi quyết chiến.<br>Theo sử liệu, quân dân đã đóng những cọc gỗ nhọn xuống lòng sông, ở nơi nước triều lên xuống.<br>Khi nước dâng, các chiếc cọc ẩn dưới mặt nước. Quân ta dùng thuyền nhẹ tiến ra rồi rút lui, dẫn thuyền địch vào sâu trong trận địa.<br>Đến khi nước rút, những chiếc cọc dần hiện ra. Thuyền địch lớn và nặng bị mắc lại, còn quân ta từ nhiều phía cùng tiến lên phản công.<br>Chiến thắng Bạch Đằng năm 938 đã mở ra một thời kỳ độc lập mới. Năm 939, Ngô Quyền xưng vương, chọn Cổ Loa làm kinh đô và mở đầu Nhà Ngô.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ biết không…<br>Những cọc gỗ trong mô hình không chỉ là những thân cây được cắm dưới sông.<br>Chúng là một phần của kế hoạch rất thông minh.<br>Ngô Quyền và quân dân đã quan sát con nước, hiểu lúc nào thủy triều lên, lúc nào thủy triều rút. Nhờ đó, dòng sông Bạch Đằng đã trở thành một người bạn cùng bảo vệ quê hương.<br>Nhìn những đầu cọc nhọn, chúng ta có thể hình dung được sự quyết tâm của những con người xưa: cùng nhau chuẩn bị, cùng nhau chiến đấu và cùng nhau giữ gìn đất nước.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy xoay mô hình thật chậm nhé!<br>🔎 Bạn có nhìn thấy phần đầu nhọn của những chiếc cọc không?<br>⛵ Khi nước rút xuống, những chiếc thuyền lớn có thể đi qua dễ dàng không nhỉ?<br>Mỗi chi tiết nhỏ đều giúp chúng mình hiểu hơn về một trận đánh rất thông minh của người Việt xưa.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những vật rất giản dị, như một thân gỗ giữa lòng sông.<br>Nhưng khi được đặt đúng nơi, đúng lúc và bởi những con người biết đoàn kết, chúng có thể tạo nên một câu chuyện lớn.<br>Sa hình trận thủy chiến Bạch Đằng năm 938 nhắc chúng mình về trí tuệ, lòng dũng cảm và ý chí bảo vệ đất nước của người Việt xưa.<br>Từ những thân gỗ dưới lòng sông, một cánh cửa mới của lịch sử đã mở ra.<br>Và ở đâu đó, vẫn còn nhiều cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<line x1="25" y1="15" x2="25" y2="65" stroke="currentColor" stroke-width="2"/><line x1="40" y1="20" x2="40" y2="60" stroke="currentColor" stroke-width="2"/><line x1="55" y1="10" x2="55" y2="65" stroke="currentColor" stroke-width="2"/><path d="M15 65 Q40 55 65 65" fill="none" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<line x1="35" y1="10" x2="35" y2="70" stroke="#B8860B" stroke-width="2.5"/><line x1="55" y1="15" x2="55" y2="65" stroke="#B8860B" stroke-width="2.5"/><line x1="75" y1="8" x2="75" y2="72" stroke="#B8860B" stroke-width="2.5"/><path d="M20 70 Q55 55 100 72" fill="none" stroke="#B8860B" stroke-width="1.2"/><path d="M20 78 Q55 68 100 80" fill="none" stroke="#B8860B" stroke-width="0.8" opacity="0.5"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">CỌC BẠCH ĐẰNG</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     4 — NHÀ TIỀN LÊ (980 – 1009)
-     Tiền Thái Bình Hưng Bảo
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_542c8726aed941a6ab40ceae371819ee",
-    type: 'artifact',
-    dynasty: 'Nhà Tiền Lê',
-    era: 'Khoảng năm 981',
-    artifact: 'Tiền Thái Bình Hưng Bảo',
-    description: 'Lê Đại Hành kế thừa sự nghiệp nhà Đinh, anh dũng đánh bại quân Tống xâm lược, bảo vệ nền độc lập non trẻ và mở mang bờ cõi phía Nam.',
-    artifactDesc: 'Đồng tiền có hình tròn, ở giữa là lỗ vuông, mặt tiền khắc bốn chữ Hán "Thái Bình Hưng Bảo". Đây là một trong những đồng tiền tiêu biểu phản ánh sự phát triển của nền kinh tế và quyền tự chủ của Đại Cồ Việt dưới triều Tiền Lê.',
-    image: 'assets/images/artifacts/Tiền Thái Bình Hưng Bảo.png',
-    gallery: ['assets/images/artifacts/Tiền Thái Bình Hưng Bảo.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/%C4%91%E1%BB%93ng%20xu.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Tiền Thái Bình Hưng Bảo',
-      'ĐẠI DIỆN CHO': 'Nhà Tiền Lê',
-      'NIÊN ĐẠI': 'Khoảng năm 981.',
-      'ĐỊA ĐIỂM CHẾ TÁC': 'Kinh đô Hoa Lư, Đại Cồ Việt.',
-      'CHẤT LIỆU': 'Đồng.',
-      'CÔNG DỤNG': 'Được đúc để lưu thông trong hoạt động mua bán, trao đổi hàng hóa và góp phần phát triển nền kinh tế của Đại Cồ Việt.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Đồng tiền có hình tròn, ở giữa là lỗ vuông, mặt tiền khắc bốn chữ Hán "Thái Bình Hưng Bảo". Đây là một trong những đồng tiền tiêu biểu phản ánh sự phát triển của nền kinh tế và quyền tự chủ của Đại Cồ Việt dưới triều Tiền Lê.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có bao giờ tự hỏi...<br>Trước khi có những tờ tiền giấy hay chiếc thẻ ngân hàng như ngày nay, người Việt xưa dùng gì để mua bán?<br>Hôm nay, người bạn đồng hành của chúng mình là đồng tiền Thái Bình Hưng Bảo. Thoạt nhìn, nó chỉ là một đồng tiền nhỏ bằng đồng với chiếc lỗ vuông ở giữa. Nhưng đừng để vẻ ngoài giản dị ấy đánh lừa nhé!<br>Đồng tiền nhỏ bé này sẽ đưa chúng mình trở về thời nhà Tiền Lê, khi đất nước vừa bảo vệ vững chắc nền độc lập và đang bắt đầu xây dựng một cuộc sống yên bình, no đủ.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>Quay về thời Tiền Lê...</strong><br><br>Cỗ máy thời gian đưa chúng mình đến kinh đô Hoa Lư cách đây hơn một nghìn năm.<br>Không còn những ngày tháng chiến tranh khốc liệt, cuộc sống của người dân dần trở nên yên bình hơn. Sau khi lãnh đạo quân dân Đại Cồ Việt đánh bại quân Tống vào năm 981, vua Lê Đại Hành đã giữ vững nền độc lập của đất nước. Từ đó, người dân tiếp tục cày cấy trên những cánh đồng, những người thợ miệt mài làm gốm, dệt vải, rèn công cụ, còn các phiên chợ ngày càng đông vui và nhộn nhịp.<br>Khi việc trao đổi hàng hóa ngày một nhiều, triều đình đã cho đúc một loại tiền mới mang tên Thái Bình Hưng Bảo, giúp việc mua bán trở nên thuận tiện hơn.<br>Bạn nhỏ hãy thử tưởng tượng nhé!<br>Chúng mình đang bước vào một xưởng đúc tiền của hơn một nghìn năm trước.<br>Bên trong, những lò lửa đỏ rực đang làm đồng nóng chảy. Người thợ cẩn thận rót đồng vào từng khuôn nhỏ. Sau khi nguội đi, những đồng tiền hình tròn với chiếc lỗ vuông ở giữa dần hiện ra.<br>Cuối cùng, trên mỗi đồng tiền đều được khắc bốn chữ Hán "Thái Bình Hưng Bảo". Từng đồng tiền nối tiếp nhau ra đời, rồi theo chân người dân đến những phiên chợ, trở thành cầu nối cho những cuộc trao đổi hàng hóa khắp Đại Cồ Việt.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ có nhận ra điều đặc biệt trên đồng tiền này không?<br>Đồng tiền có hình tròn, ở giữa là một lỗ vuông. Thiết kế ấy không chỉ giúp người xưa dễ cầm nắm mà còn có thể xâu nhiều đồng tiền lại với nhau bằng dây để mang theo khi đi buôn bán.<br>Điều thú vị hơn cả nằm ở bốn chữ "Thái Bình Hưng Bảo" được khắc trên mặt tiền.<br>Đó không chỉ là tên của đồng tiền, mà còn là dấu hiệu cho thấy đồng tiền được triều đình cho đúc và sử dụng trong cả nước. Theo các nhà nghiên cứu, việc một quốc gia tự đúc đồng tiền riêng đã phản ánh sự phát triển về kinh tế, đồng thời khẳng định quyền tự chủ của một đất nước độc lập.<br>Nhờ những đồng tiền còn lưu giữ đến ngày nay, các nhà khảo cổ hiểu thêm về hoạt động mua bán, đời sống của người dân và sự phát triển của Đại Cồ Việt dưới thời Tiền Lê.<br>Đôi khi, chỉ một đồng tiền nhỏ cũng có thể kể cho chúng ta nghe cả câu chuyện về một thời kỳ lịch sử.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy quan sát đồng tiền thật kỹ nhé!<br>Bạn có nhìn thấy chiếc lỗ vuông ở giữa đồng tiền không? Bạn có đọc được bốn chữ Hán được khắc trên mặt tiền không? Bạn thử đoán xem, ngày xưa người ta sẽ dùng đồng tiền này để mua những món đồ gì ở phiên chợ?<br>Mỗi chi tiết bạn khám phá được đều là một manh mối nhỏ, giúp chúng ta hiểu hơn về cuộc sống của người dân Đại Cồ Việt cách đây hơn một nghìn năm.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những cổ vật không lớn hơn lòng bàn tay.<br>Thế nhưng, chúng lại mang theo cả câu chuyện về một thời đại.<br>Đồng tiền Thái Bình Hưng Bảo không chỉ là phương tiện để mua bán, trao đổi hàng hóa mà còn là minh chứng cho sự phát triển của nền kinh tế và quyền tự chủ của Đại Cồ Việt dưới triều Tiền Lê. Qua đồng tiền nhỏ bé ấy, chúng chúng ta có thể hình dung những phiên chợ đông vui, bàn tay khéo léo của người thợ đúc tiền và khát vọng xây dựng một đất nước ngày càng vững mạnh sau khi giữ vững nền độc lập.<br>Và biết đâu, vẫn còn rất nhiều cổ vật đang lặng lẽ chờ bạn nhỏ khám phá, để tiếp tục kể những câu chuyện thú vị về hành trình dựng nước và giữ nước của dân tộc Việt Nam.'
-    ],
-    silhouetteSvg: '<circle cx="40" cy="38" r="22" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="34" y="32" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="40" cy="38" r="16" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.5"/>',
-    backSvg: '<circle cx="60" cy="45" r="32" fill="none" stroke="#B8860B" stroke-width="1.8"/><rect x="50" y="35" width="20" height="20" fill="none" stroke="#B8860B" stroke-width="1.2"/><circle cx="60" cy="45" r="25" fill="none" stroke="#B8860B" stroke-width="0.8" opacity="0.5"/><circle cx="60" cy="45" r="38" fill="none" stroke="#B8860B" stroke-width="0.5" opacity="0.3"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">THÁI BÌNH HƯNG BẢO</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     5 — NHÀ ĐINH / TIỀN LÊ (968 – 1009)
-     Gạch Đại Việt Quốc Quân Thành Chuyên
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_90ba8e957f584ff99df9209f16a626d4",
-    type: 'artifact',
-    dynasty: 'Nhà Đinh',
-    era: 'Cuối thế kỷ X (khoảng năm 968-980)',
-    artifact: 'Gạch "Đại Việt quốc quân thành chuyên"',
-    description: 'Đinh Bộ Lĩnh dẹp loạn 12 sứ quân, thống nhất đất nước và lên ngôi Hoàng đế, đặt quốc hiệu Đại Cồ Việt — quốc hiệu chính thức đầu tiên của nước ta.',
-    artifactDesc: 'Gạch có dạng hình hộp chữ nhật, được nung ở nhiệt độ cao. Trên bề mặt khắc dòng chữ Hán "大越國軍城磚" (Đại Việt quốc quân thành chuyên), cho biết đây là loại gạch được chế tác riêng để xây dựng các công trình của triều đình.',
-    image: 'assets/images/artifacts/Gạch Đại Việt quốc quân thành chuyên.png',
-    gallery: ['assets/images/artifacts/Gạch Đại Việt quốc quân thành chuyên.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/cuc%20da.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Gạch "Đại Việt quốc quân thành chuyên"',
-      'ĐẠI DIỆN CHO': 'Nhà Đinh',
-      'NIÊN ĐẠI': 'Cuối thế kỷ X (khoảng năm 968-980).',
-      'ĐỊA ĐIỂM PHÁT HIỆN': 'Khu di tích Cố đô Hoa Lư, tỉnh Ninh Bình.',
-      'CHẤT LIỆU': 'Đất sét nung.',
-      'CÔNG DỤNG': 'Dùng để xây thành lũy, cung điện và các công trình quan trọng trong kinh đô Hoa Lư.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Gạch có dạng hình hộp chữ nhật, được nung ở nhiệt độ cao. Trên bề mặt khắc dòng chữ Hán "大越國軍城磚" (Đại Việt quốc quân thành chuyên), cho biết đây là loại gạch được chế tác riêng để xây dựng các công trình của triều đình.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Có một kho báu đã nằm yên dưới lòng đất suốt hơn một nghìn năm. Điều đặc biệt là kho báu ấy không phải vàng bạc, cũng chẳng phải vương miện hay thanh gươm của nhà vua.<br>Đó chỉ là... một viên gạch.<br>Nghe thật lạ phải không?<br>Hôm nay, người bạn đồng hành của chúng mình chính là viên gạch mang dòng chữ "Đại Việt quốc quân thành chuyên". Viên gạch nhỏ bé ấy sẽ đưa chúng mình trở về thời nhà Đinh - khi đất nước vừa bước vào một chặng đường mới sau nhiều năm chia cắt.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>Quay về thời nhà Đinh...</strong><br><br>Cỗ máy thời gian dừng lại giữa vùng núi non trùng điệp của Hoa Lư. Những dãy núi đá vôi sừng sững bao quanh kinh đô như những bức tường thành khổng lồ mà thiên nhiên ban tặng.<br>Thời điểm ấy, đất nước vừa trải qua những năm tháng đầy biến động. Sau khi dẹp yên loạn 12 sứ quân, Đinh Bộ Lĩnh lên ngôi Hoàng đế vào năm 968, đặt quốc hiệu là Đại Cồ Việt và chọn Hoa Lư làm kinh đô. Đây được xem là một dấu mốc quan trọng trong quá trình xây dựng nhà nước độc lập đầu tiên sau nhiều thế kỷ Bắc thuộc.<br>Nhưng để một kinh đô được hình thành, không chỉ cần ý chí của nhà vua mà còn cần biết bao bàn tay của những người thợ.<br>Bạn nhỏ hãy thử tưởng tượng nhé!<br>Trước mặt chúng mình không có máy xúc, xe cẩu hay những công trình hiện đại. Chỉ có đất sét, khuôn gỗ, những lò nung đỏ rực và những người thợ đang miệt mài tạo nên từng viên gạch.<br>Sau khi nặn và phơi khô, mỗi viên gạch được đưa vào lò nung ở nhiệt độ cao. Trên bề mặt, người thợ cẩn thận khắc dòng chữ "Đại Việt quốc quân thành chuyên", để đánh dấu đây là loại gạch được chế tác dành riêng cho việc xây dựng các công trình của triều đình.<br>Từng viên gạch nhỏ dần được xếp cạnh nhau, tạo nên thành lũy, cung điện và những công trình quan trọng trong kinh đô Hoa Lư. Có thể mỗi viên gạch chỉ vừa trong hai bàn tay, nhưng khi ghép lại, chúng đã góp phần xây dựng nên một kinh đô kiên cố, đánh dấu bước khởi đầu của một quốc gia độc lập.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ có bao giờ nghĩ rằng... một viên gạch cũng có thể kể chuyện không?<br>Thoạt nhìn, viên gạch này trông khá giản dị. Không có những hoa văn cầu kỳ hay hình dáng đặc biệt. Nhưng nếu quan sát thật kỹ, bạn sẽ thấy trên bề mặt có khắc những dòng chữ Hán.<br>Chính những dòng chữ ấy đã trở thành một "lời nhắn" gửi từ hơn một nghìn năm trước.<br>Dòng chữ "Đại Việt quốc quân thành chuyên" cho biết đây là loại gạch được làm riêng để xây dựng thành lũy và các công trình quan trọng của triều đình. Nhờ đó, các nhà khảo cổ hiểu thêm về kỹ thuật xây dựng, cách tổ chức sản xuất và quy hoạch kinh đô dưới thời nhà Đinh.<br>Một viên gạch tưởng chừng bình thường lại giúp kể cho chúng ta nghe câu chuyện về những ngày đầu xây dựng đất nước sau khi thống nhất.<br>Đôi khi, những hiện vật nhỏ bé nhất lại lưu giữ những dấu vết lớn lao nhất của lịch sử.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy cầm viên gạch lên và quan sát thật kỹ nhé!<br>Bạn có nhìn thấy những dòng chữ được khắc trên bề mặt không? Bạn có nhận ra hình dáng vuông vức của viên gạch được tạo nên để dễ dàng ghép với những viên khác không?<br>Bạn thử tưởng tượng xem, nếu có hàng nghìn viên gạch giống như thế này được xếp cạnh nhau, chúng sẽ tạo thành những bức tường thành hay cung điện rộng lớn như thế nào?<br>Mỗi chi tiết bạn khám phá được đều giúp chúng ta hiểu thêm về bàn tay khéo léo của những người thợ và sự hình thành của kinh đô Hoa Lư hơn một nghìn năm trước.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những kho báu không lấp lánh như vàng bạc.<br>Chúng lặng lẽ nằm dưới lòng đất qua hàng nghìn năm, chờ đến ngày được con người tìm thấy.<br>Viên gạch "Đại Việt quốc quân thành chuyên" là một trong những kho báu như thế. Không chỉ là vật liệu xây dựng, nó còn là chứng nhân cho những ngày đầu dựng xây kinh đô Hoa Lư và phản ánh sự phát triển về kỹ thuật, tổ chức và tầm nhìn của nhà Đinh trong buổi đầu xây dựng quốc gia độc lập.<br>Và biết đâu, dưới lòng đất vẫn còn rất nhiều cổ vật đang lặng lẽ chờ bạn nhỏ tiếp tục khám phá trong những chuyến du hành thời gian tiếp theo…'
-    ],
-    silhouetteSvg: '<rect x="18" y="25" width="44" height="28" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="25" y1="34" x2="55" y2="34" stroke="currentColor" stroke-width="0.8"/><line x1="25" y1="40" x2="50" y2="40" stroke="currentColor" stroke-width="0.8"/><line x1="25" y1="46" x2="45" y2="46" stroke="currentColor" stroke-width="0.8"/>',
-    backSvg: '<rect x="25" y="22" width="70" height="45" rx="3" fill="none" stroke="#B8860B" stroke-width="1.8"/><line x1="35" y1="34" x2="85" y2="34" stroke="#B8860B" stroke-width="0.8"/><line x1="35" y1="42" x2="80" y2="42" stroke="#B8860B" stroke-width="0.8"/><line x1="35" y1="50" x2="70" y2="50" stroke="#B8860B" stroke-width="0.8"/><line x1="35" y1="58" x2="60" y2="58" stroke="#B8860B" stroke-width="0.8"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">GẠCH THÀNH CHUYÊN</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     6 — NHÀ LÝ (1009 – 1225)
-     Đầu Rồng Thời Lý
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_db3e2121d18c44739f0720b0f59310b7",
-    type: 'artifact',
-    dynasty: 'Nhà Lý',
-    era: 'Thế kỷ XI - XIII (1009-1225)',
-    artifact: 'Đầu rồng thời Lý',
-    description: 'Lý Công Uẩn dời đô về Thăng Long, mở ra kỷ nguyên hoàng kim rực rỡ nhất. Phật giáo hưng thịnh, nghệ thuật gốm sứ, kiến trúc chùa tháp và Rồng thời Lý trở thành biểu tượng bất hủ.',
-    artifactDesc: 'Rồng thời Lý có thân mềm mại uốn lượn như đang bay giữa mây trời, đầu nhỏ, miệng há, râu dài, không mang dáng vẻ dữ tợn mà thanh thoát và uyển chuyển. Đây là một trong những hình tượng nghệ thuật tiêu biểu phản ánh sự phát triển rực rỡ của văn hóa và mỹ thuật thời Lý.',
-    image: 'assets/images/artifacts/Đầu rồng thời Lý.png',
-    gallery: ['assets/images/artifacts/Đầu rồng thời Lý.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/rongg.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Đầu rồng thời Lý',
-      'ĐẠI DIỆN CHO': 'Nhà Lý',
-      'NIÊN ĐẠI': 'Thế kỷ XI - XIII (1009-1225)',
-      'ĐỊA ĐIỂM PHÁT HIỆN': 'Khu vực Hoàng thành Thăng Long và nhiều di tích kiến trúc thời Lý.',
-      'CHẤT LIỆU': 'Đá.',
-      'CÔNG DỤNG': 'Là chi tiết trang trí kiến trúc xuất hiện tại cung điện, đền chùa và các công trình quan trọng của triều đình.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Rồng thời Lý có thân mềm mại uốn lượn như đang bay giữa mây trời, đầu nhỏ, miệng há, râu dài, không mang dáng vẻ dữ tợn mà thanh thoát và uyển chuyển. Đây là một trong những hình tượng nghệ thuật tiêu biểu phản ánh sự phát triển rực rỡ của văn hóa và mỹ thuật thời Lý.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có bao giờ để ý rằng...<br>Cùng là hình ảnh rồng, nhưng mỗi thời đại lại có một dáng vẻ rất khác nhau?<br>Có những con rồng trông thật oai vệ, có những con rồng mang vẻ uy nghiêm. Thế nhưng, hôm nay, chúng mình sẽ gặp một "người bạn" rất đặc biệt.<br>Đó là đầu rồng thời Lý - một chú rồng không hề dữ dằn, mà mềm mại như đang lướt nhẹ giữa mây trời.<br>Bạn nhỏ có tò mò vì sao người xưa lại tạo nên một hình tượng rồng như thế không?<br>Vậy thì hãy cùng đầu rồng thời Lý quay trở về hơn chín trăm năm trước, đến với một trong những triều đại rựcrỡ nhất của lịch sử dân tộc nhé!<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian!',
-      '<strong>QUAY VỀ THỜI NHÀ LÝ...</strong><br><br>Cỗ máy thời gian đưa chúng mình đến năm 1010.<br>Trước mắt là những đoàn thuyền đang xuôi theo dòng sông tiến về một vùng đất mới. Đây chính là thời điểm vua Lý Thái Tổ quyết định dời đô từ Hoa Lư ra thành Đại La. Theo truyền thống lịch sử, khi thuyền của nhà vua vừa đến nơi, một con rồng vàng bay lên giữa bầu trời. Nhà vua xem đó là điềm lành và đổi tên kinh đô thành Thăng Long, nghĩa là "Rồng Bay Lên".<br>Từ đó, Thăng Long trở thành trung tâm của đất nước, ngày càng đông đúc và phát triển.<br>Khắp kinh thành, những cung điện, đền chùa và thành quách lần lượt được xây dựng. Tiếng búa, tiếng đục vang lên không ngớt. Những người thợ tài hoa đang miệt mài tạo nên các công trình cho kinh đô mới.<br>Bạn nhỏ hãy thử tưởng tượng nhé!<br>Ở một góc sân, một người nghệ nhân đang chăm chú đục đẽo trên khối đá lớn.<br>Từng nhát đục được thực hiện thật cẩn thận. Chẳng bao lâu sau, một đầu rồng dần hiện ra.<br>Điều đặc biệt là chú rồng ấy không có ánh mắt dữ dằn hay hàm răng sắc nhọn. Đầu rồng nhỏ nhắn, miệng hơi há, râu dài mềm mại và thân uốn lượn như đang bay giữa mây trời.<br>Đầu rồng ấy sẽ được đặt trên bậc thềm cung điện, trong đền chùa hoặc những công trình quan trọng của triều đình, góp phần làm cho kinh đô Thăng Long thêm trang nghiêm và rực rỡ.<br>Cùng với sự phát triển của đất nước, nghệ thuật và kiến trúc thời Lý cũng đạt đến trình độ cao. Những hình tượng rồng được tạo nên không chỉ để trang trí mà còn thể hiện khát vọng về một đất nước thanh bình, thịnh vượng và không ngừng vươn lên.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ có nhận ra điều gì đặc biệt trên đầu rồng này không?<br>Hãy nhìn thật kỹ nhé!<br>Đầu rồng khá nhỏ, chiếc miệng mở nhẹ như đang mỉm cười. Những sợi râu cong mềm mại bay về phía sau, còn thân rồng uốn lượn uyển chuyển như đang hòa cùng gió và mây.<br>Theo các nhà nghiên cứu, hình tượng rồng thời Lý mang vẻ đẹp thanh thoát, khác với nhiều hình tượng rồng ở những giai đoạn sau hay ở một số nền văn hóa khác. Thay vì thể hiện sức mạnh bằng vẻ ngoài dữ dằn, người xưa đã gửi gắm vào đó sự thanh cao, mềm mại và tinh thần hướng tới cuộc sống yên bình.<br>Nhờ những đầu rồng còn được lưu giữ đến ngày nay, các nhà khảo cổ và các nhà nghiên cứu hiểu thêm về kiến trúc, mỹ thuật và đời sống văn hóa của triều Lý.<br>Mỗi đường nét được chạm khắc trên đá đều giống như một lời nhắn mà người xưa gửi lại sau gần một nghìn năm.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy quan sát đầu rồng thật kỹ nhé!<br>Bạn có thấy chiếc đầu nhỏ và phần miệng đang hé mở không? Bạn có nhận ra những đường cong mềm mại khiến chú rồng trông như đang bay giữa mây trời không?<br>Bạn thử tưởng tượng xem, đầu rồng này sẽ được đặt ở đâu trên một cung điện hay ngôi chùa của kinh thành Thăng Long?<br>Mỗi chi tiết bạn khám phá được sẽ giúp chúng ta hiểu thêm về tài năng của những người nghệ nhân và vẻ đẹp của nghệ thuật Việt Nam thời nhà Lý.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những con rồng chỉ xuất hiện trong truyền thuyết.<br>Nhưng cũng có những con rồng vẫn còn ở lại cùng thời gian, qua những tác phẩm nghệ thuật mà người xưa để lại.<br>Đầu rồng thời Lý là một trong những biểu tượng tiêu biểu của mỹ thuật Việt Nam. Không chỉ làm đẹp cho các công trình kiến trúc, hình tượng rồng còn phản ánh sự phát triển rực rỡ của văn hóa, nghệ thuật và khát vọng xây dựng một đất nước thanh bình, hưng thịnh dưới triều Lý.<br>Và biết đâu, vẫn còn nhiều cổ vật đang lặng lẽ chờ bạn nhỏ khám phá, để tiếp tục kể những câu chuyện thú vị về hành trình dựng nước và giữ nước của dân tộc Việt Nam'
-    ],
-    silhouetteSvg: '<path d="M15 50 Q25 30 35 40 Q45 50 55 30 Q65 15 75 25" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="75" cy="25" r="4" fill="none" stroke="currentColor" stroke-width="1"/><path d="M15 50 Q10 60 20 65" fill="none" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<path d="M15 70 Q30 40 45 55 Q60 70 75 40 Q90 15 105 30" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round"/><circle cx="105" cy="30" r="6" fill="none" stroke="#B8860B" stroke-width="1.5"/><circle cx="107" cy="28" r="1.5" fill="#B8860B"/><path d="M15 70 Q8 82 20 85" fill="none" stroke="#B8860B" stroke-width="1.5" stroke-linecap="round"/><path d="M12 72 Q5 78 15 80" fill="none" stroke="#B8860B" stroke-width="1" opacity="0.5"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">ĐẦU RỒNG THỜI LÝ</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     7 — NHÀ TRẦN (1225 – 1400)
-     Ấn Tín Nhà Trần
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_8fc4f5bf04b14e8c8b70f543ca8b6235",
-    type: 'artifact',
-    dynasty: 'Nhà Trần',
-    era: 'Lấy cảm hứng từ hệ thống ấn tín dưới triều Trần, thế kỷ XIII - XIV (1225-1400)',
-    artifact: 'Ấn tín nhà Trần',
-    description: 'Ba lần đại phá quân Nguyên Mông dưới sự lãnh đạo của Hưng Đạo Đại Vương Trần Quốc Tuấn. Hào khí Đông A vang dội, Hịch tướng sĩ trở thành áng văn bất hủ.',
-    artifactDesc: 'Mô hình được sáng tạo theo cảm hứng từ hình thức ấn cổ và mỹ thuật thời Trần. Phần núm ấn gợi liên tưởng đến vẻ mạnh mẽ, trang nghiêm của một thời đại luôn đặt tinh thần giữ nước và trách nhiệm với non sông lên hàng đầu.',
-    image: 'assets/images/artifacts/Ấn tín nhà Trần.png',
-    gallery: ['assets/images/artifacts/Ấn tín nhà Trần.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/%E1%BA%A5n%20th%E1%BB%9Di%20Tr%E1%BA%A7n.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Ấn tín nhà Trần',
-      'ĐẠI DIỆN CHO': 'Nhà Trần',
-      'NIÊN ĐẠI': 'Lấy cảm hứng từ hệ thống ấn tín dưới triều Trần, thế kỷ XIII - XIV (1225-1400)',
-      'KHÔNG GIAN LỊCH SỬ': 'Kinh thành Thăng Long và các cơ quan triều đình Đại Việt',
-      'CHẤT LIỆU MÔ HÌNH': 'Hợp kim mô phỏng',
-      'CÔNG DỤNG': 'Trong xã hội xưa, ấn tín được dùng để xác nhận các văn thư, mệnh lệnh và công việc quan trọng của triều đình. Dấu ấn giúp cho lời truyền đạt của nhà vua và các cơ quan quản lý trở nên chính thức, rõ ràng và có trách nhiệm.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Mô hình được sáng tạo theo cảm hứng từ hình thức ấn cổ và mỹ thuật thời Trần. Phần núm ấn gợi liên tưởng đến vẻ mạnh mẽ, trang nghiêm của một thời đại luôn đặt tinh thần giữ nước và trách nhiệm với non sông lên hàng đầu.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Từ rất xa trong dòng chảy lịch sử, có tiếng vó ngựa vang lên ngoài thành Thăng Long, có tiếng quân lính luyện tập bên bờ sông, có những cuộc họp khẩn trong triều đình để bàn việc lớn của đất nước.<br>Hôm nay, người bạn đồng hành của chúng mình là một chiếc ấn tín nhà Trần.<br>Chiếc ấn nhỏ bé ấy sẽ đưa chúng mình trở về một triều đại đặc biệt, nơi tinh thần dũng cảm, đoàn kết và lòng yêu nước đã tạo nên một dấu son rực rỡ trong lịch sử Đại Việt.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI NHÀ TRẦN...</strong><br><br>Chúng mình đang đứng ở Thăng Long vào thế kỷ XIII.<br>Sau khi nhà Lý kết thúc, triều Trần bắt đầu từ năm 1225, mở ra gần 175 năm lịch sử đầy tự hào. Đây là thời kỳ Đại Việt không chỉ phát triển về tổ chức đất nước, văn hóa và giáo dục, mà còn phải đối diện với những thử thách vô cùng lớn lao từ các cuộc xâm lược của quân Mông Cổ và nhà Nguyên.<br>Trong những ngày đất nước đứng trước nguy cơ, từ nhà vua, các vị tướng cho đến người dân đều cùng chung một ý chí: bảo vệ non sông.<br>Những cái tên như Trần Thái Tông, Trần Thủ Độ, Trần Hưng Đạo, Trần Nhân Tông hay Trần Quốc Toản đã góp phần viết nên câu chuyện hào hùng ấy. Đặc biệt, ba lần chiến thắng quân Mông - Nguyên đã cho thấy sức mạnh đoàn kết và lòng quả cảm của quân dân Đại Việt.<br>Năm 1288, trên dòng sông Bạch Đằng, dưới sự chỉ huy của Trần Hưng Đạo, quân dân nhà Trần đã giành một chiến thắng vang dội. Chiến thắng ấy không chỉ giữ vững đất nước mà còn trở thành biểu tượng cho ý chí kiên cường của dân tộc Việt Nam.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ có biết không?<br>Một chiếc ấn tuy nhỏ, nhưng lại mang theo rất nhiều trách nhiệm.<br>Ngày xưa, khi triều đình cần ban hành một mệnh lệnh quan trọng, viết một văn bản hay xác nhận một việc lớn của đất nước, người ta có thể dùng ấn để đóng dấu. Dấu ấn ấy cho mọi người biết rằng đây không phải là một lời nói bình thường, mà là việc cần được thực hiện nghiêm túc.<br>Bạn nhỏ hãy tưởng tượng nhé.<br>Một viên quan đang cầm tờ chiếu chỉ trong tay. Sau khi nội dung được kiểm tra cẩn thận, chiếc ấn được đóng xuống. Chỉ một lần đóng dấu thôi, nhưng phía sau nó có thể là trách nhiệm bảo vệ dân chúng, tổ chức quân đội, điều hành đất nước hoặc truyền đi một mệnh lệnh quan trọng.<br>Vì thế, ấn tín không chỉ tượng trưng cho quyền lực.<br>Nó còn nhắc nhở người sử dụng về trách nhiệm với nhân dân và non sông.<br>Nhìn chiếc ấn trước mắt, chúng mình có thể nghĩ về ba điều thật đẹp:<br>Quyền lực - để bảo vệ trật tự và điều hành đất nước.<br>Trách nhiệm - bởi mỗi mệnh lệnh được ban ra đều có ảnh hưởng đến rất nhiều người.<br>Niềm tin - vì một dấu ấn xưa là lời cam kết rằng việc ấy cần được thực hiện nghiêm túc.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy cầm chiếc ấn thật cẩn thận nhé!<br>🔎 Bạn có nhìn thấy phần núm ở phía trên chiếc ấn không?<br>📜 Bạn thử tưởng tượng xem: nếu chiếc ấn này được đóng lên một tờ chiếu chỉ, đó có thể là mệnh lệnh gì?<br>⚔️ Theo bạn, trong những ngày chuẩn bị chống giặc, triều đình nhà Trần có thể đã dùng ấn để xác nhận những việc quan trọng nào?<br>👑 Bạn nghĩ người được giữ và sử dụng ấn cần có những phẩm chất gì?<br>Mỗi câu trả lời của bạn nhỏ đều là một cách để hiểu thêm rằng: lịch sử không chỉ được tạo nên bởi những trận đánh lớn, mà còn bởi những quyết định đầy trách nhiệm của rất nhiều con người.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những cổ vật không kể chuyện bằng lời.<br>Chúng lặng lẽ nằm lại qua hàng trăm năm, nhưng chỉ cần chúng mình nhìn thật kỹ, mỗi đường nét đều có thể mở ra một cánh cửa dẫn về quá khứ.<br>Chiếc ấn tín nhà Trần cũng như thế.<br>Nó nhắc chúng mình về một thời đại mà lòng yêu nước được thể hiện bằng những hành động rất lớn lao: từ việc giữ vững triều đình, tổ chức đất nước, chuẩn bị quân đội cho đến việc cùng nhau bảo vệ từng tấc đất quê hương.<br>Hào khí Đông A không chỉ nằm trong những chiến thắng lừng lẫy.<br>Hào khí ấy còn nằm trong tinh thần đoàn kết, sự can đảm và trách nhiệm của mỗi người với đất nước mình.<br>Và biết đâu, sau chiếc ấn này, vẫn còn rất nhiều cổ vật khác đang chờ bạn nhỏ tiếp tục khai quật, khám phá và lắng nghe câu chuyện của lịch sử Đại Việt.'
-    ],
-    silhouetteSvg: '<rect x="20" y="20" width="40" height="40" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="28" y="28" width="24" height="24" rx="1" fill="none" stroke="currentColor" stroke-width="0.8"/><text x="40" y="46" text-anchor="middle" font-family="serif" font-size="14" fill="currentColor" opacity="0.5">印</text>',
-    backSvg: '<rect x="30" y="20" width="60" height="55" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><rect x="38" y="28" width="44" height="39" rx="2" fill="none" stroke="#B8860B" stroke-width="0.8"/><text x="60" y="54" text-anchor="middle" font-family="serif" font-size="22" fill="#B8860B" opacity="0.6">印</text><rect x="45" y="12" width="30" height="12" rx="6" fill="none" stroke="#B8860B" stroke-width="1"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">ẤN TÍN NHÀ TRẦN</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     8 — NHÀ HỒ (1400 – 1407)
-     Đá Thành Nhà Hồ
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_7cdd1a74a27347779c3f3f7bc7b69c35",
-    type: 'artifact',
-    dynasty: 'Nhà Hồ',
-    era: 'Cuối thế kỷ XIV - đầu thế kỷ XV (1400–1407)',
-    artifact: 'Thành Nhà Hồ',
-    description: 'Hồ Quý Ly tiến hành cải cách táo bạo: phát hành tiền giấy, cải tổ giáo dục, xây thành Tây Đô bằng đá đồ sộ. Dù ngắn ngủi, nhà Hồ để lại di sản kiến trúc độc nhất vô nhị.',
-    artifactDesc: 'Thành nổi bật với những khối đá khổng lồ được đẽo gọt vuông vức, ghép chặt vào nhau mà gần như không cần chất kết dính. Bốn cổng thành được xây theo kiểu vòm cuốn bằng đá; trong đó Cổng Nam là cổng chính, có ba cửa vòm lớn và là hình ảnh tiêu biểu nhất của Thành Nhà Hồ.',
-    image: 'assets/images/artifacts/Đá Thành Nhà Hồ.png',
-    gallery: ['assets/images/artifacts/Đá Thành Nhà Hồ.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/thanh%20nha%20ho.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Thành Nhà Hồ',
-      'ĐẠI DIỆN CHO': 'Nhà Hồ - kinh đô Tây Đô của nước Đại Ngu',
-      'NIÊN ĐẠI': 'Cuối thế kỷ XIV - đầu thế kỷ XV (1400–1407)',
-      'THỜI GIAN XÂY DỰNG': 'Năm 1397, dưới sự chỉ huy của Hồ Quý Ly',
-      'ĐỊA ĐIỂM': 'Vùng đất An Tôn xưa, nay thuộc xã Tây Đô, tỉnh Thanh Hóa',
-      'CHẤT LIỆU': 'Đá vôi lớn, đất đầm nện và gạch',
-      'CÔNG DỤNG': 'Thành Nhà Hồ là kinh đô mới của nước Đại Ngu dưới triều Hồ. Đây vừa là nơi đặt triều đình, tổ chức việc nước, vừa là công trình phòng thủ quan trọng trong bối cảnh đất nước nhiều biến động.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Thành nổi bật với những khối đá khổng lồ được đẽo gọt vuông vức, ghép chặt vào nhau mà gần như không cần chất kết dính. Bốn cổng thành được xây theo kiểu vòm cuốn bằng đá; trong đó Cổng Nam là cổng chính, có ba cửa vòm lớn và là hình ảnh tiêu biểu nhất của Thành Nhà Hồ.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Ở rất xa trong dòng thời gian, giữa những cánh đồng rộng lớn của xứ Thanh, có tiếng đá va vào nhau, tiếng người gọi nhau vận chuyển những khối đá khổng lồ và tiếng bánh xe lăn trên con đường dẫn về một kinh đô mới.<br>Hôm nay, người bạn đồng hành của chúng mình là Thành Nhà Hồ.<br>Không phải một chiếc bình nhỏ hay một món đồ nằm yên trong tủ kính, Thành Nhà Hồ là một "cổ vật khổng lồ" vẫn đứng vững giữa đất trời suốt hơn sáu trăm năm.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI NHÀ HỒ...</strong><br><br>Chúng mình đang trở về cuối thế kỷ XIV.<br>Lúc ấy, đất nước Đại Việt đang trải qua nhiều khó khăn. Triều Trần dần suy yếu, cuộc sống của người dân có nhiều biến động, trong khi nguy cơ ngoại xâm từ phương Bắc ngày một lớn hơn.<br>Trong hoàn cảnh ấy, Hồ Quý Ly đã chủ trương xây dựng một kinh đô mới ở vùng An Tôn, Thanh Hóa. Vùng đất này có núi non, sông nước và đồng bằng bao quanh, vừa thuận lợi cho việc đi lại, vừa có lợi thế phòng thủ.<br>Chỉ trong khoảng ba tháng đầu năm 1397, một tòa thành đá đồ sộ đã dần hiện lên giữa vùng đất rộng lớn. Những khối đá nặng hàng chục tấn được khai thác, vận chuyển, đẽo gọt rồi ghép lại thành những bức tường thành cao lớn.<br>Đến năm 1400, Hồ Quý Ly lập ra nhà Hồ, đổi quốc hiệu thành Đại Ngu. Thành Tây Đô trở thành kinh đô của vương triều mới.<br>Dù nhà Hồ chỉ tồn tại trong thời gian ngắn, Thành Nhà Hồ vẫn để lại một dấu ấn rất đặc biệt: dấu ấn của một thời đại mong muốn đổi mới đất nước, củng cố triều đình và chuẩn bị bảo vệ nền độc lập dân tộc.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ có biết không?<br>Nhìn từ xa, Thành Nhà Hồ giống như một bức tường đá khổng lồ.<br>Nhưng khi nhìn kỹ hơn, mỗi phiến đá lại giống như một mảnh ghép của trí tuệ, sức lực và quyết tâm của rất nhiều con người thời xưa.<br>Những khối đá xây thành có khối dài tới vài mét, nặng từ 10 đến hơn 20 tấn. Thế mà người xưa vẫn có thể đưa chúng lên cao, ghép chúng sát khít với nhau để tạo thành những bức tường kiên cố.<br>Điều đặc biệt là các khối đá không chỉ được xếp chồng lên nhau. Chúng còn được ghép theo kỹ thuật rất chắc chắn, giúp tường thành liên kết bền vững qua thời gian.<br>Bạn nhỏ hãy thử tưởng tượng nhé.<br>Có thể đã có những đoàn người cùng kéo đá từ núi An Tôn về thành. Có những người thợ đo đạc, đẽo gọt từng cạnh đá. Có những người khác tính toán thật cẩn thận để khi đặt phiến đá xuống, nó khớp vừa vặn với những phiến đá xung quanh.<br>Vì thế, Thành Nhà Hồ không chỉ kể câu chuyện về một kinh đô.<br>Nó còn kể câu chuyện về sự đoàn kết, khả năng sáng tạo và ý chí kiến tạo đất nước của cha ông ta.<br>Bên ngoài thành là hào nước và La Thành rộng lớn. La Thành được đắp bằng đất, kết hợp với tre gai, núi đồi và sông nước tự nhiên để tạo nên nhiều lớp phòng thủ. Bên trong kinh đô còn có cung điện, đường lát đá và Đàn tế Nam Giao - nơi nhà vua thực hiện nghi lễ cầu cho đất nước bình an, mùa màng tốt tươi và nhân dân no ấm.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy quan sát Thành Nhà Hồ thật kỹ nhé!<br>🪨 Bạn có nhìn thấy những khối đá lớn ghép thành tường không?<br>🏰 Theo bạn, người xưa đã làm cách nào để đưa những khối đá nặng như vậy lên cao?<br>🚪 Bạn có nhận ra các cổng thành được xây theo hình vòm không? Vì sao kiểu vòm lại giúp công trình chắc chắn hơn?<br>🌿 Bạn thử tưởng tượng xem: bên ngoài thành có hào nước, tre gai, núi và sông. Những yếu tố ấy đã giúp bảo vệ kinh đô như thế nào?<br>Mỗi chi tiết bạn khám phá được đều giúp chúng mình hiểu thêm rằng: để xây nên một công trình lớn, không chỉ cần sức mạnh mà còn cần sự tính toán thông minh và tinh thần cùng chung sức.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những cổ vật nhỏ bé có thể nằm gọn trong lòng bàn tay.<br>Nhưng cũng có những cổ vật lớn đến mức chúng ta phải bước đi thật xa mới có thể nhìn hết vẻ đẹp của chúng.<br>Thành Nhà Hồ là một cổ vật đặc biệt như thế.<br>Dù đã trải qua hơn sáu thế kỷ với nắng, mưa và những đổi thay của lịch sử, những bức tường đá vẫn còn đứng đó, lặng lẽ kể cho chúng mình nghe về một kinh đô xưa.<br>Tòa thành nhắc chúng mình rằng: có những điều được tạo nên từ rất nhiều bàn tay, rất nhiều trí tuệ và rất nhiều niềm tin.<br>Và mỗi khi nhìn vào những phiến đá lớn ấy, chúng mình có thể nhớ rằng:<br>Một đất nước vững mạnh không chỉ được xây bằng thành quách, mà còn được xây bằng ý chí, trách nhiệm và sự đồng lòng của con người.<br>Biết đâu, trong hành trình tiếp theo, vẫn còn nhiều công trình cổ khác đang chờ bạn nhỏ khám phá và lắng nghe câu chuyện của lịch sử Việt Nam.'
-    ],
-    silhouetteSvg: '<rect x="15" y="30" width="50" height="35" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 30 L40 15 L65 30" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="33" y="45" width="14" height="20" fill="none" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<rect x="15" y="35" width="90" height="40" fill="none" stroke="#B8860B" stroke-width="1.8"/><path d="M15 35 L60 10 L105 35" fill="none" stroke="#B8860B" stroke-width="1.5"/><rect x="48" y="50" width="24" height="25" fill="none" stroke="#B8860B" stroke-width="1.2"/><path d="M48 62 L72 62" stroke="#B8860B" stroke-width="0.8"/><line x1="25" y1="45" x2="25" y2="75" stroke="#B8860B" stroke-width="2"/><line x1="95" y1="45" x2="95" y2="75" stroke="#B8860B" stroke-width="2"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">ĐÁ THÀNH NHÀ HỒ</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     9 — LÊ SƠ (1428 – 1527)
-     Rồng Đá Điện Kính Thiên
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_51783bb4502e431a8537bb549b69345d",
-    type: 'artifact',
-    dynasty: 'Lê Sơ',
-    era: 'Năm 1467, dưới thời vua Lê Thánh Tông (1428-1527)',
-    artifact: 'Rồng đá thành bậc điện Kính Thiên',
-    description: 'Lê Lợi lãnh đạo khởi nghĩa Lam Sơn 10 năm gian khổ, giải phóng đất nước khỏi ách đô hộ nhà Minh. Nguyễn Trãi soạn Bình Ngô Đại Cáo — bản Tuyên ngôn Độc lập thứ hai.',
-    artifactDesc: 'Rồng có đầu ngẩng cao, mắt tròn, sừng dài, thân uốn lượn theo từng bậc đá. Trên lưng là hàng vây nhấp nhô như mây và lửa; chân rồng có năm móng sắc nhọn. Từng đường chạm thể hiện vẻ mạnh mẽ nhưng vẫn mềm mại, tinh xảo của nghệ thuật thời Lê sơ.',
-    image: 'assets/images/artifacts/Rồng đá điện kính thiên.png',
-    gallery: ['assets/images/artifacts/Rồng đá điện kính thiên.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda-v1.glb',
-    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda-v1.usdz',
-    details: {
-      'TÊN MÔ HÌNH': 'Rồng đá thành bậc điện Kính Thiên',
-      'ĐẠI DIỆN CHO': 'Lê Sơ',
-      'NIÊN ĐẠI': 'Năm 1467, dưới thời vua Lê Thánh Tông (1428-1527)',
-      'ĐỊA ĐIỂM': 'Điện Kính Thiên, Hoàng thành Thăng Long, Hà Nội',
-      'CHẤT LIỆU NGUYÊN MẪU': 'Đá xanh',
-      'VỊ TRÍ NGUYÊN GỐC': 'Thành bậc phía Nam của điện Kính Thiên - chính điện quan trọng nhất trong Hoàng thành Thăng Long thời Lê sơ.',
-      'CÔNG DỤNG': 'Rồng đá được đặt dọc theo thành bậc dẫn lên điện Kính Thiên. Không chỉ làm đẹp cho lối lên điện, hình tượng này còn tạo nên sự trang nghiêm, thể hiện quyền uy của nhà vua và trật tự của chốn triều đình.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Rồng có đầu ngẩng cao, mắt tròn, sừng dài, thân uốn lượn theo từng bậc đá. Trên lưng là hàng vây nhấp nhô như mây và lửa; chân rồng có năm móng sắc nhọn. Từng đường chạm thể hiện vẻ mạnh mẽ nhưng vẫn mềm mại, tinh xảo của nghệ thuật thời Lê sơ.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Từ xa xa, tiếng trống nghi lễ đang vang lên giữa kinh thành Thăng Long. Những hàng quan áo mũ chỉnh tề bước qua sân rồng rộng lớn, tiến về phía một tòa điện uy nghi.<br>Trên những bậc đá cao, có một chú rồng đang uốn mình thật dài.<br>Chú không bay trên mây, cũng không bơi dưới nước.<br>Chú nằm lặng lẽ bên bậc thềm, như đang canh giữ con đường dẫn đến nơi quan trọng nhất của cả triều đình.<br>Hôm nay, người bạn đồng hành của chúng mình là Rồng đá thành bậc điện Kính Thiên.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI LÊ SƠ...</strong><br><br>Chúng mình đang trở về Thăng Long vào thế kỷ XV.<br>Sau những năm tháng đất nước bị giặc Minh đô hộ, nghĩa quân Lam Sơn đã giành lại độc lập. Năm 1428, vua Lê Thái Tổ lên ngôi, mở đầu triều Lê sơ và xây dựng điện Kính Thiên trong khu vực Cấm thành Thăng Long.<br>Điện Kính Thiên là nơi vô cùng đặc biệt.<br>Đây là nơi nhà vua thiết triều, bàn việc quốc gia và tổ chức những nghi lễ quan trọng. Những vị quan từ khắp nơi về kinh thành đều phải bước lên những bậc đá dẫn vào điện với thái độ trang nghiêm.<br>Mỗi bậc đá không chỉ đưa mọi người đến gần hơn với chính điện.<br>Nó còn nhắc rằng: phía trước là nơi đưa ra những quyết định liên quan đến cuộc sống của người dân, việc bảo vệ đất nước và tương lai của Đại Việt.<br>Vì thế, hai bên thành bậc được trang trí bằng hình rồng đá - biểu tượng mạnh mẽ nhất của quyền lực hoàng gia.',
-      '<strong>GIẢI MÃ CỔ VẬT</strong><br><br>Bạn nhỏ có bao giờ thắc mắc vì sao chú rồng này lại nằm dọc theo bậc thềm không?<br>Ngày xưa, rồng là hình tượng gắn liền với nhà vua.<br>Rồng tượng trưng cho quyền uy, sức mạnh và mong muốn đất nước phát triển hưng thịnh. Khi đặt rồng đá ở lối lên điện Kính Thiên, người xưa muốn tạo nên một không gian thật trang trọng, để bất cứ ai bước vào cũng hiểu rằng mình đang đến gần trung tâm của triều đình.<br>Bạn nhỏ hãy nhìn thật kỹ nhé.<br>Rồng có đầu ngẩng cao, như đang nhìn về phía trước.<br>Đôi mắt tròn mở lớn, sừng vươn dài, thân rồng uốn lượn mềm mại theo từng bậc đá. Trên lưng là những đường vây nhấp nhô, trông như mây cuộn và ngọn lửa đang chuyển động.<br>Đặc biệt, rồng có năm móng sắc nhọn.<br>Trong nghệ thuật hoàng cung thời Lê sơ, hình ảnh rồng năm móng thường gắn với nhà vua. Vì vậy, chú rồng đá này không chỉ là vật trang trí, mà còn là dấu hiệu cho thấy đây là nơi có vị trí rất đặc biệt trong kinh thành.<br>Rồng đá điện Kính Thiên kể cho chúng mình nghe về ba điều:<br>Quyền uy - bởi rồng là biểu tượng của nhà vua và triều đình.<br>Sự tôn nghiêm - bởi mỗi người bước lên bậc thềm đều cần giữ thái độ kính cẩn.<br>Tài năng của người thợ xưa - bởi chỉ với đá xanh, họ đã tạo nên một chú rồng sống động, mềm mại và đầy sức mạnh.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ</strong><br><br>Bây giờ, bạn nhỏ hãy quan sát chú rồng thật kỹ nhé!<br>🐉 Bạn có nhìn thấy đầu rồng đang ngẩng cao không?<br>👀 Đôi mắt, sừng và miệng rồng có gì đặc biệt?<br>🪨 Bạn có phát hiện thân rồng đang uốn lượn theo các bậc đá không?<br>🖐️ Bạn thử đếm xem rồng có bao nhiêu móng nhé!<br>☁️ Trên lưng rồng, bạn có thấy những đường vây giống mây hoặc lửa đang chuyển động không?<br>Mỗi chi tiết nhỏ đều là một lời nhắn từ quá khứ.<br>Chỉ cần quan sát thật kỹ, bạn nhỏ sẽ nhận ra rằng người xưa đã gửi vào từng đường chạm đá rất nhiều trí tưởng tượng, sự khéo léo và niềm tự hào về đất nước.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Điện Kính Thiên ngày xưa rất lớn và rất đẹp.<br>Dù phần lớn công trình đã không còn nguyên vẹn, những chú rồng đá vẫn ở lại trên bậc thềm, lặng lẽ nhìn về kinh thành Thăng Long qua hàng trăm năm.<br>Rồng đá điện Kính Thiên không chỉ kể câu chuyện về một vị vua hay một cung điện.<br>Chú còn nhắc chúng mình về một thời đại mà người Việt đã cùng nhau xây dựng đất nước, gìn giữ độc lập và tạo nên những công trình đẹp đẽ, bền vững.<br>Nhìn vào chú rồng đá, chúng mình có thể nhớ rằng:<br>Sức mạnh thật sự không chỉ nằm ở quyền uy, mà còn nằm ở trách nhiệm gìn giữ và xây dựng đất nước.<br>Và biết đâu, sau chú rồng đá này, vẫn còn rất nhiều cổ vật khác đang chờ bạn nhỏ tiếp tục khám phá trong hành trình trở về với lịch sử Việt Nam.'
-    ],
-    silhouetteSvg: '<path d="M15 55 Q25 35 35 45 Q45 55 55 35 Q60 25 65 28" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="65" cy="28" r="5" fill="none" stroke="currentColor" stroke-width="1"/><path d="M15 55 Q12 62 18 65" fill="none" stroke="currentColor" stroke-width="1"/><rect x="20" y="58" width="45" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="0.8"/>',
-    backSvg: '<path d="M20 68 Q35 40 50 52 Q65 65 80 38 Q88 22 95 28" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round"/><circle cx="95" cy="28" r="7" fill="none" stroke="#B8860B" stroke-width="1.5"/><circle cx="97" cy="26" r="2" fill="#B8860B"/><path d="M20 68 Q15 78 22 80" fill="none" stroke="#B8860B" stroke-width="1.5"/><rect x="25" y="75" width="70" height="10" rx="2" fill="none" stroke="#B8860B" stroke-width="1"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">RỒNG ĐÁ KÍNH THIÊN</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     10 — NHÀ MẠC (1527 – 1592)
-     Lư Hương Gốm Men Nâu
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_2dd2f9fa988a4d85b110f540a85b1dd9",
-    type: 'artifact',
-    dynasty: 'Nhà Mạc',
-    era: 'Thế kỷ XVI',
-    artifact: 'Lư hương gốm men nâu - lam xám',
-    description: 'Mạc Đăng Dung lập triều Mạc, mở ra thời kỳ Nam - Bắc triều phân tranh. Dù gây tranh cãi, nhà Mạc để lại dấu ấn kiến trúc, gốm sứ và thương mại phồn thịnh.',
-    artifactDesc: 'Miệng lư mở rộng, thân phình; thường có chân đế; thân được đắp hoặc chạm nổi hình rồng, mây, hoa lá, cánh sen và các họa tiết mang ý nghĩa linh thiêng.',
-    image: 'assets/images/artifacts/Lư hương gốm men nâu.png',
-    gallery: ['assets/images/artifacts/Lư hương gốm men nâu.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/l%C6%B0%20h%C6%B0%C6%A1ng.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Lư hương gốm men nâu - lam xám',
-      'ĐẠI DIỆN CHO': 'Nhà Mạc',
-      'NIÊN ĐẠI': 'Thế kỷ XVI, nhiều hiện vật có thể xác định vào niên hiệu Đoan Thái, khoảng năm 1585 - 1588, hoặc Hưng Trị, khoảng năm 1588 - 1591.',
-      'ĐỊA ĐIỂM CHẾ TÁC': 'Khả năng cao thuộc dòng gốm Bát Tràng, vùng Gia Lâm, Hà Nội ngày nay - một trung tâm sản xuất gốm lớn của Đại Việt thời Lê - Mạc.',
-      'CHẤT LIỆU': 'Gốm nung, phủ men nâu kết hợp sắc lam xám hoặc nâu vàng.',
-      'CÔNG DỤNG': 'Dùng để đốt hương trong không gian thờ tự, chùa chiền hoặc tư gia.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Miệng lư mở rộng, thân phình; thường có chân đế; thân được đắp hoặc chạm nổi hình rồng, mây, hoa lá, cánh sen và các họa tiết mang ý nghĩa linh thiêng. Các lư hương thời Mạc thường được làm rất công phu, không chỉ phục vụ nghi lễ mà còn phản ánh trình độ tạo tác gốm phát triển. Một số hiện vật lưu giữ tại Bảo tàng Lịch sử Quốc gia có hình rồng nổi, chữ "Phật", hoa văn cánh sen và thân lư tạo dáng gợi liên tưởng đến trống đồng Đông Sơn.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nhìn thấy làn khói hương đang bay thật nhẹ không?<br>Làn khói ấy đi qua mái chùa, lướt qua sân gạch cũ, rồi mang theo một câu chuyện từ hơn bốn trăm năm trước trở về với chúng mình.<br>Hôm nay, người bạn đồng hành của chúng mình là lư hương gốm men nâu - lam xám thời Mạc.<br>Chiếc lư nhỏ này sẽ đưa chúng mình quay về một thời kỳ rất đặc biệt của lịch sử Việt.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI NHÀ MẠC...</strong><br><br>Chúng mình cùng nhau trở về Đại Việt vào thế kỷ XVI.<br>Năm 1527, Mạc Đăng Dung lập ra Nhà Mạc. Triều Mạc đặt kinh đô ở Thăng Long và tồn tại ở đây trong nhiều thập kỷ. Đó là một giai đoạn có nhiều biến động, nhưng cuộc sống thường ngày của người dân vẫn tiếp diễn: người làm ruộng, người buôn bán, người dệt vải, người nặn gốm.<br>Trong những lò gốm rực lửa, người thợ lấy đất sét, nhào thật mềm, rồi nắn thành bát, đĩa, chân đèn và cả những chiếc lư hương.<br>Những chiếc lư đó được đưa vào chùa, đền hoặc đặt trên bàn thờ. Khi một nén hương được thắp lên, làn khói bay nhẹ nhàng, chậm rãi trong không gian, mang theo lời cầu mong bình an, no đủ và những điều tốt đẹp.<br>Và chiếc lư hương trước mắt chúng mình cũng được sinh ra từ một câu chuyện như thế.',
-      '<strong>GIẢI MÃ CỔ VẬT!</strong><br><br>Bạn nhỏ hãy nhìn thật kỹ nhé!<br>Chiếc lư có miệng mở rộng, phần thân tròn đầy và những chiếc chân nhỏ, vững chãi ở phía dưới.<br>Trên thân lư là các lớp hoa văn đắp nổi. Những bông hoa nối tiếp nhau, khiến chiếc lư trông như đang khoác một chiếc áo thật cầu kỳ.<br>Lớp men nâu trầm pha sắc lam xám làm chiếc lư có vẻ cổ kính và ấm áp. Trên nhiều đồ gốm thờ thời Mạc, người thợ còn trang trí thêm rồng, mây cuộn, cánh sen và những đường nét nổi rất tỉ mỉ.<br>Chiếc lư không chỉ dùng để đốt hương.<br>Nó còn kể cho chúng mình nghe về đôi tay kiên nhẫn của người thợ gốm. Từ một nắm đất bình thường, qua bàn tay khéo léo và ngọn lửa trong lò nung, một món đồ thờ trang nghiêm đã được tạo nên.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ!</strong><br><br>Bây giờ, bạn nhỏ hãy xoay chiếc lư thật chậm nhé!<br>🌼 Bạn có nhìn thấy những bông hoa nổi chạy quanh thân lư không?<br>🦶 Bạn thử tìm xem những chiếc chân nhỏ đang nâng đỡ chiếc lư nằm ở đâu nhé!<br>Mỗi chi tiết nhỏ đều là một mảnh ghép, giúp chúng mình hiểu hơn về nghề gốm của người Việt từ nhiều thế kỷ trước.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Quá khứ không phải lúc nào cũng nằm trong những trang sách.<br>Đôi khi, quá khứ lại ở trong những lớp men đã trầm lại theo thời gian, bằng những hoa văn còn lưu trên thân gốm và bằng làn khói hương từng bay lên trong những ngôi chùa xưa.<br>Lư hương gốm thời Mạc giúp chúng mình hiểu rằng người Việt ngày xưa không chỉ khéo tay làm gốm, mà còn luôn gửi gắm vào đó những mong ước đẹp đẽ về sự bình an và no đủ.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<path d="M30 55 Q30 25 40 20 Q50 25 50 55" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="40" cy="55" rx="12" ry="4" fill="none" stroke="currentColor" stroke-width="1"/><ellipse cx="40" cy="20" rx="5" ry="2" fill="none" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<path d="M40 72 Q40 25 60 18 Q80 25 80 72" fill="none" stroke="#B8860B" stroke-width="1.8"/><ellipse cx="60" cy="72" rx="22" ry="6" fill="none" stroke="#B8860B" stroke-width="1.5"/><ellipse cx="60" cy="18" rx="8" ry="3" fill="none" stroke="#B8860B" stroke-width="1.2"/><path d="M48 40 Q60 35 72 40" fill="none" stroke="#B8860B" stroke-width="0.8" opacity="0.5"/><path d="M46 52 Q60 47 74 52" fill="none" stroke="#B8860B" stroke-width="0.8" opacity="0.5"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">LƯ HƯƠNG GỐM</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     11 — LÊ TRUNG HƯNG – TRỊNH (1533 – 1789)
-     Súng Thần Công
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_0722f40301894ab2916cb444b53f6ceb",
-    type: 'artifact',
-    dynasty: 'Lê Trung Hưng – Trịnh',
-    era: 'Khoảng thế kỷ XVI - XVIII, nổi bật từ năm 1533 đến cuối thế kỷ XVIII',
-    artifact: 'Súng thần công',
-    description: 'Thời kỳ vua Lê - chúa Trịnh cai trị Đàng Ngoài. Quyền lực thực sự nằm trong tay các chúa Trịnh, trong khi vua Lê chỉ giữ vai trò tượng trưng. Công nghệ quân sự phát triển mạnh với súng thần công.',
-    artifactDesc: 'Súng thần công là biểu tượng cho bước phát triển mạnh của hỏa khí trong quân sự Việt Nam thời phong kiến. Theo tư liệu của Bảo tàng Lịch sử Quốc gia, từ thời Lê đến thời Nguyễn, thần công trở thành một loại vũ khí quan trọng, thể hiện sức mạnh quân sự của các triều đại.',
-    image: 'assets/images/artifacts/Súng thần công.png',
-    gallery: ['assets/images/artifacts/Súng thần công.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/s%C3%BAng.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Súng thần công',
-      'ĐẠI DIỆN CHO': 'Thời Lê Trung Hưng, đặc biệt trong bối cảnh Trịnh - Nguyễn phân tranh',
-      'NIÊN ĐẠI': 'Khoảng thế kỷ XVI - XVIII, nổi bật từ năm 1533 đến cuối thế kỷ XVIII',
-      'KHU VỰC SỬ DỤNG': 'Đàng Ngoài và Đàng Trong; các thành lũy, cửa biển, chiến thuyền và vùng giao tranh giữa họ Trịnh - họ Nguyễn',
-      'CHẤT LIỆU NGUYÊN MẪU': 'Chủ yếu bằng đồng hoặc gang; thân súng dạng ống dài, có phần nòng, bầu súng, chuôi và giá đỡ',
-      'CÔNG DỤNG': 'Bắn đạn bằng thuốc súng để phòng thủ, công thành và khống chế đường thủy'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy không?<br>Ở phía xa, bên một dòng sông lớn, có những bức thành cao đang lặng im dưới nắng. Trên thành, một khẩu súng lớn lặng lẽ hướng ra phía trước, như đang canh gác cho vùng đất phía sau mình.<br>Hôm nay, người bạn đồng hành của chúng mình là súng thần công thời Lê Trung Hưng.<br>Khẩu súng này sẽ đưa chúng mình quay về một thời kỳ rất đặc biệt của Đại Việt - khi những con sông, cửa biển và thành lũy đều cần được bảo vệ cẩn thận.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI LÊ TRUNG HƯNG - TRỊNH...</strong><br><br>Chúng mình cùng nhau trở về Đại Việt của hơn ba trăm năm trước.<br>Khi ấy, nhà Lê đã được khôi phục. Ở Đàng Ngoài, vua Lê vẫn ngự trong hoàng cung, còn chúa Trịnh lo nhiều việc lớn của đất nước. Xa hơn về phía Nam, chúa Nguyễn xây dựng vùng đất Đàng Trong.<br>Có những năm tháng đất nước phải trải qua nhiều biến động. Vì vậy, các thành lũy ven sông, cửa biển và những con đường trên sông nước đều trở thành nơi rất quan trọng.<br>Người xưa vẫn dùng gươm, giáo và cung tên. Nhưng bên cạnh đó, họ cũng sử dụng những khẩu súng lớn hơn, mạnh hơn.<br>Đó chính là súng thần công.<br>Những khẩu súng này có thể được đặt trên thành, bên bờ sông hoặc trên chiến thuyền. Chúng giúp bảo vệ những nơi quan trọng và nhắc mọi người luôn sẵn sàng trước nguy hiểm.',
-      '<strong>GIẢI MÃ CỔ VẬT!</strong><br><br>Bạn nhỏ hãy nhìn thật kỹ nhé!<br>Súng thần công có thân dài, to và nặng, giống như một chiếc ống kim loại khổng lồ.<br>Phía trước là miệng súng. Bên trong là một đường ống dài gọi là nòng súng. Phía sau là phần đuôi, giúp khẩu súng đứng vững hơn.<br>Khi cần sử dụng, người xưa đặt thuốc súng và đạn vào bên trong. Khi châm lửa, sức đẩy từ thuốc súng sẽ làm viên đạn bay rất xa.<br>Để làm ra một khẩu súng thần công, người thợ phải rất giỏi.<br>Họ phải nung chảy kim loại, đúc thân súng thật chắc và làm phần nòng thật đều. Chỉ cần một chỗ không cẩn thận, khẩu súng có thể không sử dụng được.<br>Nhìn khẩu súng này, chúng mình có thể tưởng tượng ra những lò đúc đỏ lửa, nơi người thợ ngày xưa đã miệt mài làm việc để tạo nên những vũ khí lớn và bền chắc.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ!</strong><br><br>Bây giờ, bạn nhỏ hãy xoay Súng thần công thật chậm nhé!<br>🔎 Bạn có nhìn thấy miệng nòng súng ở phía trước không?<br>⚙️ Bạn có nhìn thấy phần thân dài và chắc ở giữa khẩu súng không?<br>Mỗi chi tiết nhỏ đều giúp chúng mình hiểu thêm về cách cha ông ta đã không ngừng cố gắng để bảo vệ quê hương của mình.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Chỉ cần nhìn vào thân súng dài và chắc ấy, chúng mình như được trở về với Đại Việt của nhiều thế kỷ trước: có những bức thành bên sông, những chiến thuyền ngoài cửa biển, những lò đúc đỏ lửa và biết bao người cùng chung tay bảo vệ quê hương.<br>Từ một khẩu súng xưa, một mảnh ghép của lịch sử lại dần hiện ra.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<path d="M15 45 L55 40 L60 38 L65 40 L65 45 L55 47 L15 50 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="60" cy="42" r="3" fill="none" stroke="currentColor" stroke-width="1"/><path d="M20 50 L20 60 M35 50 L35 58" stroke="currentColor" stroke-width="1.5"/><ellipse cx="15" cy="47" rx="3" ry="5" fill="none" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<path d="M15 52 L80 45 L88 42 L95 45 L95 52 L80 55 L15 60 Z" fill="none" stroke="#B8860B" stroke-width="1.8"/><circle cx="88" cy="48" r="4" fill="none" stroke="#B8860B" stroke-width="1.2"/><path d="M25 60 L25 75 M50 58 L50 72" stroke="#B8860B" stroke-width="2"/><ellipse cx="15" cy="56" rx="4" ry="7" fill="none" stroke="#B8860B" stroke-width="1.2"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">SÚNG THẦN CÔNG</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     12 — CHÚA NGUYỄN – ĐÀNG TRONG (1558 – 1777)
-     Thuyền Chiến Đàng Trong
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_6a8685ed51344e7abea0b5c739c82fef",
-    type: 'artifact',
-    dynasty: 'Chúa Nguyễn (Đàng Trong)',
-    era: 'Khoảng thế kỷ XVI - XVIII, từ năm 1558 đến 1777',
-    artifact: 'Thuyền chiến Đàng Trong',
-    description: 'Các chúa Nguyễn mở cõi về phương Nam, xây dựng Đàng Trong thành vùng đất trù phú. Hải quân hùng mạnh với thuyền chiến quy mô lớn, giao thương quốc tế phồn thịnh qua cảng Hội An.',
-    artifactDesc: 'Dưới thời các chúa Nguyễn, thủy quân được tổ chức và phát triển mạnh do Đàng Trong có đường bờ biển dài, nhiều cửa sông, cảng thị và nhu cầu mở rộng không gian sinh tồn về phía Nam. Bảo tàng Lịch sử Quốc gia nhận định thủy quân chúa Nguyễn đã làm chủ vùng biển, đảo Đàng Trong và góp phần đặt nền móng cho việc xác lập chủ quyền tại Hoàng Sa, Trường Sa.',
-    image: 'assets/images/artifacts/Thuyền chiến Đàng Trong.png',
-    gallery: ['assets/images/artifacts/Thuyền chiến Đàng Trong.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/THUY%E1%BB%80N.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Thuyền chiến Đàng Trong',
-      'ĐẠI DIỆN CHO': 'Đàng Trong dưới thời các chúa Nguyễn',
-      'NIÊN ĐẠI': 'Khoảng thế kỷ XVI - XVIII, từ năm 1558 đến 1777',
-      'KHU VỰC HOẠT ĐỘNG': 'Ven biển miền Trung, cửa biển Thuận Hóa - Quảng Nam, vùng biển phía Nam và các tuyến hải trình ra Hoàng Sa, Trường Sa',
-      'CHẤT LIỆU NGUYÊN MẪU': 'Chủ yếu làm bằng gỗ; tùy loại thuyền có thể dùng mái chèo, buồm và trang bị hỏa khí',
-      'CÔNG DỤNG': 'Tuần tra ven biển, chống cướp biển, vận chuyển quân, bảo vệ cửa biển, tham gia chiến sự và phục vụ hoạt động trên biển của chính quyền Đàng Trong'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU!</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy tiếng sóng đang vỗ ngoài xa không?<br>Ngoài khơi, gió đang căng đầy những cánh buồm. Một chiếc thuyền gỗ lướt qua mặt nước, mang theo câu chuyện của Đàng Trong từ nhiều thế kỷ trước.<br>Hôm nay, người bạn đồng hành của chúng mình là thuyền chiến Đàng Trong thời các chúa Nguyễn.<br>Chiếc thuyền này sẽ đưa chúng mình trở về một thời kỳ người Việt dần mở rộng cuộc sống về phía Nam và hướng ra biển lớn.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI CHÚA NGUYỄN - ĐÀNG TRONG...</strong><br><br>Chúng mình cùng nhau quay trở về Đại Việt vào thế kỷ XVI.<br>Năm 1558, Nguyễn Hoàng vào trấn thủ vùng Thuận Hóa. Từ vùng đất ven biển ấy, các chúa Nguyễn dần xây dựng Đàng Trong, mở rộng vùng cai quản về phía Nam và tạo nên một không gian gắn bó rất đặc biệt với biển cả.<br>Với người dân Đàng Trong, biển không chỉ có sóng và gió.<br>Biển là con đường để thuyền bè đi xa, để hàng hóa được trao đổi, để những bến cảng như Hội An trở nên nhộn nhịp hơn mỗi ngày. Nhưng biển cũng là nơi cần được gìn giữ.<br>Vì vậy, các chúa Nguyễn chú trọng xây dựng thủy quân. Những đoàn thuyền đi dọc bờ biển, canh giữ cửa sông, đưa quân làm nhiệm vụ và bảo vệ cuộc sống của người dân ven biển.<br>Có một câu chuyện rất đáng nhớ.<br>Năm 1585, cướp biển Hiển Quý đến quấy phá ở Cửa Việt. Chúa Nguyễn Hoàng đã sai hoàng tử Nguyễn Phúc Nguyên chỉ huy 12 chiếc thuyền nhỏ ra đánh đuổi. Quân của chúa Nguyễn đánh tan hai thuyền giặc, khiến những thuyền còn lại phải rút đi.<br>Giữa những chuyến đi ấy, chiếc thuyền chiến của chúng mình đã trở thành người bạn đồng hành cùng thủy quân Đàng Trong.',
-      '<strong>GIẢI MÃ MÔ HÌNH!</strong><br><br>Bạn nhỏ hãy nhìn thật kỹ nhé!<br>Chiếc thuyền có thân dài bằng gỗ, để có thể lướt qua sóng nước. Trên thuyền có buồm đón gió, có mái chèo để điều khiển hướng đi, và trên một số thuyền còn có hỏa khí để phòng thủ.<br>Mỗi bộ phận đều có một nhiệm vụ riêng.<br>Những con thuyền ấy không chỉ xuất hiện trong lúc chiến sự. Chúng còn gợi cho chúng mình hình dung về một Đàng Trong nhộn nhịp, nơi thuyền buôn ra vào cửa biển, hàng hóa được trao đổi và những miền đất xa dần trở nên gần hơn.<br>Từ đầu thế kỷ XVII, các chúa Nguyễn còn tổ chức đội Hoàng Sa kiêm quản Bắc Hải để thực hiện nhiệm vụ trên những vùng biển, đảo xa. Những chuyến đi ấy cho thấy người Việt xưa đã sớm quan tâm đến biển đảo của mình.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ!</strong><br><br>Bây giờ, bạn nhỏ hãy xoay chiếc thuyền thật chậm nhé!<br>⛵ Bạn có nhìn thấy cánh buồm đang đón gió không?<br>🛶 Bạn có tìm được những mái chèo ở hai bên thuyền không?<br>✨ Mỗi chi tiết nhỏ trên thuyền đều giúp chúng mình hiểu thêm về một Đàng Trong luôn hướng ra biển lớn.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Từ chiếc thuyền gỗ này, chúng mình có thể hình dung về một vùng Đàng Trong đầy sức sống: có những cửa biển rộng mở, những thương cảng đông vui và những cánh buồm luôn tìm đường ra khơi.<br>Thuyền chiến không chỉ giúp bảo vệ bờ biển.<br>Nó còn nhắc chúng mình về khát vọng đi xa, tinh thần mở mang vùng đất mới và sự gắn bó bền chặt của người Việt xưa với biển cả.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<path d="M10 50 Q20 35 40 33 Q60 35 70 50" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 50 L70 50" stroke="currentColor" stroke-width="1.5"/><path d="M40 33 L40 18" stroke="currentColor" stroke-width="1.5"/><path d="M40 18 L55 25 L40 30" fill="none" stroke="currentColor" stroke-width="1"/>',
-    backSvg: '<path d="M10 62 Q25 42 60 38 Q95 42 110 62" fill="none" stroke="#B8860B" stroke-width="1.8"/><path d="M10 62 L110 62" stroke="#B8860B" stroke-width="1.8"/><path d="M60 38 L60 15" stroke="#B8860B" stroke-width="1.8"/><path d="M60 15 L82 25 L60 33" fill="none" stroke="#B8860B" stroke-width="1.2"/><path d="M40 38 L40 22" stroke="#B8860B" stroke-width="1.2"/><path d="M40 22 L55 28 L40 33" fill="none" stroke="#B8860B" stroke-width="0.8" opacity="0.6"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">THUYỀN CHIẾN</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     13 — TÂY SƠN (1771 – 1802)
-     Ấm Hình Voi Bằng Đồng
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_0840bd5eb40547659c7993c2d8996449",
-    type: 'artifact',
-    dynasty: 'Tây Sơn',
-    era: 'Cuối thế kỷ XVIII, gắn với phong trào Tây Sơn và chiến thắng Ngọc Hồi - Đống Đa năm 1789.',
-    artifact: 'Tượng voi chiến Tây Sơn',
-    description: 'Anh hùng Quang Trung - Nguyễn Huệ thống nhất đất nước, đại phá 29 vạn quân Thanh trong chiến dịch thần tốc mùa Xuân Kỷ Dậu 1789 — một trong những chiến thắng vĩ đại nhất lịch sử.',
-    artifactDesc: 'Voi trong tư thế xung trận, thân lớn, chân bước mạnh; trên lưng có bệ chiến đấu hoặc chiến binh cầm cờ, giáo hay vũ khí. Mô hình thường sử dụng các gam màu đỏ, vàng đồng cùng họa tiết giáp trụ để gợi lên khí thế hào hùng của quân Tây Sơn.',
-    image: 'assets/images/artifacts/Ấm hình voi bằng đồng.png',
-    gallery: ['assets/images/artifacts/Ấm hình voi bằng đồng.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/Voi%20T%C3%A2y%20S%C6%A1n.glb',
-    details: {
-      'TÊN MÔ HÌNH': 'Tượng voi chiến Tây Sơn',
-      'ĐẠI DIỆN CHO': 'Nhà Tây Sơn',
-      'NIÊN ĐẠI': 'Cuối thế kỷ XVIII, gắn với phong trào Tây Sơn và chiến thắng Ngọc Hồi - Đống Đa năm 1789.',
-      'LOẠI HÌNH': 'Mô hình tái hiện hình tượng voi chiến trong quân đội Tây Sơn.',
-      'CHẤT LIỆU MÔ HÌNH': 'Có thể thể hiện bằng composite, resin, gốm hoặc kim loại giả cổ.',
-      'CÔNG DỤNG LỊCH SỬ': 'Voi chiến là lực lượng quan trọng trong quân đội Tây Sơn, được sử dụng để tạo sức ép trực diện, phá vỡ đội hình đối phương và hỗ trợ bộ binh tiến công.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Voi trong tư thế xung trận, thân lớn, chân bước mạnh; trên lưng có bệ chiến đấu hoặc chiến binh cầm cờ, giáo hay vũ khí. Mô hình thường sử dụng các gam màu đỏ, vàng đồng cùng họa tiết giáp trụ để gợi lên khí thế hào hùng của quân Tây Sơn.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nghe thấy tiếng trống trận đang vang lên từ rất xa không?<br>Tiếng trống ấy vọng qua núi rừng, băng qua những cánh đồng và đưa chúng mình trở về một mùa xuân oanh liệt của dân tộc.<br>Hôm nay, người bạn đồng hành của chúng mình là tượng voi chiến Tây Sơn.<br>Chú voi mạnh mẽ này sẽ đưa chúng mình quay về thời đại của vua Quang Trung - Nguyễn Huệ, nơi những đoàn quân hành tiến thần tốc để bảo vệ đất nước.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI NHÀ TÂY SƠN...</strong><br><br>Chúng mình cùng trở về Đại Việt vào cuối thế kỷ XVIII.<br>Đó là thời kỳ phong trào Tây Sơn nổi lên mạnh mẽ, quy tụ đông đảo người dân cùng chung sức xây dựng một đội quân hùng mạnh để bảo vệ non sông.<br>Trong đoàn quân ấy có một lực lượng rất đặc biệt: những chú voi chiến.<br>Những chú voi được huấn luyện cẩn thận để ra trận. Chúng mang trên lưng các chiến binh cùng cờ hiệu và vũ khí, hiên ngang tiến về phía trước.<br>Mùa xuân năm Kỷ Dậu 1789, vua Quang Trung chỉ huy quân Tây Sơn tiến ra Bắc và mở cuộc phản công thần tốc đánh tan quân Thanh trong trận Ngọc Hồi - Đống Đa.<br>Trong trận chiến ấy, voi chiến xuất hiện ở tuyến đầu, góp phần làm rối loạn đội hình đối phương và mở đường cho quân Tây Sơn xông lên giành chiến thắng.<br>Và tượng voi chiến trước mắt chúng mình cũng được tạo nên từ câu chuyện hào hùng ấy.',
-      '<strong>GIẢI MÃ CỔ VẬT!</strong><br><br>Bạn nhỏ hãy nhìn thật kỹ nhé!<br>Chú voi có thân hình lớn, đôi chân khỏe và dáng bước đầy mạnh mẽ như đang tiến vào trận chiến.<br>Trên lưng voi là bệ chiến đấu hoặc chiến binh cầm cờ, giáo và các loại vũ khí.<br>Những gam màu đỏ, vàng đồng cùng các họa tiết giáp trụ khiến mô hình trở nên oai phong và đầy khí thế.<br>Tượng voi không chỉ tái hiện một con vật tham gia chiến trận.<br>Nó còn kể cho chúng mình nghe về lòng dũng cảm, tinh thần đoàn kết và ý chí quyết thắng của quân Tây Sơn.<br>Mỗi bước chân voi như mang theo nhịp trống trận của mùa xuân năm 1789, khi quân dân Đại Việt cùng nhau làm nên một chiến thắng vang dội trong lịch sử.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ!</strong><br><br>Bây giờ, bạn nhỏ hãy quan sát tượng voi thật chậm nhé!<br>Bạn có nhìn thấy chiếc vòi dài và đôi ngà khỏe của chú voi không?<br>Hãy thử tìm xem bệ chiến đấu hoặc lá cờ được đặt ở vị trí nào trên lưng voi nhé!<br>Bạn cũng hãy quan sát dáng đứng và những bước chân của chú voi. Chúng có giống như đang tiến thẳng vào trận chiến không?<br>Mỗi chi tiết nhỏ trên mô hình đều là một mảnh ghép giúp chúng mình hiểu hơn về quân đội Tây Sơn và những chiến công hào hùng của cha ông cách đây hơn hai trăm năm.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Quá khứ không chỉ nằm trong những trang sách.<br>Đôi khi, quá khứ hiện lên qua hình ảnh một chú voi chiến đang hiên ngang xông trận, qua tiếng trống trận tưởng như vẫn còn vang vọng và qua ký ức về chiến thắng Ngọc Hồi - Đống Đa mùa xuân năm 1789.<br>Tượng voi chiến Tây Sơn giúp chúng mình hiểu rằng sức mạnh của dân tộc không chỉ đến từ vũ khí, mà còn đến từ lòng yêu nước, tinh thần đoàn kết và ý chí quyết tâm bảo vệ non sông.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<path d="M25 55 Q30 35 40 30 Q50 35 55 55" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M35 30 L30 18 Q40 10 50 18 L45 30" fill="none" stroke="currentColor" stroke-width="1"/><path d="M40 25 L40 15" stroke="currentColor" stroke-width="1.5"/><circle cx="40" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="0.8"/>',
-    backSvg: '<path d="M30 70 Q38 35 60 28 Q82 35 90 70" fill="none" stroke="#B8860B" stroke-width="1.8"/><path d="M50 28 L44 12 Q60 2 76 12 L70 28" fill="none" stroke="#B8860B" stroke-width="1.2"/><path d="M60 22 L60 8" stroke="#B8860B" stroke-width="1.8"/><circle cx="60" cy="6" r="4" fill="none" stroke="#B8860B" stroke-width="1.2"/><path d="M35 65 L30 75 M85 65 L90 75" stroke="#B8860B" stroke-width="1.5"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">ẤM VOI ĐỒNG</text>'
-  },
-
-  /* ────────────────────────────────────────────────────────────
-     14 — NHÀ NGUYỄN (1802 – 1945)
-     Ấn Vàng Hoàng Đế Chi Bảo
-     ──────────────────────────────────────────────────────────── */
-  {
-    id: "kasv_3efc1d2799544146b60243eb7f23aa64",
-    type: 'artifact',
-    dynasty: 'Nhà Nguyễn',
-    era: 'Năm Minh Mạng thứ 4 (1823).',
-    artifact: 'Ấn vàng “Hoàng đế chi bảo”',
-    description: 'Triều đại phong kiến cuối cùng, Gia Long thống nhất giang sơn và đặt kinh đô tại Huế. Di sản kiến trúc cung đình Huế, ấn vàng, Đại Nội được UNESCO công nhận Di sản Thế giới.',
-    artifactDesc: 'Núm ấn là hình rồng năm móng uốn mình uy nghi; thân ấn vuông vức, mặt đáy khắc bốn chữ Hán "Hoàng đế chi bảo", mang ý nghĩa "báu vật của Hoàng đế". Mô hình tái hiện kỹ thuật chế tác vàng tinh xảo của triều Nguyễn.',
-    image: 'assets/images/artifacts/Ấn vàng Hoàng đế chi bảo.png',
-    gallery: ['assets/images/artifacts/Ấn vàng Hoàng đế chi bảo.png'],
-    model: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/hoangdechibao-v1.glb',
-    usdz: 'https://pub-a711e19329614289a537d0614139f816.r2.dev/hoangdechibao-v1.usdz',
-    details: {
-      'TÊN MÔ HÌNH': 'Ấn vàng “Hoàng đế chi bảo”',
-      'ĐẠI DIỆN CHO': 'Nhà Nguyễn',
-      'NIÊN ĐẠI': 'Năm Minh Mạng thứ 4 (1823).',
-      'ĐỊA ĐIỂM CHẾ TÁC': 'Kinh đô Huế, dưới triều vua Minh Mạng.',
-      'CHẤT LIỆU': 'Vàng ròng.',
-      'CÔNG DỤNG': 'Là bảo ấn quan trọng bậc nhất của triều Nguyễn, được sử dụng trong các nghi lễ lớn, việc ban ân, đại xá, sắc phong và các văn bản ngoại giao.',
-      'ĐẶC ĐIỂM TẠO HÌNH': 'Núm ấn là hình rồng năm móng uốn mình uy nghi; thân ấn vuông vức, mặt đáy khắc bốn chữ Hán "Hoàng đế chi bảo", mang ý nghĩa "báu vật của Hoàng đế". Mô hình tái hiện kỹ thuật chế tác vàng tinh xảo của triều Nguyễn.'
-    },
-    story: [
-      '<strong>CHUYẾN DU HÀNH BẮT ĐẦU</strong><br><br>Ting ting… Cỗ máy thời gian đã được kích hoạt!<br>Bạn nhỏ có nhìn thấy chiếc ấn vàng đang tỏa sáng lấp lánh không?<br>Chiếc ấn ấy đã từng nằm trong Hoàng thành Huế và chứng kiến biết bao sự kiện quan trọng của triều Nguyễn.<br>Hôm nay, người bạn đồng hành của chúng mình là ấn vàng "Hoàng đế chi bảo".<br>Chiếc ấn đặc biệt này sẽ đưa chúng mình trở về thời vua Minh Mạng, khám phá cuộc sống trong hoàng cung và tìm hiểu biểu tượng quyền lực của các vị hoàng đế.<br>Bạn nhỏ đã sẵn sàng chưa?<br>Giờ thì… chúng mình cùng bước qua cánh cửa thời gian nhé!',
-      '<strong>QUAY VỀ THỜI NHÀ NGUYỄN...</strong><br><br>Chúng mình cùng trở về Đại Việt vào đầu thế kỷ XIX.<br>Năm 1802, triều Nguyễn được thành lập và chọn Huế làm kinh đô. Đây là triều đại phong kiến cuối cùng trong lịch sử Việt Nam.<br>Trong Hoàng thành Huế, mỗi ngày đều diễn ra rất nhiều công việc quan trọng. Nhà vua ban chiếu chỉ, tiếp các quan, tổ chức lễ lớn và gửi thư ngoại giao đến các nước khác.<br>Mỗi khi một văn bản quan trọng được ban hành, người ta sẽ đóng lên đó dấu của ấn vàng "Hoàng đế chi bảo".<br>Dấu ấn ấy giống như lời xác nhận cao nhất của nhà vua, thể hiện quyền lực của triều đình và sự trang trọng của mỗi quyết định.<br>Và chiếc ấn vàng trước mắt chúng mình cũng được tạo nên từ câu chuyện đặc biệt ấy.',
-      '<strong>GIẢI MÃ CỔ VẬT!</strong><br><br>Bạn nhỏ hãy nhìn thật kỹ nhé!<br>Chiếc ấn có thân vuông vức, được làm bằng vàng và trông rất chắc chắn.<br>Trên đỉnh ấn là hình một con rồng đang uốn mình mạnh mẽ. Trong văn hóa Việt Nam xưa, rồng là biểu tượng của nhà vua, sức mạnh và sự thịnh vượng.<br>Ở mặt đáy của ấn có khắc bốn chữ Hán "Hoàng đế chi bảo", có nghĩa là "báu vật của Hoàng đế".<br>Chiếc ấn không chỉ là một món đồ quý bằng vàng.<br>Nó còn là biểu tượng của quyền lực, sự trang nghiêm và nghệ thuật chế tác tinh xảo của các nghệ nhân triều Nguyễn.<br>Đặc biệt, năm 1945, chiếc ấn đã chứng kiến một thời khắc lịch sử khi vua Bảo Đại trao lại ấn cho Chính phủ Cách mạng, khép lại chế độ quân chủ ở Việt Nam.',
-      '<strong>TRẠM KHÁM PHÁ KHẢO CỔ!</strong><br><br>Bây giờ, bạn nhỏ hãy quan sát chiếc ấn thật chậm nhé!<br>Bạn có nhìn thấy con rồng đang nằm trên đỉnh ấn không?<br>Hãy thử tìm bốn chữ được khắc ở mặt đáy của chiếc ấn nhé!<br>Bạn cũng hãy quan sát phần thân vuông và những đường nét chạm khắc tinh xảo. Theo bạn, người thợ đã phải tỉ mỉ đến mức nào để tạo nên một bảo vật bằng vàng đẹp như thế?<br>Mỗi chi tiết trên chiếc ấn đều giúp chúng mình hiểu thêm về nghệ thuật cung đình và cuộc sống trong Hoàng thành Huế hơn hai trăm năm trước.',
-      '<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Quá khứ không chỉ nằm trong những trang sách.<br>Đôi khi, quá khứ được lưu giữ trong một chiếc ấn vàng nhỏ bé nhưng đã chứng kiến biết bao sự kiện quan trọng của đất nước.<br>Ấn vàng "Hoàng đế chi bảo" giúp chúng mình hiểu rằng mỗi cổ vật không chỉ có giá trị bởi chất liệu quý giá, mà còn bởi những câu chuyện lịch sử và những dấu mốc mà nó đã đi qua.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…'
-    ],
-    silhouetteSvg: '<rect x="20" y="20" width="40" height="40" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="28" y="28" width="24" height="24" rx="1" fill="none" stroke="currentColor" stroke-width="0.8"/><text x="40" y="46" text-anchor="middle" font-family="serif" font-size="14" fill="currentColor" opacity="0.5">寶</text>',
-    backSvg: '<rect x="30" y="20" width="60" height="55" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><rect x="38" y="28" width="44" height="39" rx="2" fill="none" stroke="#B8860B" stroke-width="0.8"/><text x="60" y="54" text-anchor="middle" font-family="serif" font-size="22" fill="#B8860B" opacity="0.6">寶</text><path d="M55 12 Q60 5 65 12" fill="none" stroke="#B8860B" stroke-width="1.5"/><rect x="48" y="12" width="24" height="10" rx="5" fill="none" stroke="#B8860B" stroke-width="1"/><text x="60" y="95" text-anchor="middle" font-family="\'Cinzel\',serif" font-size="6" fill="#B8860B" opacity="0.7">HOÀNG ĐẾ CHI BẢO</text>'
-  },
-
-  /* ════════════════════════════════════════════════════════════
-     BLIND BOX PRODUCTS
-     ════════════════════════════════════════════════════════════ */
-  {
-    id: "box_bdddc48ec18c4fc998ee351dc0eaa98d",
-    type: 'blindbox',
-    dynasty: 'Khai Ấn Sử Việt',
-    era: 'Bộ Sưu Tập 14 Triều Đại',
-    artifact: 'ẤN TÍCH VIỆT SỬ - Basic',
-    price: 239000,
-    priceBox: 299000,
-    priceWood: 499000,
-    status: 'in-stock',
-    description: 'Bao gồm: Tiền Thái Bình Hưng Bảo, Nỏ thần An Dương Vương, Gạch Đại Việt quốc quân thành chuyên.',
-    artifactDesc: 'Có 3 tùy chọn: Không hộp (239k), Có hộp (299k), Hộp gỗ (499k).',
-    image: 'assets/images/blindbox/Blind box model Basic.jpg',
-    gallery: ['assets/images/blindbox/Blind box model Basic.jpg', 'assets/images/blindbox/Blind box model 2.jpg', 'assets/images/blindbox/Blind box model Standard.jpg', 'assets/images/blindbox/Blind box model Premium.jpg'],
-    model: null,
-    details: {
-      dimensions: '100 × 75 × 20mm',
-      material: 'Hộp giấy mỹ thuật cao cấp, cán mờ, ép kim nhũ vàng',
-      weight: '50g',
-      nfc: 'Tích hợp chip NFC (Quét để kích hoạt AR)',
-      edition: 'Không giới hạn',
-      feature: 'Gói trải nghiệm cơ bản chứa ngẫu nhiên 1 trong 14 cổ vật thuộc các triều đại lịch sử Việt Nam. Cổ vật được làm từ chất liệu PVC cao cấp, có viền mạ vàng tinh xảo và tích hợp công nghệ NFC ẩn bên trong.',
-      guide: '1. Xé lớp seal bảo vệ và mở hộp từ phía trên.<br>2. Nhận cổ vật bí ẩn và khám phá triều đại bạn vừa bốc được.<br>3. Bật NFC trên điện thoại và chạm vào mặt sau của cổ vật.<br>4. Trải nghiệm mô hình cổ vật 3D chân thực và công nghệ AR ngay trên màn hình.'
-    },
-    silhouetteSvg: '<rect x="25" y="30" width="30" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 40 L55 40 M40 30 L40 60" stroke="currentColor" stroke-width="1.5"/><path d="M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30" fill="none" stroke="currentColor" stroke-width="1.5"/>',
-    backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
+    "id": "kasv_4be3b45e347a46169a6fa592bcdfe00d",
+    "type": "artifact",
+    "dynasty": "Văn Lang",
+    "era": "Khoảng thế kỷ VII trước Công nguyên (2524TCN - 258TCN)",
+    "artifact": "Trống Đồng Đông Sơn",
+    "image": "assets/images/artifacts/Trống đồng Đông Sơn.webp",
+    "description": "Thời kỳ dựng nước đầu tiên của dân tộc Việt Nam, gắn liền với huyền thoại Vua Hùng, Lạc Long Quân và Âu Cơ. Nền văn minh rực rỡ với Trống đồng Đông Sơn — biểu tượng văn hóa trường tồn."
   },
   {
-    id: "box_575e2155ebbf42ecbc666f32ccc37aab",
-    type: 'blindbox',
-    dynasty: 'Khai Ấn Sử Việt',
-    era: 'Bộ Sưu Tập 14 Triều Đại',
-    artifact: 'ẤN TÍCH VIỆT SỬ - Standard',
-    price: 269000,
-    priceBox: 329000,
-    priceWood: 529000,
-    status: 'in-stock',
-    description: 'Bao gồm: Súng thần công, Thuyền chiến Đàng Trong, Đá Thành Nhà Hồ.',
-    artifactDesc: 'Có 3 tùy chọn: Không hộp (269k), Có hộp (329k), Hộp gỗ (529k).',
-    image: 'assets/images/blindbox/Blind box model Standard.jpg',
-    gallery: ['assets/images/blindbox/Blind box model Standard.jpg', 'assets/images/blindbox/Blind box model 2.jpg', 'assets/images/blindbox/Blind box model Basic.jpg', 'assets/images/blindbox/Blind box model Premium.jpg'],
-    model: null,
-    details: {
-      dimensions: '100 × 225 × 20mm',
-      material: 'Hộp giấy mỹ thuật cao cấp, cán mờ, ép kim nhũ vàng',
-      weight: '150g',
-      nfc: 'Tích hợp chip NFC trên mỗi thẻ',
-      edition: 'Không giới hạn',
-      feature: 'Combo 3 hộp mù giúp tăng tỷ lệ sưu tầm các cổ vật Hiếm (Rare) và Siêu Hiếm (Super Rare). Đặc biệt cam kết không có cổ vật trùng lặp trong cùng một set 3 hộp. Khám phá 3 câu chuyện lịch sử khác nhau cùng lúc.',
-      guide: '1. Xé dải băng niêm phong trên vỏ hộp lớn để lấy 3 hộp nhỏ.<br>2. Mở từng hộp để tận hưởng cảm giác hồi hộp qua mỗi lần bốc.<br>3. Quét NFC trên từng cổ vật bằng điện thoại để xem mô hình 3D/AR.<br>4. Thu thập cổ vật để hoàn thành toàn bộ 14 triều đại.'
-    },
-    silhouetteSvg: '<rect x="25" y="30" width="30" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 40 L55 40 M40 30 L40 60" stroke="currentColor" stroke-width="1.5"/><path d="M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30" fill="none" stroke="currentColor" stroke-width="1.5"/>',
-    backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
+    "id": "kasv_b7c018a1616c42ac9073368b9e001470",
+    "type": "artifact",
+    "dynasty": "Âu Lạc",
+    "era": "Khoảng thế kỷ III trước Công nguyên (258TCN-208TCN)",
+    "artifact": "Nỏ Liên Châu - nỏ thần Cổ Loa",
+    "image": "assets/images/artifacts/Nỏ thần An Dương Vương.webp",
+    "description": "An Dương Vương thống nhất Âu Việt và Lạc Việt, xây thành Cổ Loa — tòa thành ốc xoắn huyền thoại. Câu chuyện nỏ thần, Mỵ Châu - Trọng Thủy là bài học muôn đời về cảnh giác."
   },
   {
-    id: "box_0234e6d19b374b35ba13cd3fa9f9d18b",
-    type: 'blindbox',
-    dynasty: 'Khai Ấn Sử Việt',
-    era: 'Bộ Sưu Tập 14 Triều Đại',
-    artifact: 'ẤN TÍCH VIỆT SỬ - Premium',
-    price: 299000,
-    priceBox: 359000,
-    priceWood: 559000,
-    status: 'in-stock',
-    description: 'Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý.',
-    artifactDesc: 'Có 3 tùy chọn: Không hộp (299k), Có hộp (359k), Hộp gỗ (559k).',
-    image: 'assets/images/blindbox/Blind box model Premium.jpg',
-    gallery: ['assets/images/blindbox/Blind box model Premium.jpg', 'assets/images/blindbox/Blind box model 2.jpg', 'assets/images/blindbox/Blind box model Basic.jpg', 'assets/images/blindbox/Blind box model Standard.jpg'],
-    model: null,
-    details: {
-      dimensions: '200 × 225 × 20mm',
-      material: 'Hộp bìa cứng cao cấp, lót nhung, in nhũ vàng hoàng gia',
-      weight: '350g',
-      nfc: 'Tích hợp chip NFC trên mỗi thẻ',
-      edition: 'Không giới hạn',
-      feature: 'Set 6 hộp mù cao cấp nhất dành cho nhà sưu tầm thực thụ. Đảm bảo 100% mở ra ít nhất 1 cổ vật Siêu Hiếm (Super Rare) với hiệu ứng AR độc quyền. Hộp thiết kế sang trọng, có khay lót nhung mềm, vô cùng thích hợp để trưng bày hoặc làm quà tặng.',
-      guide: '1. Mở khóa nắp hộp hoàng gia để lộ diện 6 hộp mù bên trong.<br>2. Trải nghiệm bốc từng hộp hoặc dùng làm phần thưởng, quà tặng ý nghĩa.<br>3. Chạm điện thoại vào cổ vật để kích hoạt công nghệ AR tương tác không gian thực.<br>4. Sử dụng mã code đi kèm thẻ Siêu Hiếm để nhận thêm quyền lợi tại các triển lãm.'
-    },
-    silhouetteSvg: '<rect x="25" y="30" width="30" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 40 L55 40 M40 30 L40 60" stroke="currentColor" stroke-width="1.5"/><path d="M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30" fill="none" stroke="currentColor" stroke-width="1.5"/>',
-    backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
+    "id": "kasv_fdd63a242a4d43bd846f1c09eb5b0f6f",
+    "type": "artifact",
+    "dynasty": "Nhà Ngô",
+    "era": "939-965",
+    "artifact": "Sa hình thế trận cọc gỗ Bạch Đằng",
+    "image": "assets/images/artifacts/Sa hình Cọc gỗ Bạch Đằng.webp",
+    "description": "Ngô Quyền đại phá quân Nam Hán trên sông Bạch Đằng năm 938, chấm dứt hơn 1000 năm Bắc thuộc. Chiến thắng lẫy lừng đặt nền móng cho kỷ nguyên độc lập dân tộc."
+  },
+  {
+    "id": "kasv_542c8726aed941a6ab40ceae371819ee",
+    "type": "artifact",
+    "dynasty": "Nhà Tiền Lê",
+    "era": "Khoảng năm 981",
+    "artifact": "Tiền Thái Bình Hưng Bảo",
+    "image": "assets/images/artifacts/Tiền Thái Bình Hưng Bảo.webp",
+    "description": "Lê Đại Hành kế thừa sự nghiệp nhà Đinh, anh dũng đánh bại quân Tống xâm lược, bảo vệ nền độc lập non trẻ và mở mang bờ cõi phía Nam."
+  },
+  {
+    "id": "kasv_90ba8e957f584ff99df9209f16a626d4",
+    "type": "artifact",
+    "dynasty": "Nhà Đinh",
+    "era": "Cuối thế kỷ X (khoảng năm 968-980)",
+    "artifact": "Gạch \"Đại Việt quốc quân thành chuyên\"",
+    "image": "assets/images/artifacts/Gạch Đại Việt quốc quân thành chuyên.webp",
+    "description": "Đinh Bộ Lĩnh dẹp loạn 12 sứ quân, thống nhất đất nước và lên ngôi Hoàng đế, đặt quốc hiệu Đại Cồ Việt — quốc hiệu chính thức đầu tiên của nước ta."
+  },
+  {
+    "id": "kasv_db3e2121d18c44739f0720b0f59310b7",
+    "type": "artifact",
+    "dynasty": "Nhà Lý",
+    "era": "Thế kỷ XI - XIII (1009-1225)",
+    "artifact": "Đầu rồng thời Lý",
+    "image": "assets/images/artifacts/Đầu rồng thời Lý.webp",
+    "description": "Lý Công Uẩn dời đô về Thăng Long, mở ra kỷ nguyên hoàng kim rực rỡ nhất. Phật giáo hưng thịnh, nghệ thuật gốm sứ, kiến trúc chùa tháp và Rồng thời Lý trở thành biểu tượng bất hủ."
+  },
+  {
+    "id": "kasv_8fc4f5bf04b14e8c8b70f543ca8b6235",
+    "type": "artifact",
+    "dynasty": "Nhà Trần",
+    "era": "Lấy cảm hứng từ hệ thống ấn tín dưới triều Trần, thế kỷ XIII - XIV (1225-1400)",
+    "artifact": "Ấn tín nhà Trần",
+    "image": "assets/images/artifacts/Ấn tín nhà Trần.webp",
+    "description": "Ba lần đại phá quân Nguyên Mông dưới sự lãnh đạo của Hưng Đạo Đại Vương Trần Quốc Tuấn. Hào khí Đông A vang dội, Hịch tướng sĩ trở thành áng văn bất hủ."
+  },
+  {
+    "id": "kasv_7cdd1a74a27347779c3f3f7bc7b69c35",
+    "type": "artifact",
+    "dynasty": "Nhà Hồ",
+    "era": "Cuối thế kỷ XIV - đầu thế kỷ XV (1400–1407)",
+    "artifact": "Thành Nhà Hồ",
+    "image": "assets/images/artifacts/Đá Thành Nhà Hồ.webp",
+    "description": "Hồ Quý Ly tiến hành cải cách táo bạo: phát hành tiền giấy, cải tổ giáo dục, xây thành Tây Đô bằng đá đồ sộ. Dù ngắn ngủi, nhà Hồ để lại di sản kiến trúc độc nhất vô nhị."
+  },
+  {
+    "id": "kasv_51783bb4502e431a8537bb549b69345d",
+    "type": "artifact",
+    "dynasty": "Lê Sơ",
+    "era": "Năm 1467, dưới thời vua Lê Thánh Tông (1428-1527)",
+    "artifact": "Rồng đá thành bậc điện Kính Thiên",
+    "image": "assets/images/artifacts/Rồng đá điện kính thiên.webp",
+    "description": "Lê Lợi lãnh đạo khởi nghĩa Lam Sơn 10 năm gian khổ, giải phóng đất nước khỏi ách đô hộ nhà Minh. Nguyễn Trãi soạn Bình Ngô Đại Cáo — bản Tuyên ngôn Độc lập thứ hai."
+  },
+  {
+    "id": "kasv_2dd2f9fa988a4d85b110f540a85b1dd9",
+    "type": "artifact",
+    "dynasty": "Nhà Mạc",
+    "era": "Thế kỷ XVI",
+    "artifact": "Lư hương gốm men nâu - lam xám",
+    "image": "assets/images/artifacts/Lư hương gốm men nâu.webp",
+    "description": "Mạc Đăng Dung lập triều Mạc, mở ra thời kỳ Nam - Bắc triều phân tranh. Dù gây tranh cãi, nhà Mạc để lại dấu ấn kiến trúc, gốm sứ và thương mại phồn thịnh."
+  },
+  {
+    "id": "kasv_0722f40301894ab2916cb444b53f6ceb",
+    "type": "artifact",
+    "dynasty": "Lê Trung Hưng – Trịnh",
+    "era": "Khoảng thế kỷ XVI - XVIII, nổi bật từ năm 1533 đến cuối thế kỷ XVIII",
+    "artifact": "Súng thần công",
+    "image": "assets/images/artifacts/Súng thần công.webp",
+    "description": "Thời kỳ vua Lê - chúa Trịnh cai trị Đàng Ngoài. Quyền lực thực sự nằm trong tay các chúa Trịnh, trong khi vua Lê chỉ giữ vai trò tượng trưng. Công nghệ quân sự phát triển mạnh với súng thần công."
+  },
+  {
+    "id": "kasv_6a8685ed51344e7abea0b5c739c82fef",
+    "type": "artifact",
+    "dynasty": "Chúa Nguyễn (Đàng Trong)",
+    "era": "Khoảng thế kỷ XVI - XVIII, từ năm 1558 đến 1777",
+    "artifact": "Thuyền chiến Đàng Trong",
+    "image": "assets/images/artifacts/Thuyền chiến Đàng Trong.webp",
+    "description": "Các chúa Nguyễn mở cõi về phương Nam, xây dựng Đàng Trong thành vùng đất trù phú. Hải quân hùng mạnh với thuyền chiến quy mô lớn, giao thương quốc tế phồn thịnh qua cảng Hội An."
+  },
+  {
+    "id": "kasv_0840bd5eb40547659c7993c2d8996449",
+    "type": "artifact",
+    "dynasty": "Tây Sơn",
+    "era": "Cuối thế kỷ XVIII, gắn với phong trào Tây Sơn và chiến thắng Ngọc Hồi - Đống Đa năm 1789.",
+    "artifact": "Tượng voi chiến Tây Sơn",
+    "image": "assets/images/artifacts/Ấm hình voi bằng đồng.webp",
+    "description": "Anh hùng Quang Trung - Nguyễn Huệ thống nhất đất nước, đại phá 29 vạn quân Thanh trong chiến dịch thần tốc mùa Xuân Kỷ Dậu 1789 — một trong những chiến thắng vĩ đại nhất lịch sử."
+  },
+  {
+    "id": "kasv_3efc1d2799544146b60243eb7f23aa64",
+    "type": "artifact",
+    "dynasty": "Nhà Nguyễn",
+    "era": "Năm Minh Mạng thứ 4 (1823).",
+    "artifact": "Ấn vàng “Hoàng đế chi bảo”",
+    "image": "assets/images/artifacts/Ấn vàng Hoàng đế chi bảo.webp",
+    "description": "Triều đại phong kiến cuối cùng, Gia Long thống nhất giang sơn và đặt kinh đô tại Huế. Di sản kiến trúc cung đình Huế, ấn vàng, Đại Nội được UNESCO công nhận Di sản Thế giới."
+  },
+  {
+    "id": "box_bdddc48ec18c4fc998ee351dc0eaa98d",
+    "type": "blindbox",
+    "dynasty": "Khai Ấn Sử Việt",
+    "era": "Bộ Sưu Tập 14 Triều Đại",
+    "artifact": "ẤN TÍCH VIỆT SỬ - Basic",
+    "image": "assets/images/blindbox/Blind box model Basic.jpg",
+    "description": "Bao gồm: Tiền Thái Bình Hưng Bảo, Nỏ thần An Dương Vương, Gạch Đại Việt quốc quân thành chuyên.",
+    "price": 239000,
+    "priceBox": 299000,
+    "priceWood": 499000,
+    "status": "in-stock"
+  },
+  {
+    "id": "box_575e2155ebbf42ecbc666f32ccc37aab",
+    "type": "blindbox",
+    "dynasty": "Khai Ấn Sử Việt",
+    "era": "Bộ Sưu Tập 14 Triều Đại",
+    "artifact": "ẤN TÍCH VIỆT SỬ - Standard",
+    "image": "assets/images/blindbox/Blind box model Standard.jpg",
+    "description": "Bao gồm: Súng thần công, Thuyền chiến Đàng Trong, Đá Thành Nhà Hồ.",
+    "price": 269000,
+    "priceBox": 329000,
+    "priceWood": 529000,
+    "status": "in-stock"
+  },
+  {
+    "id": "box_0234e6d19b374b35ba13cd3fa9f9d18b",
+    "type": "blindbox",
+    "dynasty": "Khai Ấn Sử Việt",
+    "era": "Bộ Sưu Tập 14 Triều Đại",
+    "artifact": "ẤN TÍCH VIỆT SỬ - Premium",
+    "image": "assets/images/blindbox/Blind box model Premium.jpg",
+    "description": "Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý.",
+    "price": 299000,
+    "priceBox": 359000,
+    "priceWood": 559000,
+    "status": "in-stock"
   }
 ];
-
-/* ── Helper Functions ── */
-
-function getProductById(id) {
-  return PRODUCTS.find(p => p.id === id);
-}
-
-function getRelatedProducts(currentId, count = 3) {
-  let related = PRODUCTS.filter(p => p.type === 'blindbox' && p.id !== currentId);
-
-  // Fisher-Yates shuffle
-  for (let i = related.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [related[i], related[j]] = [related[j], related[i]];
-  }
-
-  return related.slice(0, count);
-}
-
-function formatPrice(price) {
-  return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
-}
-
-function getStatusLabel(status) {
-  switch (status) {
-    case 'in-stock': return 'Còn hàng';
-    case 'sold-out': return 'Hết hàng';
-    case 'pre-order': return 'Đặt trước';
-    default: return status;
-  }
-}
-
-function getStatusClass(status) {
-  switch (status) {
-    case 'in-stock': return 'badge--in-stock';
-    case 'sold-out': return 'badge--sold-out';
-    case 'pre-order': return 'badge--pre-order';
-    default: return '';
-  }
-}

@@ -3,7 +3,7 @@
    Gallery, Order Form, Accordion, Related Products
    ============================================================ */
 
-(function () {
+(async function () {
   'use strict';
 
   /* ── Get Product ID from URL ── */
@@ -26,35 +26,15 @@
     return;
   }
 
-  const MODEL_VIEWER_SRC = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
-  let modelViewerPromise = null;
-
-  function ensureModelViewerLoaded() {
-    if (customElements.get('model-viewer')) return Promise.resolve();
-    if (modelViewerPromise) return modelViewerPromise;
-
-    modelViewerPromise = new Promise((resolve, reject) => {
-      const existingScript = document.querySelector(`script[src="${MODEL_VIEWER_SRC}"]`);
-      if (existingScript) {
-        // If the script is already fully loaded or the custom element is defined, resolve immediately
-        if (customElements.get('model-viewer') || existingScript.readyState === 'complete' || existingScript.readyState === 'loaded') {
-          resolve();
-        } else {
-          existingScript.addEventListener('load', resolve, { once: true });
-          existingScript.addEventListener('error', reject, { once: true });
-        }
-        return;
-      }
-
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = MODEL_VIEWER_SRC;
-      script.onload = resolve;
-      script.onerror = reject;
-      document.head.appendChild(script);
-    });
-
-    return modelViewerPromise;
+  try {
+    const res = await fetch('assets/data/products-detail.json');
+    const allDetails = await res.json();
+    const detail = allDetails[product.id];
+    if (detail) {
+      Object.assign(product, detail);
+    }
+  } catch (e) {
+    console.error('Không thể tải chi tiết sản phẩm:', e);
   }
 
   /* ============================================================

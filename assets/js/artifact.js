@@ -11,8 +11,6 @@
      ============================================================ */
   const MAX_RETRIES = 3;
   const RETRY_BASE_DELAY = 2000; // ms, exponential backoff base
-  const MODEL_VIEWER_SRC = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
-  let modelViewerPromise = null;
 
   /* ============================================================
      STATE MANAGEMENT
@@ -37,274 +35,24 @@
     viewerContainer: document.getElementById('artifactModelViewer'),
   };
 
-  function ensureModelViewerLoaded() {
-    if (customElements.get('model-viewer')) return Promise.resolve();
-    if (modelViewerPromise) return modelViewerPromise;
-
-    modelViewerPromise = new Promise((resolve, reject) => {
-      const existingScript = document.querySelector(`script[src="${MODEL_VIEWER_SRC}"]`);
-      if (existingScript) {
-        // If the script is already fully loaded or the custom element is defined, resolve immediately
-        if (customElements.get('model-viewer') || existingScript.readyState === 'complete' || existingScript.readyState === 'loaded') {
-            resolve();
-        } else {
-            existingScript.addEventListener('load', resolve, { once: true });
-            existingScript.addEventListener('error', reject, { once: true });
-        }
-        return;
-      }
-
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = MODEL_VIEWER_SRC;
-      script.onload = resolve;
-      script.onerror = reject;
-      document.head.appendChild(script);
-    });
-
-    return modelViewerPromise;
-  }
-
-  /* ============================================================
-     INJECT LOADING STYLES (scoped to this module)
-     ============================================================ */
-  function injectStyles() {
-    if (document.getElementById('artifact3dStyles')) return;
-    const style = document.createElement('style');
-    style.id = 'artifact3dStyles';
-    style.textContent = `
-      /* ── Loading overlay ── */
-      .artifact3d-loading {
-        position: absolute; inset: 0;
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        gap: 1.5rem;
-        background: transparent;
-        z-index: 5;
-        animation: a3dFadeIn 0.5s ease;
-      }
-
-      /* ── Time Compass (La Đồ Thời Gian) ── */
-      .time-compass {
-        position: relative;
-        width: 90px;
-        height: 90px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        filter: drop-shadow(0 0 15px rgba(184,134,11,0.5));
-      }
-      .time-compass__ring {
-        position: absolute;
-        border-radius: 50%;
-        border: 2px solid transparent;
-      }
-      .time-compass__ring--outer {
-        width: 100%;
-        height: 100%;
-        border-top-color: #B8860B;
-        border-bottom-color: #DAA520;
-        border-right-color: rgba(184,134,11,0.2);
-        border-left-color: rgba(184,134,11,0.2);
-        animation: spinRight 3s linear infinite;
-        will-change: transform;
-      }
-      .time-compass__ring--middle {
-        width: 75%;
-        height: 75%;
-        border-width: 1px;
-        border-style: dashed;
-        border-color: #DAA520;
-        animation: spinLeft 4s linear infinite;
-        opacity: 0.8;
-        will-change: transform;
-      }
-      .time-compass__ring--inner {
-        width: 55%;
-        height: 55%;
-        border-left-color: #F8D568;
-        border-right-color: #8B6914;
-        animation: spinRight 2s linear infinite;
-        will-change: transform;
-      }
-      .time-compass__center {
-        position: relative;
-        width: 45px;
-        height: 45px;
-        background: transparent;
-        border: 1px solid #B8860B;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2;
-        box-shadow: inset 0 0 10px rgba(184,134,11,0.6);
-      }
-      .time-compass__glow {
-        position: absolute;
-        inset: -5px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(184,134,11,0.6) 0%, transparent 70%);
-        animation: pulseGlow 2s ease-in-out infinite;
-      }
-      .time-compass__logo {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        z-index: 3;
-        animation: pulseText 2s ease-in-out infinite;
-      }
-
-      /* ── Progress bar container ── */
-      .artifact3d-progress {
-        width: 240px; max-width: 75%;
-        height: 3px;
-        background: rgba(184,134,11,0.15);
-        border-radius: 4px;
-        position: relative;
-        overflow: visible;
-      }
-      .artifact3d-progress__fill {
-        position: absolute;
-        left: 0; top: 0; bottom: 0;
-        width: 100%;
-        transform: scaleX(0);
-        transform-origin: left;
-        background: linear-gradient(90deg, #8B6914, #DAA520, #F8D568);
-        border-radius: 4px;
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: transform;
-        box-shadow: 0 0 12px rgba(218,165,32,0.5);
-      }
-      .artifact3d-progress__glow {
-        position: absolute;
-        top: 50%;
-        transform: translate3d(0, -50%, 0);
-        width: 8px;
-        height: 8px;
-        background: #FFF;
-        border-radius: 50%;
-        box-shadow: 0 0 15px 4px rgba(248,213,104,0.9);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        left: 0;
-        margin-left: -4px;
-        will-change: transform;
-      }
-
-      /* ── Text info ── */
-      .artifact3d-loading__text {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 0.95rem;
-        font-weight: 700;
-        letter-spacing: 4px;
-        color: #F8D568;
-        text-shadow: 0 0 8px rgba(218,165,32,0.5);
-        margin-top: 0.5rem;
-      }
-      .artifact3d-loading__detail {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 0.8rem;
-        font-style: italic;
-        color: rgba(218,165,32,0.8);
-        text-align: center;
-        letter-spacing: 1px;
-        animation: floatText 3s ease-in-out infinite;
-      }
-
-      /* ── Error state ── */
-      .artifact3d-error {
-        position: absolute; inset: 0;
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        gap: 0.8rem;
-        background: transparent;
-        z-index: 5;
-        animation: a3dFadeIn 0.4s ease;
-      }
-      .artifact3d-error__icon {
-        width: 48px; height: 48px;
-        opacity: 0.8;
-        animation: pulseGlow 2s infinite;
-      }
-      .artifact3d-error__title {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 0.9rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        color: #A62C21;
-        text-shadow: 0 0 10px rgba(166,44,33,0.4);
-      }
-      .artifact3d-error__msg {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 0.75rem;
-        color: rgba(184,134,11,0.7);
-        text-align: center;
-        max-width: 280px;
-        line-height: 1.5;
-      }
-      .artifact3d-error__btn {
-        margin-top: 0.5rem;
-        padding: 10px 28px;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #1A1108;
-        background: linear-gradient(135deg, #B8860B, #DAA520);
-        border: none; border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(184,134,11,0.3);
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-      .artifact3d-error__btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(184,134,11,0.5);
-      }
-
-      /* ── Model viewer fade-in ── */
-      .artifact3d-viewer-ready {
-        animation: a3dFadeIn 0.8s ease forwards;
-      }
-
-      /* ── Keyframes ── */
-      @keyframes a3dFadeIn {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-      }
-      @keyframes spinRight {
-        0% { transform: rotate(0deg) translateZ(0); }
-        100% { transform: rotate(360deg) translateZ(0); }
-      }
-      @keyframes spinLeft {
-        0% { transform: rotate(0deg) translateZ(0); }
-        100% { transform: rotate(-360deg) translateZ(0); }
-      }
-      @keyframes pulseGlow {
-        0%, 100% { transform: scale(1); opacity: 0.5; }
-        50% { transform: scale(1.1); opacity: 1; }
-      }
-      @keyframes pulseText {
-        0%, 100% { opacity: 0.8; }
-        50% { opacity: 1; }
-      }
-      @keyframes floatText {
-        0%, 100% { opacity: 0.7; transform: translateY(0); }
-        50% { opacity: 1; transform: translateY(-3px); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
   /* ============================================================
      INITIALIZATION & CLEANUP
      ============================================================ */
-  function init() {
-    injectStyles();
+  async function init() {
     getProduct();
 
     if (!state.product) return;
+
+    try {
+      const res = await fetch('assets/data/products-detail.json');
+      const allDetails = await res.json();
+      const detail = allDetails[state.product.id];
+      if (detail) {
+        Object.assign(state.product, detail);
+      }
+    } catch (e) {
+      console.error('Không thể tải chi tiết sản phẩm:', e);
+    }
 
     populateProductInfo();
     renderPlaceholder();
@@ -352,8 +100,8 @@
 
   function populateProductInfo() {
     if (!state.isUnlocked) {
-      if (DOM.dynasty) DOM.dynasty.textContent = state.product.dynasty;
-      if (DOM.era) DOM.era.textContent = state.product.era;
+      if (DOM.dynasty) DOM.dynasty.textContent = '???';
+      if (DOM.era) DOM.era.textContent = '???';
       if (DOM.name) DOM.name.textContent = 'Cổ Vật Bí Ẩn';
 
       if (DOM.desc) {
@@ -363,7 +111,7 @@
       }
 
       if (DOM.dynastyDesc) {
-        DOM.dynastyDesc.textContent = state.product.description;
+        DOM.dynastyDesc.textContent = '████ █████ ██████ ███ ████████ ███ ██████ ███ ████████ ██████ ███. Lịch sử đang chờ bạn khám phá...';
         DOM.dynastyDesc.style.filter = 'blur(4px)';
         DOM.dynastyDesc.style.userSelect = 'none';
         DOM.dynastyDesc.style.opacity = '0.5';
@@ -586,21 +334,13 @@
 
     if (!fill || !percentEl) return;
 
-    if (glow && progressContainerWidth === 0) {
-      const container = fill.parentElement;
-      if (container) {
-        progressContainerWidth = container.offsetWidth;
-      }
-    }
-
     // model-viewer progress event: detail.totalProgress is 0-1
     const ratio = progressEvent.detail ? progressEvent.detail.totalProgress : 0;
     const percent = Math.round(ratio * 100);
 
     fill.style.transform = `scaleX(${ratio})`;
     if (glow) {
-      const x = ratio * progressContainerWidth;
-      glow.style.transform = `translate3d(${x}px, -50%, 0)`;
+      glow.style.left = `${percent}%`;
     }
     percentEl.textContent = `ĐANG TẢI ${percent}%`;
 
