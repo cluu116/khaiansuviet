@@ -129,9 +129,9 @@
       }
       .time-compass__center {
         position: relative;
-        width: 35px;
-        height: 35px;
-        background: linear-gradient(135deg, #2A1F0D, #1A1108);
+        width: 45px;
+        height: 45px;
+        background: transparent;
         border: 1px solid #B8860B;
         border-radius: 50%;
         display: flex;
@@ -147,14 +147,13 @@
         background: radial-gradient(circle, rgba(184,134,11,0.6) 0%, transparent 70%);
         animation: pulseGlow 2s ease-in-out infinite;
       }
-      .time-compass__rune {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #F8D568;
-        text-shadow: 0 0 8px #F8D568;
-        animation: pulseText 2s ease-in-out infinite;
+      .time-compass__logo {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
         z-index: 3;
+        animation: pulseText 2s ease-in-out infinite;
       }
 
       /* ── Progress bar container ── */
@@ -561,7 +560,7 @@
           <div class="time-compass__ring time-compass__ring--inner"></div>
           <div class="time-compass__center">
             <div class="time-compass__glow"></div>
-            <span class="time-compass__rune">印</span>
+            <img src="assets/images/logo.jpg" alt="Logo" class="time-compass__logo" />
           </div>
         </div>
         <div class="artifact3d-progress">

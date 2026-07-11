@@ -129,7 +129,7 @@
 }
 
 .collection__scan-instruction::after {
-  content: '❖';
+  content: '';
   position: absolute;
   top: -12px;
   left: 50%;
@@ -166,48 +166,6 @@
   padding: var(--space-2xl) 0;
 }
 
-.collection__era-section {
-  margin-bottom: 80px;
-}
-
-.collection__era-section:last-child {
-  margin-bottom: 0;
-}
-
-.collection__era-header {
-  text-align: center;
-  margin-bottom: var(--space-xl);
-  position: relative;
-  padding: 0 var(--space-md);
-}
-
-.collection__era-title {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  color: var(--vang-thep);
-  margin-bottom: var(--space-xs);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.collection__era-desc {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: rgba(245, 245, 220, 0.7);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.collection__era-header::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: var(--vang-thep);
-  margin: var(--space-md) auto 0;
-  box-shadow: var(--glow-gold);
-}
 
 .collection__grid {
   display: grid;
@@ -295,7 +253,7 @@
 }
 
 .dynasty-card__front::after {
-  content: '❖';
+  content: '';
   position: absolute;
   top: 10px;
   left: 50%;
@@ -393,7 +351,7 @@
 }
 
 .dynasty-card__back::after {
-  content: '❖';
+  content: '';
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -606,6 +564,9 @@
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1.35;
+  padding-top: 0.15em;
+  padding-bottom: 0.1em;
 }
 
 .nfc-unlock__name {
@@ -911,13 +872,6 @@
     font-size: 0.95rem;
   }
 
-  .collection__era-title {
-    font-size: 1.8rem;
-  }
-
-  .collection__era-section {
-    margin-bottom: 60px;
-  }
 
   .collection__grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));

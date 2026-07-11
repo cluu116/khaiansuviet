@@ -351,8 +351,11 @@
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 2rem;
+  line-height: 1.35;
+  padding-top: 0.15em;
+  padding-bottom: 0.1em;
+  margin-top: -0.15em;
+  margin-bottom: 1.85rem;
   text-transform: uppercase;
   letter-spacing: 3px;
   animation: fadeUp 0.8s ease forwards 0.3s;

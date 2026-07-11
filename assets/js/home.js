@@ -19,7 +19,7 @@
       priceBase: 239000,
       priceBox: 299000,
       priceWood: 499000,
-      image: 'assets/images/blindbox/blind_box_1.png'
+      image: 'assets/images/blindbox/Blind box model Basic.jpg'
     },
     {
       id: "box_575e2155ebbf42ecbc666f32ccc37aab",
@@ -29,7 +29,7 @@
       priceBase: 269000,
       priceBox: 329000,
       priceWood: 529000,
-      image: 'assets/images/blindbox/blind_box_3.png'
+      image: 'assets/images/blindbox/Blind box model Standard.jpg'
     },
     {
       id: "box_0234e6d19b374b35ba13cd3fa9f9d18b",
@@ -39,7 +39,7 @@
       priceBase: 299000,
       priceBox: 359000,
       priceWood: 559000,
-      image: 'assets/images/blindbox/blind_box_6.png'
+      image: 'assets/images/blindbox/Blind box model Premium.jpg'
     }
   ];
 
@@ -51,8 +51,14 @@
   function renderBlindBoxes() {
     if (!blindBoxGrid) return;
 
-    blindBoxGrid.innerHTML = BLIND_BOXES.map(box => `
-      <a href="product.html?id=${box.id}" class="blind-box__card${box.id === 'box_0234e6d19b374b35ba13cd3fa9f9d18b' ? ' blind-box__card--premium' : ''}">
+    blindBoxGrid.innerHTML = BLIND_BOXES.map(box => {
+      let tierClass = '';
+      if (box.id === 'box_bdddc48ec18c4fc998ee351dc0eaa98d') tierClass = 'blind-box__card--basic';
+      else if (box.id === 'box_575e2155ebbf42ecbc666f32ccc37aab') tierClass = 'blind-box__card--standard';
+      else if (box.id === 'box_0234e6d19b374b35ba13cd3fa9f9d18b') tierClass = 'blind-box__card--premium';
+
+      return `
+      <a href="product.html?id=${box.id}" class="blind-box__card ${tierClass}">
         <div class="blind-box__image">
           <img src="${box.image}" alt="${box.name}" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
@@ -75,7 +81,8 @@
         </div>
         <span class="blind-box__btn">MUA NGAY</span>
       </a>
-    `).join('');
+      `;
+    }).join('');
   }
 
 

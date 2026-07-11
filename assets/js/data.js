@@ -512,7 +512,7 @@ const PRODUCTS = [
   },
 
   /* ════════════════════════════════════════════════════════════
-     BLIND BOX PRODUCTS (id 101+)
+     BLIND BOX PRODUCTS
      ════════════════════════════════════════════════════════════ */
   {
     id: "box_bdddc48ec18c4fc998ee351dc0eaa98d",
@@ -526,8 +526,8 @@ const PRODUCTS = [
     status: 'in-stock',
     description: 'Bao gồm: Tiền Thái Bình Hưng Bảo, Nỏ thần An Dương Vương, Gạch Đại Việt quốc quân thành chuyên.',
     artifactDesc: 'Có 3 tùy chọn: Không hộp (239k), Có hộp (299k), Hộp gỗ (499k).',
-    image: 'assets/images/blindbox/blind_box_1.png',
-    gallery: ['assets/images/blindbox/blind_box_1.png', 'assets/images/blindbox/blind_box_1_alt1.png', 'assets/images/blindbox/blind_box_1_alt2.png', 'assets/images/blindbox/blind_box_1_alt3.png'],
+    image: 'assets/images/blindbox/Blind box model Basic.jpg',
+    gallery: ['assets/images/blindbox/Blind box model Basic.jpg', 'assets/images/blindbox/Blind box model 2.jpg', 'assets/images/blindbox/Blind box model Standard.jpg', 'assets/images/blindbox/Blind box model Premium.jpg'],
     model: null,
     details: {
       dimensions: '100 × 75 × 20mm',
@@ -553,8 +553,8 @@ const PRODUCTS = [
     status: 'in-stock',
     description: 'Bao gồm: Súng thần công, Thuyền chiến Đàng Trong, Đá Thành Nhà Hồ.',
     artifactDesc: 'Có 3 tùy chọn: Không hộp (269k), Có hộp (329k), Hộp gỗ (529k).',
-    image: 'assets/images/blindbox/blind_box_3.png',
-    gallery: ['assets/images/blindbox/blind_box_3.png', 'assets/images/blindbox/blind_box_3_alt1.png', 'assets/images/blindbox/blind_box_3_alt2.png', 'assets/images/blindbox/blind_box_3_alt3.png'],
+    image: 'assets/images/blindbox/Blind box model Standard.jpg',
+    gallery: ['assets/images/blindbox/Blind box model Standard.jpg', 'assets/images/blindbox/Blind box model 2.jpg', 'assets/images/blindbox/Blind box model Basic.jpg', 'assets/images/blindbox/Blind box model Premium.jpg'],
     model: null,
     details: {
       dimensions: '100 × 225 × 20mm',
@@ -580,8 +580,8 @@ const PRODUCTS = [
     status: 'in-stock',
     description: 'Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý.',
     artifactDesc: 'Có 3 tùy chọn: Không hộp (299k), Có hộp (359k), Hộp gỗ (559k).',
-    image: 'assets/images/blindbox/blind_box_6.png',
-    gallery: ['assets/images/blindbox/blind_box_6.png', 'assets/images/blindbox/blind_box_6_alt1.png', 'assets/images/blindbox/blind_box_6_alt2.png', 'assets/images/blindbox/blind_box_6_alt3.png'],
+    image: 'assets/images/blindbox/Blind box model Premium.jpg',
+    gallery: ['assets/images/blindbox/Blind box model Premium.jpg', 'assets/images/blindbox/Blind box model 2.jpg', 'assets/images/blindbox/Blind box model Basic.jpg', 'assets/images/blindbox/Blind box model Standard.jpg'],
     model: null,
     details: {
       dimensions: '200 × 225 × 20mm',

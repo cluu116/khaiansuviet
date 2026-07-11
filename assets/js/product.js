@@ -91,15 +91,31 @@
   const elPrice = document.getElementById('productPrice');
   const elStatus = document.getElementById('productStatus');
 
-  if (elName) elName.textContent = product.artifact;
+  if (elName) {
+    elName.textContent = product.artifact;
+    if (product.type === 'blindbox') {
+      if (product.id === 'box_bdddc48ec18c4fc998ee351dc0eaa98d') elName.classList.add('product-hero__name--basic');
+      else if (product.id === 'box_575e2155ebbf42ecbc666f32ccc37aab') elName.classList.add('product-hero__name--standard');
+      else if (product.id === 'box_0234e6d19b374b35ba13cd3fa9f9d18b') elName.classList.add('product-hero__name--premium');
+    }
+  }
   if (elDynasty) elDynasty.textContent = `${product.dynasty} • ${product.era}`;
   if (elPrice) {
     if (product.type === 'blindbox' && product.priceBox) {
       elPrice.innerHTML = `
-        <div style="font-size: 1.2rem; display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
-          <div>Không hộp: <strong>${formatPrice(product.price)}</strong></div>
-          <div>Có hộp: <strong>${formatPrice(product.priceBox)}</strong></div>
-          <div>Hộp gỗ: <strong style="color: var(--vang-thep);">${formatPrice(product.priceWood)}</strong></div>
+        <div class="product-price__options">
+          <div class="price-option">
+            <span class="price-option__label">Không Hộp</span>
+            <span class="price-option__val">${formatPrice(product.price)}</span>
+          </div>
+          <div class="price-option highlight">
+            <span class="price-option__label">Có Hộp</span>
+            <span class="price-option__val">${formatPrice(product.priceBox)}</span>
+          </div>
+          <div class="price-option premium">
+            <span class="price-option__label">Hộp Gỗ</span>
+            <span class="price-option__val">${formatPrice(product.priceWood)}</span>
+          </div>
         </div>
       `;
     } else {
@@ -181,40 +197,46 @@
     `;
   }
 
-  // Accordion content
-  const descContent = document.getElementById('accordionDesc');
-  const dimsContent = document.getElementById('accordionDims');
-  const nfcContent = document.getElementById('accordionNfc');
-  const editionContent = document.getElementById('accordionEdition');
+  // Specs content
+  const specsContent = document.getElementById('productSpecsContent');
+  if (specsContent) {
+    const artifactName = product.artifact || product.dynasty;
 
-  if (descContent) {
-    descContent.innerHTML = `<div class="accordion-body__content">${product.description}</div>`;
-  }
-  if (dimsContent) {
-    dimsContent.innerHTML = `
-      <div class="accordion-body__specs">
-        <span class="accordion-body__spec-label">Kích thước</span>
-        <span class="accordion-body__spec-value">${product.details.dimensions}</span>
-        <span class="accordion-body__spec-label">Chất liệu</span>
-        <span class="accordion-body__spec-value">${product.details.material}</span>
-        <span class="accordion-body__spec-label">Trọng lượng</span>
-        <span class="accordion-body__spec-value">${product.details.weight}</span>
-      </div>
-    `;
-  }
-  if (nfcContent) {
-    const featureText = product.details.feature || `Mỗi cổ vật tích hợp chip NFC đặc biệt. Sau khi mua, bạn chỉ cần chạm điện thoại vào cổ vật để mở khóa triều đại <strong>${product.dynasty}</strong> trong bộ sưu tập số của mình. Trải nghiệm mô hình 3D và AR của cổ vật <strong>${product.artifact}</strong> ngay trên điện thoại!`;
-    nfcContent.innerHTML = `
-      <div class="accordion-body__content">
-        <strong>Chip NFC tích hợp:</strong> ${product.details.nfc}<br><br>
-        ${featureText}
-      </div>
-    `;
-  }
-  if (editionContent) {
-    const guideText = product.details.guide || product.details.edition;
-    editionContent.innerHTML = `
-      <div class="accordion-body__content">${guideText}</div>
+    // Create checkmarked artifacts list
+    let artifactsListHtml = '';
+    if (product.type === 'blindbox' && product.description && product.description.includes('Bao gồm:')) {
+      const itemsString = product.description.replace('Bao gồm:', '').trim();
+      const items = itemsString.replace(/\.$/, '').split(',').map(s => s.trim());
+      artifactsListHtml = `
+        <ul class="artifacts-checklist">
+          ${items.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      `;
+    } else {
+      artifactsListHtml = `
+        <ul class="artifacts-checklist">
+          <li>${artifactName}</li>
+        </ul>
+      `;
+    }
+
+    specsContent.innerHTML = `
+      <ul class="specs-list">
+        <li><span class="spec-label">Tên sản phẩm:</span> ${artifactName}</li>
+        <li><span class="spec-label">Chất liệu:</span>
+          <ul>
+            <li>Thạch cao bọc ngoài cổ vật màu vàng đất.</li>
+            <li>Cổ vật bên trong được chế tác từ nhựa in 3D, hoàn thiện bằng phương pháp sơn thủ công nhằm tái hiện màu sắc và đặc trưng của từng hiện vật lịch sử.</li>
+          </ul>
+        </li>
+        <li><span class="spec-label">Kích thước:</span> 20 × 10 × 10 cm (Cao × Dài × Rộng).</li>
+        <li><span class="spec-label">Vỏ blind box:</span> Carton sóng 3 lớp cán mờ.</li>
+        <li>
+          <span class="spec-label" style="display:block; margin-bottom: 6px;">Cổ vật bên trong:</span> 
+          ${artifactsListHtml}
+        </li>
+        <li><span class="spec-label">Trọng lượng:</span> Khoảng 3 kg/sản phẩm.</li>
+      </ul>
     `;
   }
 
@@ -350,17 +372,6 @@
     });
   }
 
-  /* ============================================================
-     3. ACCORDION
-     ============================================================ */
-  document.querySelectorAll('.accordion-header').forEach((header) => {
-    header.addEventListener('click', () => {
-      const item = header.closest('.accordion-item');
-      
-      // Toggle clicked
-      item.classList.toggle('open');
-    });
-  });
 
   /* ============================================================
      4. ESCAPE KEY HANDLER (for all modals)

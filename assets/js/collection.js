@@ -42,27 +42,6 @@
 
     const collectionProducts = PRODUCTS.filter(p => p.type === 'artifact');
 
-    // Phân nhóm 14 triều đại thành 4 kỷ nguyên lịch sử theo trình tự thời gian
-    // Mỗi nhóm có tiêu đề và mô tả riêng, tạo hệ thống phân cấp trực quan
-    const ERAS = [
-      {
-        title: "CHƯƠNG I: DẤU XƯA KHAI MỞ",
-        desc: "Dấu tích nhỏ bé mở ra cánh cửa đầu tiên dẫn lối về dòng chảy Việt sử.",
-        ids: ["kasv_542c8726aed941a6ab40ceae371819ee", "kasv_b7c018a1616c42ac9073368b9e001470", "kasv_90ba8e957f584ff99df9209f16a626d4"]
-      },
-      {
-        title: "CHƯƠNG II: HÀO KHÍ GIANG SƠN",
-        desc: "Khí phách dựng nước, giữ nước qua những tháng năm hào hùng",
-        ids: ["kasv_0722f40301894ab2916cb444b53f6ceb", "kasv_6a8685ed51344e7abea0b5c739c82fef", "kasv_7cdd1a74a27347779c3f3f7bc7b69c35"]
-      },
-      {
-        title: "CHƯƠNG III: TINH HOA VƯƠNG TRIỀU",
-        desc: "Tôn vinh vẻ đẹp, quyền uy và chiều sâu văn hóa của các vương triều Việt Nam.",
-        ids: ["kasv_51783bb4502e431a8537bb549b69345d", "kasv_fdd63a242a4d43bd846f1c09eb5b0f6f", "kasv_4be3b45e347a46169a6fa592bcdfe00d", "kasv_0840bd5eb40547659c7993c2d8996449", "kasv_8fc4f5bf04b14e8c8b70f543ca8b6235", "kasv_3efc1d2799544146b60243eb7f23aa64", "kasv_2dd2f9fa988a4d85b110f540a85b1dd9", "kasv_db3e2121d18c44739f0720b0f59310b7"]
-      }
-    ];
-
-    const isFlatLayout = cardsGrid.getAttribute('data-layout') === 'flat';
 
     const renderCard = (product) => {
       const isUnlocked = unlockedCards.has(String(product.id));
@@ -122,34 +101,7 @@
       `;
     };
 
-    if (isFlatLayout) {
-      cardsGrid.innerHTML = collectionProducts.map(renderCard).join('');
-    } else {
-      let html = '';
-
-      ERAS.forEach(era => {
-        const eraProducts = era.ids.map(id => collectionProducts.find(p => p.id === id)).filter(Boolean);
-        if (eraProducts.length === 0) return;
-
-        html += `
-          <div class="collection__era-section">
-            <div class="collection__era-header">
-              <h2 class="collection__era-title">${era.title}</h2>
-              <p class="collection__era-desc">${era.desc}</p>
-            </div>
-            <div class="collection__grid">
-        `;
-
-        html += eraProducts.map(renderCard).join('');
-
-        html += `
-            </div>
-          </div>
-        `;
-      });
-
-      cardsGrid.innerHTML = html;
-    }
+    cardsGrid.innerHTML = collectionProducts.map(renderCard).join('');
 
     // Rebind events after render
     bindCardEvents();
