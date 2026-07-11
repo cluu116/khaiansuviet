@@ -56,7 +56,8 @@
     "gallery": [
       "assets/images/artifacts/Sa hình Cọc gỗ Bạch Đằng.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/tr%E1%BA%ADn%20b%E1%BA%A1ch%20%C4%91%E1%BA%B1ng.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sahinh-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sahinh-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Sa hình thế trận cọc gỗ Bạch Đằng",
       "ĐẠI DIỆN CHO": "Nhà Ngô",
@@ -81,7 +82,8 @@
     "gallery": [
       "assets/images/artifacts/Tiền Thái Bình Hưng Bảo.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/%C4%91%E1%BB%93ng%20xu.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/dongtien-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/dongtien-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Tiền Thái Bình Hưng Bảo",
       "ĐẠI DIỆN CHO": "Nhà Tiền Lê",
@@ -106,7 +108,8 @@
     "gallery": [
       "assets/images/artifacts/Gạch Đại Việt quốc quân thành chuyên.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/cuc%20da.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/gachdaiviet-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/gachdaiviet-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Gạch \"Đại Việt quốc quân thành chuyên\"",
       "ĐẠI DIỆN CHO": "Nhà Đinh",
@@ -131,7 +134,8 @@
     "gallery": [
       "assets/images/artifacts/Đầu rồng thời Lý.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/rongg.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/daurong-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/daurong-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Đầu rồng thời Lý",
       "ĐẠI DIỆN CHO": "Nhà Lý",
@@ -156,7 +160,8 @@
     "gallery": [
       "assets/images/artifacts/Ấn tín nhà Trần.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/%E1%BA%A5n%20th%E1%BB%9Di%20Tr%E1%BA%A7n.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/antran-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/antran-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Ấn tín nhà Trần",
       "ĐẠI DIỆN CHO": "Nhà Trần",
@@ -181,7 +186,8 @@
     "gallery": [
       "assets/images/artifacts/Đá Thành Nhà Hồ.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thanh%20nha%20ho.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thanhnhaho-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thanhnhaho-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Thành Nhà Hồ",
       "ĐẠI DIỆN CHO": "Nhà Hồ - kinh đô Tây Đô của nước Đại Ngu",
@@ -234,7 +240,8 @@
     "gallery": [
       "assets/images/artifacts/Lư hương gốm men nâu.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/l%C6%B0%20h%C6%B0%C6%A1ng.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/luhong.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/luhong.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Lư hương gốm men nâu - lam xám",
       "ĐẠI DIỆN CHO": "Nhà Mạc",
@@ -259,7 +266,8 @@
     "gallery": [
       "assets/images/artifacts/Súng thần công.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/s%C3%BAng.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sungthancong-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sungthancong-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Súng thần công",
       "ĐẠI DIỆN CHO": "Thời Lê Trung Hưng, đặc biệt trong bối cảnh Trịnh - Nguyễn phân tranh",
@@ -283,7 +291,8 @@
     "gallery": [
       "assets/images/artifacts/Thuyền chiến Đàng Trong.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/THUY%E1%BB%80N.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thuyenchien-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thuyenchien-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Thuyền chiến Đàng Trong",
       "ĐẠI DIỆN CHO": "Đàng Trong dưới thời các chúa Nguyễn",
@@ -307,7 +316,8 @@
     "gallery": [
       "assets/images/artifacts/Ấm hình voi bằng đồng.webp"
     ],
-    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/Voi%20T%C3%A2y%20S%C6%A1n.glb",
+    "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/voitayson-v1.glb",
+    "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/voitayson-v1.usdz",
     "details": {
       "TÊN MÔ HÌNH": "Tượng voi chiến Tây Sơn",
       "ĐẠI DIỆN CHO": "Nhà Tây Sơn",

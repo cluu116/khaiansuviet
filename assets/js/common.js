@@ -294,10 +294,23 @@
       const script = document.createElement('script');
       script.type = 'module';
       script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
-      script.onload = resolve;
+      script.onload = () => {
+        const ModelViewerElement = customElements.get('model-viewer');
+        if (ModelViewerElement) {
+            ModelViewerElement.meshoptDecoderLocation = 'https://unpkg.com/meshoptimizer@0.18.1/meshopt_decoder.js';
+        }
+        resolve();
+      };
       script.onerror = reject;
       document.head.appendChild(script);
       console.log('Lazy loaded model-viewer script');
+    });
+
+    modelViewerPromise.then(() => {
+        const ModelViewerElement = customElements.get('model-viewer');
+        if (ModelViewerElement && !ModelViewerElement.meshoptDecoderLocation) {
+            ModelViewerElement.meshoptDecoderLocation = 'https://unpkg.com/meshoptimizer@0.18.1/meshopt_decoder.js';
+        }
     });
 
     return modelViewerPromise;
