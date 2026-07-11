@@ -12,7 +12,7 @@
   /* ── Blind Box Data (homepage only) ── */
   const BLIND_BOXES = [
     {
-      id: "kasv_c9163e7c",
+      id: "box_bdddc48ec18c4fc998ee351dc0eaa98d",
       name: 'ẤN TÍCH VIỆT SỬ - Basic',
       qty: 'Dòng Cơ Bản',
       desc: 'Bao gồm: Tiền Thái Bình Hưng Bảo, Nỏ thần An Dương Vương, Gạch Đại Việt quốc quân thành chuyên.',
@@ -22,7 +22,7 @@
       image: 'assets/images/blindbox/blind_box_1.png'
     },
     {
-      id: "kasv_a78d2eec",
+      id: "box_575e2155ebbf42ecbc666f32ccc37aab",
       name: 'ẤN TÍCH VIỆT SỬ - Standard',
       qty: 'Dòng Tiêu Chuẩn',
       desc: 'Bao gồm: Súng thần công, Thuyền chiến Đàng Trong, Đá Thành Nhà Hồ.',
@@ -32,7 +32,7 @@
       image: 'assets/images/blindbox/blind_box_3.png'
     },
     {
-      id: "kasv_be952029",
+      id: "box_0234e6d19b374b35ba13cd3fa9f9d18b",
       name: 'ẤN TÍCH VIỆT SỬ - Premium',
       qty: 'Dòng Cao Cấp',
       desc: 'Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý.',
@@ -52,7 +52,7 @@
     if (!blindBoxGrid) return;
 
     blindBoxGrid.innerHTML = BLIND_BOXES.map(box => `
-      <a href="product.html?id=${box.id}" class="blind-box__card${box.id === 'kasv_be952029' ? ' blind-box__card--premium' : ''}">
+      <a href="product.html?id=${box.id}" class="blind-box__card${box.id === 'box_0234e6d19b374b35ba13cd3fa9f9d18b' ? ' blind-box__card--premium' : ''}">
         <div class="blind-box__image">
           <img src="${box.image}" alt="${box.name}" width="1024" height="1024" loading="lazy" decoding="async">
         </div>

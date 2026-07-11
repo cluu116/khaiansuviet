@@ -22,7 +22,7 @@ const PRODUCTS = [
      Trống Đồng Đông Sơn
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_335f5f38",
+    id: "kasv_4be3b45e347a46169a6fa592bcdfe00d",
     type: 'artifact',
     dynasty: 'Văn Lang',
     era: 'Khoảng thế kỷ VII trước Công nguyên (2524TCN - 258TCN)',
@@ -58,7 +58,7 @@ const PRODUCTS = [
      Nỏ Thần An Dương Vương
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_8caaa67e",
+    id: "kasv_b7c018a1616c42ac9073368b9e001470",
     type: 'artifact',
     dynasty: 'Âu Lạc',
     era: 'Khoảng thế kỷ III trước Công nguyên (258TCN-208TCN)',
@@ -94,7 +94,7 @@ const PRODUCTS = [
      Sa Hình Cọc Gỗ Bạch Đằng
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_9104dbd9",
+    id: "kasv_fdd63a242a4d43bd846f1c09eb5b0f6f",
     type: 'artifact',
     dynasty: 'Nhà Ngô',
     era: '939-965',
@@ -129,7 +129,7 @@ const PRODUCTS = [
      Tiền Thái Bình Hưng Bảo
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_7a7f947d",
+    id: "kasv_542c8726aed941a6ab40ceae371819ee",
     type: 'artifact',
     dynasty: 'Nhà Tiền Lê',
     era: 'Khoảng năm 981',
@@ -164,7 +164,7 @@ const PRODUCTS = [
      Gạch Đại Việt Quốc Quân Thành Chuyên
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_2db5bf83",
+    id: "kasv_90ba8e957f584ff99df9209f16a626d4",
     type: 'artifact',
     dynasty: 'Nhà Đinh',
     era: 'Cuối thế kỷ X (khoảng năm 968-980)',
@@ -199,7 +199,7 @@ const PRODUCTS = [
      Đầu Rồng Thời Lý
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_6b8c2b5f",
+    id: "kasv_db3e2121d18c44739f0720b0f59310b7",
     type: 'artifact',
     dynasty: 'Nhà Lý',
     era: 'Thế kỷ XI - XIII (1009-1225)',
@@ -234,7 +234,7 @@ const PRODUCTS = [
      Ấn Tín Nhà Trần
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_f2c8ede5",
+    id: "kasv_8fc4f5bf04b14e8c8b70f543ca8b6235",
     type: 'artifact',
     dynasty: 'Nhà Trần',
     era: 'Lấy cảm hứng từ hệ thống ấn tín dưới triều Trần, thế kỷ XIII - XIV (1225-1400)',
@@ -269,7 +269,7 @@ const PRODUCTS = [
      Đá Thành Nhà Hồ
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_62ba131f",
+    id: "kasv_7cdd1a74a27347779c3f3f7bc7b69c35",
     type: 'artifact',
     dynasty: 'Nhà Hồ',
     era: 'Cuối thế kỷ XIV - đầu thế kỷ XV (1400–1407)',
@@ -305,7 +305,7 @@ const PRODUCTS = [
      Rồng Đá Điện Kính Thiên
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_3b6696e6",
+    id: "kasv_51783bb4502e431a8537bb549b69345d",
     type: 'artifact',
     dynasty: 'Lê Sơ',
     era: 'Năm 1467, dưới thời vua Lê Thánh Tông (1428-1527)',
@@ -342,7 +342,7 @@ const PRODUCTS = [
      Lư Hương Gốm Men Nâu
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_1990acd8",
+    id: "kasv_2dd2f9fa988a4d85b110f540a85b1dd9",
     type: 'artifact',
     dynasty: 'Nhà Mạc',
     era: 'Thế kỷ XVI',
@@ -377,7 +377,7 @@ const PRODUCTS = [
      Súng Thần Công
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_09b93159",
+    id: "kasv_0722f40301894ab2916cb444b53f6ceb",
     type: 'artifact',
     dynasty: 'Lê Trung Hưng – Trịnh',
     era: 'Khoảng thế kỷ XVI - XVIII, nổi bật từ năm 1533 đến cuối thế kỷ XVIII',
@@ -411,7 +411,7 @@ const PRODUCTS = [
      Thuyền Chiến Đàng Trong
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_5dcebea7",
+    id: "kasv_6a8685ed51344e7abea0b5c739c82fef",
     type: 'artifact',
     dynasty: 'Chúa Nguyễn (Đàng Trong)',
     era: 'Khoảng thế kỷ XVI - XVIII, từ năm 1558 đến 1777',
@@ -445,7 +445,7 @@ const PRODUCTS = [
      Ấm Hình Voi Bằng Đồng
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_b2ddf02e",
+    id: "kasv_0840bd5eb40547659c7993c2d8996449",
     type: 'artifact',
     dynasty: 'Tây Sơn',
     era: 'Cuối thế kỷ XVIII, gắn với phong trào Tây Sơn và chiến thắng Ngọc Hồi - Đống Đa năm 1789.',
@@ -480,7 +480,7 @@ const PRODUCTS = [
      Ấn Vàng Hoàng Đế Chi Bảo
      ──────────────────────────────────────────────────────────── */
   {
-    id: "kasv_92e2d582",
+    id: "kasv_3efc1d2799544146b60243eb7f23aa64",
     type: 'artifact',
     dynasty: 'Nhà Nguyễn',
     era: 'Năm Minh Mạng thứ 4 (1823).',
@@ -515,7 +515,7 @@ const PRODUCTS = [
      BLIND BOX PRODUCTS (id 101+)
      ════════════════════════════════════════════════════════════ */
   {
-    id: "kasv_c9163e7c",
+    id: "box_bdddc48ec18c4fc998ee351dc0eaa98d",
     type: 'blindbox',
     dynasty: 'Khai Ấn Sử Việt',
     era: 'Bộ Sưu Tập 14 Triều Đại',
@@ -542,7 +542,7 @@ const PRODUCTS = [
     backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
   },
   {
-    id: "kasv_a78d2eec",
+    id: "box_575e2155ebbf42ecbc666f32ccc37aab",
     type: 'blindbox',
     dynasty: 'Khai Ấn Sử Việt',
     era: 'Bộ Sưu Tập 14 Triều Đại',
@@ -569,7 +569,7 @@ const PRODUCTS = [
     backSvg: '<rect x="35" y="40" width="50" height="40" rx="4" fill="none" stroke="#B8860B" stroke-width="1.5"/><path d="M35 50 L85 50 M60 40 L60 80" stroke="#B8860B" stroke-width="1.5"/><path d="M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40" fill="none" stroke="#B8860B" stroke-width="1.5"/>'
   },
   {
-    id: "kasv_be952029",
+    id: "box_0234e6d19b374b35ba13cd3fa9f9d18b",
     type: 'blindbox',
     dynasty: 'Khai Ấn Sử Việt',
     era: 'Bộ Sưu Tập 14 Triều Đại',
