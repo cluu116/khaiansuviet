@@ -4,6 +4,7 @@
     "gallery": [
       "assets/images/artifacts/Trống đồng Đông Sơn.webp"
     ],
+    "audio": "assets/audio/trongdong.mp3",
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.usdz",
     "details": {
@@ -30,6 +31,7 @@
     "gallery": [
       "assets/images/artifacts/Nỏ thần An Dương Vương.webp"
     ],
+    "audio": "assets/audio/nothan.mp3",
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/nothan-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/nothan-v1.usdz",
     "details": {

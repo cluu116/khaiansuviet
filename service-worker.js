@@ -1,4 +1,4 @@
-const CACHE_NAME = 'khaiansuviet-v9';
+const CACHE_NAME = 'khaiansuviet-v1.0';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -54,7 +54,7 @@ self.addEventListener('fetch', event => {
 
   // Cache-first cho file tĩnh (fonts, images), Network-first cho API & HTML
   const url = new URL(event.request.url);
-  
+
   // Ngoại lệ: Bỏ qua request đến Google Apps Script API hoặc các CDN bên ngoài
   if (url.origin !== self.location.origin && !url.origin.includes('fonts.')) {
     return;

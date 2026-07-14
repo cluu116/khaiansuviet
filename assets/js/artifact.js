@@ -233,6 +233,95 @@
       }
       specsList.innerHTML = html.join('');
     }
+
+    // Render Audio
+    const audioContainer = document.getElementById('artifactAudio');
+    const audioPlayer = document.getElementById('artifactAudioPlayer');
+    if (audioContainer && audioPlayer) {
+      if (state.product.audio) {
+        audioContainer.style.display = 'flex';
+        audioPlayer.src = state.product.audio;
+        initAudioPlayer();
+      } else {
+        audioContainer.style.display = 'none';
+        audioPlayer.pause();
+        audioPlayer.src = '';
+      }
+    }
+  }
+
+  function initAudioPlayer() {
+    const audio = document.getElementById('artifactAudioPlayer');
+    const btn = document.getElementById('audioToggleBtn');
+    
+    if (!audio || !btn) return;
+    
+    // Remove old listeners by replacing the button clone
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+
+    const playIcon = newBtn.querySelector('.play-icon');
+    const pauseIcon = newBtn.querySelector('.pause-icon');
+    const progressBar = document.getElementById('audioProgressBar');
+    const progressContainer = document.getElementById('audioProgressContainer');
+    const timeDisplay = document.getElementById('audioTime');
+
+    // Reset UI
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+    progressBar.style.width = '0%';
+    timeDisplay.textContent = '00:00 / 00:00';
+
+    const formatTime = (time) => {
+      if (isNaN(time) || !isFinite(time)) return '00:00';
+      const mins = Math.floor(time / 60);
+      const secs = Math.floor(time % 60);
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    audio.onloadedmetadata = () => {
+      timeDisplay.textContent = `00:00 / ${formatTime(audio.duration)}`;
+    };
+
+    audio.ontimeupdate = () => {
+      const current = audio.currentTime;
+      const duration = audio.duration;
+      if (duration) {
+        const progress = (current / duration) * 100;
+        progressBar.style.width = `${progress}%`;
+        timeDisplay.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
+      }
+    };
+
+    audio.onended = () => {
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+      progressBar.style.width = '0%';
+      audio.currentTime = 0;
+    };
+
+    const toggleAudio = () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+        }).catch(err => console.error("Error playing audio", err));
+      } else {
+        audio.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+    };
+
+    newBtn.addEventListener('click', toggleAudio);
+
+    progressContainer.onclick = (e) => {
+      const rect = progressContainer.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const newTime = (clickX / width) * audio.duration;
+      audio.currentTime = newTime;
+    };
   }
 
   function changeVisualToImage(index) {
