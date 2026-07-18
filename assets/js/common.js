@@ -274,6 +274,20 @@
     return related.slice(0, limit);
   };
 
+  /* ── In-memory cache for product details (109KB JSON fetched once) ── */
+  let _detailsPromise = null;
+  window.getProductDetails = function() {
+    if (_detailsPromise) return _detailsPromise;
+    _detailsPromise = fetch('assets/data/products-detail.json')
+      .then(res => res.json())
+      .catch(e => {
+        console.error('Không thể tải chi tiết sản phẩm:', e);
+        _detailsPromise = null; // Allow retry on error
+        return {};
+      });
+    return _detailsPromise;
+  };
+
   let modelViewerPromise = null;
   window.ensureModelViewerLoaded = function () {
     if (customElements.get('model-viewer')) return Promise.resolve();

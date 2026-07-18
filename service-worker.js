@@ -1,4 +1,4 @@
-const CACHE_NAME = 'khaiansuviet-v1.0';
+const CACHE_NAME = 'khaiansuviet-v1.4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -23,7 +23,7 @@ const ASSETS_TO_CACHE = [
   '/assets/js/product.js',
   '/assets/js/effects.js',
   '/assets/data/products-detail.json',
-  '/assets/images/favicon.svg'
+  '/assets/images/logo.webp'
 ];
 
 self.addEventListener('install', event => {

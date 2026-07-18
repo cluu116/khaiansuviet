@@ -368,10 +368,10 @@
   "box_bdddc48ec18c4fc998ee351dc0eaa98d": {
     "artifactDesc": "Có 3 tùy chọn: Không hộp (239k), Có hộp (299k), Hộp gỗ (499k).",
     "gallery": [
-      "assets/images/blindbox/Blind box model Basic.jpg",
-      "assets/images/blindbox/Blind box model 2.jpg",
-      "assets/images/blindbox/Blind box model Standard.jpg",
-      "assets/images/blindbox/Blind box model Premium.jpg"
+      "assets/images/blindbox/Blind box model Basic.webp",
+      "assets/images/blindbox/Blind box model 2.webp",
+      "assets/images/blindbox/Blind box model Standard.webp",
+      "assets/images/blindbox/Blind box model Premium.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"
@@ -379,10 +379,10 @@
   "box_575e2155ebbf42ecbc666f32ccc37aab": {
     "artifactDesc": "Có 3 tùy chọn: Không hộp (269k), Có hộp (329k), Hộp gỗ (529k).",
     "gallery": [
-      "assets/images/blindbox/Blind box model Standard.jpg",
-      "assets/images/blindbox/Blind box model 2.jpg",
-      "assets/images/blindbox/Blind box model Basic.jpg",
-      "assets/images/blindbox/Blind box model Premium.jpg"
+      "assets/images/blindbox/Blind box model Standard.webp",
+      "assets/images/blindbox/Blind box model 2.webp",
+      "assets/images/blindbox/Blind box model Basic.webp",
+      "assets/images/blindbox/Blind box model Premium.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"
@@ -390,10 +390,10 @@
   "box_0234e6d19b374b35ba13cd3fa9f9d18b": {
     "artifactDesc": "Có 3 tùy chọn: Không hộp (299k), Có hộp (359k), Hộp gỗ (559k).",
     "gallery": [
-      "assets/images/blindbox/Blind box model Premium.jpg",
-      "assets/images/blindbox/Blind box model 2.jpg",
-      "assets/images/blindbox/Blind box model Basic.jpg",
-      "assets/images/blindbox/Blind box model Standard.jpg"
+      "assets/images/blindbox/Blind box model Premium.webp",
+      "assets/images/blindbox/Blind box model 2.webp",
+      "assets/images/blindbox/Blind box model Basic.webp",
+      "assets/images/blindbox/Blind box model Standard.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"

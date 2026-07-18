@@ -27,8 +27,7 @@
   }
 
   try {
-    const res = await fetch('assets/data/products-detail.json');
-    const allDetails = await res.json();
+    const allDetails = await getProductDetails();
     const detail = allDetails[product.id];
     if (detail) {
       Object.assign(product, detail);

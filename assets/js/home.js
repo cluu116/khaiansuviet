@@ -9,39 +9,21 @@
   // Signal to common.js that this page has its own merged scroll handler
   window._homeScrollActive = true;
 
-  /* ── Blind Box Data (homepage only) ── */
-  const BLIND_BOXES = [
-    {
-      id: "box_bdddc48ec18c4fc998ee351dc0eaa98d",
-      name: 'ẤN TÍCH VIỆT SỬ - Basic',
-      qty: 'Dòng Cơ Bản',
-      desc: 'Bao gồm: Tiền Thái Bình Hưng Bảo, Nỏ thần An Dương Vương, Gạch Đại Việt quốc quân thành chuyên.',
-      priceBase: 239000,
-      priceBox: 299000,
-      priceWood: 499000,
-      image: 'assets/images/blindbox/Blind box model Basic.jpg'
-    },
-    {
-      id: "box_575e2155ebbf42ecbc666f32ccc37aab",
-      name: 'ẤN TÍCH VIỆT SỬ - Standard',
-      qty: 'Dòng Tiêu Chuẩn',
-      desc: 'Bao gồm: Súng thần công, Thuyền chiến Đàng Trong, Đá Thành Nhà Hồ.',
-      priceBase: 269000,
-      priceBox: 329000,
-      priceWood: 529000,
-      image: 'assets/images/blindbox/Blind box model Standard.jpg'
-    },
-    {
-      id: "box_0234e6d19b374b35ba13cd3fa9f9d18b",
-      name: 'ẤN TÍCH VIỆT SỬ - Premium',
-      qty: 'Dòng Cao Cấp',
-      desc: 'Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý.',
-      priceBase: 299000,
-      priceBox: 359000,
-      priceWood: 559000,
-      image: 'assets/images/blindbox/Blind box model Premium.jpg'
-    }
-  ];
+  /* ── Blind Box Data (derived from PRODUCTS in data.js) ── */
+  const BLIND_BOXES = (typeof PRODUCTS !== 'undefined' ? PRODUCTS : [])
+    .filter(p => p.type === 'blindbox')
+    .map(p => ({
+      id: p.id,
+      name: p.artifact,
+      qty: p.artifact.includes('Basic') ? 'Dòng Cơ Bản'
+         : p.artifact.includes('Standard') ? 'Dòng Tiêu Chuẩn'
+         : 'Dòng Cao Cấp',
+      desc: p.description,
+      priceBase: p.price,
+      priceBox: p.priceBox,
+      priceWood: p.priceWood,
+      image: p.image
+    }));
 
   /* ============================================================
      1. RENDER BLIND BOX GRID
@@ -190,6 +172,9 @@
     setTimeout(cacheLayout, 150);
   });
 
+  // Cache scroll-to-top reference (avoid getElementById every frame)
+  let _scrollTopBtn = null;
+
   function handleScrollEffects() {
     const scrollY = window.scrollY;
 
@@ -199,12 +184,12 @@
     }
 
     // Scroll-to-top button visibility
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-    if (scrollTopBtn) {
+    if (!_scrollTopBtn) _scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (_scrollTopBtn) {
       if (scrollY > 400) {
-        scrollTopBtn.classList.add('visible');
+        _scrollTopBtn.classList.add('visible');
       } else {
-        scrollTopBtn.classList.remove('visible');
+        _scrollTopBtn.classList.remove('visible');
       }
     }
 

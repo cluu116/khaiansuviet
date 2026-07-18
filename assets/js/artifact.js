@@ -44,8 +44,7 @@
     if (!state.product) return;
 
     try {
-      const res = await fetch('assets/data/products-detail.json');
-      const allDetails = await res.json();
+      const allDetails = await getProductDetails();
       const detail = allDetails[state.product.id];
       if (detail) {
         Object.assign(state.product, detail);
@@ -154,17 +153,23 @@
       galleryContainer.innerHTML = '';
 
       gallery.forEach((imgSrc, index) => {
+        const thumbDiv = document.createElement('div');
+        thumbDiv.className = `artifact__thumb ${index === 0 ? 'active' : ''}`;
+        thumbDiv.dataset.index = index;
+        thumbDiv.addEventListener('click', () => changeVisualToImage(index));
+
         const img = document.createElement('img');
         img.src = imgSrc;
-        img.className = 'artifact__gallery-img';
         img.title = 'Xem ảnh';
-        img.dataset.index = index;
         img.loading = 'lazy';
         img.decoding = 'async';
-        img.width = 1122;
-        img.height = 1448;
-        img.addEventListener('click', () => changeVisualToImage(index));
-        galleryContainer.appendChild(img);
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '4px';
+
+        thumbDiv.appendChild(img);
+        galleryContainer.appendChild(thumbDiv);
       });
     }
 
@@ -173,28 +178,28 @@
 
       // Nút 3D
       const btn3d = document.createElement('button');
-      btn3d.className = 'artifact__btn-action btn-3d';
+      btn3d.className = 'btn-cta';
       btn3d.id = 'btnAction3D';
       btn3d.title = 'Xem 3D';
       btn3d.innerHTML = `
-        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="20" height="20" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
           <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
         </svg>
-        <span>XEM 3D</span>
+        XEM 3D
       `;
       btn3d.addEventListener('click', load3DModel);
       actionsContainer.appendChild(btn3d);
 
       // Nút AR
       const btnAr = document.createElement('button');
-      btnAr.className = 'artifact__btn-action btn-ar';
+      btnAr.className = 'btn-cta btn-cta--secondary';
       btnAr.title = 'Xem AR';
       btnAr.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
         </svg>
-        <span>MỞ AR</span>
+        MỞ AR
       `;
       btnAr.addEventListener('click', handleAR);
       actionsContainer.appendChild(btnAr);
@@ -331,9 +336,9 @@
     cleanup();
 
     // Cập nhật hiệu ứng select trên các ảnh
-    document.querySelectorAll('.artifact__gallery-img').forEach((img, i) => {
-      if (i === index) img.classList.add('active');
-      else img.classList.remove('active');
+    document.querySelectorAll('.artifact__thumb').forEach((thumb, i) => {
+      if (i === index) thumb.classList.add('active');
+      else thumb.classList.remove('active');
     });
 
     // Bỏ active trên nút 3D nếu có
@@ -397,7 +402,7 @@
           <div class="time-compass__ring time-compass__ring--inner"></div>
           <div class="time-compass__center">
             <div class="time-compass__glow"></div>
-            <img src="assets/images/logo.jpg" alt="Logo" class="time-compass__logo" />
+            <img src="assets/images/logo.webp" alt="Logo" class="time-compass__logo" />
           </div>
         </div>
         <div class="artifact3d-progress">
@@ -491,7 +496,7 @@
     state.isLoading = true;
 
     // Cập nhật hiệu ứng active cho nút 3D và bỏ ở ảnh
-    document.querySelectorAll('.artifact__gallery-img').forEach(img => img.classList.remove('active'));
+    document.querySelectorAll('.artifact__thumb').forEach(thumb => thumb.classList.remove('active'));
     const btn3d = document.getElementById('btnAction3D');
     if (btn3d) btn3d.classList.add('active');
 

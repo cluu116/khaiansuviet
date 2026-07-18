@@ -457,19 +457,23 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmerText 3s linear infinite;
-  background-image: linear-gradient(90deg, #FFF 0%, var(--vang-thep-light) 50%, #FFF 100%); /* Default gold */
+  background-image: linear-gradient(90deg, #FFF 0%, var(--vang-thep-light) 50%, #FFF 100%);
+  /* Default gold */
 }
 
 .blind-box__card--basic .blind-box__name {
-  background-image: linear-gradient(90deg, #B0BEC5 0%, #FFFFFF 50%, #B0BEC5 100%); /* Silver */
+  background-image: linear-gradient(90deg, #B0BEC5 0%, #FFFFFF 50%, #B0BEC5 100%);
+  /* Silver */
 }
 
 .blind-box__card--standard .blind-box__name {
-  background-image: linear-gradient(90deg, #FFF 0%, var(--vang-thep-light) 50%, #FFF 100%); /* Gold */
+  background-image: linear-gradient(90deg, #FFF 0%, var(--vang-thep-light) 50%, #FFF 100%);
+  /* Gold */
 }
 
 .blind-box__card--premium .blind-box__name {
-  background-image: linear-gradient(90deg, var(--vang-thep-light) 0%, var(--do-chu-sa) 50%, var(--vang-thep-light) 100%); /* Red & Gold */
+  background-image: linear-gradient(90deg, var(--vang-thep-light) 0%, var(--do-chu-sa) 50%, var(--vang-thep-light) 100%);
+  /* Red & Gold */
 }
 
 .blind-box__desc {
@@ -529,10 +533,10 @@
   padding: 14px 0;
   color: #FFE87A;
   background: linear-gradient(135deg,
-    #FFE57A 0%,
-    #FFD700 30%,
-    #D4A017 65%,
-    #7A5200 100%);
+      #FFE57A 0%,
+      #FFD700 30%,
+      #D4A017 65%,
+      #7A5200 100%);
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
@@ -544,12 +548,10 @@
   overflow: hidden;
   z-index: 1;
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.25s ease;
-  clip-path: polygon(
-    10px 0, calc(100% - 10px) 0,
-    100% 10px, 100% calc(100% - 10px),
-    calc(100% - 10px) 100%, 10px 100%,
-    0 calc(100% - 10px), 0 10px
-  );
+  clip-path: polygon(10px 0, calc(100% - 10px) 0,
+      100% 10px, 100% calc(100% - 10px),
+      calc(100% - 10px) 100%, 10px 100%,
+      0 calc(100% - 10px), 0 10px);
   filter: drop-shadow(0 4px 14px rgba(212, 160, 23, 0.45));
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
   animation: ctaGoldPulse 3s ease-in-out infinite;
@@ -560,12 +562,10 @@
   position: absolute;
   inset: 3px;
   background: linear-gradient(160deg, #3D0E08 0%, #5a1a14 50%, #2A0800 100%);
-  clip-path: polygon(
-    7px 0, calc(100% - 7px) 0,
-    100% 7px, 100% calc(100% - 7px),
-    calc(100% - 7px) 100%, 7px 100%,
-    0 calc(100% - 7px), 0 7px
-  );
+  clip-path: polygon(7px 0, calc(100% - 7px) 0,
+      100% 7px, 100% calc(100% - 7px),
+      calc(100% - 7px) 100%, 7px 100%,
+      0 calc(100% - 7px), 0 7px);
   z-index: -1;
   transition: background 0.3s ease;
 }
@@ -573,10 +573,11 @@
 .blind-box__btn::after {
   content: '';
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 40%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,200,0.22), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 200, 0.22), transparent);
   transform: translateX(-120%) skewX(-20deg);
   animation: ctaShimmer 3.5s ease-in-out infinite;
   pointer-events: none;
@@ -1120,22 +1121,20 @@
   text-transform: uppercase;
   color: #FFD5CC;
   background: linear-gradient(135deg,
-    #D4614A 0%,
-    #A62C21 35%,
-    #7a1f17 70%,
-    #4A0E09 100%);
+      #D4614A 0%,
+      #A62C21 35%,
+      #7a1f17 70%,
+      #4A0E09 100%);
   border: none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   z-index: 1;
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
-  clip-path: polygon(
-    12px 0, calc(100% - 12px) 0,
-    100% 12px, 100% calc(100% - 12px),
-    calc(100% - 12px) 100%, 12px 100%,
-    0 calc(100% - 12px), 0 12px
-  );
+  clip-path: polygon(12px 0, calc(100% - 12px) 0,
+      100% 12px, 100% calc(100% - 12px),
+      calc(100% - 12px) 100%, 12px 100%,
+      0 calc(100% - 12px), 0 12px);
   filter: drop-shadow(0 6px 18px rgba(166, 44, 33, 0.45));
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   animation: ctaRedPulse 3s ease-in-out infinite;
@@ -1146,12 +1145,10 @@
   position: absolute;
   inset: 3px;
   background: linear-gradient(160deg, #1A0300 0%, #2E0A06 50%, #120200 100%);
-  clip-path: polygon(
-    9px 0, calc(100% - 9px) 0,
-    100% 9px, 100% calc(100% - 9px),
-    calc(100% - 9px) 100%, 9px 100%,
-    0 calc(100% - 9px), 0 9px
-  );
+  clip-path: polygon(9px 0, calc(100% - 9px) 0,
+      100% 9px, 100% calc(100% - 9px),
+      calc(100% - 9px) 100%, 9px 100%,
+      0 calc(100% - 9px), 0 9px);
   z-index: -1;
   transition: background 0.35s ease;
 }
@@ -1159,8 +1156,10 @@
 .contact__form-submit::after {
   content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 40%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 200, 180, 0.18), transparent);
   transform: translateX(-120%) skewX(-20deg);
   animation: ctaShimmer 3.5s ease-in-out infinite;

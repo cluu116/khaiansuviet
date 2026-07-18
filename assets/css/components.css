@@ -60,7 +60,7 @@
 .preloader__logo {
   position: absolute;
   inset: 22px;
-  background-image: url('../images/logo.jpg');
+  background-image: url('../images/logo.webp');
   background-size: cover;
   background-position: center;
   border-radius: 50%;
@@ -333,10 +333,10 @@
               color 0.3s ease;
   /* Cổ phong octagonal clip */
   clip-path: polygon(
-    14px 0, calc(100% - 14px) 0,
-    100% 14px, 100% calc(100% - 14px),
-    calc(100% - 14px) 100%, 14px 100%,
-    0 calc(100% - 14px), 0 14px
+    10px 0, calc(100% - 10px) 0,
+    100% 10px, 100% calc(100% - 10px),
+    calc(100% - 10px) 100%, 10px 100%,
+    0 calc(100% - 10px), 0 10px
   );
   filter: drop-shadow(0 6px 20px rgba(212, 160, 23, 0.5));
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
@@ -350,10 +350,10 @@
   inset: 3px;
   background: linear-gradient(160deg, #3D0E08 0%, #5a1a14 50%, #2A0800 100%);
   clip-path: polygon(
-    11px 0, calc(100% - 11px) 0,
-    100% 11px, 100% calc(100% - 11px),
-    calc(100% - 11px) 100%, 11px 100%,
-    0 calc(100% - 11px), 0 11px
+    7px 0, calc(100% - 7px) 0,
+    100% 7px, 100% calc(100% - 7px),
+    calc(100% - 7px) 100%, 7px 100%,
+    0 calc(100% - 7px), 0 7px
   );
   z-index: -1;
   transition: background 0.35s ease, opacity 0.3s ease;
