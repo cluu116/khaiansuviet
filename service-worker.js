@@ -1,4 +1,4 @@
-const CACHE_NAME = 'khaiansuviet-v1.4';
+const CACHE_NAME = 'khaiansuviet-v1.15';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',

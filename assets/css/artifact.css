@@ -76,7 +76,7 @@
 
 @media (min-width: 1024px) {
   .artifact__grid {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1.15fr 1fr;
   }
 }
 
@@ -249,13 +249,17 @@
 
 @media (min-width: 1024px) {
   .artifact__info {
-    padding: 4rem 5rem;
-    justify-content: center;
+    padding: 3.5rem 4rem;
+    /* Thay vì justify-content: center gây lỗi cắt chữ ở phía trên, dùng flex-start và margin auto */
+    justify-content: flex-start;
   }
 }
 
 .artifact__content-wrapper {
   max-width: 65ch;
+  margin: auto 0;
+  /* Tự động căn giữa theo chiều dọc nếu còn trống không gian */
+  width: 100%;
 }
 
 /* META TAGS */
@@ -435,12 +439,13 @@
 
 .artifact__lore-artifact {
   font-family: var(--font-body);
-  font-size: 1.15rem;
-  line-height: 1.9;
+  font-size: 1.1rem;
+  line-height: 1.8;
   color: var(--trang-nga);
-  opacity: 0.9;
+  opacity: 0.95;
   margin-bottom: 2rem;
   text-align: justify;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .artifact__lore-divider {
@@ -486,12 +491,14 @@
 .artifact__lore-dynasty {
   font-family: var(--font-heading);
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.7;
   color: var(--vang-thep);
   font-style: italic;
   letter-spacing: 1px;
-  padding-left: 1rem;
+  padding-left: 1.25rem;
   border-left: 2px solid var(--do-chu-sa);
+  margin-top: 1rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadeUp {

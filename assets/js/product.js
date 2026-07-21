@@ -359,9 +359,6 @@
     if (e.key === 'Escape') {
       if (orderModal && orderModal.classList.contains('active')) {
         closeOrderModal();
-      } else if (modelModal && modelModal.classList.contains('active')) {
-        modelModal.classList.remove('active');
-        document.body.style.overflow = '';
       }
     }
   });

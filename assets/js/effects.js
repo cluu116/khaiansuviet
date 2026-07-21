@@ -20,9 +20,8 @@
   canvas.style.height = '100vh';
   canvas.style.zIndex = '1'; // Behind most elements but above base background
   canvas.style.pointerEvents = 'none';
-  canvas.style.opacity = '0.6';
-  canvas.style.mixBlendMode = 'screen';
-  
+  canvas.style.opacity = '0.8'; // Tăng opacity nhẹ để dễ nhìn hơn trên nền sáng
+
   document.body.insertBefore(canvas, document.body.firstChild);
 
   const ctx = canvas.getContext('2d');
@@ -76,13 +75,13 @@
       this.speedX = (Math.random() - 0.5) * 0.4; // drift horizontally
       this.opacity = Math.random() * 0.5 + 0.2;
       // Gold and Ember colors
-      this.color = Math.random() > 0.5 ? '218, 165, 32' : '255, 140, 0'; 
+      this.color = Math.random() > 0.5 ? '218, 165, 32' : '255, 140, 0';
     }
 
     update() {
       this.y += this.speedY;
       this.x += this.speedX;
-      
+
       // Twinkle effect
       this.opacity += (Math.random() - 0.5) * 0.05;
       if (this.opacity < 0.1) this.opacity = 0.1;
@@ -183,40 +182,8 @@
     }
   });
 
-  // IntersectionObserver — pause when canvas is scrolled out of viewport
-  // Canvas is fixed-position, so we observe a sentinel element or use scroll position
-  // Since canvas is position:fixed and always covers viewport, we check if user
-  // has scrolled far enough that the dark background sections are no longer visible
-  // For simplicity, we observe the body's scroll position relative to hero/dark sections
-  function setupViewportObserver() {
-    // The canvas effect is most visible on dark backgrounds
-    // Pause it when user scrolls into light-themed sections entirely
-    const darkSections = document.querySelectorAll('.section:not(.theme-light), .hero, .products, .footer');
-    
-    if (darkSections.length === 0) {
-      // No dark sections found, keep running
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      // If ANY dark section is visible, keep animating
-      const anyDarkVisible = entries.some(entry => entry.isIntersecting);
-      
-      if (anyDarkVisible && !isInViewport) {
-        isInViewport = true;
-        startAnimation();
-      } else if (!anyDarkVisible && isInViewport) {
-        isInViewport = false;
-        stopAnimation();
-      }
-    }, { threshold: 0 });
-
-    darkSections.forEach(section => observer.observe(section));
-  }
-
   function start() {
     resize();
-    setupViewportObserver();
     startAnimation();
   }
 

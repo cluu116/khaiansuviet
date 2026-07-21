@@ -2,9 +2,10 @@
   "kasv_4be3b45e347a46169a6fa592bcdfe00d": {
     "artifactDesc": "Mặt trống có hình ngôi sao nhiều cánh ở trung tâm, bao quanh là các vành hoa văn khắc hình chim, người, thuyền, nhà sàn cùng nhiều họa tiết tinh xảo.",
     "gallery": [
-      "assets/images/artifacts/Trống đồng Đông Sơn.webp"
+      "assets/images/artifacts/Trống đồng Đông Sơn/Trống đồng Đông Sơn.webp",
+      "assets/images/artifacts/Trống đồng Đông Sơn/Trống đồng Đông Sơn 2.webp"
     ],
-    "audio": "assets/audio/trongdong.mp3",
+    "audio": "assets/audio/trong-dong.mp3",
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/trongdong-v1.usdz",
     "details": {
@@ -29,7 +30,8 @@
   "kasv_b7c018a1616c42ac9073368b9e001470": {
     "artifactDesc": "Cơ chế nỏ có khả năng phóng nhiều mũi tên cùng lúc, cấu tạo gồm thân nỏ, bộ phận lẫy và cơ chế phóng lực. Các chi tiết hiện nay được phục dựng từ tư liệu khảo cổ và ghi chép lịch sử còn lại.",
     "gallery": [
-      "assets/images/artifacts/Nỏ thần An Dương Vương.webp"
+      "assets/images/artifacts/Nỏ thần An Dương Vương/Nỏ thần An Dương Vương.webp",
+      "assets/images/artifacts/Nỏ thần An Dương Vương/Nỏ thần An Dương Vương 2.webp"
     ],
     "audio": "assets/audio/nothan.mp3",
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/nothan-v1.glb",
@@ -56,7 +58,8 @@
   "kasv_fdd63a242a4d43bd846f1c09eb5b0f6f": {
     "artifactDesc": "Sa hình tái hiện dòng sông, thuyền chiến và các hàng cọc gỗ nhọn cắm dưới mặt nước. Những chiếc cọc được bố trí để ẩn đi khi triều dâng và dần hiện ra khi nước rút, thể hiện chiến thuật tận dụng thủy triều nổi bật trong trận Bạch Đằng năm 938.",
     "gallery": [
-      "assets/images/artifacts/Sa hình Cọc gỗ Bạch Đằng.webp"
+      "assets/images/artifacts/Sa hình Cọc gỗ Bạch Đằng/Sa hình Cọc gỗ Bạch Đằng.webp",
+      "assets/images/artifacts/Sa hình Cọc gỗ Bạch Đằng/Sa hình Cọc gỗ Bạch Đằng 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sahinh-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sahinh-v1.usdz",
@@ -77,12 +80,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những vật rất giản dị, như một thân gỗ giữa lòng sông.<br>Nhưng khi được đặt đúng nơi, đúng lúc và bởi những con người biết đoàn kết, chúng có thể tạo nên một câu chuyện lớn.<br>Sa hình trận thủy chiến Bạch Đằng năm 938 nhắc chúng mình về trí tuệ, lòng dũng cảm và ý chí bảo vệ đất nước của người Việt xưa.<br>Từ những thân gỗ dưới lòng sông, một cánh cửa mới của lịch sử đã mở ra.<br>Và ở đâu đó, vẫn còn nhiều cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…"
     ],
     "silhouetteSvg": "<line x1=\"25\" y1=\"15\" x2=\"25\" y2=\"65\" stroke=\"currentColor\" stroke-width=\"2\"/><line x1=\"40\" y1=\"20\" x2=\"40\" y2=\"60\" stroke=\"currentColor\" stroke-width=\"2\"/><line x1=\"55\" y1=\"10\" x2=\"55\" y2=\"65\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"M15 65 Q40 55 65 65\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/>",
-    "backSvg": "<line x1=\"35\" y1=\"10\" x2=\"35\" y2=\"70\" stroke=\"#B8860B\" stroke-width=\"2.5\"/><line x1=\"55\" y1=\"15\" x2=\"55\" y2=\"65\" stroke=\"#B8860B\" stroke-width=\"2.5\"/><line x1=\"75\" y1=\"8\" x2=\"75\" y2=\"72\" stroke=\"#B8860B\" stroke-width=\"2.5\"/><path d=\"M20 70 Q55 55 100 72\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M20 78 Q55 68 100 80\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">CỌC BẠCH ĐẰNG</text>"
+    "backSvg": "<line x1=\"35\" y1=\"10\" x2=\"35\" y2=\"70\" stroke=\"#B8860B\" stroke-width=\"2.5\"/><line x1=\"55\" y1=\"15\" x2=\"55\" y2=\"65\" stroke=\"#B8860B\" stroke-width=\"2.5\"/><line x1=\"75\" y1=\"8\" x2=\"75\" y2=\"72\" stroke=\"#B8860B\" stroke-width=\"2.5\"/><path d=\"M20 70 Q55 55 100 72\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M20 78 Q55 68 100 80\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">CỌC BẠCH ĐẰNG</text>",
+    "audio": "assets/audio/coc-bach-dang.mp3"
   },
   "kasv_542c8726aed941a6ab40ceae371819ee": {
     "artifactDesc": "Đồng tiền có hình tròn, ở giữa là lỗ vuông, mặt tiền khắc bốn chữ Hán \"Thái Bình Hưng Bảo\". Đây là một trong những đồng tiền tiêu biểu phản ánh sự phát triển của nền kinh tế và quyền tự chủ của Đại Cồ Việt dưới triều Tiền Lê.",
     "gallery": [
-      "assets/images/artifacts/Tiền Thái Bình Hưng Bảo.webp"
+      "assets/images/artifacts/Tiền Thái Bình Hưng Bảo/Tiền Thái Bình Hưng Bảo.webp",
+      "assets/images/artifacts/Tiền Thái Bình Hưng Bảo/Tiền Thái Bình Hưng Bảo 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/dongtien-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/dongtien-v1.usdz",
@@ -103,12 +108,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những cổ vật không lớn hơn lòng bàn tay.<br>Thế nhưng, chúng lại mang theo cả câu chuyện về một thời đại.<br>Đồng tiền Thái Bình Hưng Bảo không chỉ là phương tiện để mua bán, trao đổi hàng hóa mà còn là minh chứng cho sự phát triển của nền kinh tế và quyền tự chủ của Đại Cồ Việt dưới triều Tiền Lê. Qua đồng tiền nhỏ bé ấy, chúng chúng ta có thể hình dung những phiên chợ đông vui, bàn tay khéo léo của người thợ đúc tiền và khát vọng xây dựng một đất nước ngày càng vững mạnh sau khi giữ vững nền độc lập.<br>Và biết đâu, vẫn còn rất nhiều cổ vật đang lặng lẽ chờ bạn nhỏ khám phá, để tiếp tục kể những câu chuyện thú vị về hành trình dựng nước và giữ nước của dân tộc Việt Nam."
     ],
     "silhouetteSvg": "<circle cx=\"40\" cy=\"38\" r=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><rect x=\"34\" y=\"32\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><circle cx=\"40\" cy=\"38\" r=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.6\" opacity=\"0.5\"/>",
-    "backSvg": "<circle cx=\"60\" cy=\"45\" r=\"32\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><rect x=\"50\" y=\"35\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><circle cx=\"60\" cy=\"45\" r=\"25\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><circle cx=\"60\" cy=\"45\" r=\"38\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.5\" opacity=\"0.3\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">THÁI BÌNH HƯNG BẢO</text>"
+    "backSvg": "<circle cx=\"60\" cy=\"45\" r=\"32\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><rect x=\"50\" y=\"35\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><circle cx=\"60\" cy=\"45\" r=\"25\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><circle cx=\"60\" cy=\"45\" r=\"38\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.5\" opacity=\"0.3\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">THÁI BÌNH HƯNG BẢO</text>",
+    "audio": "assets/audio/tien-thai-binh-hung-bao.mp3"
   },
   "kasv_90ba8e957f584ff99df9209f16a626d4": {
     "artifactDesc": "Gạch có dạng hình hộp chữ nhật, được nung ở nhiệt độ cao. Trên bề mặt khắc dòng chữ Hán \"大越國軍城磚\" (Đại Việt quốc quân thành chuyên), cho biết đây là loại gạch được chế tác riêng để xây dựng các công trình của triều đình.",
     "gallery": [
-      "assets/images/artifacts/Gạch Đại Việt quốc quân thành chuyên.webp"
+      "assets/images/artifacts/Gạch Đại Việt quốc quân thành chuyên/Gạch Đại Việt quốc quân thành chuyên.webp",
+      "assets/images/artifacts/Gạch Đại Việt quốc quân thành chuyên/Gạch Đại Việt quốc quân thành chuyên 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/gachdaiviet-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/gachdaiviet-v1.usdz",
@@ -129,12 +136,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những kho báu không lấp lánh như vàng bạc.<br>Chúng lặng lẽ nằm dưới lòng đất qua hàng nghìn năm, chờ đến ngày được con người tìm thấy.<br>Viên gạch \"Đại Việt quốc quân thành chuyên\" là một trong những kho báu như thế. Không chỉ là vật liệu xây dựng, nó còn là chứng nhân cho những ngày đầu dựng xây kinh đô Hoa Lư và phản ánh sự phát triển về kỹ thuật, tổ chức và tầm nhìn của nhà Đinh trong buổi đầu xây dựng quốc gia độc lập.<br>Và biết đâu, dưới lòng đất vẫn còn rất nhiều cổ vật đang lặng lẽ chờ bạn nhỏ tiếp tục khám phá trong những chuyến du hành thời gian tiếp theo…"
     ],
     "silhouetteSvg": "<rect x=\"18\" y=\"25\" width=\"44\" height=\"28\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><line x1=\"25\" y1=\"34\" x2=\"55\" y2=\"34\" stroke=\"currentColor\" stroke-width=\"0.8\"/><line x1=\"25\" y1=\"40\" x2=\"50\" y2=\"40\" stroke=\"currentColor\" stroke-width=\"0.8\"/><line x1=\"25\" y1=\"46\" x2=\"45\" y2=\"46\" stroke=\"currentColor\" stroke-width=\"0.8\"/>",
-    "backSvg": "<rect x=\"25\" y=\"22\" width=\"70\" height=\"45\" rx=\"3\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><line x1=\"35\" y1=\"34\" x2=\"85\" y2=\"34\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"35\" y1=\"42\" x2=\"80\" y2=\"42\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"35\" y1=\"50\" x2=\"70\" y2=\"50\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"35\" y1=\"58\" x2=\"60\" y2=\"58\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">GẠCH THÀNH CHUYÊN</text>"
+    "backSvg": "<rect x=\"25\" y=\"22\" width=\"70\" height=\"45\" rx=\"3\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><line x1=\"35\" y1=\"34\" x2=\"85\" y2=\"34\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"35\" y1=\"42\" x2=\"80\" y2=\"42\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"35\" y1=\"50\" x2=\"70\" y2=\"50\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"35\" y1=\"58\" x2=\"60\" y2=\"58\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">GẠCH THÀNH CHUYÊN</text>",
+    "audio": "assets/audio/gach-thanh-quan-chuyen.mp3"
   },
   "kasv_db3e2121d18c44739f0720b0f59310b7": {
     "artifactDesc": "Rồng thời Lý có thân mềm mại uốn lượn như đang bay giữa mây trời, đầu nhỏ, miệng há, râu dài, không mang dáng vẻ dữ tợn mà thanh thoát và uyển chuyển. Đây là một trong những hình tượng nghệ thuật tiêu biểu phản ánh sự phát triển rực rỡ của văn hóa và mỹ thuật thời Lý.",
     "gallery": [
-      "assets/images/artifacts/Đầu rồng thời Lý.webp"
+      "assets/images/artifacts/Đầu rồng thời Lý/Đầu rồng thời Lý.webp",
+      "assets/images/artifacts/Đầu rồng thời Lý/Đầu rồng thời Lý 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/daurong-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/daurong-v1.usdz",
@@ -155,12 +164,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những con rồng chỉ xuất hiện trong truyền thuyết.<br>Nhưng cũng có những con rồng vẫn còn ở lại cùng thời gian, qua những tác phẩm nghệ thuật mà người xưa để lại.<br>Đầu rồng thời Lý là một trong những biểu tượng tiêu biểu của mỹ thuật Việt Nam. Không chỉ làm đẹp cho các công trình kiến trúc, hình tượng rồng còn phản ánh sự phát triển rực rỡ của văn hóa, nghệ thuật và khát vọng xây dựng một đất nước thanh bình, hưng thịnh dưới triều Lý.<br>Và biết đâu, vẫn còn nhiều cổ vật đang lặng lẽ chờ bạn nhỏ khám phá, để tiếp tục kể những câu chuyện thú vị về hành trình dựng nước và giữ nước của dân tộc Việt Nam"
     ],
     "silhouetteSvg": "<path d=\"M15 50 Q25 30 35 40 Q45 50 55 30 Q65 15 75 25\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><circle cx=\"75\" cy=\"25\" r=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M15 50 Q10 60 20 65\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/>",
-    "backSvg": "<path d=\"M15 70 Q30 40 45 55 Q60 70 75 40 Q90 15 105 30\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"105\" cy=\"30\" r=\"6\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><circle cx=\"107\" cy=\"28\" r=\"1.5\" fill=\"#B8860B\"/><path d=\"M15 70 Q8 82 20 85\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M12 72 Q5 78 15 80\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\" opacity=\"0.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ĐẦU RỒNG THỜI LÝ</text>"
+    "backSvg": "<path d=\"M15 70 Q30 40 45 55 Q60 70 75 40 Q90 15 105 30\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"105\" cy=\"30\" r=\"6\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><circle cx=\"107\" cy=\"28\" r=\"1.5\" fill=\"#B8860B\"/><path d=\"M15 70 Q8 82 20 85\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M12 72 Q5 78 15 80\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\" opacity=\"0.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ĐẦU RỒNG THỜI LÝ</text>",
+    "audio": "assets/audio/dau-rong-nha-ly.mp3"
   },
   "kasv_8fc4f5bf04b14e8c8b70f543ca8b6235": {
     "artifactDesc": "Mô hình được sáng tạo theo cảm hứng từ hình thức ấn cổ và mỹ thuật thời Trần. Phần núm ấn gợi liên tưởng đến vẻ mạnh mẽ, trang nghiêm của một thời đại luôn đặt tinh thần giữ nước và trách nhiệm với non sông lên hàng đầu.",
     "gallery": [
-      "assets/images/artifacts/Ấn tín nhà Trần.webp"
+      "assets/images/artifacts/Ấn tín nhà Trần/Ấn tín nhà Trần.webp",
+      "assets/images/artifacts/Ấn tín nhà Trần/Ấn tín nhà Trần 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/antran-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/antran-v1.usdz",
@@ -181,12 +192,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những cổ vật không kể chuyện bằng lời.<br>Chúng lặng lẽ nằm lại qua hàng trăm năm, nhưng chỉ cần chúng mình nhìn thật kỹ, mỗi đường nét đều có thể mở ra một cánh cửa dẫn về quá khứ.<br>Chiếc ấn tín nhà Trần cũng như thế.<br>Nó nhắc chúng mình về một thời đại mà lòng yêu nước được thể hiện bằng những hành động rất lớn lao: từ việc giữ vững triều đình, tổ chức đất nước, chuẩn bị quân đội cho đến việc cùng nhau bảo vệ từng tấc đất quê hương.<br>Hào khí Đông A không chỉ nằm trong những chiến thắng lừng lẫy.<br>Hào khí ấy còn nằm trong tinh thần đoàn kết, sự can đảm và trách nhiệm của mỗi người với đất nước mình.<br>Và biết đâu, sau chiếc ấn này, vẫn còn rất nhiều cổ vật khác đang chờ bạn nhỏ tiếp tục khai quật, khám phá và lắng nghe câu chuyện của lịch sử Đại Việt."
     ],
     "silhouetteSvg": "<rect x=\"20\" y=\"20\" width=\"40\" height=\"40\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><rect x=\"28\" y=\"28\" width=\"24\" height=\"24\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.8\"/><text x=\"40\" y=\"46\" text-anchor=\"middle\" font-family=\"serif\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.5\">印</text>",
-    "backSvg": "<rect x=\"30\" y=\"20\" width=\"60\" height=\"55\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"38\" y=\"28\" width=\"44\" height=\"39\" rx=\"2\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><text x=\"60\" y=\"54\" text-anchor=\"middle\" font-family=\"serif\" font-size=\"22\" fill=\"#B8860B\" opacity=\"0.6\">印</text><rect x=\"45\" y=\"12\" width=\"30\" height=\"12\" rx=\"6\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ẤN TÍN NHÀ TRẦN</text>"
+    "backSvg": "<rect x=\"30\" y=\"20\" width=\"60\" height=\"55\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"38\" y=\"28\" width=\"44\" height=\"39\" rx=\"2\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><text x=\"60\" y=\"54\" text-anchor=\"middle\" font-family=\"serif\" font-size=\"22\" fill=\"#B8860B\" opacity=\"0.6\">印</text><rect x=\"45\" y=\"12\" width=\"30\" height=\"12\" rx=\"6\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ẤN TÍN NHÀ TRẦN</text>",
+    "audio": "assets/audio/an-tin-nha-tran.mp3"
   },
   "kasv_7cdd1a74a27347779c3f3f7bc7b69c35": {
     "artifactDesc": "Thành nổi bật với những khối đá khổng lồ được đẽo gọt vuông vức, ghép chặt vào nhau mà gần như không cần chất kết dính. Bốn cổng thành được xây theo kiểu vòm cuốn bằng đá; trong đó Cổng Nam là cổng chính, có ba cửa vòm lớn và là hình ảnh tiêu biểu nhất của Thành Nhà Hồ.",
     "gallery": [
-      "assets/images/artifacts/Đá Thành Nhà Hồ.webp"
+      "assets/images/artifacts/Đá Thành Nhà Hồ/Đá Thành Nhà Hồ.webp",
+      "assets/images/artifacts/Đá Thành Nhà Hồ/Đá Thành Nhà Hồ 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thanhnhaho-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thanhnhaho-v1.usdz",
@@ -208,12 +221,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Có những cổ vật nhỏ bé có thể nằm gọn trong lòng bàn tay.<br>Nhưng cũng có những cổ vật lớn đến mức chúng ta phải bước đi thật xa mới có thể nhìn hết vẻ đẹp của chúng.<br>Thành Nhà Hồ là một cổ vật đặc biệt như thế.<br>Dù đã trải qua hơn sáu thế kỷ với nắng, mưa và những đổi thay của lịch sử, những bức tường đá vẫn còn đứng đó, lặng lẽ kể cho chúng mình nghe về một kinh đô xưa.<br>Tòa thành nhắc chúng mình rằng: có những điều được tạo nên từ rất nhiều bàn tay, rất nhiều trí tuệ và rất nhiều niềm tin.<br>Và mỗi khi nhìn vào những phiến đá lớn ấy, chúng mình có thể nhớ rằng:<br>Một đất nước vững mạnh không chỉ được xây bằng thành quách, mà còn được xây bằng ý chí, trách nhiệm và sự đồng lòng của con người.<br>Biết đâu, trong hành trình tiếp theo, vẫn còn nhiều công trình cổ khác đang chờ bạn nhỏ khám phá và lắng nghe câu chuyện của lịch sử Việt Nam."
     ],
     "silhouetteSvg": "<rect x=\"15\" y=\"30\" width=\"50\" height=\"35\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M15 30 L40 15 L65 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><rect x=\"33\" y=\"45\" width=\"14\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/>",
-    "backSvg": "<rect x=\"15\" y=\"35\" width=\"90\" height=\"40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M15 35 L60 10 L105 35\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"48\" y=\"50\" width=\"24\" height=\"25\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M48 62 L72 62\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"25\" y1=\"45\" x2=\"25\" y2=\"75\" stroke=\"#B8860B\" stroke-width=\"2\"/><line x1=\"95\" y1=\"45\" x2=\"95\" y2=\"75\" stroke=\"#B8860B\" stroke-width=\"2\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ĐÁ THÀNH NHÀ HỒ</text>"
+    "backSvg": "<rect x=\"15\" y=\"35\" width=\"90\" height=\"40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M15 35 L60 10 L105 35\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"48\" y=\"50\" width=\"24\" height=\"25\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M48 62 L72 62\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><line x1=\"25\" y1=\"45\" x2=\"25\" y2=\"75\" stroke=\"#B8860B\" stroke-width=\"2\"/><line x1=\"95\" y1=\"45\" x2=\"95\" y2=\"75\" stroke=\"#B8860B\" stroke-width=\"2\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ĐÁ THÀNH NHÀ HỒ</text>",
+    "audio": "assets/audio/thanh-nha-ho.mp3"
   },
   "kasv_51783bb4502e431a8537bb549b69345d": {
     "artifactDesc": "Rồng có đầu ngẩng cao, mắt tròn, sừng dài, thân uốn lượn theo từng bậc đá. Trên lưng là hàng vây nhấp nhô như mây và lửa; chân rồng có năm móng sắc nhọn. Từng đường chạm thể hiện vẻ mạnh mẽ nhưng vẫn mềm mại, tinh xảo của nghệ thuật thời Lê sơ.",
     "gallery": [
-      "assets/images/artifacts/Rồng đá điện kính thiên.webp"
+      "assets/images/artifacts/Rồng đá điện kính thiên/Rồng đá điện kính thiên.webp",
+      "assets/images/artifacts/Rồng đá điện kính thiên/Rồng đá điện kính thiên 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/rongda-v1.usdz",
@@ -235,12 +250,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Điện Kính Thiên ngày xưa rất lớn và rất đẹp.<br>Dù phần lớn công trình đã không còn nguyên vẹn, những chú rồng đá vẫn ở lại trên bậc thềm, lặng lẽ nhìn về kinh thành Thăng Long qua hàng trăm năm.<br>Rồng đá điện Kính Thiên không chỉ kể câu chuyện về một vị vua hay một cung điện.<br>Chú còn nhắc chúng mình về một thời đại mà người Việt đã cùng nhau xây dựng đất nước, gìn giữ độc lập và tạo nên những công trình đẹp đẽ, bền vững.<br>Nhìn vào chú rồng đá, chúng mình có thể nhớ rằng:<br>Sức mạnh thật sự không chỉ nằm ở quyền uy, mà còn nằm ở trách nhiệm gìn giữ và xây dựng đất nước.<br>Và biết đâu, sau chú rồng đá này, vẫn còn rất nhiều cổ vật khác đang chờ bạn nhỏ tiếp tục khám phá trong hành trình trở về với lịch sử Việt Nam."
     ],
     "silhouetteSvg": "<path d=\"M15 55 Q25 35 35 45 Q45 55 55 35 Q60 25 65 28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><circle cx=\"65\" cy=\"28\" r=\"5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M15 55 Q12 62 18 65\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><rect x=\"20\" y=\"58\" width=\"45\" height=\"8\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.8\"/>",
-    "backSvg": "<path d=\"M20 68 Q35 40 50 52 Q65 65 80 38 Q88 22 95 28\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"95\" cy=\"28\" r=\"7\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><circle cx=\"97\" cy=\"26\" r=\"2\" fill=\"#B8860B\"/><path d=\"M20 68 Q15 78 22 80\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"25\" y=\"75\" width=\"70\" height=\"10\" rx=\"2\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">RỒNG ĐÁ KÍNH THIÊN</text>"
+    "backSvg": "<path d=\"M20 68 Q35 40 50 52 Q65 65 80 38 Q88 22 95 28\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"95\" cy=\"28\" r=\"7\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><circle cx=\"97\" cy=\"26\" r=\"2\" fill=\"#B8860B\"/><path d=\"M20 68 Q15 78 22 80\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"25\" y=\"75\" width=\"70\" height=\"10\" rx=\"2\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">RỒNG ĐÁ KÍNH THIÊN</text>",
+    "audio": "assets/audio/rong-da-dien-kinh-thien.mp3"
   },
   "kasv_2dd2f9fa988a4d85b110f540a85b1dd9": {
     "artifactDesc": "Miệng lư mở rộng, thân phình; thường có chân đế; thân được đắp hoặc chạm nổi hình rồng, mây, hoa lá, cánh sen và các họa tiết mang ý nghĩa linh thiêng.",
     "gallery": [
-      "assets/images/artifacts/Lư hương gốm men nâu.webp"
+      "assets/images/artifacts/Lư hương gốm men nâu/Lư hương gốm men nâu.webp",
+      "assets/images/artifacts/Lư hương gốm men nâu/Lư hương gốm men nâu 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/luhuong-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/luhuong-v1.usdz",
@@ -261,12 +278,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Quá khứ không phải lúc nào cũng nằm trong những trang sách.<br>Đôi khi, quá khứ lại ở trong những lớp men đã trầm lại theo thời gian, bằng những hoa văn còn lưu trên thân gốm và bằng làn khói hương từng bay lên trong những ngôi chùa xưa.<br>Lư hương gốm thời Mạc giúp chúng mình hiểu rằng người Việt ngày xưa không chỉ khéo tay làm gốm, mà còn luôn gửi gắm vào đó những mong ước đẹp đẽ về sự bình an và no đủ.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…"
     ],
     "silhouetteSvg": "<path d=\"M30 55 Q30 25 40 20 Q50 25 50 55\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><ellipse cx=\"40\" cy=\"55\" rx=\"12\" ry=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><ellipse cx=\"40\" cy=\"20\" rx=\"5\" ry=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/>",
-    "backSvg": "<path d=\"M40 72 Q40 25 60 18 Q80 25 80 72\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><ellipse cx=\"60\" cy=\"72\" rx=\"22\" ry=\"6\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><ellipse cx=\"60\" cy=\"18\" rx=\"8\" ry=\"3\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M48 40 Q60 35 72 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><path d=\"M46 52 Q60 47 74 52\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">LƯ HƯƠNG GỐM</text>"
+    "backSvg": "<path d=\"M40 72 Q40 25 60 18 Q80 25 80 72\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><ellipse cx=\"60\" cy=\"72\" rx=\"22\" ry=\"6\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><ellipse cx=\"60\" cy=\"18\" rx=\"8\" ry=\"3\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M48 40 Q60 35 72 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><path d=\"M46 52 Q60 47 74 52\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">LƯ HƯƠNG GỐM</text>",
+    "audio": "assets/audio/lu-huong-nha-mac.mp3"
   },
   "kasv_0722f40301894ab2916cb444b53f6ceb": {
     "artifactDesc": "Súng thần công là biểu tượng cho bước phát triển mạnh của hỏa khí trong quân sự Việt Nam thời phong kiến. Theo tư liệu của Bảo tàng Lịch sử Quốc gia, từ thời Lê đến thời Nguyễn, thần công trở thành một loại vũ khí quan trọng, thể hiện sức mạnh quân sự của các triều đại.",
     "gallery": [
-      "assets/images/artifacts/Súng thần công.webp"
+      "assets/images/artifacts/Súng thần công/Súng thần công.webp",
+      "assets/images/artifacts/Súng thần công/Súng thần công 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sungthancong-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/sungthancong-v1.usdz",
@@ -286,12 +305,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Chỉ cần nhìn vào thân súng dài và chắc ấy, chúng mình như được trở về với Đại Việt của nhiều thế kỷ trước: có những bức thành bên sông, những chiến thuyền ngoài cửa biển, những lò đúc đỏ lửa và biết bao người cùng chung tay bảo vệ quê hương.<br>Từ một khẩu súng xưa, một mảnh ghép của lịch sử lại dần hiện ra.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…"
     ],
     "silhouetteSvg": "<path d=\"M15 45 L55 40 L60 38 L65 40 L65 45 L55 47 L15 50 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><circle cx=\"60\" cy=\"42\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M20 50 L20 60 M35 50 L35 58\" stroke=\"currentColor\" stroke-width=\"1.5\"/><ellipse cx=\"15\" cy=\"47\" rx=\"3\" ry=\"5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/>",
-    "backSvg": "<path d=\"M15 52 L80 45 L88 42 L95 45 L95 52 L80 55 L15 60 Z\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><circle cx=\"88\" cy=\"48\" r=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M25 60 L25 75 M50 58 L50 72\" stroke=\"#B8860B\" stroke-width=\"2\"/><ellipse cx=\"15\" cy=\"56\" rx=\"4\" ry=\"7\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">SÚNG THẦN CÔNG</text>"
+    "backSvg": "<path d=\"M15 52 L80 45 L88 42 L95 45 L95 52 L80 55 L15 60 Z\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><circle cx=\"88\" cy=\"48\" r=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M25 60 L25 75 M50 58 L50 72\" stroke=\"#B8860B\" stroke-width=\"2\"/><ellipse cx=\"15\" cy=\"56\" rx=\"4\" ry=\"7\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">SÚNG THẦN CÔNG</text>",
+    "audio": "assets/audio/sung-than-cong.mp3"
   },
   "kasv_6a8685ed51344e7abea0b5c739c82fef": {
     "artifactDesc": "Dưới thời các chúa Nguyễn, thủy quân được tổ chức và phát triển mạnh do Đàng Trong có đường bờ biển dài, nhiều cửa sông, cảng thị và nhu cầu mở rộng không gian sinh tồn về phía Nam. Bảo tàng Lịch sử Quốc gia nhận định thủy quân chúa Nguyễn đã làm chủ vùng biển, đảo Đàng Trong và góp phần đặt nền móng cho việc xác lập chủ quyền tại Hoàng Sa, Trường Sa.",
     "gallery": [
-      "assets/images/artifacts/Thuyền chiến Đàng Trong.webp"
+      "assets/images/artifacts/Thuyền chiến Đàng Trong/Thuyền chiến Đàng Trong.webp",
+      "assets/images/artifacts/Thuyền chiến Đàng Trong/Thuyền chiến Đàng Trong 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thuyenchien-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/thuyenchien-v1.usdz",
@@ -311,12 +332,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Từ chiếc thuyền gỗ này, chúng mình có thể hình dung về một vùng Đàng Trong đầy sức sống: có những cửa biển rộng mở, những thương cảng đông vui và những cánh buồm luôn tìm đường ra khơi.<br>Thuyền chiến không chỉ giúp bảo vệ bờ biển.<br>Nó còn nhắc chúng mình về khát vọng đi xa, tinh thần mở mang vùng đất mới và sự gắn bó bền chặt của người Việt xưa với biển cả.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…"
     ],
     "silhouetteSvg": "<path d=\"M10 50 Q20 35 40 33 Q60 35 70 50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M10 50 L70 50\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 33 L40 18\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 18 L55 25 L40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/>",
-    "backSvg": "<path d=\"M10 62 Q25 42 60 38 Q95 42 110 62\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M10 62 L110 62\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M60 38 L60 15\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M60 15 L82 25 L60 33\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M40 38 L40 22\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M40 22 L55 28 L40 33\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.6\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">THUYỀN CHIẾN</text>"
+    "backSvg": "<path d=\"M10 62 Q25 42 60 38 Q95 42 110 62\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M10 62 L110 62\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M60 38 L60 15\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M60 15 L82 25 L60 33\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M40 38 L40 22\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M40 22 L55 28 L40 33\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\" opacity=\"0.6\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">THUYỀN CHIẾN</text>",
+    "audio": "assets/audio/thuyen-chien-dang-trong.mp3"
   },
   "kasv_0840bd5eb40547659c7993c2d8996449": {
     "artifactDesc": "Voi trong tư thế xung trận, thân lớn, chân bước mạnh; trên lưng có bệ chiến đấu hoặc chiến binh cầm cờ, giáo hay vũ khí. Mô hình thường sử dụng các gam màu đỏ, vàng đồng cùng họa tiết giáp trụ để gợi lên khí thế hào hùng của quân Tây Sơn.",
     "gallery": [
-      "assets/images/artifacts/Ấm hình voi bằng đồng.webp"
+      "assets/images/artifacts/Ấm hình voi bằng đồng/Ấm hình voi bằng đồng.webp",
+      "assets/images/artifacts/Ấm hình voi bằng đồng/Ấm hình voi bằng đồng 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/voitayson-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/voitayson-v1.usdz",
@@ -337,12 +360,14 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Quá khứ không chỉ nằm trong những trang sách.<br>Đôi khi, quá khứ hiện lên qua hình ảnh một chú voi chiến đang hiên ngang xông trận, qua tiếng trống trận tưởng như vẫn còn vang vọng và qua ký ức về chiến thắng Ngọc Hồi - Đống Đa mùa xuân năm 1789.<br>Tượng voi chiến Tây Sơn giúp chúng mình hiểu rằng sức mạnh của dân tộc không chỉ đến từ vũ khí, mà còn đến từ lòng yêu nước, tinh thần đoàn kết và ý chí quyết tâm bảo vệ non sông.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…"
     ],
     "silhouetteSvg": "<path d=\"M25 55 Q30 35 40 30 Q50 35 55 55\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M35 30 L30 18 Q40 10 50 18 L45 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M40 25 L40 15\" stroke=\"currentColor\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.8\"/>",
-    "backSvg": "<path d=\"M30 70 Q38 35 60 28 Q82 35 90 70\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M50 28 L44 12 Q60 2 76 12 L70 28\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M60 22 L60 8\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><circle cx=\"60\" cy=\"6\" r=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M35 65 L30 75 M85 65 L90 75\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ẤM VOI ĐỒNG</text>"
+    "backSvg": "<path d=\"M30 70 Q38 35 60 28 Q82 35 90 70\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><path d=\"M50 28 L44 12 Q60 2 76 12 L70 28\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M60 22 L60 8\" stroke=\"#B8860B\" stroke-width=\"1.8\"/><circle cx=\"60\" cy=\"6\" r=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.2\"/><path d=\"M35 65 L30 75 M85 65 L90 75\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">ẤM VOI ĐỒNG</text>",
+    "audio": "assets/audio/voi-chien-tay-son.mp3"
   },
   "kasv_3efc1d2799544146b60243eb7f23aa64": {
     "artifactDesc": "Núm ấn là hình rồng năm móng uốn mình uy nghi; thân ấn vuông vức, mặt đáy khắc bốn chữ Hán \"Hoàng đế chi bảo\", mang ý nghĩa \"báu vật của Hoàng đế\". Mô hình tái hiện kỹ thuật chế tác vàng tinh xảo của triều Nguyễn.",
     "gallery": [
-      "assets/images/artifacts/Ấn vàng Hoàng đế chi bảo.webp"
+      "assets/images/artifacts/Ấn vàng Hoàng đế chi bảo/Ấn vàng Hoàng đế chi bảo.webp",
+      "assets/images/artifacts/Ấn vàng Hoàng đế chi bảo/Ấn vàng Hoàng đế chi bảo 2.webp"
     ],
     "model": "https://pub-a711e19329614289a537d0614139f816.r2.dev/hoangdechibao-v1.glb",
     "usdz": "https://pub-a711e19329614289a537d0614139f816.r2.dev/hoangdechibao-v1.usdz",
@@ -363,15 +388,16 @@
       "<strong>MỘT ĐIỀU ĐỂ NHỚ...</strong><br><br>Quá khứ không chỉ nằm trong những trang sách.<br>Đôi khi, quá khứ được lưu giữ trong một chiếc ấn vàng nhỏ bé nhưng đã chứng kiến biết bao sự kiện quan trọng của đất nước.<br>Ấn vàng \"Hoàng đế chi bảo\" giúp chúng mình hiểu rằng mỗi cổ vật không chỉ có giá trị bởi chất liệu quý giá, mà còn bởi những câu chuyện lịch sử và những dấu mốc mà nó đã đi qua.<br>Và biết đâu, ở một nơi nào đó, vẫn còn những cổ vật đang lặng lẽ chờ bạn nhỏ khám phá…"
     ],
     "silhouetteSvg": "<rect x=\"20\" y=\"20\" width=\"40\" height=\"40\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><rect x=\"28\" y=\"28\" width=\"24\" height=\"24\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.8\"/><text x=\"40\" y=\"46\" text-anchor=\"middle\" font-family=\"serif\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.5\">寶</text>",
-    "backSvg": "<rect x=\"30\" y=\"20\" width=\"60\" height=\"55\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"38\" y=\"28\" width=\"44\" height=\"39\" rx=\"2\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><text x=\"60\" y=\"54\" text-anchor=\"middle\" font-family=\"serif\" font-size=\"22\" fill=\"#B8860B\" opacity=\"0.6\">寶</text><path d=\"M55 12 Q60 5 65 12\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"48\" y=\"12\" width=\"24\" height=\"10\" rx=\"5\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">HOÀNG ĐẾ CHI BẢO</text>"
+    "backSvg": "<rect x=\"30\" y=\"20\" width=\"60\" height=\"55\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"38\" y=\"28\" width=\"44\" height=\"39\" rx=\"2\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"0.8\"/><text x=\"60\" y=\"54\" text-anchor=\"middle\" font-family=\"serif\" font-size=\"22\" fill=\"#B8860B\" opacity=\"0.6\">寶</text><path d=\"M55 12 Q60 5 65 12\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><rect x=\"48\" y=\"12\" width=\"24\" height=\"10\" rx=\"5\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1\"/><text x=\"60\" y=\"95\" text-anchor=\"middle\" font-family=\"'Cinzel',serif\" font-size=\"6\" fill=\"#B8860B\" opacity=\"0.7\">HOÀNG ĐẾ CHI BẢO</text>",
+    "audio": "assets/audio/hoang-de-chi-bao.mp3"
   },
   "box_bdddc48ec18c4fc998ee351dc0eaa98d": {
     "artifactDesc": "Có 3 tùy chọn: Không hộp (239k), Có hộp (299k), Hộp gỗ (499k).",
     "gallery": [
-      "assets/images/blindbox/Blind box model Basic.webp",
+      "assets/images/blindbox/BlindBox_Basic.webp",
+      "assets/images/blindbox/Blind box model 1.webp",
       "assets/images/blindbox/Blind box model 2.webp",
-      "assets/images/blindbox/Blind box model Standard.webp",
-      "assets/images/blindbox/Blind box model Premium.webp"
+      "assets/images/blindbox/Blind box model 3.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"
@@ -379,10 +405,10 @@
   "box_575e2155ebbf42ecbc666f32ccc37aab": {
     "artifactDesc": "Có 3 tùy chọn: Không hộp (269k), Có hộp (329k), Hộp gỗ (529k).",
     "gallery": [
-      "assets/images/blindbox/Blind box model Standard.webp",
+      "assets/images/blindbox/BlindBox_Standard.webp",
+      "assets/images/blindbox/Blind box model 1.webp",
       "assets/images/blindbox/Blind box model 2.webp",
-      "assets/images/blindbox/Blind box model Basic.webp",
-      "assets/images/blindbox/Blind box model Premium.webp"
+      "assets/images/blindbox/Blind box model 3.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"
@@ -390,10 +416,10 @@
   "box_0234e6d19b374b35ba13cd3fa9f9d18b": {
     "artifactDesc": "Có 3 tùy chọn: Không hộp (299k), Có hộp (359k), Hộp gỗ (559k).",
     "gallery": [
-      "assets/images/blindbox/Blind box model Premium.webp",
+      "assets/images/blindbox/BlindBox_Premium.webp",
+      "assets/images/blindbox/Blind box model 1.webp",
       "assets/images/blindbox/Blind box model 2.webp",
-      "assets/images/blindbox/Blind box model Basic.webp",
-      "assets/images/blindbox/Blind box model Standard.webp"
+      "assets/images/blindbox/Blind box model 3.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"

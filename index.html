@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Philosopher:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap">
 
   <!-- Prefetch 3D model CDN -->
   <link rel="dns-prefetch" href="https://pub-a711e19329614289a537d0614139f816.r2.dev">
@@ -40,7 +40,10 @@
        PRELOADER
        ============================================================ -->
   <div class="preloader" id="preloader">
-    <div class="preloader__spinner"><div class="preloader__ring"></div><div class="preloader__logo"></div></div>
+    <div class="preloader__spinner">
+      <div class="preloader__ring"></div>
+      <div class="preloader__logo"></div>
+    </div>
     <p class="preloader__text">Khai Ấn Sử Việt</p>
   </div>
 
@@ -152,16 +155,11 @@
         </div>
       </div>
 
-      <div class="hero__model-area">
-        <div class="hero__model-frame">
-          <div class="hero__model-glow"></div>
-          <div class="hero__model-border"></div>
-          <div class="hero__model-placeholder" id="heroModelArea">
-
-
-            <img src="assets/images/dongson-drum.svg" alt="Trống đồng Đông Sơn" fetchpriority="high" decoding="async"
-              width="800" height="800" class="dongson-drum" />
-          </div>
+      <div class="hero__image-area">
+        <div class="hero__image-frame">
+          <div class="hero__image-glow"></div>
+          <img src="assets/images/ảnh đầu trang.JPG" alt="Mô hình Khai Ấn Sử Việt" fetchpriority="high" decoding="async" class="hero__image" />
+          <div class="hero__image-decor"></div>
         </div>
       </div>
     </div>
@@ -534,7 +532,7 @@
             <li><a href="index.html#about">Về chúng tôi</a></li>
             <li><a href="index.html#products">Sản phẩm</a></li>
             <li><a href="collection.html">Bộ sưu tập</a></li>
-            <li><a href="index.html#ar-guide">Hướng dẫn AR</a></li>
+            <li><a href="guide.html">Hướng dẫn AR</a></li>
           </ul>
         </div>
 
