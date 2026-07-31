@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    KHAI ẤN SỬ VIỆT — Core Product Data
    Shared data layer used across all pages
    (Details like story, SVG, 3D models are lazy loaded from products-detail.json)
@@ -167,7 +167,7 @@ const PRODUCTS = [
     "era": "Bộ Sưu Tập 14 Triều Đại",
     "artifact": "ẤN TÍCH SỬ VIỆT - Premium",
     "image": "assets/images/blindbox/BlindBox_Premium.webp",
-    "description": "Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý.",
+    "description": "Bao gồm: Rồng đá điện Kính Thiên, Sa hình Cọc gỗ Bạch Đằng, Trống đồng Đông Sơn, Ấm hình voi bằng đồng, Ấn tín nhà Trần, Lư hương gốm men nâu, Đầu rồng thời Lý, Ấn vàng hoàng đế chi bảo.",
     "price": 299000,
     "priceBox": 359000,
     "priceWood": 559000,

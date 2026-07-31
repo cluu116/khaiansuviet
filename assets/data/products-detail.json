@@ -423,7 +423,8 @@
       "assets/images/artifacts/am-hinh-voi-bang-dong/am-hinh-voi-bang-dong-2.webp",
       "assets/images/artifacts/an-tin-nha-tran/an-tin-nha-tran-2.webp",
       "assets/images/artifacts/lu-huong-gom-men-nau/lu-huong-gom-men-nau-2.webp",
-      "assets/images/artifacts/dau-rong-thoi-ly/dau-rong-thoi-ly-2.webp"
+      "assets/images/artifacts/dau-rong-thoi-ly/dau-rong-thoi-ly-2.webp",
+      "assets/images/artifacts/an-vang-hoang-de-chi-bao/an-vang-hoang-de-chi-bao-2.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"

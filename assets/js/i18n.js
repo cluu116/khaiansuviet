@@ -174,6 +174,32 @@
           langToggle.setAttribute('aria-expanded', 'false');
         }
       });
+
+      // Hide on scroll down, show on scroll up (optimize performance)
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const currentScrollY = window.scrollY;
+            
+            // Only hide on mobile when scrolling down
+            if (langSwitcher.classList.contains('lang-switcher--mobile')) {
+              if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                langSwitcher.classList.add('lang-switcher--hidden');
+                langSwitcher.classList.remove('open');
+                langToggle.setAttribute('aria-expanded', 'false');
+              } else {
+                langSwitcher.classList.remove('lang-switcher--hidden');
+              }
+            }
+            lastScrollY = currentScrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
     }
 
     // Bind click events to language switcher items

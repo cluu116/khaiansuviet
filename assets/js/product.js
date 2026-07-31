@@ -290,7 +290,7 @@
       if (N > maxThumbs) {
         html += `<button class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Previous image">❮</button>`;
       }
-      html += `<div id="galleryInnerThumbs" style="display: flex; gap: 10px;">`;
+      html += `<div id="galleryInnerThumbs" class="gallery-inner-thumbs">`;
       const numThumbs = Math.min(N, maxThumbs);
       for (let i = 0; i < numThumbs; i++) {
         html += `<div class="product-hero__thumb"></div>`;
