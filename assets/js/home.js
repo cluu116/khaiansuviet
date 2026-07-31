@@ -45,7 +45,7 @@
       else if (box.id === 'box_0234e6d19b374b35ba13cd3fa9f9d18b') tierClass = 'blind-box__card--premium';
 
       return `
-      <a href="product.html?id=${box.id}" class="blind-box__card ${tierClass}">
+      <a href="product.html?id=${box.id}" class="blind-box__card ${tierClass}" ${tierClass === 'blind-box__card--premium' ? `data-badge="★ ${t('product.most_popular')}"` : ''}>
         <div class="blind-box__image">
           <img src="${box.image}" alt="${box.name}" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
