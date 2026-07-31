@@ -278,64 +278,96 @@
     const N = product.gallery.length;
     let start = currentGalleryIndex;
     
-    if (N > maxThumbs && start > N - maxThumbs) {
+    if (N <= maxThumbs) {
+      start = 0;
+    } else if (start > N - maxThumbs) {
       start = N - maxThumbs;
     }
 
-    let html = ``;
-    html += `<button class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Previous image">❮</button>`;
-    
-    for (let i = 0; i < Math.min(N, maxThumbs); i++) {
+    // 1. Initialize DOM structure ONCE to prevent stutter/jank
+    if (!document.getElementById('galleryInnerThumbs')) {
+      let html = ``;
+      if (N > maxThumbs) {
+        html += `<button class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Previous image">❮</button>`;
+      }
+      html += `<div id="galleryInnerThumbs" style="display: flex; gap: 10px;">`;
+      const numThumbs = Math.min(N, maxThumbs);
+      for (let i = 0; i < numThumbs; i++) {
+        html += `<div class="product-hero__thumb"></div>`;
+      }
+      html += `</div>`;
+      if (N > maxThumbs) {
+        html += `<button class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="Next image">❯</button>`;
+      }
+      thumbContainer.innerHTML = html;
+
+      // Attach button events ONCE
+      const prevBtn = document.getElementById('galleryPrevBtn');
+      const nextBtn = document.getElementById('galleryNextBtn');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          let prevIdx = currentGalleryIndex - 1;
+          if (prevIdx < 0) prevIdx = product.gallery.length - 1;
+          updateMainImage(prevIdx);
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          let nextIdx = currentGalleryIndex + 1;
+          if (nextIdx >= product.gallery.length) nextIdx = 0;
+          updateMainImage(nextIdx);
+        });
+      }
+
+      // Attach thumb events ONCE
+      const innerThumbsInit = document.getElementById('galleryInnerThumbs');
+      Array.from(innerThumbsInit.children).forEach(thumb => {
+        thumb.addEventListener('click', function () {
+          const idx = parseInt(this.getAttribute('data-index'));
+          updateMainImage(idx);
+        });
+      });
+    }
+
+    // 2. Update existing DOM (no destruction) to ensure smoothness
+    const innerThumbs = document.getElementById('galleryInnerThumbs');
+    const numThumbs = Math.min(N, maxThumbs);
+    for (let i = 0; i < numThumbs; i++) {
+      const child = innerThumbs.children[i];
       let imgIndex = start + i;
+      child.setAttribute('data-index', imgIndex);
+      
       if (i === 3 && imgIndex < N - 1) {
         const remaining = N - imgIndex;
-        html += `
-          <div class="product-hero__thumb-more" data-index="${imgIndex}" title="Xem thêm ảnh">
-            +${remaining}
-          </div>
-        `;
+        child.className = 'product-hero__thumb-more';
+        child.innerHTML = `+${remaining}`;
+        child.title = "Xem thêm ảnh";
       } else {
-        html += `
-          <div class="product-hero__thumb ${imgIndex === currentGalleryIndex ? 'active' : ''}" data-index="${imgIndex}">
-            <img src="${product.gallery[imgIndex]}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
-          </div>
-        `;
+        child.className = `product-hero__thumb ${imgIndex === currentGalleryIndex ? 'active' : ''}`;
+        child.title = "";
+        
+        // Re-use or create img tag
+        let existingImg = child.querySelector('img');
+        if (!existingImg) {
+          child.innerHTML = `<img src="${product.gallery[imgIndex]}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />`;
+        } else {
+          // Update src directly to prevent layout thrashing
+          const newSrc = product.gallery[imgIndex];
+          if (!existingImg.src.endsWith(newSrc.replace(/^\//, ''))) {
+            existingImg.setAttribute('src', newSrc);
+          }
+        }
       }
-    }
-    
-    html += `<button class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="Next image">❯</button>`;
-    thumbContainer.innerHTML = html;
-
-    const thumbs = thumbContainer.querySelectorAll('.product-hero__thumb, .product-hero__thumb-more');
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', function () {
-        const idx = parseInt(this.getAttribute('data-index'));
-        updateMainImage(idx);
-      });
-    });
-    
-    const prevBtn = document.getElementById('galleryPrevBtn');
-    const nextBtn = document.getElementById('galleryNextBtn');
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        let prevIdx = currentGalleryIndex - 1;
-        if (prevIdx < 0) prevIdx = product.gallery.length - 1;
-        updateMainImage(prevIdx);
-      });
-    }
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        let nextIdx = currentGalleryIndex + 1;
-        if (nextIdx >= product.gallery.length) nextIdx = 0;
-        updateMainImage(nextIdx);
-      });
     }
   }
 
   function updateMainImage(index) {
     const mainImgEl = document.getElementById('mainImageElement');
     if (mainImgEl && product.gallery && product.gallery[index]) {
-      mainImgEl.src = product.gallery[index];
+      const newSrc = product.gallery[index];
+      if (!mainImgEl.src.endsWith(newSrc.replace(/^\//, ''))) {
+        mainImgEl.setAttribute('src', newSrc);
+      }
       currentGalleryIndex = index;
       renderThumbnails();
     }
