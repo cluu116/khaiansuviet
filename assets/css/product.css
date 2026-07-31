@@ -1075,3 +1075,27 @@ select.order-modal__input option {
 
   /* Flexbox handles responsiveness automatically */
 }
+
+/* Gallery Navigation */
+.gallery-nav {
+  background: rgba(26, 17, 8, 0.6);
+  color: var(--vang-thep);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(4px);
+  font-size: 1.2rem;
+  margin: auto 0; /* Center vertically if thumbnails are taller */
+}
+
+.gallery-nav:hover {
+  background: rgba(184, 134, 11, 0.8);
+  color: var(--den-son-mai);
+}

@@ -395,9 +395,9 @@
     "artifactDesc": "Có 3 tùy chọn: Không hộp (239k), Có hộp (299k), Hộp gỗ (499k).",
     "gallery": [
       "assets/images/blindbox/BlindBox_Basic.webp",
-      "assets/images/blindbox/Blind box model 1.webp",
-      "assets/images/blindbox/Blind box model 2.webp",
-      "assets/images/blindbox/Blind box model 3.webp"
+      "assets/images/artifacts/tien-thai-binh-hung-bao/tien-thai-binh-hung-bao-2.webp",
+      "assets/images/artifacts/no-than-an-duong-vuong/no-than-an-duong-vuong-2.webp",
+      "assets/images/artifacts/gach-dai-viet-quoc-quan-thanh-chuyen/gach-dai-viet-quoc-quan-thanh-chuyen-2.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"
@@ -406,9 +406,9 @@
     "artifactDesc": "Có 3 tùy chọn: Không hộp (269k), Có hộp (329k), Hộp gỗ (529k).",
     "gallery": [
       "assets/images/blindbox/BlindBox_Standard.webp",
-      "assets/images/blindbox/Blind box model 1.webp",
-      "assets/images/blindbox/Blind box model 2.webp",
-      "assets/images/blindbox/Blind box model 3.webp"
+      "assets/images/artifacts/sung-than-cong/sung-than-cong-2.webp",
+      "assets/images/artifacts/thuyen-chien-dang-trong/thuyen-chien-dang-trong-2.webp",
+      "assets/images/artifacts/da-thanh-nha-ho/da-thanh-nha-ho-2.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"
@@ -417,9 +417,13 @@
     "artifactDesc": "Có 3 tùy chọn: Không hộp (299k), Có hộp (359k), Hộp gỗ (559k).",
     "gallery": [
       "assets/images/blindbox/BlindBox_Premium.webp",
-      "assets/images/blindbox/Blind box model 1.webp",
-      "assets/images/blindbox/Blind box model 2.webp",
-      "assets/images/blindbox/Blind box model 3.webp"
+      "assets/images/artifacts/rong-da-dien-kinh-thien/rong-da-dien-kinh-thien-2.webp",
+      "assets/images/artifacts/sa-hinh-coc-go-bach-dang/sa-hinh-coc-go-bach-dang-2.webp",
+      "assets/images/artifacts/trong-dong-dong-son/trong-dong-dong-son-2.webp",
+      "assets/images/artifacts/am-hinh-voi-bang-dong/am-hinh-voi-bang-dong-2.webp",
+      "assets/images/artifacts/an-tin-nha-tran/an-tin-nha-tran-2.webp",
+      "assets/images/artifacts/lu-huong-gom-men-nau/lu-huong-gom-men-nau-2.webp",
+      "assets/images/artifacts/dau-rong-thoi-ly/dau-rong-thoi-ly-2.webp"
     ],
     "silhouetteSvg": "<rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M25 40 L55 40 M40 30 L40 60\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M40 30 C30 20 20 30 40 30 C60 30 50 20 40 30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
     "backSvg": "<rect x=\"35\" y=\"40\" width=\"50\" height=\"40\" rx=\"4\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M35 50 L85 50 M60 40 L60 80\" stroke=\"#B8860B\" stroke-width=\"1.5\"/><path d=\"M60 40 C40 25 30 40 60 40 C90 40 80 25 60 40\" fill=\"none\" stroke=\"#B8860B\" stroke-width=\"1.5\"/>"

@@ -248,36 +248,100 @@
   updateProductUI(product, currentLang);
 
 
-  // Thumbnails
+  // Thumbnails & Gallery Navigation
+  let currentGalleryIndex = 0;
   const thumbContainer = document.getElementById('productThumbs');
-  if (thumbContainer) {
-    if (product.gallery && product.gallery.length > 0) {
-      thumbContainer.innerHTML = product.gallery.map((imgSrc, index) => `
-        <div class="product-hero__thumb ${index === 0 ? 'active' : ''}" data-src="${imgSrc}">
-          <img src="${imgSrc}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
-        </div>
-      `).join('');
+  const mainImageContainer = document.getElementById('mainProductImage');
 
-      const thumbs = thumbContainer.querySelectorAll('.product-hero__thumb');
-      const mainImgEl = document.getElementById('mainImageElement');
+  function renderThumbnails() {
+    if (!thumbContainer || !product.gallery || product.gallery.length === 0) {
+      if (thumbContainer) {
+        thumbContainer.innerHTML = `
+          <div class="product-hero__thumb active" data-src="${product.image}" data-index="0">
+            <img src="${product.image}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
+          </div>
+        `;
+      }
+      return;
+    }
 
-      thumbs.forEach(thumb => {
-        thumb.addEventListener('click', function () {
-          thumbs.forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-          if (mainImgEl) {
-            mainImgEl.src = this.getAttribute('data-src');
-          }
-        });
-      });
-    } else {
+    if (product.gallery.length === 1) {
       thumbContainer.innerHTML = `
-        <div class="product-hero__thumb active" data-src="${product.image}">
-          <img src="${product.image}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
+        <div class="product-hero__thumb active" data-index="0">
+          <img src="${product.gallery[0]}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
         </div>
       `;
+      return;
+    }
+
+    const maxThumbs = 4;
+    const N = product.gallery.length;
+    let start = currentGalleryIndex;
+    
+    if (N > maxThumbs && start > N - maxThumbs) {
+      start = N - maxThumbs;
+    }
+
+    let html = ``;
+    html += `<button class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Previous image">❮</button>`;
+    
+    for (let i = 0; i < Math.min(N, maxThumbs); i++) {
+      let imgIndex = start + i;
+      if (i === 3 && imgIndex < N - 1) {
+        const remaining = N - imgIndex;
+        html += `
+          <div class="product-hero__thumb-more" data-index="${imgIndex}" title="Xem thêm ảnh">
+            +${remaining}
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="product-hero__thumb ${imgIndex === currentGalleryIndex ? 'active' : ''}" data-index="${imgIndex}">
+            <img src="${product.gallery[imgIndex]}" alt="${product.artifact}" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius: 4px;" />
+          </div>
+        `;
+      }
+    }
+    
+    html += `<button class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="Next image">❯</button>`;
+    thumbContainer.innerHTML = html;
+
+    const thumbs = thumbContainer.querySelectorAll('.product-hero__thumb, .product-hero__thumb-more');
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', function () {
+        const idx = parseInt(this.getAttribute('data-index'));
+        updateMainImage(idx);
+      });
+    });
+    
+    const prevBtn = document.getElementById('galleryPrevBtn');
+    const nextBtn = document.getElementById('galleryNextBtn');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        let prevIdx = currentGalleryIndex - 1;
+        if (prevIdx < 0) prevIdx = product.gallery.length - 1;
+        updateMainImage(prevIdx);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        let nextIdx = currentGalleryIndex + 1;
+        if (nextIdx >= product.gallery.length) nextIdx = 0;
+        updateMainImage(nextIdx);
+      });
     }
   }
+
+  function updateMainImage(index) {
+    const mainImgEl = document.getElementById('mainImageElement');
+    if (mainImgEl && product.gallery && product.gallery[index]) {
+      mainImgEl.src = product.gallery[index];
+      currentGalleryIndex = index;
+      renderThumbnails();
+    }
+  }
+
+  renderThumbnails();
 
   // Close-up gallery
   const closeupGallery = document.getElementById('closeupGallery');
