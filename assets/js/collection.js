@@ -44,6 +44,7 @@
 
 
     const renderCard = (product) => {
+      const t = window.getI18nText || (k => k);
       const isUnlocked = unlockedCards.has(String(product.id));
       const index = collectionProducts.findIndex(p => p.id === product.id);
       const cardNum = String(index + 1).padStart(2, '0');
@@ -65,15 +66,15 @@
               <div class="dynasty-card__silhouette">
                 <img src="${product.image}" alt="Phác thảo cổ vật" class="dynasty-card__img dynasty-card__img--silhouette" />
               </div>
-              <p class="dynasty-card__number">Triều đại ${cardNum}</p>
+              <p class="dynasty-card__number">${t('card.dynasty_prefix')} ${cardNum}</p>
               <h3 class="dynasty-card__front-name">???</h3>
-              <p class="dynasty-card__era-text">Cổ vật bí ẩn</p>
+              <p class="dynasty-card__era-text">${t('card.mystery')}</p>
               <div class="dynasty-card__lock">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="3" y="11" width="18" height="11" rx="2"/>
                   <path d="M7 11V7a5 5 0 0110 0v4"/>
                 </svg>
-                Chưa mở khóa
+                ${t('card.locked')}
               </div>
             </div>
             <!-- BACK -->
@@ -92,7 +93,7 @@
                     <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                   </svg>
-                  Khám Phá
+                  ${t('card.explore')}
                 </button>
               </div>
             </div>
@@ -118,7 +119,7 @@
         const dynasty = card.getAttribute('data-dynasty');
 
         if (!unlockedCards.has(dynasty)) {
-          showToast('📱 Vui lòng chạm điện thoại vào NFC để mở khóa!');
+          showToast(window.getI18nText ? window.getI18nText('toast.nfc_prompt') : '📱 Vui lòng chạm điện thoại vào NFC để mở khóa!');
           return;
         }
 
@@ -131,7 +132,7 @@
           e.preventDefault();
           const dynasty = card.getAttribute('data-dynasty');
           if (!unlockedCards.has(dynasty)) {
-            showToast('📱 Vui lòng chạm điện thoại vào NFC để mở khóa!');
+            showToast(window.getI18nText ? window.getI18nText('toast.nfc_prompt') : '📱 Vui lòng chạm điện thoại vào NFC để mở khóa!');
           } else {
             window.location.href = 'artifact.html?id=' + dynasty;
           }
@@ -192,7 +193,7 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify([...unlockedCards]));
 
       updateProgress();
-      showToast(`✦ Đã mở khóa: ${name}! (${unlockCount}/14)`);
+      showToast(window.getI18nText ? window.getI18nText('toast.nfc_unlocked').replace('{name}', name).replace('{count}', unlockCount) : `✦ Đã mở khóa: ${name}! (${unlockCount}/14)`);
     }, 500);
   }
 
@@ -213,7 +214,7 @@
      ============================================================ */
   if (scanBtn) {
     scanBtn.addEventListener('click', () => {
-      showToast('📱 Vui lòng chạm điện thoại vào cổ vật để quét NFC!');
+      showToast(window.getI18nText ? window.getI18nText('toast.nfc_scan') : '📱 Vui lòng chạm điện thoại vào cổ vật để quét NFC!');
     });
   }
 
@@ -228,7 +229,7 @@
 
     const product = getProductById(unlockId);
     if (!product) {
-      showToast('❌ Thẻ NFC không hợp lệ hoặc không có trong hệ thống!');
+      showToast(window.getI18nText ? window.getI18nText('toast.nfc_invalid') : '❌ Thẻ NFC không hợp lệ hoặc không có trong hệ thống!');
       window.history.replaceState({}, '', 'collection.html');
       return;
     }
@@ -253,7 +254,7 @@
             unlockCard(card);
           }, 500);
         } else if (unlockedCards.has(unlockId)) {
-          showToast(`Triều đại ${product.dynasty} đã được mở khóa trước đó!`);
+          showToast(window.getI18nText ? window.getI18nText('toast.nfc_already_unlocked').replace('{dynasty}', product.dynasty) : `Triều đại ${product.dynasty} đã được mở khóa trước đó!`);
         }
 
         // Clean URL
@@ -272,5 +273,11 @@
 
   // Check NFC after a short delay to allow DOM to settle
   setTimeout(checkNfcUnlock, 800);
+
+  // Re-render when language changes
+  window.addEventListener('languageChanged', () => {
+    renderCardsGrid();
+    updateProgress();
+  });
 
 })();

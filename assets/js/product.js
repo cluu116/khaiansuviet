@@ -14,6 +14,210 @@
     return;
   }
 
+  // Define update function for UI elements
+  function updateProductUI(product, lang) {
+    const t = typeof window.getI18nText === 'function' ? window.getI18nText : (k => k);
+    
+    // Page title & basic text
+    document.title = `${product.artifact} — ${product.dynasty} | ${t('hero.title_main')}`;
+    const breadcrumbName = document.getElementById('breadcrumbName');
+    if (breadcrumbName) breadcrumbName.textContent = product.artifact;
+    
+    // Hero background (blurred)
+    const bgImage = document.querySelector('.product-hero__bg-image');
+    if (bgImage) {
+      bgImage.style.background = `
+        radial-gradient(ellipse at 30% 50%, rgba(166, 44, 33, 0.2) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(184, 134, 11, 0.12) 0%, transparent 50%),
+        var(--den-son-mai)
+      `;
+    }
+
+    // Main image SVG
+    const mainImage = document.getElementById('mainProductImage');
+    if (mainImage) {
+      let mainImgEl = document.getElementById('mainImageElement');
+      if (!mainImgEl) {
+        mainImage.innerHTML = `
+          <img id="mainImageElement" src="${product.image}" alt="${product.artifact}" width="1024" height="1024" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
+        `;
+      } else {
+        mainImgEl.alt = product.artifact;
+      }
+    }
+    
+    const elName = document.getElementById('productName');
+    if (elName) elName.textContent = product.artifact;
+    
+    const elDynasty = document.getElementById('productDynasty');
+    if (elDynasty) elDynasty.textContent = `${product.dynasty} • ${product.era}`;
+    
+    const elPrice = document.getElementById('productPrice');
+    if (elPrice) {
+      if (product.type === 'blindbox' && product.priceBox) {
+        elPrice.innerHTML = `
+          <div class="product-price__options">
+            <div class="price-option">
+              <span class="price-option__label">${lang === 'vi' ? 'Không Hộp' : 'No Box'}</span>
+              <span class="price-option__val">${formatPrice(product.price)}</span>
+            </div>
+            <div class="price-option highlight">
+              <span class="price-option__label">${lang === 'vi' ? 'Có Hộp' : 'With Box'}</span>
+              <span class="price-option__val">${formatPrice(product.priceBox)}</span>
+            </div>
+            <div class="price-option premium">
+              <span class="price-option__label">${lang === 'vi' ? 'Hộp Gỗ' : 'Wood Box'}</span>
+              <span class="price-option__val">${formatPrice(product.priceWood)}</span>
+            </div>
+          </div>
+        `;
+      } else {
+        elPrice.textContent = formatPrice(product.price);
+      }
+    }
+
+    const elStatus = document.getElementById('productStatus');
+    if (elStatus) {
+      elStatus.className = `badge ${product.status === 'sold-out' ? 'badge--sold-out' : 'badge--in-stock'}`;
+      elStatus.textContent = product.status === 'sold-out' ? t('product.status_soldout') : t('product.status_instock');
+    }
+
+    const buyNowBtn = document.getElementById('buyNowBtn');
+    if (buyNowBtn) {
+      if (product.status === 'sold-out') {
+        buyNowBtn.disabled = true;
+        buyNowBtn.innerHTML = t('product.status_soldout');
+      } else {
+        buyNowBtn.disabled = false;
+        buyNowBtn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+          </svg>
+          <span data-i18n="product.buy_now">${t('product.buy_now')}</span>
+        `;
+      }
+    }
+
+    // Specs content
+    const specsContent = document.getElementById('productSpecsContent');
+    if (specsContent) {
+      const artifactName = product.artifact || product.dynasty;
+      let artifactsListHtml = '';
+      if (product.type === 'blindbox' && product.description && product.description.includes(lang === 'vi' ? 'Bao gồm:' : 'Includes:')) {
+        const replaceStr = lang === 'vi' ? 'Bao gồm:' : 'Includes:';
+        const itemsString = product.description.replace(replaceStr, '').trim();
+        const items = itemsString.replace(/\.$/, '').split(',').map(s => s.trim());
+        artifactsListHtml = `
+          <ul class="artifacts-checklist">
+            ${items.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        `;
+      } else {
+        artifactsListHtml = `
+          <ul class="artifacts-checklist">
+            <li>${artifactName}</li>
+          </ul>
+        `;
+      }
+
+      specsContent.innerHTML = `
+        <ul class="specs-list">
+          <li><span class="spec-label">${lang === 'vi' ? 'Tên sản phẩm:' : 'Product Name:'}</span> ${artifactName}</li>
+          <li><span class="spec-label">${lang === 'vi' ? 'Chất liệu:' : 'Material:'}</span>
+            <ul>
+              <li>${lang === 'vi' ? 'Thạch cao bọc ngoài cổ vật màu vàng đất.' : 'Terracotta-colored plaster casing.'}</li>
+              <li>${lang === 'vi' ? 'Cổ vật bên trong được chế tác từ nhựa in 3D, hoàn thiện bằng phương pháp sơn thủ công nhằm tái hiện màu sắc và đặc trưng của từng hiện vật lịch sử.' : 'Internal artifacts made of 3D-printed plastic, hand-painted to replicate historical colors and features.'}</li>
+            </ul>
+          </li>
+          <li><span class="spec-label">${lang === 'vi' ? 'Kích thước:' : 'Dimensions:'}</span> ${lang === 'vi' ? '20 × 10 × 10 cm (Cao × Dài × Rộng).' : '20 × 10 × 10 cm (H × L × W).'}</li>
+          <li><span class="spec-label">${lang === 'vi' ? 'Vỏ blind box:' : 'Blind box casing:'}</span> ${lang === 'vi' ? 'Carton sóng 3 lớp cán mờ.' : '3-layer matte corrugated carton.'}</li>
+          <li>
+            <span class="spec-label" style="display:block; margin-bottom: 6px;">${lang === 'vi' ? 'Cổ vật bên trong:' : 'Internal Artifacts:'}</span> 
+            ${artifactsListHtml}
+          </li>
+          <li><span class="spec-label">${lang === 'vi' ? 'Trọng lượng:' : 'Weight:'}</span> ${lang === 'vi' ? 'Khoảng 3 kg/sản phẩm.' : 'Approx. 3 kg/item.'}</li>
+        </ul>
+      `;
+    }
+
+    // Order Variant
+    const orderVariant = document.getElementById('orderVariant');
+    if (orderVariant && product.type === 'blindbox' && product.priceBox) {
+      orderVariant.innerHTML = `
+        <option value="${product.price}" data-name="${lang === 'vi' ? 'Không hộp' : 'No box'}">${lang === 'vi' ? 'Không hộp' : 'No box'} (${formatPrice(product.price)})</option>
+        <option value="${product.priceBox}" data-name="${lang === 'vi' ? 'Có hộp' : 'With box'}">${lang === 'vi' ? 'Có hộp' : 'With box'} (${formatPrice(product.priceBox)})</option>
+        <option value="${product.priceWood}" data-name="${lang === 'vi' ? 'Hộp gỗ' : 'Wood box'}">${lang === 'vi' ? 'Hộp gỗ' : 'Wood box'} (${formatPrice(product.priceWood)})</option>
+      `;
+    }
+  }
+
+  // SYNCHRONOUSLY add event listener to avoid race conditions
+  window.addEventListener('languageChanged', async (e) => {
+    const lang = e.detail ? e.detail.lang : 'vi';
+    const product = getProductById(productId);
+    if (!product) return;
+    
+    // Object.assign(product, getProductById(productId)); // Useless since it's the same ref
+    
+    try {
+      const allDetails = await getProductDetails(lang);
+      const detail = allDetails[product.id];
+      if (detail) Object.assign(product, detail);
+    } catch (err) {
+      console.error('Không thể tải lại chi tiết:', err);
+    }
+    
+    updateProductUI(product, lang);
+    
+    const relatedGrid = document.getElementById('relatedGrid');
+    if (relatedGrid) {
+      const related = getRelatedProducts(productId, 4);
+      const t = window.getI18nText || (k => k);
+      relatedGrid.innerHTML = related.map(p => {
+        let qty = "";
+        let priceHtml = "";
+        if (p.type === 'blindbox' && p.priceBox) {
+          if (p.artifact.includes('Basic')) qty = t('product.basic');
+          else if (p.artifact.includes('Standard') || p.artifact.includes('Tiêu Chuẩn')) qty = t('product.standard');
+          else if (p.artifact.includes('Premium') || p.artifact.includes('Cao Cấp')) qty = t('product.premium');
+
+          priceHtml = `
+            <div class="blind-box__prices">
+              <div class="price-row">
+                <span class="price-label">${t('product.no_box')}</span>
+                <span class="price-val">${formatPrice(p.price)}</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">${t('product.with_box')}</span>
+                <span class="price-val">${formatPrice(p.priceBox)}</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">${t('product.wood_box')}</span>
+                <span class="price-val highlight">${formatPrice(p.priceWood)}</span>
+              </div>
+            </div>
+          `;
+        } else {
+          qty = p.era || p.dynasty || '';
+          priceHtml = `<p class="blind-box__price" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--trang-nga); margin-bottom: 20px;">${formatPrice(p.price)}</p>`;
+        }
+
+        return `
+          <a href="product.html?id=${p.id}" class="blind-box__card" id="related-${p.id}">
+            <div class="blind-box__image">
+              <img src="${p.image}" alt="${p.artifact}" width="1024" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="blind-box__qty">${qty}</div>
+            <h3 class="blind-box__name">${p.artifact}</h3>
+            <p class="blind-box__desc">${p.description}</p>
+            ${priceHtml}
+            <span class="blind-box__btn">${t('product.buy_now')}</span>
+          </a>
+        `;
+      }).join('');
+    }
+  });
+
   const product = getProductById(productId);
   if (!product) {
     document.body.innerHTML = `
@@ -26,8 +230,10 @@
     return;
   }
 
+  let currentLang = 'vi';
   try {
-    const allDetails = await getProductDetails();
+    currentLang = typeof getCurrentLang === 'function' ? getCurrentLang() : 'vi';
+    const allDetails = await getProductDetails(currentLang);
     const detail = allDetails[product.id];
     if (detail) {
       Object.assign(product, detail);
@@ -39,79 +245,8 @@
   /* ============================================================
      1. POPULATE PAGE CONTENT
      ============================================================ */
-  // Page title
-  document.title = `${product.artifact} — ${product.dynasty} | Khai Ấn Sử Việt`;
+  updateProductUI(product, currentLang);
 
-  // Breadcrumb
-  const breadcrumbName = document.getElementById('breadcrumbName');
-  if (breadcrumbName) breadcrumbName.textContent = product.artifact;
-
-  // Hero background (blurred)
-  const bgImage = document.querySelector('.product-hero__bg-image');
-  if (bgImage) {
-    bgImage.style.background = `
-      radial-gradient(ellipse at 30% 50%, rgba(166, 44, 33, 0.2) 0%, transparent 60%),
-      radial-gradient(ellipse at 70% 50%, rgba(184, 134, 11, 0.12) 0%, transparent 50%),
-      var(--den-son-mai)
-    `;
-  }
-
-  // Main image SVG
-  const mainImage = document.getElementById('mainProductImage');
-  if (mainImage) {
-    mainImage.innerHTML = `
-      <img id="mainImageElement" src="${product.image}" alt="${product.artifact}" width="1024" height="1024" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
-    `;
-  }
-
-  // Product info
-  const elName = document.getElementById('productName');
-  const elDynasty = document.getElementById('productDynasty');
-  const elPrice = document.getElementById('productPrice');
-  const elStatus = document.getElementById('productStatus');
-
-  if (elName) {
-    elName.textContent = product.artifact;
-    if (product.type === 'blindbox') {
-      if (product.id === 'box_bdddc48ec18c4fc998ee351dc0eaa98d') elName.classList.add('product-hero__name--basic');
-      else if (product.id === 'box_575e2155ebbf42ecbc666f32ccc37aab') elName.classList.add('product-hero__name--standard');
-      else if (product.id === 'box_0234e6d19b374b35ba13cd3fa9f9d18b') elName.classList.add('product-hero__name--premium');
-    }
-  }
-  if (elDynasty) elDynasty.textContent = `${product.dynasty} • ${product.era}`;
-  if (elPrice) {
-    if (product.type === 'blindbox' && product.priceBox) {
-      elPrice.innerHTML = `
-        <div class="product-price__options">
-          <div class="price-option">
-            <span class="price-option__label">Không Hộp</span>
-            <span class="price-option__val">${formatPrice(product.price)}</span>
-          </div>
-          <div class="price-option highlight">
-            <span class="price-option__label">Có Hộp</span>
-            <span class="price-option__val">${formatPrice(product.priceBox)}</span>
-          </div>
-          <div class="price-option premium">
-            <span class="price-option__label">Hộp Gỗ</span>
-            <span class="price-option__val">${formatPrice(product.priceWood)}</span>
-          </div>
-        </div>
-      `;
-    } else {
-      elPrice.textContent = formatPrice(product.price);
-    }
-  }
-  if (elStatus) {
-    elStatus.className = `badge ${getStatusClass(product.status)}`;
-    elStatus.textContent = getStatusLabel(product.status);
-  }
-
-  // Disable buy button for sold-out
-  const buyNowBtn = document.getElementById('buyNowBtn');
-  if (buyNowBtn && product.status === 'sold-out') {
-    buyNowBtn.disabled = true;
-    buyNowBtn.innerHTML = 'HẾT HÀNG';
-  }
 
   // Thumbnails
   const thumbContainer = document.getElementById('productThumbs');
@@ -176,48 +311,7 @@
     `;
   }
 
-  // Specs content
-  const specsContent = document.getElementById('productSpecsContent');
-  if (specsContent) {
-    const artifactName = product.artifact || product.dynasty;
-
-    // Create checkmarked artifacts list
-    let artifactsListHtml = '';
-    if (product.type === 'blindbox' && product.description && product.description.includes('Bao gồm:')) {
-      const itemsString = product.description.replace('Bao gồm:', '').trim();
-      const items = itemsString.replace(/\.$/, '').split(',').map(s => s.trim());
-      artifactsListHtml = `
-        <ul class="artifacts-checklist">
-          ${items.map(item => `<li>${item}</li>`).join('')}
-        </ul>
-      `;
-    } else {
-      artifactsListHtml = `
-        <ul class="artifacts-checklist">
-          <li>${artifactName}</li>
-        </ul>
-      `;
-    }
-
-    specsContent.innerHTML = `
-      <ul class="specs-list">
-        <li><span class="spec-label">Tên sản phẩm:</span> ${artifactName}</li>
-        <li><span class="spec-label">Chất liệu:</span>
-          <ul>
-            <li>Thạch cao bọc ngoài cổ vật màu vàng đất.</li>
-            <li>Cổ vật bên trong được chế tác từ nhựa in 3D, hoàn thiện bằng phương pháp sơn thủ công nhằm tái hiện màu sắc và đặc trưng của từng hiện vật lịch sử.</li>
-          </ul>
-        </li>
-        <li><span class="spec-label">Kích thước:</span> 20 × 10 × 10 cm (Cao × Dài × Rộng).</li>
-        <li><span class="spec-label">Vỏ blind box:</span> Carton sóng 3 lớp cán mờ.</li>
-        <li>
-          <span class="spec-label" style="display:block; margin-bottom: 6px;">Cổ vật bên trong:</span> 
-          ${artifactsListHtml}
-        </li>
-        <li><span class="spec-label">Trọng lượng:</span> Khoảng 3 kg/sản phẩm.</li>
-      </ul>
-    `;
-  }
+  // Product Specs were updated by updateProductUI
 
   /* ============================================================
      2. ORDER FORM MODAL (replaces old add-to-cart)
@@ -234,14 +328,10 @@
   const orderVariantField = document.getElementById('orderVariantField');
   const orderVariant = document.getElementById('orderVariant');
 
+  // Order variant fields were updated by updateProductUI
   if (product.type === 'blindbox' && product.priceBox) {
     if (orderVariantField) orderVariantField.style.display = 'block';
     if (orderVariant) {
-      orderVariant.innerHTML = `
-        <option value="${product.price}" data-name="Không hộp">Không hộp (${formatPrice(product.price)})</option>
-        <option value="${product.priceBox}" data-name="Có hộp">Có hộp (${formatPrice(product.priceBox)})</option>
-        <option value="${product.priceWood}" data-name="Hộp gỗ">Hộp gỗ (${formatPrice(product.priceWood)})</option>
-      `;
       if (orderProductPrice) orderProductPrice.textContent = formatPrice(product.price);
       orderVariant.addEventListener('change', (e) => {
         if (orderProductPrice) orderProductPrice.textContent = formatPrice(parseInt(e.target.value));
@@ -292,7 +382,7 @@
       const note = document.getElementById('orderNote').value.trim();
 
       if (!name || !phone || !email) {
-        showToast('⚠️ Vui lòng điền đầy đủ Họ tên, Số điện thoại và Email.');
+        showToast(window.getI18nText ? window.getI18nText('toast.form_incomplete') : '⚠️ Vui lòng điền đầy đủ Họ tên, Số điện thoại và Email.');
         return;
       }
 
@@ -337,13 +427,13 @@
           closeOrderModal();
           orderForm.reset();
           document.getElementById('orderQty').value = '1';
-          showToast(`✅ Đặt hàng thành công! Cảm ơn ${name}, chúng tôi sẽ liên hệ bạn sớm nhất.`);
+          showToast(window.getI18nText ? window.getI18nText('toast.order_success').replace('{name}', name) : `✅ Đặt hàng thành công! Cảm ơn ${name}, chúng tôi sẽ liên hệ bạn sớm nhất.`);
         } else {
-          showToast("Có lỗi xảy ra: " + result.message);
+          showToast((window.getI18nText ? window.getI18nText('toast.server_error') : "Có lỗi xảy ra: ") + result.message);
         }
       } catch (error) {
         console.error("Lỗi gửi form đặt hàng:", error);
-        showToast("Đã xảy ra lỗi mạng. Vui lòng thử lại!");
+        showToast(window.getI18nText ? window.getI18nText('toast.network_error') : "Đã xảy ra lỗi mạng. Vui lòng thử lại!");
       } finally {
         submitBtn.innerText = originalBtnText;
         submitBtn.disabled = false;
@@ -369,28 +459,29 @@
   const relatedGrid = document.getElementById('relatedGrid');
 
   if (relatedGrid) {
+    const t = window.getI18nText || (k => k);
     const related = getRelatedProducts(productId, 4);
     relatedGrid.innerHTML = related.map(p => {
       let qty = "";
       let priceHtml = "";
 
       if (p.type === 'blindbox' && p.priceBox) {
-        if (p.artifact.includes('Basic')) qty = 'Dòng Cơ Bản';
-        else if (p.artifact.includes('Standard')) qty = 'Dòng Tiêu Chuẩn';
-        else if (p.artifact.includes('Premium')) qty = 'Dòng Cao Cấp';
+        if (p.artifact.includes('Basic')) qty = t('product.basic');
+        else if (p.artifact.includes('Standard') || p.artifact.includes('Tiêu Chuẩn')) qty = t('product.standard');
+        else if (p.artifact.includes('Premium') || p.artifact.includes('Cao Cấp')) qty = t('product.premium');
 
         priceHtml = `
           <div class="blind-box__prices">
             <div class="price-row">
-              <span class="price-label">Không hộp:</span>
+              <span class="price-label">${t('product.no_box')}</span>
               <span class="price-val">${formatPrice(p.price)}</span>
             </div>
             <div class="price-row">
-              <span class="price-label">Có hộp:</span>
+              <span class="price-label">${t('product.with_box')}</span>
               <span class="price-val">${formatPrice(p.priceBox)}</span>
             </div>
             <div class="price-row">
-              <span class="price-label">Hộp gỗ:</span>
+              <span class="price-label">${t('product.wood_box')}</span>
               <span class="price-val highlight">${formatPrice(p.priceWood)}</span>
             </div>
           </div>
@@ -409,10 +500,11 @@
           <h3 class="blind-box__name">${p.artifact}</h3>
           <p class="blind-box__desc">${p.description}</p>
           ${priceHtml}
-          <span class="blind-box__btn">MUA NGAY</span>
+          <span class="blind-box__btn">${t('product.buy_now')}</span>
         </a>
       `;
     }).join('');
   }
+
 
 })();

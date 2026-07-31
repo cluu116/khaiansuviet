@@ -63,6 +63,10 @@
   --transition-slow: 0.8s ease;
 }
 
+html[lang="en"] {
+  --font-display: var(--font-body);
+}
+
 /* ── Reset & Base ── */
 *,
 *::before,

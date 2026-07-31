@@ -44,7 +44,7 @@
       <div class="preloader__ring"></div>
       <div class="preloader__logo"></div>
     </div>
-    <p class="preloader__text">Khai Ấn Sử Việt</p>
+    <p class="preloader__text" data-i18n="preloader.text">Khai Ấn Sử Việt</p>
   </div>
 
   <!-- ============================================================
@@ -55,16 +55,36 @@
       <div class="navbar__logo-icon">
         <img src="assets/images/logo.webp" alt="Khai Ấn Sử Việt Logo" class="navbar__logo-img">
       </div>
-      <span class="navbar__logo-text">Khai Ấn Sử Việt</span>
+      <span class="navbar__logo-text" data-i18n="hero.title_main">Khai Ấn Sử Việt</span>
     </a>
 
     <div class="navbar__links" id="navLinks">
-      <a href="#home" class="navbar__link active" data-section="home">Trang Chủ</a>
-      <a href="#about" class="navbar__link" data-section="about">Về Chúng Tôi</a>
-      <a href="#products" class="navbar__link" data-section="products">Sản Phẩm</a>
-      <a href="collection.html" class="navbar__link">Bộ Sưu Tập</a>
-      <a href="guide.html" class="navbar__link">Hướng Dẫn</a>
-      <a href="#contact" class="navbar__link" data-section="contact">Liên Hệ</a>
+      <a href="#home" class="navbar__link active" data-section="home" data-i18n="nav.home">Trang Chủ</a>
+      <a href="#about" class="navbar__link" data-section="about" data-i18n="nav.about">Về Chúng Tôi</a>
+      <a href="#products" class="navbar__link" data-section="products" data-i18n="nav.products">Sản Phẩm</a>
+      <a href="collection.html" class="navbar__link" data-i18n="nav.collection">Bộ Sưu Tập</a>
+      <a href="guide.html" class="navbar__link" data-i18n="nav.guide">Hướng Dẫn</a>
+      <a href="#contact" class="navbar__link" data-section="contact" data-i18n="nav.contact">Liên Hệ</a>
+
+      <!-- Language Switcher -->
+      <div class="lang-switcher dropdown" id="langDropdown">
+        <button class="lang-switcher__toggle" id="langToggle" aria-haspopup="true" aria-expanded="false">
+          <img src="https://flagcdn.com/w20/vn.png" srcset="https://flagcdn.com/w40/vn.png 2x" width="20" alt="VN"
+            class="lang-icon" id="langIcon">
+          <span class="lang-text" id="langText">VI</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="lang-chevron">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+        <ul class="lang-switcher__menu" id="langMenu">
+          <li><button class="lang-switcher__item active" data-lang="vi"><img src="https://flagcdn.com/w20/vn.png"
+                srcset="https://flagcdn.com/w40/vn.png 2x" width="20" alt="VN" class="lang-icon"> Tiếng Việt</button>
+          </li>
+          <li><button class="lang-switcher__item" data-lang="en"><img src="https://flagcdn.com/w20/gb.png"
+                srcset="https://flagcdn.com/w40/gb.png 2x" width="20" alt="EN" class="lang-icon"> English</button></li>
+        </ul>
+      </div>
     </div>
 
     <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
@@ -129,12 +149,12 @@
     <!-- Hero Content -->
     <div class="hero__content">
       <div class="hero__text">
-        <div class="hero__badge">✦ Bộ Sưu Tập Giới Hạn ✦</div>
+        <div class="hero__badge" data-i18n="hero.badge">✦ Bộ Sưu Tập Giới Hạn ✦</div>
         <h1 class="hero__title">
-          Khai Ấn Sử Việt
-          <span class="highlight">Phá lớp thời gian - Tìm vàng di sản</span>
+          <span data-i18n="hero.title_main">Khai Ấn Sử Việt</span>
+          <span class="highlight" data-i18n="hero.title_sub">Phá lớp thời gian - Tìm vàng di sản</span>
         </h1>
-        <p class="hero__desc">
+        <p class="hero__desc" data-i18n="hero.desc">
           Thương hiệu giáo dục mang tính giải trí về di sản Việt Nam, kiến tạo trải nghiệm khám phá lịch sử thông qua
           <strong class="text-accent">mô hình khảo cổ</strong> kết hợp với công nghệ <strong class="text-accent">thực tế
             tăng cường AR</strong>, <strong class="text-accent">14
@@ -147,9 +167,9 @@
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>
-            Khám Phá Sản Phẩm
+            <span data-i18n="hero.btn_explore">Khám Phá Sản Phẩm</span>
           </a>
-          <a href="#about" class="btn-cta btn-cta--secondary">
+          <a href="#about" class="btn-cta btn-cta--secondary" data-i18n="hero.btn_more">
             Tìm Hiểu Thêm
           </a>
         </div>
@@ -158,7 +178,8 @@
       <div class="hero__image-area">
         <div class="hero__image-frame">
           <div class="hero__image-glow"></div>
-          <img src="assets/images/ảnh đầu trang.JPG" alt="Mô hình Khai Ấn Sử Việt" fetchpriority="high" decoding="async" class="hero__image" />
+          <img src="assets/images/hero.jpg" alt="Mô hình Khai Ấn Sử Việt" fetchpriority="high" decoding="async"
+            class="hero__image" />
           <div class="hero__image-decor"></div>
         </div>
       </div>
@@ -166,7 +187,7 @@
 
     <!-- Scroll indicator -->
     <div class="hero__scroll">
-      <span class="hero__scroll-text">Cuộn xuống</span>
+      <span class="hero__scroll-text" data-i18n="hero.scroll">Cuộn xuống</span>
       <div class="hero__scroll-line"></div>
     </div>
   </section>
@@ -176,13 +197,13 @@
        ============================================================ -->
   <section class="about section theme-light" id="about">
     <div class="container">
-      <p class="section__label reveal">Về Chúng Tôi</p>
-      <h2 class="section__title reveal">Hành Trình Đánh Thức Di Sản</h2>
+      <p class="section__label reveal" data-i18n="about.label">Về Chúng Tôi</p>
+      <h2 class="section__title reveal" data-i18n="about.title">Hành Trình Đánh Thức Di Sản</h2>
       <div class="section__divider reveal"></div>
 
       <div class="about__wrapper">
         <!-- Mobile Scroll Hint -->
-        <div class="about__mobile-hint reveal-left">⟷ Vuốt ngang để xem thêm</div>
+        <div class="about__mobile-hint reveal-left" data-i18n="about.mobile_hint">⟷ Vuốt ngang để xem thêm</div>
         <!-- Tab Navigation -->
         <div class="about__tabs reveal-left">
           <button class="about__tab active" data-tab="story">
@@ -190,7 +211,7 @@
               <path
                 d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
-            Brand Story
+            <span data-i18n="about.tab_story">Brand Story</span>
           </button>
           <button class="about__tab" data-tab="meaning">
             <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -199,14 +220,14 @@
               <path
                 d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
             </svg>
-            Ý Nghĩa Tên Gọi
+            <span data-i18n="about.tab_meaning">Ý Nghĩa Tên Gọi</span>
           </button>
           <button class="about__tab" data-tab="mission">
             <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path
                 d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
             </svg>
-            Sứ Mệnh
+            <span data-i18n="about.tab_mission">Sứ Mệnh</span>
           </button>
           <button class="about__tab" data-tab="vision">
             <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -214,132 +235,141 @@
                 d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
               <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            Tầm Nhìn
+            <span data-i18n="about.tab_vision">Tầm Nhìn</span>
           </button>
           <button class="about__tab" data-tab="values">
             <svg class="about__tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path
                 d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
             </svg>
-            Giá Trị Cốt Lõi
+            <span data-i18n="about.tab_values">Giá Trị Cốt Lõi</span>
           </button>
         </div>
 
         <div class="about__content reveal-right">
           <div class="about__panel active" id="panel-story">
-            <p class="about__panel-subtitle">Câu Chuyện Thương Hiệu</p>
-            <h3 class="about__panel-title">Hành trình đánh thức di sản</h3>
-            <p class="about__panel-text">
+            <p class="about__panel-subtitle" data-i18n="about.story_subtitle">Câu Chuyện Thương Hiệu</p>
+            <h3 class="about__panel-title" data-i18n="about.story_title">Hành trình đánh thức di sản</h3>
+            <p class="about__panel-text" data-i18n="about.story_p1">
               Mỗi cổ vật nằm sâu dưới lòng đất mẹ đều mang theo dấu vết của một thời đại đã qua, nơi lưu giữ trí tuệ,
               bản lĩnh và sự khát vọng của thế hệ cha ông đã góp phần làm nên dáng hình đất nước hôm nay. Thế nhưng,
               theo thời gian những câu chuyện ấy dần nằm lại sau những lớp kính bảo tàng hay những trang sách đầy rẫy
               những sự kiện với vô vàn niên đại khổng lồ.
             </p>
-            <p class="about__panel-text">
+            <p class="about__panel-text" data-i18n="about.story_p2">
               Không phải lịch sử Việt Nam thiếu điều hấp dẫn, mà bởi chúng ta chưa có nhiều cơ hội để thật sự đến gần,
               chạm vào và tự mình cảm nhận những giá trị vẫn đang ẩn sâu trong từng di sản. Và từ chính thực tế đó,
               <strong>Khai Ấn Sử Việt</strong> bắt đầu với một câu hỏi giản dị: <em>“Bên trong đó có gì?”</em>
             </p>
-            <p class="about__panel-text">
+            <p class="about__panel-text" data-i18n="about.story_p3">
               Từ một khối mô hình khảo cổ, cổ vật dần lộ diện, từ cổ vật ấy, câu chuyện về một triều đại cũng được đánh
               thức và mở ra một cuộc gặp gỡ với lịch sử bắt đầu thông qua trải nghiệm khám phá chân thật.
             </p>
             <div class="about__panel-quote">
-              <p>"Khi di sản được khám phá bằng sự tò mò và niềm tự hào, lịch sử không còn là bài học của ngày hôm qua,
+              <p data-i18n="about.story_quote">"Khi di sản được khám phá bằng sự tò mò và niềm tự hào, lịch sử không còn
+                là bài học của ngày hôm qua,
                 mà trở thành một phần sống động trong hành trình trưởng thành của thế hệ hôm nay."</p>
             </div>
           </div>
 
           <div class="about__panel" id="panel-meaning">
-            <p class="about__panel-subtitle">Ý Nghĩa Tên Gọi</p>
-            <h3 class="about__panel-title">KHAI ẤN SỬ VIỆT</h3>
-            <p class="about__panel-text">
+            <p class="about__panel-subtitle" data-i18n="about.meaning_subtitle">Ý Nghĩa Tên Gọi</p>
+            <h3 class="about__panel-title" data-i18n="about.meaning_title">KHAI ẤN SỬ VIỆT</h3>
+            <p class="about__panel-text" data-i18n="about.meaning_khai">
               <strong style="color: var(--vang-thep); font-size: 1.1em;">Khai:</strong> Là khơi mở những lớp bụi thời
               gian. Đó là khoảnh khắc từng lớp đất mô phỏng được nhẹ nhàng gỡ ra, để cổ vật và câu chuyện phía sau nó
               dần hiện diện.
             </p>
-            <p class="about__panel-text">
+            <p class="about__panel-text" data-i18n="about.meaning_an">
               <strong style="color: var(--vang-thep); font-size: 1.1em;">Ấn:</strong> Là dấu son mà cha ông để lại qua
               bao thế hệ. Mỗi hiện vật, biểu tượng hay dấu tích lịch sử đều mang trong mình một phần ký ức về văn hóa,
               bản lĩnh và khát vọng của dân tộc.
             </p>
-            <p class="about__panel-text">
+            <p class="about__panel-text" data-i18n="about.meaning_suviet">
               <strong style="color: var(--vang-thep); font-size: 1.1em;">Sử Việt:</strong> Là dòng chảy ngàn năm đã làm
               nên bản sắc Việt Nam. Đó là hành trình của nhiều triều đại, nhiều con người và nhiều giá trị vẫn tiếp tục
               hiện diện trong cuộc sống hôm nay.
             </p>
             <div class="about__panel-quote">
-              <p>"Khai Ấn Sử Việt không chỉ là hành trình tìm ra một cổ vật, đó là hành trình mở một dấu ấn để hiểu hơn
+              <p data-i18n="about.meaning_quote">"Khai Ấn Sử Việt không chỉ là hành trình tìm ra một cổ vật, đó là hành
+                trình mở một dấu ấn để hiểu hơn
                 về nơi mình thuộc về."</p>
             </div>
           </div>
 
           <div class="about__panel" id="panel-mission">
-            <p class="about__panel-subtitle">Sứ Mệnh</p>
-            <h3 class="about__panel-title">Đổi mới phương thức truyền tải di sản</h3>
-            <p class="about__panel-text">
+            <p class="about__panel-subtitle" data-i18n="about.mission_subtitle">Sứ Mệnh</p>
+            <h3 class="about__panel-title" data-i18n="about.mission_title">Đổi mới phương thức truyền tải di sản</h3>
+            <p class="about__panel-text" data-i18n="about.mission_p1">
               Khai Ấn Sử Việt mang sứ mệnh đổi mới phương thức truyền tải lịch sử và di sản, kiến tạo một hệ sinh thái
               giáo dục, giải trí sáng tạo mang bản sắc Việt.
             </p>
-            <p class="about__panel-text">
+            <p class="about__panel-text" data-i18n="about.mission_p2">
               Chúng tôi khát khao góp phần nuôi dưỡng ý thức cội nguồn, phát triển sức mạnh văn hóa quốc gia và đưa giá
               trị Việt Nam lan tỏa bền vững trong thời đại mới.
             </p>
             <div class="about__panel-quote">
-              <p>"Kiến tạo hệ sinh thái giáo dục và giải trí sáng tạo mang đậm bản sắc Việt."</p>
+              <p data-i18n="about.mission_quote">"Kiến tạo hệ sinh thái giáo dục và giải trí sáng tạo mang đậm bản sắc
+                Việt."</p>
             </div>
           </div>
 
           <div class="about__panel" id="panel-vision">
-            <p class="about__panel-subtitle">Tầm Nhìn</p>
-            <h3 class="about__panel-title">Tiên phong giáo dục giải trí về lịch sử</h3>
-            <p class="about__panel-text">
+            <p class="about__panel-subtitle" data-i18n="about.vision_subtitle">Tầm Nhìn</p>
+            <h3 class="about__panel-title" data-i18n="about.vision_title">Tiên phong giáo dục giải trí về lịch sử</h3>
+            <p class="about__panel-text" data-i18n="about.vision_p1">
               Khai Ấn Sử Việt hướng tới trở thành thương hiệu tiên phong trong lĩnh vực giáo dục mang tính giải trí về
               lịch sử Việt Nam, kiến tạo hệ sinh thái trải nghiệm di sản sáng tạo dành cho thế hệ trẻ.
             </p>
-            <p class="about__panel-text">
+            <p class="about__panel-text" data-i18n="about.vision_p2">
               Chúng tôi mong muốn trở thành cầu nối đưa lịch sử Việt Nam hiện diện sâu rộng trong đời sống hiện đại,
               đồng thời lan tỏa bản sắc và giá trị văn hóa Việt Nam ra khu vực và thế giới.
             </p>
             <div class="about__panel-quote">
-              <p>"Lan tỏa bản sắc và giá trị văn hóa Việt Nam ra khu vực và thế giới."</p>
+              <p data-i18n="about.vision_quote">"Lan tỏa bản sắc và giá trị văn hóa Việt Nam ra khu vực và thế giới."
+              </p>
             </div>
           </div>
 
           <div class="about__panel" id="panel-values">
-            <p class="about__panel-subtitle">Giá Trị Cốt Lõi</p>
-            <h3 class="about__panel-title">Nền Tảng Của Mọi Trải Nghiệm</h3>
-            <p class="about__panel-text" style="margin-bottom: 24px;">
+            <p class="about__panel-subtitle" data-i18n="about.values_subtitle">Giá Trị Cốt Lõi</p>
+            <h3 class="about__panel-title" data-i18n="about.values_title">Nền Tảng Của Mọi Trải Nghiệm</h3>
+            <p class="about__panel-text" style="margin-bottom: 24px;" data-i18n="about.values_intro">
               Mỗi sản phẩm, mỗi trải nghiệm đều được xây dựng trên những giá trị cốt lõi không thể lay chuyển:
             </p>
             <div class="about__values-grid">
               <div class="about__value-card">
                 <div class="about__value-icon">📜</div>
-                <h4 class="about__value-name">Tính Xác Thực</h4>
-                <p class="about__value-desc">Nội dung được xây dựng từ tư liệu học thuật chính thống, truyền tải lịch sử
+                <h4 class="about__value-name" data-i18n="about.value_authentic">Tính Xác Thực</h4>
+                <p class="about__value-desc" data-i18n="about.value_authentic_desc">Nội dung được xây dựng từ tư liệu
+                  học thuật chính thống, truyền tải lịch sử
                   trung thực.</p>
               </div>
               <div class="about__value-card">
                 <div class="about__value-icon">💡</div>
-                <h4 class="about__value-name">Tính Sáng Tạo</h4>
-                <p class="about__value-desc">Kết hợp di sản với trải nghiệm hiện đại, biến lịch sử thành giải trí hấp
+                <h4 class="about__value-name" data-i18n="about.value_creative">Tính Sáng Tạo</h4>
+                <p class="about__value-desc" data-i18n="about.value_creative_desc">Kết hợp di sản với trải nghiệm hiện
+                  đại, biến lịch sử thành giải trí hấp
                   dẫn.</p>
               </div>
               <div class="about__value-card">
                 <div class="about__value-icon">🌿</div>
-                <h4 class="about__value-name">Trách Nhiệm</h4>
-                <p class="about__value-desc">Sản phẩm thân thiện với môi trường, vật liệu an toàn, không độc hại.</p>
+                <h4 class="about__value-name" data-i18n="about.value_responsibility">Trách Nhiệm</h4>
+                <p class="about__value-desc" data-i18n="about.value_responsibility_desc">Sản phẩm thân thiện với môi
+                  trường, vật liệu an toàn, không độc hại.</p>
               </div>
               <div class="about__value-card">
                 <div class="about__value-icon">🤝</div>
-                <h4 class="about__value-name">Sự Kết Nối</h4>
-                <p class="about__value-desc">Cầu nối các thế hệ, gắn kết người trẻ với di sản và giá trị văn hóa gia
+                <h4 class="about__value-name" data-i18n="about.value_connection">Sự Kết Nối</h4>
+                <p class="about__value-desc" data-i18n="about.value_connection_desc">Cầu nối các thế hệ, gắn kết người
+                  trẻ với di sản và giá trị văn hóa gia
                   đình.</p>
               </div>
               <div class="about__value-card">
                 <div class="about__value-icon">🔥</div>
-                <h4 class="about__value-name">Truyền Cảm Hứng</h4>
-                <p class="about__value-desc">Khơi dậy tình yêu lịch sử, nuôi dưỡng niềm tự hào dân tộc trong thế hệ trẻ.
+                <h4 class="about__value-name" data-i18n="about.value_inspiration">Truyền Cảm Hứng</h4>
+                <p class="about__value-desc" data-i18n="about.value_inspiration_desc">Khơi dậy tình yêu lịch sử, nuôi
+                  dưỡng niềm tự hào dân tộc trong thế hệ trẻ.
                 </p>
               </div>
             </div>
@@ -354,8 +384,8 @@
        ============================================================ -->
   <section class="products section" id="products">
     <div class="container">
-      <p class="section__label reveal">Sản Phẩm</p>
-      <h2 class="section__title reveal">Blind Box Khai Ấn Sử Việt</h2>
+      <p class="section__label reveal" data-i18n="products.label">Sản Phẩm</p>
+      <h2 class="section__title reveal" data-i18n="products.title">Blind Box Khai Ấn Sử Việt</h2>
       <div class="section__divider reveal"></div>
 
       <!-- 3 Blind Box Cards -->
@@ -364,8 +394,9 @@
       <!-- Mystery Artifacts Section -->
       <div class="mystery-section reveal" id="mystery-cards">
         <div class="mystery-section__header">
-          <h3 class="mystery-section__title">Có Thể Nhận Được</h3>
-          <p class="mystery-section__desc">Mở hộp để nhận ngẫu nhiên 1 trong 14 cổ vật tích hợp chip NFC.<br>Quét NFC
+          <h3 class="mystery-section__title" data-i18n="products.mystery_title">Có Thể Nhận Được</h3>
+          <p class="mystery-section__desc" data-i18n="products.mystery_desc">Mở hộp để nhận ngẫu nhiên 1 trong 14 cổ vật
+            tích hợp chip NFC.<br>Quét NFC
             trên cổ vật thật để mở khóa cổ vật trong <a href="collection.html">Bộ Sưu Tập</a>!</p>
         </div>
         <section class="collection-main" style="background: transparent; padding: 0;">
@@ -384,7 +415,7 @@
             <rect x="14" y="14" width="7" height="7" />
             <rect x="3" y="14" width="7" height="7" />
           </svg>
-          Khám Phá Bộ Sưu Tập
+          <span data-i18n="products.cta_collection">Khám Phá Bộ Sưu Tập</span>
         </a>
       </div>
     </div>
@@ -397,8 +428,8 @@
        ============================================================ -->
   <section class="contact section theme-light" id="contact">
     <div class="container">
-      <p class="section__label reveal">Liên Hệ</p>
-      <h2 class="section__title reveal">Kết Nối Với Chúng Tôi</h2>
+      <p class="section__label reveal" data-i18n="contact.label">Liên Hệ</p>
+      <h2 class="section__title reveal" data-i18n="contact.title">Kết Nối Với Chúng Tôi</h2>
       <div class="section__divider reveal"></div>
 
       <div class="contact__wrapper">
@@ -413,8 +444,11 @@
                 </svg>
               </div>
               <div>
-                <p class="contact__info-label">Hotline</p>
-                <p class="contact__info-value">0866 994 438</p>
+                <p class="contact__info-label" data-i18n="contact.hotline_label">Hotline</p>
+                <a href="tel:0866994438" style="color: inherit; text-decoration: none; transition: color 0.3s;"
+                  onmouseover="this.style.color='var(--vang-thep)'" onmouseout="this.style.color='inherit'">
+                  <p class="contact__info-value">0866 994 438</p>
+                </a>
               </div>
             </div>
 
@@ -426,8 +460,12 @@
                 </svg>
               </div>
               <div>
-                <p class="contact__info-label">Email</p>
-                <p class="contact__info-value">khaiansuviet@gmail.com</p>
+                <p class="contact__info-label" data-i18n="contact.email_label">Email</p>
+                <a href="mailto:khaiansuviet@gmail.com"
+                  style="color: inherit; text-decoration: none; transition: color 0.3s;"
+                  onmouseover="this.style.color='var(--vang-thep)'" onmouseout="this.style.color='inherit'">
+                  <p class="contact__info-value">khaiansuviet@gmail.com</p>
+                </a>
               </div>
             </div>
 
@@ -439,8 +477,13 @@
                 </svg>
               </div>
               <div>
-                <p class="contact__info-label">Địa chỉ</p>
-                <p class="contact__info-value">Tân Xã, Hòa Lạc, Hà Nội</p>
+                <p class="contact__info-label" data-i18n="contact.address_label">Địa chỉ</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Khu+CNC+Hòa+Lạc,+Thạch+Thất,+Hà+Nội"
+                  target="_blank" rel="noopener noreferrer"
+                  style="color: inherit; text-decoration: none; transition: color 0.3s;"
+                  onmouseover="this.style.color='var(--vang-thep)'" onmouseout="this.style.color='inherit'">
+                  <p class="contact__info-value" data-i18n="contact.address_value">Tân Xã, Hòa Lạc, Hà Nội</p>
+                </a>
               </div>
             </div>
           </div>
@@ -461,8 +504,8 @@
                   d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
               </svg>
             </a>
-            <a href="https://shopee.vn" target="_blank" rel="noopener noreferrer" class="contact__social-link"
-              aria-label="Shopee">
+            <a href="https://shopee.vn/khaiansuviet2026" target="_blank" rel="noopener noreferrer"
+              class="contact__social-link" aria-label="Shopee">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -476,24 +519,26 @@
         <!-- Contact Form -->
         <form class="contact__form reveal-right" id="contactForm">
           <div class="contact__form-group">
-            <label class="contact__form-label" for="contactName">Họ và Tên</label>
-            <input type="text" class="contact__form-input" id="contactName" placeholder="Nhập họ và tên..." required>
+            <label class="contact__form-label" for="contactName" data-i18n="contact.form_name">Họ và Tên</label>
+            <input type="text" class="contact__form-input" id="contactName" placeholder="Nhập họ và tên..."
+              data-i18n="contact.form_name_placeholder" required>
           </div>
           <div class="contact__form-group">
-            <label class="contact__form-label" for="contactEmail">Email</label>
-            <input type="email" class="contact__form-input" id="contactEmail" placeholder="Nhập email..." required>
+            <label class="contact__form-label" for="contactEmail" data-i18n="contact.form_email">Email</label>
+            <input type="email" class="contact__form-input" id="contactEmail" placeholder="Nhập email..."
+              data-i18n="contact.form_email_placeholder" required>
           </div>
           <div class="contact__form-group">
-            <label class="contact__form-label" for="contactPhone">Số Điện Thoại</label>
+            <label class="contact__form-label" for="contactPhone" data-i18n="contact.form_phone">Số Điện Thoại</label>
             <input type="tel" class="contact__form-input" id="contactPhone" placeholder="Nhập số điện thoại..."
-              required>
+              data-i18n="contact.form_phone_placeholder" required>
           </div>
           <div class="contact__form-group">
-            <label class="contact__form-label" for="contactMessage">Lời Nhắn</label>
+            <label class="contact__form-label" for="contactMessage" data-i18n="contact.form_message">Lời Nhắn</label>
             <textarea class="contact__form-textarea" id="contactMessage" placeholder="Nhập lời nhắn..."
-              required></textarea>
+              data-i18n="contact.form_message_placeholder" required></textarea>
           </div>
-          <button type="submit" class="contact__form-submit">
+          <button type="submit" class="contact__form-submit" data-i18n="contact.form_submit">
             Gửi Liên Hệ
           </button>
         </form>
@@ -512,41 +557,46 @@
             <div class="footer__brand-icon">
               <img src="assets/images/logo.webp" alt="Khai Ấn Sử Việt Logo" class="footer__brand-img">
             </div>
-            <span class="footer__brand-text">Khai Ấn Sử Việt</span>
+            <span class="footer__brand-text" data-i18n="hero.title_main">Khai Ấn Sử Việt</span>
           </div>
-          <p class="footer__col-content" style="margin-top: 12px;">Chạm tay vào di sản, mở lối về Sử Việt. Một cách mới
+          <p class="footer__col-content" style="margin-top: 12px;" data-i18n="footer.tagline">Chạm tay vào di sản, mở
+            lối về Sử Việt. Một cách mới
             để trẻ yêu lịch sử bằng trải nghiệm thật</p>
           <div class="footer__security" style="margin-top: 16px;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path
                 d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
             </svg>
-            Cam kết bảo mật thông tin tuyệt đối
+            <span data-i18n="footer.security">Cam kết bảo mật thông tin tuyệt đối</span>
           </div>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__col-title">Liên Kết Nhanh</h4>
+          <h4 class="footer__col-title" data-i18n="footer.quick_links">Liên Kết Nhanh</h4>
           <ul class="footer__links">
-            <li><a href="index.html">Trang chủ</a></li>
-            <li><a href="index.html#about">Về chúng tôi</a></li>
-            <li><a href="index.html#products">Sản phẩm</a></li>
-            <li><a href="collection.html">Bộ sưu tập</a></li>
-            <li><a href="guide.html">Hướng dẫn AR</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Trang chủ</a></li>
+            <li><a href="index.html#about" data-i18n="nav.about">Về chúng tôi</a></li>
+            <li><a href="index.html#products" data-i18n="nav.products">Sản phẩm</a></li>
+            <li><a href="collection.html" data-i18n="nav.collection">Bộ sưu tập</a></li>
+            <li><a href="guide.html" data-i18n="nav.guide">Hướng dẫn AR</a></li>
           </ul>
         </div>
 
 
 
         <div class="footer__col">
-          <h4 class="footer__col-title">Liên Hệ</h4>
+          <h4 class="footer__col-title" data-i18n="footer.contact_title">Liên Hệ</h4>
           <div class="footer__col-content">
             <div class="footer__contact-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <span>Khu CNC Hòa Lạc, Thạch Thất, Hà Nội</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=Khu+CNC+Hòa+Lạc,+Thạch+Thất,+Hà+Nội"
+                target="_blank" rel="noopener noreferrer"
+                style="color: inherit; text-decoration: none; transition: color 0.3s;"
+                onmouseover="this.style.color='var(--vang-thep)'" onmouseout="this.style.color='inherit'"><span
+                  data-i18n="footer.address">Khu CNC Hòa Lạc, Thạch Thất, Hà Nội</span></a>
             </div>
             <div class="footer__contact-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -554,7 +604,9 @@
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
                 </path>
               </svg>
-              <span>0866 994 438</span>
+              <a href="tel:0866994438" style="color: inherit; text-decoration: none; transition: color 0.3s;"
+                onmouseover="this.style.color='var(--vang-thep)'" onmouseout="this.style.color='inherit'"><span>0866 994
+                  438</span></a>
             </div>
             <div class="footer__contact-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -562,7 +614,10 @@
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                 </path>
               </svg>
-              <span>khaiansuviet@gmail.com</span>
+              <a href="mailto:khaiansuviet@gmail.com"
+                style="color: inherit; text-decoration: none; transition: color 0.3s;"
+                onmouseover="this.style.color='var(--vang-thep)'"
+                onmouseout="this.style.color='inherit'"><span>khaiansuviet@gmail.com</span></a>
             </div>
           </div>
           <div class="footer__socials">
@@ -577,7 +632,8 @@
                 <path
                   d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
               </svg></a>
-            <a href="#" class="footer__social-icon" aria-label="Shopee"><svg width="18" height="18" viewBox="0 0 24 24"
+            <a href="https://shopee.vn/khaiansuviet2026" target="_blank" rel="noopener noreferrer"
+              class="footer__social-icon" aria-label="Shopee"><svg width="18" height="18" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -587,7 +643,8 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>© 2026 <a href="index.html">Khai Ấn Sử Việt</a>. Bản quyền thuộc về dự án Khai Ấn Sử Việt.</p>
+        <p data-i18n="footer.copyright">© 2026 <a href="index.html">Khai Ấn Sử Việt</a>. Bản quyền thuộc về dự án Khai
+          Ấn Sử Việt.</p>
       </div>
     </div>
   </footer>
@@ -599,6 +656,7 @@
        SCRIPTS
        ============================================================ -->
   <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/common.js" defer></script>
   <script src="assets/js/home.js" defer></script>
   <script src="assets/js/collection.js" defer></script>

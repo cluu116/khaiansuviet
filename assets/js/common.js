@@ -274,18 +274,45 @@
     return related.slice(0, limit);
   };
 
-  /* ── In-memory cache for product details (109KB JSON fetched once) ── */
+  /* ── In-memory cache for product details ── */
   let _detailsPromise = null;
-  window.getProductDetails = function() {
+  window.getProductDetails = function(lang = 'vi') {
     if (_detailsPromise) return _detailsPromise;
-    _detailsPromise = fetch('assets/data/products-detail.json')
-      .then(res => res.json())
-      .catch(e => {
+    
+    _detailsPromise = (async () => {
+      try {
+        const viRes = await fetch('assets/data/products-detail.json');
+        const viData = await viRes.json();
+        
+        if (lang === 'en') {
+          try {
+            const enRes = await fetch('assets/data/products-detail-en.json');
+            const enData = await enRes.json();
+            // Deep-ish merge EN data into VI data
+            for (const key in enData) {
+              if (viData[key]) {
+                Object.assign(viData[key], enData[key]);
+              } else {
+                viData[key] = enData[key];
+              }
+            }
+          } catch (e) {
+            console.error('Không thể tải chi tiết tiếng Anh', e);
+          }
+        }
+        return viData;
+      } catch (e) {
         console.error('Không thể tải chi tiết sản phẩm:', e);
-        _detailsPromise = null; // Allow retry on error
+        _detailsPromise = null;
         return {};
-      });
+      }
+    })();
+    
     return _detailsPromise;
+  };
+
+  window.resetProductDetailsCache = function() {
+    _detailsPromise = null;
   };
 
   let modelViewerPromise = null;

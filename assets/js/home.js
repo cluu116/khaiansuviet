@@ -9,22 +9,6 @@
   // Signal to common.js that this page has its own merged scroll handler
   window._homeScrollActive = true;
 
-  /* ── Blind Box Data (derived from PRODUCTS in data.js) ── */
-  const BLIND_BOXES = (typeof PRODUCTS !== 'undefined' ? PRODUCTS : [])
-    .filter(p => p.type === 'blindbox')
-    .map(p => ({
-      id: p.id,
-      name: p.artifact,
-      qty: p.artifact.includes('Basic') ? 'Dòng Cơ Bản'
-         : p.artifact.includes('Standard') ? 'Dòng Tiêu Chuẩn'
-         : 'Dòng Cao Cấp',
-      desc: p.description,
-      priceBase: p.price,
-      priceBox: p.priceBox,
-      priceWood: p.priceWood,
-      image: p.image
-    }));
-
   /* ============================================================
      1. RENDER BLIND BOX GRID
      ============================================================ */
@@ -32,6 +16,27 @@
 
   function renderBlindBoxes() {
     if (!blindBoxGrid) return;
+
+    const t = window.getI18nText || (k => k);
+
+    /* ── Blind Box Data (derived from PRODUCTS in data.js) ── */
+    const BLIND_BOXES = (typeof PRODUCTS !== 'undefined' ? PRODUCTS : [])
+      .filter(p => p.type === 'blindbox')
+      .map(p => ({
+        id: p.id,
+        name: p.artifact,
+        qty: p.artifact.includes('Basic') ? t('product.basic')
+           : p.artifact.includes('Standard') ? t('product.standard')
+           : p.artifact.includes('Premium') ? t('product.premium')
+           : p.artifact.includes('Tiêu Chuẩn') ? t('product.standard')
+           : p.artifact.includes('Cao Cấp') ? t('product.premium')
+           : t('product.basic'),
+        desc: p.description,
+        priceBase: p.price,
+        priceBox: p.priceBox,
+        priceWood: p.priceWood,
+        image: p.image
+      }));
 
     blindBoxGrid.innerHTML = BLIND_BOXES.map(box => {
       let tierClass = '';
@@ -49,23 +54,28 @@
         <p class="blind-box__desc">${box.desc}</p>
         <div class="blind-box__prices">
           <div class="price-row">
-            <span class="price-label">Không hộp:</span>
+            <span class="price-label">${t('product.no_box')}</span>
             <span class="price-val">${formatPrice(box.priceBase)}</span>
           </div>
           <div class="price-row">
-            <span class="price-label">Có hộp:</span>
+            <span class="price-label">${t('product.with_box')}</span>
             <span class="price-val">${formatPrice(box.priceBox)}</span>
           </div>
           <div class="price-row">
-            <span class="price-label">Hộp gỗ:</span>
+            <span class="price-label">${t('product.wood_box')}</span>
             <span class="price-val highlight">${formatPrice(box.priceWood)}</span>
           </div>
         </div>
-        <span class="blind-box__btn">MUA NGAY</span>
+        <span class="blind-box__btn">${t('product.buy_now')}</span>
       </a>
       `;
     }).join('');
   }
+
+  // Lắng nghe sự kiện chuyển đổi ngôn ngữ
+  window.addEventListener('languageChanged', () => {
+    renderBlindBoxes();
+  });
 
 
   /* ============================================================
@@ -126,14 +136,14 @@
 
         const result = await response.json();
         if (result.status === "success") {
-          showToast(`Cảm ơn ${name}! Chúng tôi đã nhận được liên hệ.`);
+          showToast(window.getI18nText ? window.getI18nText('toast.contact_success').replace('{name}', name) : `Cảm ơn ${name}! Chúng tôi đã nhận được liên hệ.`);
           contactForm.reset();
         } else {
-          showToast("Có lỗi xảy ra từ server: " + result.message);
+          showToast((window.getI18nText ? window.getI18nText('toast.server_error') : "Có lỗi xảy ra từ server: ") + result.message);
         }
       } catch (error) {
         console.error("Lỗi gửi form liên hệ:", error);
-        showToast("Đã xảy ra lỗi mạng. Vui lòng thử lại!");
+        showToast(window.getI18nText ? window.getI18nText('toast.network_error') : "Đã xảy ra lỗi mạng. Vui lòng thử lại!");
       } finally {
         submitBtn.innerText = originalBtnText;
         submitBtn.disabled = false;

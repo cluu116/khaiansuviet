@@ -290,18 +290,37 @@
 /* ── CTA Button System: Kim Bài Hoàng Triều ── */
 /* Shared keyframes for shimmer shine effect */
 @keyframes ctaShimmer {
-  0% { transform: translateX(-120%) skewX(-20deg); }
-  100% { transform: translateX(300%) skewX(-20deg); }
+  0% {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+
+  100% {
+    transform: translateX(300%) skewX(-20deg);
+  }
 }
 
 @keyframes ctaGoldPulse {
-  0%, 100% { filter: drop-shadow(0 6px 20px rgba(212, 160, 23, 0.5)); }
-  50%       { filter: drop-shadow(0 8px 28px rgba(255, 215, 0, 0.75)); }
+
+  0%,
+  100% {
+    filter: drop-shadow(0 6px 20px rgba(212, 160, 23, 0.5));
+  }
+
+  50% {
+    filter: drop-shadow(0 8px 28px rgba(255, 215, 0, 0.75));
+  }
 }
 
 @keyframes ctaRedPulse {
-  0%, 100% { filter: drop-shadow(0 6px 20px rgba(166, 44, 33, 0.45)); }
-  50%       { filter: drop-shadow(0 8px 28px rgba(201, 68, 58, 0.65)); }
+
+  0%,
+  100% {
+    filter: drop-shadow(0 6px 20px rgba(166, 44, 33, 0.45));
+  }
+
+  50% {
+    filter: drop-shadow(0 8px 28px rgba(201, 68, 58, 0.65));
+  }
 }
 
 /* ── Primary: Kim Bài Vàng (Gold Imperial Plaque) ── */
@@ -319,10 +338,10 @@
   /* Inner gold text on dark fill */
   color: #FFE87A;
   background: linear-gradient(135deg,
-    #FFE57A 0%,
-    #FFD700 30%,
-    #D4A017 65%,
-    #7A5200 100%);
+      #FFE57A 0%,
+      #FFD700 30%,
+      #D4A017 65%,
+      #7A5200 100%);
   border: none;
   position: relative;
   cursor: pointer;
@@ -330,14 +349,12 @@
   overflow: hidden;
   z-index: 1;
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-              color 0.3s ease;
+    color 0.3s ease;
   /* Cổ phong octagonal clip */
-  clip-path: polygon(
-    10px 0, calc(100% - 10px) 0,
-    100% 10px, 100% calc(100% - 10px),
-    calc(100% - 10px) 100%, 10px 100%,
-    0 calc(100% - 10px), 0 10px
-  );
+  clip-path: polygon(10px 0, calc(100% - 10px) 0,
+      100% 10px, 100% calc(100% - 10px),
+      calc(100% - 10px) 100%, 10px 100%,
+      0 calc(100% - 10px), 0 10px);
   filter: drop-shadow(0 6px 20px rgba(212, 160, 23, 0.5));
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   animation: ctaGoldPulse 3s ease-in-out infinite;
@@ -349,12 +366,10 @@
   position: absolute;
   inset: 3px;
   background: linear-gradient(160deg, #3D0E08 0%, #5a1a14 50%, #2A0800 100%);
-  clip-path: polygon(
-    7px 0, calc(100% - 7px) 0,
-    100% 7px, 100% calc(100% - 7px),
-    calc(100% - 7px) 100%, 7px 100%,
-    0 calc(100% - 7px), 0 7px
-  );
+  clip-path: polygon(7px 0, calc(100% - 7px) 0,
+      100% 7px, 100% calc(100% - 7px),
+      calc(100% - 7px) 100%, 7px 100%,
+      0 calc(100% - 7px), 0 7px);
   z-index: -1;
   transition: background 0.35s ease, opacity 0.3s ease;
 }
@@ -363,13 +378,14 @@
 .btn-cta::after {
   content: '';
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 40%;
   height: 100%;
   background: linear-gradient(90deg,
-    transparent,
-    rgba(255, 255, 200, 0.25),
-    transparent);
+      transparent,
+      rgba(255, 255, 200, 0.25),
+      transparent);
   transform: translateX(-120%) skewX(-20deg);
   animation: ctaShimmer 3.5s ease-in-out infinite;
   pointer-events: none;
@@ -397,10 +413,10 @@
 .btn-cta--secondary {
   color: #FFD5CC;
   background: linear-gradient(135deg,
-    #D4614A 0%,
-    #A62C21 35%,
-    #7a1f17 70%,
-    #4A0E09 100%);
+      #D4614A 0%,
+      #A62C21 35%,
+      #7a1f17 70%,
+      #4A0E09 100%);
   filter: drop-shadow(0 6px 20px rgba(166, 44, 33, 0.45));
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   animation: ctaRedPulse 3s ease-in-out infinite;
@@ -413,9 +429,9 @@
 /* Shimmer streak tinted red */
 .btn-cta--secondary::after {
   background: linear-gradient(90deg,
-    transparent,
-    rgba(255, 200, 180, 0.2),
-    transparent);
+      transparent,
+      rgba(255, 200, 180, 0.2),
+      transparent);
 }
 
 .btn-cta--secondary:hover {
@@ -438,21 +454,17 @@
   padding: 11px 26px;
   font-size: 0.8rem;
   letter-spacing: 2px;
-  clip-path: polygon(
-    10px 0, calc(100% - 10px) 0,
-    100% 10px, 100% calc(100% - 10px),
-    calc(100% - 10px) 100%, 10px 100%,
-    0 calc(100% - 10px), 0 10px
-  );
+  clip-path: polygon(10px 0, calc(100% - 10px) 0,
+      100% 10px, 100% calc(100% - 10px),
+      calc(100% - 10px) 100%, 10px 100%,
+      0 calc(100% - 10px), 0 10px);
 }
 
 .btn-cta--small::before {
-  clip-path: polygon(
-    7px 0, calc(100% - 7px) 0,
-    100% 7px, 100% calc(100% - 7px),
-    calc(100% - 7px) 100%, 7px 100%,
-    0 calc(100% - 7px), 0 7px
-  );
+  clip-path: polygon(7px 0, calc(100% - 7px) 0,
+      100% 7px, 100% calc(100% - 7px),
+      calc(100% - 7px) 100%, 7px 100%,
+      0 calc(100% - 7px), 0 7px);
 }
 
 
@@ -641,6 +653,118 @@
 }
 
 
+/* ── Language Switcher ── */
+.lang-switcher {
+  position: relative;
+  margin-left: 0;
+}
+
+.lang-switcher__toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(26, 17, 8, 0.8);
+  border: none;
+  color: var(--trang-nga);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.lang-switcher__toggle:hover,
+.lang-switcher__toggle[aria-expanded="true"] {
+  background: rgba(218, 165, 32, 0.2);
+  box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+}
+
+.lang-chevron {
+  transition: transform var(--transition-fast);
+}
+
+.lang-switcher__toggle[aria-expanded="true"] .lang-chevron {
+  transform: rotate(180deg);
+}
+
+.lang-icon {
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+.lang-switcher__menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: rgba(22, 14, 7, 0.85);
+  border: 1px solid rgba(218, 165, 32, 0.25);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 150px;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+/* Add an elegant upward arrow pointing to the button */
+.lang-switcher__menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: rgba(22, 14, 7, 0.9);
+  border-left: 1px solid rgba(218, 165, 32, 0.25);
+  border-top: 1px solid rgba(218, 165, 32, 0.25);
+}
+
+.lang-switcher.open .lang-switcher__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.lang-switcher__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: rgba(255, 250, 240, 0.85);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.lang-switcher__item:hover {
+  background: rgba(218, 165, 32, 0.12);
+  color: var(--vang-thep);
+}
+
+.lang-switcher__item.active {
+  color: var(--vang-thep);
+  font-weight: 600;
+  background: rgba(218, 165, 32, 0.08);
+}
+
 /* ── Responsive ── */
 /* ⚠️ Order matters: larger breakpoints first to avoid cascade conflicts */
 @media (max-width: 992px) {
@@ -665,6 +789,36 @@
     transition: right var(--transition-normal);
     border-left: 1px solid rgba(184, 134, 11, 0.2);
     z-index: 999;
+  }
+
+  /* Mobile fixed language switcher */
+  .lang-switcher--mobile {
+    position: fixed;
+    bottom: 24px;
+    left: 20px;
+    z-index: 1000;
+    margin: 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border-radius: 20px;
+  }
+  
+  .lang-switcher--mobile .lang-switcher__menu {
+    top: auto;
+    bottom: calc(100% + 12px);
+    transform: translateX(-50%) translateY(10px);
+  }
+  
+  .lang-switcher--mobile.open .lang-switcher__menu {
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  .lang-switcher--mobile .lang-switcher__menu::before {
+    top: auto;
+    bottom: -6px;
+    border-top: none;
+    border-left: none;
+    border-right: 1px solid rgba(218, 165, 32, 0.25);
+    border-bottom: 1px solid rgba(218, 165, 32, 0.25);
   }
 
   .navbar__links.open {

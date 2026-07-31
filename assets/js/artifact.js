@@ -44,7 +44,8 @@
     if (!state.product) return;
 
     try {
-      const allDetails = await getProductDetails();
+      const currentLang = typeof getCurrentLang === 'function' ? getCurrentLang() : 'vi';
+      const allDetails = await getProductDetails(currentLang);
       const detail = allDetails[state.product.id];
       if (detail) {
         Object.assign(state.product, detail);
@@ -58,6 +59,23 @@
 
     // Cleanup khi chuyển trang — giải phóng WebGL context và bộ nhớ
     window.addEventListener('beforeunload', cleanup);
+
+    // Lắng nghe sự kiện chuyển đổi ngôn ngữ
+    window.addEventListener('languageChanged', async (e) => {
+      const lang = e.detail ? e.detail.lang : 'vi';
+      getProduct();
+      if (!state.product) return;
+      try {
+        const allDetails = await getProductDetails(lang);
+        const detail = allDetails[state.product.id];
+        if (detail) {
+          Object.assign(state.product, detail);
+        }
+      } catch (err) {
+        console.error('Lỗi khi tải lại chi tiết cổ vật:', err);
+      }
+      populateProductInfo();
+    });
   }
 
   function cleanup() {
@@ -97,26 +115,34 @@
     state.isUnlocked = rawStorage.includes(String(id));
   }
 
+  function t(key, fallback) {
+    if (window.getI18nText) {
+      const val = window.getI18nText(key);
+      return val !== key ? val : fallback;
+    }
+    return fallback;
+  }
+
   function populateProductInfo() {
     if (!state.isUnlocked) {
       if (DOM.dynasty) DOM.dynasty.textContent = '???';
       if (DOM.era) DOM.era.textContent = '???';
-      if (DOM.name) DOM.name.textContent = 'Cổ Vật Bí Ẩn';
+      if (DOM.name) DOM.name.textContent = t('artifact.locked_title', 'Cổ Vật Bí Ẩn');
 
       if (DOM.desc) {
-        DOM.desc.innerHTML = 'Dữ liệu lịch sử đang bị phong ấn.<br>Hãy thu thập thẻ bài vật lý hoặc mở hộp mù để giải mã!';
+        DOM.desc.innerHTML = t('artifact.locked_desc', 'Dữ liệu lịch sử đang bị phong ấn.<br>Hãy thu thập thẻ bài vật lý hoặc mở hộp mù để giải mã!');
         DOM.desc.style.color = '#A62C21';
         DOM.desc.style.fontWeight = '700';
       }
 
       if (DOM.dynastyDesc) {
-        DOM.dynastyDesc.textContent = '████ █████ ██████ ███ ████████ ███ ██████ ███ ████████ ██████ ███. Lịch sử đang chờ bạn khám phá...';
+        DOM.dynastyDesc.textContent = '████ █████ ██████ ███ ████████ ███ ██████ ███ ████████ ██████ ███. ' + t('artifact.locked_story', 'Lịch sử đang chờ bạn khám phá...');
         DOM.dynastyDesc.style.filter = 'blur(4px)';
         DOM.dynastyDesc.style.userSelect = 'none';
         DOM.dynastyDesc.style.opacity = '0.5';
       }
 
-      document.title = `Cổ Vật Bí Ẩn — Khai Ấn Sử Việt`;
+      document.title = `${t('artifact.locked_name', 'Cổ Vật Bí Ẩn')} — ${t('hero.title_main', 'Khai Ấn Sử Việt')}`;
 
       const galleryContainer = document.getElementById('artifactGallery');
       const actionsContainer = document.getElementById('artifactActions');
@@ -124,13 +150,18 @@
       if (actionsContainer) actionsContainer.style.display = 'none';
 
       const specsList = document.getElementById('artifactSpecsList');
-      if (specsList) specsList.innerHTML = '<li><span class="artifact__specs-label">TRẠNG THÁI</span><span class="artifact__specs-value" style="color:#A62C21; font-weight: bold;">Chưa giải mã</span></li>';
+      if (specsList) specsList.innerHTML = `<li><span class="artifact__specs-label">${t('artifact.specs_status', 'TRẠNG THÁI')}</span><span class="artifact__specs-value" style="color:#A62C21; font-weight: bold;">${t('artifact.locked_status', 'Chưa giải mã')}</span></li>`;
 
       const artifactStory = document.getElementById('artifactStory');
       if (artifactStory) {
-        artifactStory.innerHTML = '<p>Lịch sử đang chờ bạn khám phá...</p>';
+        artifactStory.innerHTML = `<p>${t('artifact.locked_story', 'Lịch sử đang chờ bạn khám phá...')}</p>`;
         artifactStory.style.filter = 'blur(6px)';
         artifactStory.style.userSelect = 'none';
+      }
+
+      // Re-render the 3D placeholder if it exists, to apply translations
+      if (typeof renderPlaceholder === 'function') {
+        renderPlaceholder();
       }
 
       return;
@@ -142,7 +173,7 @@
     if (DOM.desc) DOM.desc.textContent = state.product.artifactDesc;
     if (DOM.dynastyDesc) DOM.dynastyDesc.textContent = state.product.description;
 
-    document.title = `${state.product.artifact} — Khai Ấn Sử Việt`;
+    document.title = `${state.product.artifact} — ${t('hero.title_main', 'Khai Ấn Sử Việt')}`;
 
     // Render Gallery
     const galleryContainer = document.getElementById('artifactGallery');
@@ -176,17 +207,19 @@
     if (actionsContainer && state.product.model) {
       actionsContainer.innerHTML = '';
 
+      const t = typeof window.getI18nText === 'function' ? window.getI18nText : (k => k);
+
       // Nút 3D
       const btn3d = document.createElement('button');
       btn3d.className = 'btn-cta';
       btn3d.id = 'btnAction3D';
-      btn3d.title = 'Xem 3D';
+      btn3d.title = t('artifact.btn_3d');
       btn3d.innerHTML = `
         <svg width="20" height="20" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z"/>
           <path d="M40 10 L40 70 M10 25 L70 55 M70 25 L10 55"/>
         </svg>
-        XEM 3D
+        <span data-i18n="artifact.btn_3d">${t('artifact.btn_3d')}</span>
       `;
       btn3d.addEventListener('click', load3DModel);
       actionsContainer.appendChild(btn3d);
@@ -194,12 +227,12 @@
       // Nút AR
       const btnAr = document.createElement('button');
       btnAr.className = 'btn-cta btn-cta--secondary';
-      btnAr.title = 'Xem AR';
+      btnAr.title = t('artifact.btn_ar');
       btnAr.innerHTML = `
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
         </svg>
-        MỞ AR
+        <span data-i18n="artifact.btn_ar">${t('artifact.btn_ar')}</span>
       `;
       btnAr.addEventListener('click', handleAR);
       actionsContainer.appendChild(btnAr);
@@ -364,8 +397,8 @@
           <svg viewBox="0 0 80 80" style="width: 120px; height: 120px; color: rgba(218,165,32,0.3); margin-bottom: 1.5rem; filter: drop-shadow(0 0 10px rgba(218,165,32,0.2));">
             ${state.product.silhouetteSvg}
           </svg>
-          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #DAA520; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; text-shadow: 0 0 10px rgba(218,165,32,0.5);">Chưa giải mã</p>
-          <a href="index.html#products" style="margin-top: 1.5rem; padding: 12px 30px; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 700; color: #1A1108; background: linear-gradient(135deg, #B8860B, #DAA520); border-radius: 6px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 4px 15px rgba(184,134,11,0.3); transition: all 0.3s ease;">Sưu tầm cổ vật ngay</a>
+          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #DAA520; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; text-shadow: 0 0 10px rgba(218,165,32,0.5);">${t('artifact.locked_status', 'Chưa giải mã')}</p>
+          <a href="index.html#products" style="margin-top: 1.5rem; padding: 12px 30px; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 700; color: #1A1108; background: linear-gradient(135deg, #B8860B, #DAA520); border-radius: 6px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 4px 15px rgba(184,134,11,0.3); transition: all 0.3s ease;">${t('artifact.locked_cta', 'Sưu tầm cổ vật ngay')}</a>
         </div>
       `;
       return;
@@ -409,8 +442,8 @@
           <div class="artifact3d-progress__fill" id="model3dProgressFill"></div>
           <div class="artifact3d-progress__glow" id="model3dProgressGlow"></div>
         </div>
-        <span class="artifact3d-loading__text" id="model3dPercent">ĐANG TẢI 0%</span>
-        <span class="artifact3d-loading__detail" id="model3dDetail">Khởi tạo La Đồ Thời Gian...</span>
+        <span class="artifact3d-loading__text" id="model3dPercent">${t('artifact.loading_percent', 'ĐANG TẢI {percent}%').replace('{percent}', '0')}</span>
+        <span class="artifact3d-loading__detail" id="model3dDetail">${t('artifact.load_init', 'Khởi tạo La Đồ Thời Gian...')}</span>
       </div>
     `;
   }
@@ -436,19 +469,19 @@
     if (glow) {
       glow.style.left = `${percent}%`;
     }
-    percentEl.textContent = `ĐANG TẢI ${percent}%`;
+    percentEl.textContent = t('artifact.loading_percent', 'ĐANG TẢI {percent}%').replace('{percent}', percent);
 
     if (detailEl) {
       if (percent < 10) {
-        detailEl.textContent = 'Khởi tạo La Đồ Thời Gian...';
+        detailEl.textContent = t('artifact.load_init', 'Khởi tạo La Đồ Thời Gian...');
       } else if (percent < 40) {
-        detailEl.textContent = 'Đang giải mã không gian & thời gian...';
+        detailEl.textContent = t('artifact.load_decoding', 'Đang giải mã không gian & thời gian...');
       } else if (percent < 70) {
-        detailEl.textContent = 'Đang phục dựng hình ảnh cổ vật...';
+        detailEl.textContent = t('artifact.load_reconstructing', 'Đang phục dựng hình ảnh cổ vật...');
       } else if (percent < 90) {
-        detailEl.textContent = 'Đang đồng bộ hạt ánh sáng...';
+        detailEl.textContent = t('artifact.load_syncing', 'Đang đồng bộ hạt ánh sáng...');
       } else {
-        detailEl.textContent = 'Hoàn tất — Chuẩn bị hiển thị...';
+        detailEl.textContent = t('artifact.load_complete', 'Hoàn tất — Chuẩn bị hiển thị...');
       }
     }
   }
@@ -458,8 +491,8 @@
    */
   function renderErrorUI(errorMsg, canRetry) {
     const retryBtnHtml = canRetry
-      ? `<button type="button" class="artifact3d-error__btn" id="retry3DBtn">THỬ LẠI (${state.retryCount}/${MAX_RETRIES})</button>`
-      : `<span class="artifact3d-loading__detail">Đã thử ${MAX_RETRIES} lần. Hãy kiểm tra kết nối mạng và tải lại trang.</span>`;
+      ? `<button type="button" class="artifact3d-error__btn" id="retry3DBtn">${t('artifact.retry_btn', 'THỬ LẠI ({count}/{max})').replace('{count}', state.retryCount).replace('{max}', MAX_RETRIES)}</button>`
+      : `<span class="artifact3d-loading__detail">${t('artifact.error_max_retries', 'Đã thử {max} lần. Hãy kiểm tra kết nối mạng và tải lại trang.').replace('{max}', MAX_RETRIES)}</span>`;
 
     DOM.viewerContainer.innerHTML = `
       <div class="artifact3d-error">
@@ -469,7 +502,7 @@
             <path d="M40 25 L40 45 M40 55 L40 60" stroke-linecap="round"/>
           </svg>
         </div>
-        <span class="artifact3d-error__title">LỖI LA ĐỒ THỜI GIAN</span>
+        <span class="artifact3d-error__title">${t('artifact.error_title', 'LỖI LA ĐỒ THỜI GIAN')}</span>
         <span class="artifact3d-error__msg">${errorMsg}</span>
         ${retryBtnHtml}
       </div>
@@ -517,7 +550,7 @@
     } catch (error) {
       state.isLoading = false;
       console.error('Không thể tải model-viewer:', error);
-      renderErrorUI('Không thể tải trình xem 3D. Vui lòng kiểm tra kết nối mạng và thử lại.', true);
+      renderErrorUI(t('artifact.error_load_viewer', 'Không thể tải trình xem 3D. Vui lòng kiểm tra kết nối mạng và thử lại.'), true);
       return;
     }
 
@@ -640,7 +673,7 @@
     if (e) e.preventDefault();
 
     if (!state.product || !state.product.model) {
-      showToast('Cổ vật này chưa có mô hình 3D.');
+      showToast(window.getI18nText ? window.getI18nText('toast.no_3d') : 'Cổ vật này chưa có mô hình 3D.');
       return;
     }
 
@@ -648,7 +681,7 @@
 
     // ── Android: Google Scene Viewer ──
     if (device.isAndroid) {
-      showToast('Đang mở AR...');
+      showToast(window.getI18nText ? window.getI18nText('toast.opening_ar') : 'Đang mở AR...');
 
       const absoluteModelUrl = new URL(state.product.model, window.location.href).toString();
       const title = encodeURIComponent(state.product.artifact);
@@ -668,7 +701,7 @@
     // ── iOS: Quick Look (.usdz) ──
     if (device.isIOS) {
       if (state.product.usdz) {
-        showToast('Đang mở AR...');
+        showToast(window.getI18nText ? window.getI18nText('toast.opening_ar') : 'Đang mở AR...');
 
         const absoluteUsdzUrl = new URL(state.product.usdz, window.location.href).toString();
         const a = document.createElement('a');
@@ -681,13 +714,13 @@
         a.click();
         setTimeout(() => a.remove(), 100);
       } else {
-        showToast('⚠️ AR trên iPhone/iPad yêu cầu file .usdz. Cổ vật này hiện chỉ có file .glb.');
+        showToast(window.getI18nText ? window.getI18nText('toast.ar_ios_error') : '⚠️ AR trên iPhone/iPad yêu cầu file .usdz. Cổ vật này hiện chỉ có file .glb.');
       }
       return;
     }
 
     // ── Desktop fallback ──
-    showToast('💡 Vui lòng mở trang này trên điện thoại để trải nghiệm AR!');
+    showToast(window.getI18nText ? window.getI18nText('toast.ar_mobile_only') : '💡 Vui lòng mở trang này trên điện thoại để trải nghiệm AR!');
   }
 
   /* ============================================================
