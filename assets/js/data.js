@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ── Shared Constants ── */
-const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyzMrIuKg5TEjod8WYQ9FqOC48dL6xkMhkslC59h6LmtqARGDAp4DLFHKIRfSTAwcd5/exec';
+const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbxwURqgub3BVCcWlSSp24uJFnkFff0vcfu7gsp4BLKHLog2JoJMR7P8f6eTuaG8Cjzl/exec';
 
 const PRODUCTS = [
   {

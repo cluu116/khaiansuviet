@@ -235,38 +235,90 @@
     }
   }
 
-  /* ============================================================
-     8. SHARED UTILITIES
-     ============================================================ */
-  window.formatPrice = function(price) {
-    if (!price) return 'Liên hệ';
+  /* ── Live exchange rate (VND → USD) ── */
+  let _vndToUsdRate = 25000; // fallback default
+
+  (async function fetchExchangeRate() {
+    try {
+      const CACHE_KEY = 'kasv_vnd_usd_rate';
+      const CACHE_TS_KEY = 'kasv_vnd_usd_ts';
+      const ONE_HOUR = 60 * 60 * 1000;
+
+      const cached = sessionStorage.getItem(CACHE_KEY);
+      const cachedTs = parseInt(sessionStorage.getItem(CACHE_TS_KEY) || '0', 10);
+
+      if (cached && Date.now() - cachedTs < ONE_HOUR) {
+        _vndToUsdRate = parseFloat(cached);
+        return;
+      }
+
+      const MIRRORS = [
+        'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json',
+        'https://latest.currency-api.pages.dev/v1/currencies/usd.json'
+      ];
+
+      let rate = null;
+      for (const url of MIRRORS) {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) continue;
+          const data = await res.json();
+          rate = data.usd && data.usd.vnd;
+          if (rate && rate > 0) break;
+        } catch (_) { /* try next mirror */ }
+      }
+
+      if (rate && rate > 0) {
+        _vndToUsdRate = rate;
+        sessionStorage.setItem(CACHE_KEY, String(rate));
+        sessionStorage.setItem(CACHE_TS_KEY, String(Date.now()));
+      }
+    } catch (e) {
+      // console.warn('[KASV] Could not fetch exchange rate, using fallback 25,000 VND/USD.', e);
+    }
+  })();
+
+  window.formatPrice = function (price, lang) {
+    const currentLang = lang || (typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'vi');
+    if (!price) return currentLang === 'en' ? 'Contact' : 'Liên hệ';
+    if (currentLang === 'en') {
+      const usd = price / _vndToUsdRate;
+      const rounded = Math.floor(usd * 10) / 10 + 0.09;
+      return '$' + rounded.toFixed(2);
+    }
     return price.toLocaleString('vi-VN') + '₫';
   };
 
-  window.getProductById = function(id) {
+  window.getUsdPrice = function (price) {
+    if (!price) return 0;
+    const usd = price / _vndToUsdRate;
+    return Math.floor(usd * 10) / 10 + 0.09;
+  };
+
+  window.getProductById = function (id) {
     if (typeof PRODUCTS === 'undefined') return null;
     return PRODUCTS.find(p => p.id === id);
   };
 
-  window.getStatusClass = function(status) {
+  window.getStatusClass = function (status) {
     if (status === 'in-stock') return 'badge--instock';
     if (status === 'pre-order') return 'badge--preorder';
     if (status === 'sold-out') return 'badge--soldout';
     return '';
   };
 
-  window.getStatusLabel = function(status) {
+  window.getStatusLabel = function (status) {
     if (status === 'in-stock') return 'Còn hàng';
     if (status === 'pre-order') return 'Đặt trước';
     if (status === 'sold-out') return 'Hết hàng';
     return '';
   };
 
-  window.getRelatedProducts = function(currentId, limit = 4) {
+  window.getRelatedProducts = function (currentId, limit = 4) {
     if (typeof PRODUCTS === 'undefined') return [];
     const current = getProductById(currentId);
     if (!current) return [];
-    
+
     let related = PRODUCTS.filter(p => p.id !== currentId && p.type === current.type);
     if (related.length === 0) {
       related = PRODUCTS.filter(p => p.id !== currentId);
@@ -276,14 +328,14 @@
 
   /* ── In-memory cache for product details ── */
   let _detailsPromise = null;
-  window.getProductDetails = function(lang = 'vi') {
+  window.getProductDetails = function (lang = 'vi') {
     if (_detailsPromise) return _detailsPromise;
-    
+
     _detailsPromise = (async () => {
       try {
         const viRes = await fetch('assets/data/products-detail.json');
         const viData = await viRes.json();
-        
+
         if (lang === 'en') {
           try {
             const enRes = await fetch('assets/data/products-detail-en.json');
@@ -307,11 +359,11 @@
         return {};
       }
     })();
-    
+
     return _detailsPromise;
   };
 
-  window.resetProductDetailsCache = function() {
+  window.resetProductDetailsCache = function () {
     _detailsPromise = null;
   };
 
@@ -338,7 +390,7 @@
       script.onload = () => {
         const ModelViewerElement = customElements.get('model-viewer');
         if (ModelViewerElement) {
-            ModelViewerElement.meshoptDecoderLocation = 'https://unpkg.com/meshoptimizer@0.18.1/meshopt_decoder.js';
+          ModelViewerElement.meshoptDecoderLocation = 'https://unpkg.com/meshoptimizer@0.18.1/meshopt_decoder.js';
         }
         resolve();
       };
@@ -348,10 +400,10 @@
     });
 
     modelViewerPromise.then(() => {
-        const ModelViewerElement = customElements.get('model-viewer');
-        if (ModelViewerElement && !ModelViewerElement.meshoptDecoderLocation) {
-            ModelViewerElement.meshoptDecoderLocation = 'https://unpkg.com/meshoptimizer@0.18.1/meshopt_decoder.js';
-        }
+      const ModelViewerElement = customElements.get('model-viewer');
+      if (ModelViewerElement && !ModelViewerElement.meshoptDecoderLocation) {
+        ModelViewerElement.meshoptDecoderLocation = 'https://unpkg.com/meshoptimizer@0.18.1/meshopt_decoder.js';
+      }
     });
 
     return modelViewerPromise;

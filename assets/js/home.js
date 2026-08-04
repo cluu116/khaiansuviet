@@ -61,9 +61,6 @@
             <span class="price-label">${t('product.with_box')}</span>
             <span class="price-val">${formatPrice(box.priceBox)}</span>
           </div>
-          <div class="price-row">
-            <span class="price-label">${t('product.wood_box')}</span>
-            <span class="price-val highlight">${formatPrice(box.priceWood)}</span>
           </div>
         </div>
         <span class="blind-box__btn">${t('product.buy_now')}</span>
@@ -107,8 +104,8 @@
       e.preventDefault();
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.innerText;
-      submitBtn.innerText = "Đang gửi...";
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<style>@keyframes kasv-spin { 100% { transform: rotate(360deg); } }</style><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; animation: kasv-spin 1s linear infinite; vertical-align: middle;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> <span style="vertical-align: middle;">' + (window.getI18nText ? window.getI18nText('contact.submitting') : "ĐANG GỬI...") + '</span>';
       submitBtn.disabled = true;
 
       const name = document.getElementById('contactName').value;
@@ -121,7 +118,8 @@
         name: name,
         email: email,
         phone: phone,
-        message: message
+        message: message,
+        lang: typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'vi'
       };
 
       try {
@@ -145,7 +143,7 @@
         console.error("Lỗi gửi form liên hệ:", error);
         showToast(window.getI18nText ? window.getI18nText('toast.network_error') : "Đã xảy ra lỗi mạng. Vui lòng thử lại!");
       } finally {
-        submitBtn.innerText = originalBtnText;
+        submitBtn.innerHTML = originalBtnHTML;
         submitBtn.disabled = false;
       }
     });

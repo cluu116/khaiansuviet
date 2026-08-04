@@ -65,10 +65,6 @@
               <span class="price-option__label">${lang === 'vi' ? 'Có Hộp' : 'With Box'}</span>
               <span class="price-option__val">${formatPrice(product.priceBox)}</span>
             </div>
-            <div class="price-option premium">
-              <span class="price-option__label">${lang === 'vi' ? 'Hộp Gỗ' : 'Wood Box'}</span>
-              <span class="price-option__val">${formatPrice(product.priceWood)}</span>
-            </div>
           </div>
         `;
       } else {
@@ -146,7 +142,6 @@
       orderVariant.innerHTML = `
         <option value="${product.price}" data-name="${lang === 'vi' ? 'Không hộp' : 'No box'}">${lang === 'vi' ? 'Không hộp' : 'No box'} (${formatPrice(product.price)})</option>
         <option value="${product.priceBox}" data-name="${lang === 'vi' ? 'Có hộp' : 'With box'}">${lang === 'vi' ? 'Có hộp' : 'With box'} (${formatPrice(product.priceBox)})</option>
-        <option value="${product.priceWood}" data-name="${lang === 'vi' ? 'Hộp gỗ' : 'Wood box'}">${lang === 'vi' ? 'Hộp gỗ' : 'Wood box'} (${formatPrice(product.priceWood)})</option>
       `;
     }
   }
@@ -190,10 +185,6 @@
               <div class="price-row">
                 <span class="price-label">${t('product.with_box')}</span>
                 <span class="price-val">${formatPrice(p.priceBox)}</span>
-              </div>
-              <div class="price-row">
-                <span class="price-label">${t('product.wood_box')}</span>
-                <span class="price-val highlight">${formatPrice(p.priceWood)}</span>
               </div>
             </div>
           `;
@@ -483,8 +474,8 @@
       }
 
       const submitBtn = orderForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.innerText;
-      submitBtn.innerText = "ĐANG XỬ LÝ...";
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<style>@keyframes kasv-spin { 100% { transform: rotate(360deg); } }</style><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; animation: kasv-spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> <span style="vertical-align: middle;">' + (window.getI18nText ? window.getI18nText('order.submitting') : "ĐANG XỬ LÝ...") + '</span>';
       submitBtn.disabled = true;
 
       let finalPrice = product.price;
@@ -505,7 +496,9 @@
         address: note || "Không có",
         product: product.artifact + variantName,
         quantity: qty,
-        total: finalPrice * parseInt(qty)
+        total: finalPrice * parseInt(qty),
+        totalUsd: typeof window.getUsdPrice === 'function' ? window.getUsdPrice(finalPrice * parseInt(qty)) : 0,
+        lang: typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'vi'
       };
 
       try {
@@ -531,7 +524,7 @@
         console.error("Lỗi gửi form đặt hàng:", error);
         showToast(window.getI18nText ? window.getI18nText('toast.network_error') : "Đã xảy ra lỗi mạng. Vui lòng thử lại!");
       } finally {
-        submitBtn.innerText = originalBtnText;
+        submitBtn.innerHTML = originalBtnHTML;
         submitBtn.disabled = false;
       }
     });
@@ -576,9 +569,6 @@
               <span class="price-label">${t('product.with_box')}</span>
               <span class="price-val">${formatPrice(p.priceBox)}</span>
             </div>
-            <div class="price-row">
-              <span class="price-label">${t('product.wood_box')}</span>
-              <span class="price-val highlight">${formatPrice(p.priceWood)}</span>
             </div>
           </div>
         `;

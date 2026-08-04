@@ -304,43 +304,41 @@
   <div class="order-modal" id="orderModal">
     <div class="order-modal__card">
       <button class="order-modal__close" id="closeOrderModal" aria-label="Đóng">✕</button>
-      <p class="order-modal__label">ĐẶT HÀNG</p>
+      <p class="order-modal__label" data-i18n="order.title">ĐẶT HÀNG</p>
       <h3 class="order-modal__product-name" id="orderProductName">Tên sản phẩm</h3>
       <p class="order-modal__product-price" id="orderProductPrice">199.000đ</p>
 
       <form class="order-modal__form" id="orderForm">
         <div class="order-modal__row">
           <div class="order-modal__field">
-            <label class="order-modal__field-label" for="orderName">HỌ TÊN <span>*</span></label>
-            <input type="text" class="order-modal__input" id="orderName" placeholder="Họ tên đầy đủ" required>
+            <label class="order-modal__field-label" for="orderName" data-i18n="order.name_label">HỌ TÊN <span>*</span></label>
+            <input type="text" class="order-modal__input" id="orderName" placeholder="Họ tên đầy đủ" required data-i18n="order.name_placeholder">
           </div>
           <div class="order-modal__field">
-            <label class="order-modal__field-label" for="orderPhone">SỐ ĐIỆN THOẠI <span>*</span></label>
-            <input type="tel" class="order-modal__input" id="orderPhone" placeholder="0912 345 678" required>
+            <label class="order-modal__field-label" for="orderPhone" data-i18n="order.phone_label">SỐ ĐIỆN THOẠI <span>*</span></label>
+            <input type="tel" class="order-modal__input" id="orderPhone" placeholder="0912 345 678" required data-i18n="order.phone_placeholder">
           </div>
         </div>
 
         <div class="order-modal__field">
-          <label class="order-modal__field-label" for="orderEmail">EMAIL <span>*</span> <em>(để nhận xác
-              nhận)</em></label>
-          <input type="email" class="order-modal__input" id="orderEmail" placeholder="email@example.com" required>
+          <label class="order-modal__field-label" for="orderEmail" data-i18n="order.email_label">EMAIL <span>*</span> <em>(để nhận xác nhận)</em></label>
+          <input type="email" class="order-modal__input" id="orderEmail" placeholder="email@example.com" required data-i18n="order.email_placeholder">
         </div>
 
         <div class="order-modal__field" id="orderVariantField" style="display: none;">
-          <label class="order-modal__field-label" for="orderVariant">PHÂN LOẠI</label>
+          <label class="order-modal__field-label" for="orderVariant" data-i18n="order.variant_label">PHÂN LOẠI</label>
           <select class="order-modal__input" id="orderVariant">
           </select>
         </div>
 
         <div class="order-modal__field order-modal__field--small">
-          <label class="order-modal__field-label" for="orderQty">SỐ LƯỢNG</label>
+          <label class="order-modal__field-label" for="orderQty" data-i18n="order.qty_label">SỐ LƯỢNG</label>
           <input type="number" class="order-modal__input" id="orderQty" value="1" min="1" max="10">
         </div>
 
         <div class="order-modal__field">
-          <label class="order-modal__field-label" for="orderNote">GHI CHÚ <em>(địa chỉ giao, yêu cầu đặc
-              biệt...)</em></label>
-          <textarea class="order-modal__textarea" id="orderNote" placeholder="Giao tới Hà Nội, gói quà..."></textarea>
+          <label class="order-modal__field-label" for="orderNote" data-i18n="order.note_label">GHI CHÚ <em>(địa chỉ giao, yêu cầu đặc biệt...)</em></label>
+          <textarea class="order-modal__textarea" id="orderNote" placeholder="Giao tới Hà Nội, gói quà..." data-i18n="order.note_placeholder"></textarea>
         </div>
 
         <button type="submit" class="order-modal__submit" id="orderSubmitBtn">
@@ -348,7 +346,7 @@
             stroke-linecap="round">
             <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
           </svg>
-          XÁC NHẬN ĐẶT HÀNG
+          <span data-i18n="order.submit">XÁC NHẬN ĐẶT HÀNG</span>
         </button>
       </form>
     </div>
